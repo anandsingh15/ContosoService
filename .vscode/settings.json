@@ -1,0 +1,8 @@
+{
+  "chat.agentSkillsLocations": {
+    "../d365-solution-craft/.github/skills/requirement": true,
+    "../d365-solution-craft/.github/skills/feature": true,
+    "../d365-solution-craft/.github/skills/design": true,
+    "../d365-solution-craft/.github/skills/build": true
+  }
+}

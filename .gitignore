@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# .NET
+bin/
+obj/
+TestResults/
+
+# Node.js
+node_modules/
+coverage/
+
+# Power Platform build output
+artifacts/
+out/
+*.zip
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.user
+*.suo
+
+# Editors and operating system
+.vs/
+.DS_Store
+Thumbs.db
+
+# Tracking audit output (keep local, never commit)
+audit/

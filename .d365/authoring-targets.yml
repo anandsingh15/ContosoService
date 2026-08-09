@@ -1,0 +1,57 @@
+schema_version: 1
+
+# Consumer-owned authoring identities. Replace both sentinels before Dataverse
+# implementation. Never store credentials, tokens, secrets, or secret-bearing
+# URLs here.
+environments:
+  authoring-dataverse:
+    environment_url: CONFIGURE_BEFORE_IMPLEMENTATION
+    environment_id: CONFIGURE_BEFORE_IMPLEMENTATION
+    authentication_mode: interactive_user
+    connection_alias: dataverse-authoring
+    description: Generic Dataverse authoring environment.
+
+solutions:
+  application-solution:
+    environment: authoring-dataverse
+    unique_name: ApplicationSolution
+    display_name: Application Solution
+    publisher_name: Application Publisher
+    publisher_prefix: app
+
+targets:
+  dataverse-solution-authoring:
+    kind: dataverse_solution
+    environment: authoring-dataverse
+    solution: application-solution
+  dataverse-environment-authoring:
+    kind: dataverse_environment
+    environment: authoring-dataverse
+
+routing:
+  # Environment-bound data components take precedence over their broader
+  # solution-bound families.
+  - match: {component_type: sec_business_unit}
+    target: dataverse-environment-authoring
+  - match: {component_type: sec_team}
+    target: dataverse-environment-authoring
+  - match: {component_type: config_queue}
+    target: dataverse-environment-authoring
+  - match: {component_type: config_audit}
+    target: dataverse-environment-authoring
+  - match: {component_type: "schema_*"}
+    target: dataverse-solution-authoring
+  - match: {component_type: "config_*"}
+    target: dataverse-solution-authoring
+  - match: {component_type: "uiux_*"}
+    target: dataverse-solution-authoring
+  - match: {component_type: "flow_*"}
+    target: dataverse-solution-authoring
+  - match: {component_type: "code_*"}
+    target: dataverse-solution-authoring
+  - match: {component_type: "mcs_*"}
+    target: dataverse-solution-authoring
+  - match: {component_type: "sec_*"}
+    target: dataverse-solution-authoring
+  - match: {component_type: "integ_*"}
+    target: dataverse-solution-authoring
