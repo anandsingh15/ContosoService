@@ -5,19 +5,19 @@ schema_version: 1
 # URLs here.
 environments:
   authoring-dataverse:
-    environment_url: CONFIGURE_BEFORE_IMPLEMENTATION
-    environment_id: CONFIGURE_BEFORE_IMPLEMENTATION
+    environment_url: https://org89912357.crm.dynamics.com
+    environment_id: 89a7081d-6701-f111-8c79-6045bd005919
     authentication_mode: interactive_user
     connection_alias: dataverse-authoring
-    description: Generic Dataverse authoring environment.
+    description: APACAgentTechDataverse production Dataverse (Organization ID 89a7081d-6701-f111-8c79-6045bd005919).
 
 solutions:
   application-solution:
     environment: authoring-dataverse
-    unique_name: ApplicationSolution
-    display_name: Application Solution
-    publisher_name: Application Publisher
-    publisher_prefix: app
+    unique_name: ContosoService
+    display_name: Contoso Service
+    publisher_name: AnandPOC
+    publisher_prefix: aks
 
 targets:
   dataverse-solution-authoring:

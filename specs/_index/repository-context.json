@@ -4,9 +4,9 @@
       "authoring-dataverse": {
         "authentication_mode": "interactive_user",
         "connection_alias": "dataverse-authoring",
-        "description": "Generic Dataverse authoring environment.",
-        "environment_id": "CONFIGURE_BEFORE_IMPLEMENTATION",
-        "environment_url": "CONFIGURE_BEFORE_IMPLEMENTATION"
+        "description": "APACAgentTechDataverse production Dataverse (Organization ID 89a7081d-6701-f111-8c79-6045bd005919).",
+        "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+        "environment_url": "https://org89912357.crm.dynamics.com"
       }
     },
     "routing": [
@@ -86,11 +86,11 @@
     "schema_version": 1,
     "solutions": {
       "application-solution": {
-        "display_name": "Application Solution",
+        "display_name": "Contoso Service",
         "environment": "authoring-dataverse",
-        "publisher_name": "Application Publisher",
-        "publisher_prefix": "app",
-        "unique_name": "ApplicationSolution"
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "unique_name": "ContosoService"
       }
     },
     "targets": {
@@ -105,7 +105,7 @@
       }
     }
   },
-  "authoring_targets_hash": "2fd9f152686e72a732b46ed9a677af367f6c637d41e8aeece780297efe40ad58",
+  "authoring_targets_hash": "e235bf2f24c9aac6998cb3eab795195412014ada90aab61808b2d4bf54562cfc",
   "authoring_targets_schema_hash": "f432ed697a4f6b018cf3aee18b44bbe094c88e41cd8fc259b412a4ccb1351f8f",
   "compatibility": {
     "canonical_artifacts": {
@@ -736,7 +736,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "6128874a378f6b0d103be2956fad553b4fd96ccd24f3dc10b07c1b7dc1370a8f",
+  "context_hash": "4c2f3542c197d29939f994df35405b6d7eaf47798040d4536d2ea35fb37910f6",
   "conventions_hash": "9c365e6ca17a59cb6eee6ff5e94865ad9fc62e2c0d2d8650f8275fe7e8903e25",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -3225,11 +3225,11 @@
         "endpoint": "{authoring_target.environment_url}/api/data/v9.2",
         "kind": "endpoint",
         "oauth_public_client": {
-          "client_id": "CONFIGURE_BEFORE_IMPLEMENTATION",
+          "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
           "provider": "msal_public_client",
           "redirect_uri": "http://localhost",
           "scope_suffix": "/user_impersonation",
-          "tenant_id": "CONFIGURE_BEFORE_IMPLEMENTATION",
+          "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
           "token_cache": "memory_only"
         },
         "preflight": {
@@ -3782,16 +3782,6 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -3824,16 +3814,6 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "The documented solution header binds the exact column operation to the routed custom solution.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "MCP generic writes are not primary because they do not guarantee compiler-validated explicit custom-solution context.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -3866,16 +3846,6 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -3930,16 +3900,6 @@
               "purpose": "primary_environment_audit_configuration",
               "rationale": "The admin center is the registered environment-level audit authoring surface.",
               "resource": "power-platform-admin-center"
-            },
-            {
-              "purpose": "targeted_audit_verification",
-              "rationale": "MCP is used only to verify the exact configured audit scope.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -3979,16 +3939,6 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "Definition CRUD uses MSCRM.SolutionUniqueName and never logs variable values.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "definition_verification_only",
-              "rationale": "Generic MCP writes lack compiler-validated explicit custom-solution context, so MCP verifies only non-secret definition metadata.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4009,17 +3959,6 @@
               "purpose": "primary_agent_authoring",
               "rationale": "The product-specific authoring resource owns AI-agent changes.",
               "resource": "copilot-studio-authoring"
-            },
-            {
-              "purpose": "data_grounding_and_verification",
-              "rationale": "MCP provides targeted Dataverse grounding and verification only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "search_data",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4047,16 +3986,6 @@
               "purpose": "primary_visual_configuration",
               "rationale": "Portal is primary only because the capability matrix explicitly marks Web API construction unsupported or unreliable.",
               "resource": "maker-portal"
-            },
-            {
-              "purpose": "targeted_verification_only",
-              "rationale": "MCP generic writes cannot guarantee explicit custom-solution context and are not used for solution-aware authoring.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4084,16 +4013,6 @@
               "purpose": "primary_form_authoring",
               "rationale": "Portal remains primary because the capability matrix marks direct API form authoring not compiler-reliable.",
               "resource": "maker-portal"
-            },
-            {
-              "purpose": "targeted_form_verification",
-              "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4121,16 +4040,6 @@
               "purpose": "primary_ui_authoring",
               "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
               "resource": "maker-portal"
-            },
-            {
-              "purpose": "targeted_ui_verification",
-              "rationale": "MCP is restricted to discovery and targeted post-action verification.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4158,16 +4067,6 @@
               "purpose": "primary_visual_flow_authoring",
               "rationale": "Portal is primary because direct clientdata construction is not compiler-reliable.",
               "resource": "maker-portal"
-            },
-            {
-              "purpose": "schema_and_runtime_verification",
-              "rationale": "MCP provides targeted discovery and verification only, not solution-aware writes.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4198,16 +4097,6 @@
               "purpose": "registration_and_solution_operations",
               "rationale": "PAC is primary only for documented registration and solution/source operations.",
               "resource": "power-platform-cli"
-            },
-            {
-              "purpose": "schema_and_runtime_verification",
-              "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4238,16 +4127,6 @@
               "purpose": "registration_and_solution_operations",
               "rationale": "PAC is primary only for documented registration and solution/source operations.",
               "resource": "power-platform-cli"
-            },
-            {
-              "purpose": "schema_and_runtime_verification",
-              "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4273,16 +4152,6 @@
               "purpose": "pcf_and_solution_operations",
               "rationale": "PAC owns supported PCF and solution packaging operations.",
               "resource": "power-platform-cli"
-            },
-            {
-              "purpose": "schema_and_runtime_verification",
-              "rationale": "MCP is used for targeted reads only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4303,16 +4172,6 @@
               "purpose": "primary_solution_source_operations",
               "rationale": "PAC remains primary for supported solution source and package operations.",
               "resource": "power-platform-cli"
-            },
-            {
-              "purpose": "targeted_runtime_verification",
-              "rationale": "MCP verifies exact metadata and runtime behavior only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4340,17 +4199,6 @@
               "purpose": "primary_agent_authoring",
               "rationale": "The approved Copilot Studio resource performs product-specific authoring.",
               "resource": "copilot-studio-authoring"
-            },
-            {
-              "purpose": "data_grounding_and_verification",
-              "rationale": "Dataverse MCP remains targeted grounding and verification only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "search_data",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4371,16 +4219,6 @@
               "purpose": "primary_least_privilege_authoring",
               "rationale": "Portal is primary because the capability matrix rejects unreliable direct role construction.",
               "resource": "maker-portal"
-            },
-            {
-              "purpose": "targeted_role_verification",
-              "rationale": "MCP verifies exact effective privileges only and is not used for generic solution-aware writes.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4401,16 +4239,6 @@
               "purpose": "primary_field_security_authoring",
               "rationale": "Portal is primary because no complete compiler-reliable Web API payload is claimed.",
               "resource": "maker-portal"
-            },
-            {
-              "purpose": "targeted_security_verification",
-              "rationale": "MCP is read and verification only for this solution-aware component.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4596,16 +4424,6 @@
               "purpose": "connector_and_solution_operations",
               "rationale": "PAC remains primary for documented connector and solution operations.",
               "resource": "power-platform-cli"
-            },
-            {
-              "purpose": "schema_and_test_data_verification",
-              "rationale": "MCP provides targeted schema and test-data reads only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4645,16 +4463,6 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "Supported row operations use compiler-owned paths and the explicit solution header.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "targeted_reference_verification",
-              "rationale": "Generic MCP writes do not guarantee compiler-validated custom-solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -4675,7 +4483,7 @@
       ]
     }
   },
-  "development_resources_hash": "fb0d5a5ae6cd1298f931e37ff718045cb7bb9ef82fb9ec91a8d8fbb4f28ccbfd",
+  "development_resources_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
   "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
   "schema_version": 1,
   "schemas": {

@@ -75,8 +75,8 @@ resources:
     description: Capability-gated Dataverse Web API authoring endpoint.
     oauth_public_client:
       provider: msal_public_client
-      client_id: CONFIGURE_BEFORE_IMPLEMENTATION
-      tenant_id: CONFIGURE_BEFORE_IMPLEMENTATION
+      client_id: 201be4ec-09c9-482a-a3c2-67f3e467d57b
+      tenant_id: 979fd422-22c4-4a36-bea6-1cf87b6502dd
       redirect_uri: http://localhost
       scope_suffix: /user_impersonation
       token_cache: memory_only
@@ -593,7 +593,6 @@ routing:
         - {resource: microsoft-learn, purpose: metadata_contract, rationale: Official Microsoft documentation defines the allowed metadata request contract.}
         - {resource: msal-python, purpose: delegated_authentication, rationale: The executor uses the pinned public-client MSAL dependency with an in-memory token cache.}
         - {resource: dataverse-web-api, purpose: primary_solution_aware_authoring, rationale: MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.}
-        - {resource: dataverse-mcp, purpose: discovery_and_targeted_verification, tools: [search, describe, read_query], rationale: "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only."}
       preferred:
         - {resource: power-platform-cli, purpose: supported_targeted_source_operations, rationale: PAC is used only when the build skill explicitly requires supported source or package operations after the scoped write.}
       fallback:
@@ -605,7 +604,6 @@ routing:
         - {resource: microsoft-learn, purpose: metadata_contract, rationale: Official Microsoft documentation defines supported column metadata payloads and methods.}
         - {resource: msal-python, purpose: delegated_authentication, rationale: The executor requires the pinned in-memory public-client authentication library.}
         - {resource: dataverse-web-api, purpose: primary_solution_aware_authoring, rationale: The documented solution header binds the exact column operation to the routed custom solution.}
-        - {resource: dataverse-mcp, purpose: discovery_and_targeted_verification, tools: [search, describe, read_query], rationale: MCP generic writes are not primary because they do not guarantee compiler-validated explicit custom-solution context.}
       fallback:
         - {resource: maker-portal, purpose: documented_api_failure_fallback, rationale: Portal fallback is allowed only with issue evidence for the specific API failure or unsupported payload.}
   - match: {component_type: "schema_*"}
@@ -615,7 +613,6 @@ routing:
         - {resource: microsoft-learn, purpose: metadata_contract, rationale: Official metadata documentation is required for every selected schema operation.}
         - {resource: msal-python, purpose: delegated_authentication, rationale: Public-client MSAL is pinned and tokens remain in memory only.}
         - {resource: dataverse-web-api, purpose: primary_solution_aware_authoring, rationale: Supported metadata operations use the documented solution header or action parameter.}
-        - {resource: dataverse-mcp, purpose: discovery_and_targeted_verification, tools: [search, describe, read_query], rationale: Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.}
       fallback:
         - {resource: maker-portal, purpose: documented_api_failure_fallback, rationale: Portal fallback must cite the exact failed or unsupported capability in issue evidence.}
   - match: {component_type: config_queue}
@@ -632,7 +629,6 @@ routing:
       required:
         - {resource: microsoft-learn, purpose: audit_grounding, rationale: Official audit guidance defines the supported administration path.}
         - {resource: power-platform-admin-center, purpose: primary_environment_audit_configuration, rationale: The admin center is the registered environment-level audit authoring surface.}
-        - {resource: dataverse-mcp, purpose: targeted_audit_verification, tools: [search, describe, read_query], rationale: MCP is used only to verify the exact configured audit scope.}
   - match: {component_type: config_env_variable}
     rationale: Environment-variable definitions are solution components with documented row CRUD and explicit solution-header support.
     resources:
@@ -640,7 +636,6 @@ routing:
         - {resource: microsoft-learn, purpose: environment_variable_contract, rationale: Official table references define writable fields and supported messages.}
         - {resource: msal-python, purpose: delegated_authentication, rationale: The Web API executor uses the pinned in-memory MSAL public-client flow.}
         - {resource: dataverse-web-api, purpose: primary_solution_aware_authoring, rationale: Definition CRUD uses MSCRM.SolutionUniqueName and never logs variable values.}
-        - {resource: dataverse-mcp, purpose: definition_verification_only, tools: [search, describe, read_query], rationale: "Generic MCP writes lack compiler-validated explicit custom-solution context, so MCP verifies only non-secret definition metadata."}
       preferred:
         - {resource: power-platform-cli, purpose: supported_deployment_settings_operations, rationale: "PAC remains limited to documented solution and deployment-settings work, not generic definition creation."}
       fallback:
@@ -651,14 +646,12 @@ routing:
       required:
         - {resource: microsoft-learn, purpose: ai_capability_grounding, rationale: Official product documentation grounds the selected agent capability.}
         - {resource: copilot-studio-authoring, purpose: primary_agent_authoring, rationale: The product-specific authoring resource owns AI-agent changes.}
-        - {resource: dataverse-mcp, purpose: data_grounding_and_verification, tools: [search, search_data, describe, read_query], rationale: MCP provides targeted Dataverse grounding and verification only.}
   - match: {component_type: "config_*"}
     rationale: These visual configuration types have no compiler-reliable documented Web API payload contract and retain Maker Portal primary.
     resources:
       required:
         - {resource: microsoft-learn, purpose: configuration_grounding, rationale: Official documentation must confirm the selected product configuration path.}
         - {resource: maker-portal, purpose: primary_visual_configuration, rationale: Portal is primary only because the capability matrix explicitly marks Web API construction unsupported or unreliable.}
-        - {resource: dataverse-mcp, purpose: targeted_verification_only, tools: [search, describe, read_query], rationale: MCP generic writes cannot guarantee explicit custom-solution context and are not used for solution-aware authoring.}
       preferred:
         - {resource: power-platform-cli, purpose: supported_solution_source_operations, rationale: PAC is limited to supported solution or source operations and never substitutes for generic component creation.}
   - match: {component_type: uiux_form}
@@ -667,7 +660,6 @@ routing:
       required:
         - {resource: microsoft-learn, purpose: form_contract, rationale: Official SystemForm documentation grounds the supported metadata surface and its limits.}
         - {resource: maker-portal, purpose: primary_form_authoring, rationale: Portal remains primary because the capability matrix marks direct API form authoring not compiler-reliable.}
-        - {resource: dataverse-mcp, purpose: targeted_form_verification, tools: [search, describe, read_query], rationale: MCP reads verify the exact form; generic writes do not guarantee custom-solution context.}
       preferred:
         - {resource: power-platform-cli, purpose: supported_solution_source_operations, rationale: PAC is used only for supported targeted solution/source operations.}
   - match: {component_type: "uiux_*"}
@@ -676,7 +668,6 @@ routing:
       required:
         - {resource: microsoft-learn, purpose: ui_contract, rationale: Official product documentation grounds the selected UI authoring route.}
         - {resource: maker-portal, purpose: primary_ui_authoring, rationale: Portal is primary because no reliable compiler-owned API construction is claimed.}
-        - {resource: dataverse-mcp, purpose: targeted_ui_verification, tools: [search, describe, read_query], rationale: MCP is restricted to discovery and targeted post-action verification.}
       preferred:
         - {resource: power-platform-cli, purpose: supported_solution_source_operations, rationale: PAC remains limited to supported source and solution operations.}
   - match: {component_type: flow_cloud}
@@ -685,7 +676,6 @@ routing:
       required:
         - {resource: microsoft-learn, purpose: flow_grounding, rationale: Official Power Automate and Workflow references ground the supported route.}
         - {resource: maker-portal, purpose: primary_visual_flow_authoring, rationale: Portal is primary because direct clientdata construction is not compiler-reliable.}
-        - {resource: dataverse-mcp, purpose: schema_and_runtime_verification, tools: [search, describe, read_query], rationale: "MCP provides targeted discovery and verification only, not solution-aware writes."}
       preferred:
         - {resource: power-platform-cli, purpose: supported_solution_operations, rationale: PAC is used only for documented solution/source operations and not generic flow creation.}
   - match: {component_type: code_plugin}
@@ -696,7 +686,6 @@ routing:
         - {resource: dotnet-toolchain, purpose: build_and_test, rationale: The pinned .NET toolchain builds and tests the component.}
         - {resource: dataverse-dotnet-sdk, purpose: dataverse_code, rationale: The registered Dataverse SDK supports code integration and registration contracts.}
         - {resource: power-platform-cli, purpose: registration_and_solution_operations, rationale: PAC is primary only for documented registration and solution/source operations.}
-        - {resource: dataverse-mcp, purpose: schema_and_runtime_verification, tools: [search, describe, read_query], rationale: MCP performs targeted discovery and verification without generic solution-aware writes.}
   - match: {component_type: code_custom_api}
     rationale: Custom API code and registration use the same documented .NET and PAC route as plug-ins.
     resources: *dotnet_code
@@ -707,21 +696,18 @@ routing:
         - {resource: microsoft-learn, purpose: pcf_contract_grounding, rationale: Official PCF documentation defines the component build contract.}
         - {resource: node-toolchain, purpose: build_and_test, rationale: The pinned Node toolchain builds and tests the control.}
         - {resource: power-platform-cli, purpose: pcf_and_solution_operations, rationale: PAC owns supported PCF and solution packaging operations.}
-        - {resource: dataverse-mcp, purpose: schema_and_runtime_verification, tools: [search, describe, read_query], rationale: MCP is used for targeted reads only.}
   - match: {component_type: "code_webres_*"}
     rationale: Although WebResource CRUD is documented, content construction and repository binding are not complete in the current payload contract.
     resources:
       required:
         - {resource: node-toolchain, purpose: build_and_test, rationale: The registered Node toolchain builds and validates web resource content.}
         - {resource: power-platform-cli, purpose: primary_solution_source_operations, rationale: PAC remains primary for supported solution source and package operations.}
-        - {resource: dataverse-mcp, purpose: targeted_runtime_verification, tools: [search, describe, read_query], rationale: MCP verifies exact metadata and runtime behavior only.}
   - match: {component_type: "mcs_*"}
     rationale: Copilot Studio artifacts require the registered product-specific authoring MCP.
     resources:
       required:
         - {resource: microsoft-learn, purpose: copilot_studio_grounding, rationale: Official product documentation grounds agent authoring.}
         - {resource: copilot-studio-authoring, purpose: primary_agent_authoring, rationale: The approved Copilot Studio resource performs product-specific authoring.}
-        - {resource: dataverse-mcp, purpose: data_grounding_and_verification, tools: [search, search_data, describe, read_query], rationale: Dataverse MCP remains targeted grounding and verification only.}
       allowed:
         - {resource: power-platform-cli, purpose: supported_solution_operations, rationale: PAC is allowed only for documented solution operations.}
   - match: {component_type: sec_role}
@@ -730,14 +716,12 @@ routing:
       required:
         - {resource: microsoft-learn, purpose: security_model_grounding, rationale: Official security-role documentation defines supported messages and privilege semantics.}
         - {resource: maker-portal, purpose: primary_least_privilege_authoring, rationale: Portal is primary because the capability matrix rejects unreliable direct role construction.}
-        - {resource: dataverse-mcp, purpose: targeted_role_verification, tools: [search, describe, read_query], rationale: MCP verifies exact effective privileges only and is not used for generic solution-aware writes.}
   - match: {component_type: sec_field_profile}
     rationale: Field-security authoring remains visual until the payload contract can safely construct the profile and every field permission.
     resources:
       required:
         - {resource: microsoft-learn, purpose: security_model_grounding, rationale: Official security documentation grounds the exact field profile behavior.}
         - {resource: maker-portal, purpose: primary_field_security_authoring, rationale: Portal is primary because no complete compiler-reliable Web API payload is claimed.}
-        - {resource: dataverse-mcp, purpose: targeted_security_verification, tools: [search, describe, read_query], rationale: MCP is read and verification only for this solution-aware component.}
   - match: {component_type: sec_business_unit}
     rationale: Business units are environment-bound records and do not use custom-solution routing.
     resources: &environment_security
@@ -781,7 +765,6 @@ routing:
         - {resource: microsoft-learn, purpose: connector_grounding, rationale: Official connector documentation grounds the contract.}
         - {resource: openapi-tooling, purpose: contract_authoring_and_validation, rationale: The registered OpenAPI tool validates the connector definition.}
         - {resource: power-platform-cli, purpose: connector_and_solution_operations, rationale: PAC remains primary for documented connector and solution operations.}
-        - {resource: dataverse-mcp, purpose: schema_and_test_data_verification, tools: [search, describe, read_query], rationale: MCP provides targeted schema and test-data reads only.}
   - match: {component_type: integ_connection_ref}
     rationale: Connection Reference row CRUD is documented and supports explicit solution context through MSCRM.SolutionUniqueName.
     resources:
@@ -789,7 +772,6 @@ routing:
         - {resource: microsoft-learn, purpose: connection_reference_contract, rationale: Official table references define supported messages and writable fields.}
         - {resource: msal-python, purpose: delegated_authentication, rationale: The executor uses pinned public-client MSAL with an in-memory token cache.}
         - {resource: dataverse-web-api, purpose: primary_solution_aware_authoring, rationale: Supported row operations use compiler-owned paths and the explicit solution header.}
-        - {resource: dataverse-mcp, purpose: targeted_reference_verification, tools: [search, describe, read_query], rationale: Generic MCP writes do not guarantee compiler-validated custom-solution context and are verification-only.}
       preferred:
         - {resource: power-platform-cli, purpose: supported_solution_and_settings_operations, rationale: PAC handles only supported solution/source and deployment-settings work.}
       fallback:
