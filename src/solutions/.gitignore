@@ -1,0 +1,7 @@
+# Packed and exported solution archives (SolutionPackager output)
+_out/
+*.zip
+
+# Legacy cdsproj / MSBuild outputs (not used — solution is packed with pac)
+bin/
+obj/

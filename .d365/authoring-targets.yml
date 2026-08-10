@@ -11,47 +11,168 @@ environments:
     connection_alias: dataverse-authoring
     description: APACAgentTechDataverse production Dataverse (Organization ID 89a7081d-6701-f111-8c79-6045bd005919).
 
+# Component-segmented authoring solutions. Every solution shares one publisher
+# (AnandPOC / prefix aks) so components stay layer-compatible across solutions.
+# unpack_path is each solution's own unpacked source folder — 0.13.0 exports and
+# unpacks into it after a verified write. component_projects point a code
+# component type at the source project that is rebuilt before that export.
 solutions:
-  application-solution:
+  core-solution:
     environment: authoring-dataverse
-    unique_name: ContosoService
-    display_name: Contoso Service
+    unique_name: ContosoServiceCore
+    display_name: Contoso Service - Core (Data Model)
     publisher_name: AnandPOC
     publisher_prefix: aks
+    unpack_path: src/solutions/ContosoServiceCore
+  config-solution:
+    environment: authoring-dataverse
+    unique_name: ContosoServiceConfig
+    display_name: Contoso Service - Configuration
+    publisher_name: AnandPOC
+    publisher_prefix: aks
+    unpack_path: src/solutions/ContosoServiceConfig
+  apps-solution:
+    environment: authoring-dataverse
+    unique_name: ContosoServiceApps
+    display_name: Contoso Service - Apps & UI
+    publisher_name: AnandPOC
+    publisher_prefix: aks
+    unpack_path: src/solutions/ContosoServiceApps
+  webresource-solution:
+    environment: authoring-dataverse
+    unique_name: ContosoServiceWebResource
+    display_name: Contoso Service - Web Resources & PCF
+    publisher_name: AnandPOC
+    publisher_prefix: aks
+    unpack_path: src/solutions/ContosoServiceWebResource
+    component_projects:
+      - component_type: "code_webres_*"
+        path: src/webresources
+        project_type: web_resource_source
+  plugin-customapi-solution:
+    environment: authoring-dataverse
+    unique_name: ContosoServicePluginAndCustomApi
+    display_name: Contoso Service - Plug-ins & Custom APIs
+    publisher_name: AnandPOC
+    publisher_prefix: aks
+    unpack_path: src/solutions/ContosoServicePluginAndCustomApi
+    component_projects:
+      - component_type: code_plugin
+        path: src/plugins/ContosoService.Plugins
+        project_type: dotnet_class_library
+      - component_type: code_custom_api
+        path: src/plugins/ContosoService.Plugins
+        project_type: dotnet_class_library
+  security-solution:
+    environment: authoring-dataverse
+    unique_name: ContosoServiceSecurity
+    display_name: Contoso Service - Security
+    publisher_name: AnandPOC
+    publisher_prefix: aks
+    unpack_path: src/solutions/ContosoServiceSecurity
+  automation-solution:
+    environment: authoring-dataverse
+    unique_name: ContosoServiceAutomation
+    display_name: Contoso Service - Automation & Integration
+    publisher_name: AnandPOC
+    publisher_prefix: aks
+    unpack_path: src/solutions/ContosoServiceAutomation
 
 targets:
-  dataverse-solution-authoring:
+  core-solution-target:
     kind: dataverse_solution
     environment: authoring-dataverse
-    solution: application-solution
+    solution: core-solution
+  config-solution-target:
+    kind: dataverse_solution
+    environment: authoring-dataverse
+    solution: config-solution
+  apps-solution-target:
+    kind: dataverse_solution
+    environment: authoring-dataverse
+    solution: apps-solution
+  webresource-solution-target:
+    kind: dataverse_solution
+    environment: authoring-dataverse
+    solution: webresource-solution
+  plugin-customapi-solution-target:
+    kind: dataverse_solution
+    environment: authoring-dataverse
+    solution: plugin-customapi-solution
+  security-solution-target:
+    kind: dataverse_solution
+    environment: authoring-dataverse
+    solution: security-solution
+  automation-solution-target:
+    kind: dataverse_solution
+    environment: authoring-dataverse
+    solution: automation-solution
   dataverse-environment-authoring:
     kind: dataverse_environment
     environment: authoring-dataverse
 
+# Ordered, first-match-wins. Environment-bound records and the split code_/sec_/
+# config_ families are matched by specific rules BEFORE their broad wildcards.
 routing:
-  # Environment-bound data components take precedence over their broader
-  # solution-bound families.
+  # 1) Environment-bound records — no custom-solution membership. These must
+  #    precede their broader solution-bound wildcard families below.
   - match: {component_type: sec_business_unit}
     target: dataverse-environment-authoring
+    rationale: Business units are environment-scoped records, not solution components.
   - match: {component_type: sec_team}
     target: dataverse-environment-authoring
+    rationale: Teams are environment-scoped records, not solution components.
   - match: {component_type: config_queue}
     target: dataverse-environment-authoring
+    rationale: Queues are environment-scoped composite records, not solution components.
   - match: {component_type: config_audit}
     target: dataverse-environment-authoring
-  - match: {component_type: "schema_*"}
-    target: dataverse-solution-authoring
-  - match: {component_type: "config_*"}
-    target: dataverse-solution-authoring
-  - match: {component_type: "uiux_*"}
-    target: dataverse-solution-authoring
-  - match: {component_type: "flow_*"}
-    target: dataverse-solution-authoring
+    rationale: Auditing is environment-scoped configuration, not a solution component.
+
+  # 2) Pro-code split across two solutions. Exact types outrank the code_*
+  #    family (routing precedence: exact match = 2, wildcard = 1), so plug-ins,
+  #    custom APIs, and PCF resolve to their exact rule and the code_* catch-all
+  #    routes the remaining pro-code (web resources) to the web-resource solution.
+  - match: {component_type: code_plugin}
+    target: plugin-customapi-solution-target
+    rationale: Plug-ins (and their SDK message steps) ship in the plug-in/custom-API solution.
+  - match: {component_type: code_custom_api}
+    target: plugin-customapi-solution-target
+    rationale: Custom APIs ship with the plug-ins that back them.
+  - match: {component_type: code_pcf}
+    target: webresource-solution-target
+    rationale: PCF is client-side code, grouped with web resources.
   - match: {component_type: "code_*"}
-    target: dataverse-solution-authoring
-  - match: {component_type: "mcs_*"}
-    target: dataverse-solution-authoring
+    target: webresource-solution-target
+    rationale: Web resources (code_webres_*) and any other code_* default to the web-resource solution.
+
+  # 3) Security roles/profiles (sec_business_unit/sec_team already routed above).
   - match: {component_type: "sec_*"}
-    target: dataverse-solution-authoring
+    target: security-solution-target
+    rationale: Security roles and field-security profiles ship in the security solution.
+
+  # 4) Declarative configuration (config_queue/config_audit already routed above).
+  - match: {component_type: "config_*"}
+    target: config-solution-target
+    rationale: SLAs, BPFs, business rules, ARC, routing/assignment, dup-detection, env vars, AI config.
+
+  # 5) Data model / metadata.
+  - match: {component_type: "schema_*"}
+    target: core-solution-target
+    rationale: Tables, columns, relationships, choices, and keys form the core data model.
+
+  # 6) Model-driven UI — apps plus forms/views/dashboards/charts/sitemaps.
+  - match: {component_type: "uiux_*"}
+    target: apps-solution-target
+    rationale: All model-driven UI (apps and their forms/views/etc.) ships together.
+
+  # 7) Automation & integration.
+  - match: {component_type: "flow_*"}
+    target: automation-solution-target
+    rationale: Power Automate cloud flows ship in the automation solution.
   - match: {component_type: "integ_*"}
-    target: dataverse-solution-authoring
+    target: automation-solution-target
+    rationale: Custom connectors and connection references ship in the automation solution.
+  - match: {component_type: "mcs_*"}
+    target: automation-solution-target
+    rationale: Copilot Studio agent components ship in the automation solution.

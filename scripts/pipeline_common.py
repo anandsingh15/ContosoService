@@ -475,6 +475,30 @@ def _normalize_environment_id(alias: str, value: str) -> str:
     return str(parsed)
 
 
+# Component-source project types and whether each is rebuilt before the solution export.
+_PROJECT_TYPE_BUILD = {
+    "dotnet_class_library": {"tool": "dotnet", "rebuild_required": True},
+    "pcf_project": {"tool": "power-platform-cli", "rebuild_required": True},
+    "web_resource_source": {"tool": "none", "rebuild_required": False},
+}
+
+
+def _normalize_repo_relative_path(label: str, value: str) -> str:
+    if value != value.strip():
+        raise PipelineError(f"{label} must not contain leading or trailing whitespace")
+    if not value:
+        raise PipelineError(f"{label} must not be empty")
+    if "\\" in value:
+        raise PipelineError(f"{label} must use '/' separators, not '\\'")
+    if value.startswith("/"):
+        raise PipelineError(f"{label} must be repository-relative, not absolute")
+    if re.match(r"^[A-Za-z]:", value):
+        raise PipelineError(f"{label} must not contain a drive letter")
+    if any(segment in {"", ".", ".."} for segment in value.split("/")):
+        raise PipelineError(f"{label} must not contain empty, '.', or '..' segments")
+    return value
+
+
 def load_authoring_targets(data: dict[str, Any] | None = None) -> dict[str, Any]:
     contract = load_yaml(AUTHORING_TARGETS_PATH) if data is None else data
     try:
@@ -511,6 +535,7 @@ def load_authoring_targets(data: dict[str, Any] | None = None) -> dict[str, Any]
                     f"environment_id '{environment_id}'"
                 )
             seen_ids[environment_id] = environment_name
+    seen_unpack_paths: dict[str, str] = {}
     for solution_name, solution in solutions.items():
         environment_name = solution["environment"]
         if environment_name not in environments:
@@ -527,6 +552,40 @@ def load_authoring_targets(data: dict[str, Any] | None = None) -> dict[str, Any]
             raise PipelineError(
                 f"solution '{solution_name}' must not use the default publisher prefix 'new'"
             )
+        unpack_path = solution.get("unpack_path")
+        if unpack_path is not None:
+            normalized_unpack_path = _normalize_repo_relative_path(
+                f"solution '{solution_name}' unpack_path", unpack_path
+            )
+            solution["unpack_path"] = normalized_unpack_path
+            previous = seen_unpack_paths.get(normalized_unpack_path)
+            if previous:
+                raise PipelineError(
+                    f"solutions '{previous}' and '{solution_name}' share unpack_path "
+                    f"'{normalized_unpack_path}'; each solution requires its own folder"
+                )
+            seen_unpack_paths[normalized_unpack_path] = solution_name
+        component_projects = solution.get("component_projects") or []
+        project_path_types: dict[str, str] = {}
+        for index, project in enumerate(component_projects):
+            project_type = project["project_type"]
+            if project_type not in _PROJECT_TYPE_BUILD:
+                raise PipelineError(
+                    f"solution '{solution_name}' component project #{index + 1} has unknown "
+                    f"project_type '{project_type}'"
+                )
+            normalized_project_path = _normalize_repo_relative_path(
+                f"solution '{solution_name}' component project '{project['component_type']}' path",
+                project["path"],
+            )
+            project["path"] = normalized_project_path
+            existing_type = project_path_types.get(normalized_project_path)
+            if existing_type is not None and existing_type != project_type:
+                raise PipelineError(
+                    f"solution '{solution_name}' path '{normalized_project_path}' is declared as "
+                    f"both '{existing_type}' and '{project_type}'"
+                )
+            project_path_types[normalized_project_path] = project_type
     for target_name, target in targets.items():
         environment_name = target["environment"]
         if environment_name not in environments:
@@ -647,6 +706,10 @@ def resolve_authoring_target(
                 "publisher_prefix": solution["publisher_prefix"],
             }
         )
+        if solution.get("unpack_path"):
+            resolved["unpack_path"] = solution["unpack_path"]
+        if solution.get("component_projects"):
+            resolved["component_projects"] = solution["component_projects"]
     return resolved
 
 
@@ -1424,6 +1487,45 @@ def resolve_developer_preflight(
             ].items()
         },
     }
+    packaging_unpack_path = (
+        authoring_target.get("unpack_path") if authoring_target else None
+    )
+    packaging_component_projects = (
+        (authoring_target.get("component_projects") if authoring_target else None) or []
+    )
+    pre_export_build: list[dict[str, str]] = []
+    seen_build_paths: set[str] = set()
+    for project in packaging_component_projects:
+        build = _PROJECT_TYPE_BUILD[project["project_type"]]
+        if not build["rebuild_required"] or project["path"] in seen_build_paths:
+            continue
+        seen_build_paths.add(project["path"])
+        pre_export_build.append(
+            {
+                "path": project["path"],
+                "project_type": project["project_type"],
+                "tool": build["tool"],
+            }
+        )
+    post_verification_packaging = {
+        "enabled": bool(
+            implementation_scope == "repository_and_dataverse_solution"
+            and packaging_unpack_path
+        ),
+        "runs_after": "post_action_verification_matched",
+        "solution_unique_name": (
+            authoring_target.get("solution_unique_name") if authoring_target else None
+        ),
+        "unpack_path": packaging_unpack_path,
+        "export_managed": False,
+        "tool": "power-platform-cli",
+        "commit": "local_no_push",
+        "component_projects": packaging_component_projects,
+        "pre_export_build": pre_export_build,
+        "rebuild_before_export": bool(pre_export_build),
+        "local_solution_pack": False,
+        "is_discovery_preflight_or_verification": False,
+    }
     snapshot = {
         "schema_version": 3,
         "authentication_policy": registry["authentication_policy"],
@@ -1434,6 +1536,7 @@ def resolve_developer_preflight(
         "phases": phases,
         "direct_action": direct_action,
         "post_action_verification": post_action_verification,
+        "post_verification_packaging": post_verification_packaging,
     }
     placeholder_check = {
         **snapshot,

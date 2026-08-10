@@ -1104,9 +1104,14 @@ def acquire_token(row: dict[str, Any], policy: str) -> str:
         if accounts:
             result = app.acquire_token_silent(scopes, account=accounts[0])
     if not result or "access_token" not in result:
+        # Local patch (not yet upstream in Craft 0.13.0): omit redirect_uri here.
+        # MSAL derives its own loopback redirect (http://localhost:<ephemeral-port>)
+        # for acquire_token_interactive; passing redirect_uri collides with that
+        # internal argument and breaks interactive sign-in. The http://localhost
+        # public-client registration matches any loopback port (Azure AD loopback
+        # rule), so the delegated token still binds correctly.
         kwargs: dict[str, Any] = {
             "scopes": scopes,
-            "redirect_uri": config["redirect_uri"],
         }
         if policy == "always_prompt":
             kwargs["prompt"] = "select_account"

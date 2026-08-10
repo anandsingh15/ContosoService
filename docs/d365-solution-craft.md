@@ -1,7 +1,7 @@
 # D365 Solution Craft Dependency
 
-- Version: `0.12.1`
-- Commit: `d323961eac4355f52cb2accd6b9c466f28408c78`
+- Version: `0.13.0`
+- Commit: `cb2fdcdf02639eb3f9b5cc254aaccdee4a3ee8e2`
 - Spec Kit: official `specify-cli 0.12.4`
 - Repository: `https://github.com/avi-k-mishra/d365-solution-craft`
 - Integration:

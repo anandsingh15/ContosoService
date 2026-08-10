@@ -2,16 +2,19 @@
   "servers": {
     "markitdown": {
       "type": "stdio",
-      "command": "uvx",
+      "command": "C:/Users/anandsi/AppData/Local/Programs/Python/Python312/python.exe",
       "args": [
-        "--from",
-        "markitdown-mcp==0.0.1a4",
-        "markitdown-mcp"
+        "-m",
+        "markitdown_mcp"
       ]
     },
     "microsoft-learn": {
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "dataverse-authoring": {
+      "type": "http",
+      "url": "https://org89912357.crm.dynamics.com/api/mcp"
     }
   }
 }

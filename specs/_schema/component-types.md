@@ -27,7 +27,7 @@ as the pattern evolves.
 | Family | Types | Authoring surface |
 |---|---|---|
 | **`schema_`** | `schema_table`, `schema_column`, `schema_relationship`, `schema_choice`, `schema_key` | Dataverse custom solution |
-| **`config_`** | `config_sla`, `config_arc`, `config_bpf`, `config_business_rule`, `config_routing_rule`, `config_queue`, `config_assignment_rule`, `config_dup_detection`, `config_env_variable`, `config_audit`, `config_ai_<type>_<type>` | Dataverse / pac |
+| **`config_`** | `config_sla`, `config_arc`, `config_bpf`, `config_business_rule`, `config_workflow`, `config_routing_rule`, `config_queue`, `config_assignment_rule`, `config_dup_detection`, `config_env_variable`, `config_audit`, `config_ai_<type>_<type>` | Dataverse / pac |
 | **`uiux_`** | `uiux_form`, `uiux_view`, `uiux_dashboard`, `uiux_chart`, `uiux_sitemap`, `uiux_app` | pac |
 | **`flow_`** | `flow_cloud` | pac |
 | **`code_`** | `code_plugin`, `code_custom_api`, `code_pcf`, `code_webres_<type>` | pac / Azure |
@@ -67,7 +67,7 @@ so some `config_*` types are re-homed by concern (`config_audit` →
 `dataverse-ai`).
 
 - **Map + rollout phases:** `conventions.yml` `component_type_skills` (skill → covered
-  types) and `skill_phases` (A = active, B = deferred). All 44 types are mapped exactly
+  types) and `skill_phases` (A = active, B = deferred). All 45 types are mapped exactly
   once. Skills are stored in D365 Solution Craft: load the mapped skill by name from the
   registered Craft build-skill location, then use its thin `SKILL.md` router and
   matching `<component_type>.md` deep reference.
@@ -87,7 +87,7 @@ so some `config_*` types are re-homed by concern (`config_audit` →
 ## Implementation-scope classification
 
 `conventions.yml` `component_implementation_scopes` is Craft-owned and covers
-all 44 registered types and parameterized patterns. The customer-owned
+all 45 registered types and parameterized patterns. The customer-owned
 `.d365/authoring-targets.yml` supplies declared environment URLs and immutable
 IDs, interactive authentication mode, optional connection aliases,
 custom solutions, targets, and routing.

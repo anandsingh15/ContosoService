@@ -1,7 +1,7 @@
 # SDD conventions - shared by the agents and validators across all stages.
 
 # --- Craft / Spec Kit compatibility ---
-craft_profile_version: "0.12.1"
+craft_profile_version: "0.13.0"
 spec_kit_version: "0.12.4"
 spec_kit_integration: copilot
 spec_kit_script_type: ps
@@ -98,6 +98,7 @@ component_types:
   - config_arc                 # automatic record creation/update rule
   - config_bpf                 # business process flow
   - config_business_rule
+  - config_workflow            # classic background / real-time workflow
   - config_routing_rule
   - config_queue
   - config_assignment_rule
@@ -154,7 +155,7 @@ component_types:
 # Wildcard members (e.g. `config_ai_*`) match the parameterised component_types.
 component_type_skills:
   dataverse-table:      [schema_table, schema_column, schema_relationship, schema_choice, schema_key]
-  dataverse-config:     [config_sla, config_arc, config_bpf, config_business_rule, config_routing_rule, config_queue, config_assignment_rule, config_dup_detection]
+  dataverse-config:     [config_sla, config_arc, config_bpf, config_business_rule, config_workflow, config_routing_rule, config_queue, config_assignment_rule, config_dup_detection]
   dataverse-security:   [sec_role, sec_field_profile, sec_business_unit, sec_team, config_audit]
   power-automate-flow:  [flow_cloud]
   model-driven-ui:      [uiux_form, uiux_view, uiux_dashboard, uiux_chart, uiux_sitemap, uiux_app]
@@ -190,6 +191,7 @@ component_type_payloads:
   config_arc:            {required: [name, source, target, satisfies]}
   config_bpf:            {required: [name, table, stages, satisfies]}
   config_business_rule:  {required: [name, table, condition, action, satisfies]}
+  config_workflow:       {required: [name, table, workflow_type, trigger, steps, satisfies]}
   config_routing_rule:   {required: [name, queue, criteria, satisfies]}
   config_queue:          {required: [name, queue_type, satisfies]}
   config_assignment_rule: {required: [name, queue, logic, satisfies]}
