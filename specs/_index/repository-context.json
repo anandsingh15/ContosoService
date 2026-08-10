@@ -14,99 +14,230 @@
         "match": {
           "component_type": "sec_business_unit"
         },
+        "rationale": "Business units are environment-scoped records, not solution components.",
         "target": "dataverse-environment-authoring"
       },
       {
         "match": {
           "component_type": "sec_team"
         },
+        "rationale": "Teams are environment-scoped records, not solution components.",
         "target": "dataverse-environment-authoring"
       },
       {
         "match": {
           "component_type": "config_queue"
         },
+        "rationale": "Queues are environment-scoped composite records, not solution components.",
         "target": "dataverse-environment-authoring"
       },
       {
         "match": {
           "component_type": "config_audit"
         },
+        "rationale": "Auditing is environment-scoped configuration, not a solution component.",
         "target": "dataverse-environment-authoring"
       },
       {
         "match": {
-          "component_type": "schema_*"
+          "component_type": "code_plugin"
         },
-        "target": "dataverse-solution-authoring"
+        "rationale": "Plug-ins (and their SDK message steps) ship in the plug-in/custom-API solution.",
+        "target": "plugin-customapi-solution-target"
       },
       {
         "match": {
-          "component_type": "config_*"
+          "component_type": "code_custom_api"
         },
-        "target": "dataverse-solution-authoring"
+        "rationale": "Custom APIs ship with the plug-ins that back them.",
+        "target": "plugin-customapi-solution-target"
       },
       {
         "match": {
-          "component_type": "uiux_*"
+          "component_type": "code_pcf"
         },
-        "target": "dataverse-solution-authoring"
-      },
-      {
-        "match": {
-          "component_type": "flow_*"
-        },
-        "target": "dataverse-solution-authoring"
+        "rationale": "PCF is client-side code, grouped with web resources.",
+        "target": "webresource-solution-target"
       },
       {
         "match": {
           "component_type": "code_*"
         },
-        "target": "dataverse-solution-authoring"
-      },
-      {
-        "match": {
-          "component_type": "mcs_*"
-        },
-        "target": "dataverse-solution-authoring"
+        "rationale": "Web resources (code_webres_*) and any other code_* default to the web-resource solution.",
+        "target": "webresource-solution-target"
       },
       {
         "match": {
           "component_type": "sec_*"
         },
-        "target": "dataverse-solution-authoring"
+        "rationale": "Security roles and field-security profiles ship in the security solution.",
+        "target": "security-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "config_*"
+        },
+        "rationale": "SLAs, BPFs, business rules, ARC, routing/assignment, dup-detection, env vars, AI config.",
+        "target": "config-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "schema_*"
+        },
+        "rationale": "Tables, columns, relationships, choices, and keys form the core data model.",
+        "target": "core-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "uiux_*"
+        },
+        "rationale": "All model-driven UI (apps and their forms/views/etc.) ships together.",
+        "target": "apps-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "flow_*"
+        },
+        "rationale": "Power Automate cloud flows ship in the automation solution.",
+        "target": "automation-solution-target"
       },
       {
         "match": {
           "component_type": "integ_*"
         },
-        "target": "dataverse-solution-authoring"
+        "rationale": "Custom connectors and connection references ship in the automation solution.",
+        "target": "automation-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "mcs_*"
+        },
+        "rationale": "Copilot Studio agent components ship in the automation solution.",
+        "target": "automation-solution-target"
       }
     ],
     "schema_version": 1,
     "solutions": {
-      "application-solution": {
-        "display_name": "Contoso Service",
+      "apps-solution": {
+        "display_name": "Contoso Service - Apps & UI",
         "environment": "authoring-dataverse",
         "publisher_name": "AnandPOC",
         "publisher_prefix": "aks",
-        "unique_name": "ContosoService"
+        "unique_name": "ContosoServiceApps",
+        "unpack_path": "src/solutions/ContosoServiceApps"
+      },
+      "automation-solution": {
+        "display_name": "Contoso Service - Automation & Integration",
+        "environment": "authoring-dataverse",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "unique_name": "ContosoServiceAutomation",
+        "unpack_path": "src/solutions/ContosoServiceAutomation"
+      },
+      "config-solution": {
+        "display_name": "Contoso Service - Configuration",
+        "environment": "authoring-dataverse",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "unique_name": "ContosoServiceConfig",
+        "unpack_path": "src/solutions/ContosoServiceConfig"
+      },
+      "core-solution": {
+        "display_name": "Contoso Service - Core (Data Model)",
+        "environment": "authoring-dataverse",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "unique_name": "ContosoServiceCore",
+        "unpack_path": "src/solutions/ContosoServiceCore"
+      },
+      "plugin-customapi-solution": {
+        "component_projects": [
+          {
+            "component_type": "code_plugin",
+            "path": "src/plugins/ContosoService.Plugins",
+            "project_type": "dotnet_class_library"
+          },
+          {
+            "component_type": "code_custom_api",
+            "path": "src/plugins/ContosoService.Plugins",
+            "project_type": "dotnet_class_library"
+          }
+        ],
+        "display_name": "Contoso Service - Plug-ins & Custom APIs",
+        "environment": "authoring-dataverse",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "unique_name": "ContosoServicePluginAndCustomApi",
+        "unpack_path": "src/solutions/ContosoServicePluginAndCustomApi"
+      },
+      "security-solution": {
+        "display_name": "Contoso Service - Security",
+        "environment": "authoring-dataverse",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "unique_name": "ContosoServiceSecurity",
+        "unpack_path": "src/solutions/ContosoServiceSecurity"
+      },
+      "webresource-solution": {
+        "component_projects": [
+          {
+            "component_type": "code_webres_*",
+            "path": "src/webresources",
+            "project_type": "web_resource_source"
+          }
+        ],
+        "display_name": "Contoso Service - Web Resources & PCF",
+        "environment": "authoring-dataverse",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "unique_name": "ContosoServiceWebResource",
+        "unpack_path": "src/solutions/ContosoServiceWebResource"
       }
     },
     "targets": {
+      "apps-solution-target": {
+        "environment": "authoring-dataverse",
+        "kind": "dataverse_solution",
+        "solution": "apps-solution"
+      },
+      "automation-solution-target": {
+        "environment": "authoring-dataverse",
+        "kind": "dataverse_solution",
+        "solution": "automation-solution"
+      },
+      "config-solution-target": {
+        "environment": "authoring-dataverse",
+        "kind": "dataverse_solution",
+        "solution": "config-solution"
+      },
+      "core-solution-target": {
+        "environment": "authoring-dataverse",
+        "kind": "dataverse_solution",
+        "solution": "core-solution"
+      },
       "dataverse-environment-authoring": {
         "environment": "authoring-dataverse",
         "kind": "dataverse_environment"
       },
-      "dataverse-solution-authoring": {
+      "plugin-customapi-solution-target": {
         "environment": "authoring-dataverse",
         "kind": "dataverse_solution",
-        "solution": "application-solution"
+        "solution": "plugin-customapi-solution"
+      },
+      "security-solution-target": {
+        "environment": "authoring-dataverse",
+        "kind": "dataverse_solution",
+        "solution": "security-solution"
+      },
+      "webresource-solution-target": {
+        "environment": "authoring-dataverse",
+        "kind": "dataverse_solution",
+        "solution": "webresource-solution"
       }
     }
   },
-  "authoring_targets_hash": "e235bf2f24c9aac6998cb3eab795195412014ada90aab61808b2d4bf54562cfc",
-  "authoring_targets_schema_hash": "f432ed697a4f6b018cf3aee18b44bbe094c88e41cd8fc259b412a4ccb1351f8f",
+  "authoring_targets_hash": "0d5329e0fe0755fe27180a3c6a96441e68da8ea3b6147a11b3f8cfef2e82ac59",
+  "authoring_targets_schema_hash": "628de63ca51d72329c8cb58976792bf58329d04944670823f5fc7e5334d60bed",
   "compatibility": {
     "canonical_artifacts": {
       "development_artifact": "development/DEV-####.md",
@@ -135,7 +266,7 @@
       "code_or_configuration_review"
     ],
     "profile": "d365-solution-craft",
-    "profile_version": "0.12.1",
+    "profile_version": "0.13.0",
     "runtime_policy": {
       "allow_automatic_upgrade": false,
       "allow_unpinned_version": false,
@@ -150,7 +281,7 @@
       "version": "0.12.4"
     }
   },
-  "compatibility_hash": "0324632ddae0d524000fb5485e3e1cc1e369fbf021f1fe8fd0d43252c45b2021",
+  "compatibility_hash": "e595029d02fcf837c855d617820e220931d9f1cfa1b587845d44913fe43b32b1",
   "component_implementation_scopes": {
     "repository_and_dataverse_environment": [
       "sec_business_unit",
@@ -467,6 +598,16 @@
         "satisfies"
       ]
     },
+    "config_workflow": {
+      "required": [
+        "name",
+        "table",
+        "workflow_type",
+        "trigger",
+        "steps",
+        "satisfies"
+      ]
+    },
     "flow_cloud": {
       "required": [
         "name",
@@ -645,6 +786,7 @@
       "config_arc",
       "config_bpf",
       "config_business_rule",
+      "config_workflow",
       "config_routing_rule",
       "config_queue",
       "config_assignment_rule",
@@ -700,6 +842,7 @@
     "config_arc",
     "config_bpf",
     "config_business_rule",
+    "config_workflow",
     "config_routing_rule",
     "config_queue",
     "config_assignment_rule",
@@ -736,8 +879,8 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "4c2f3542c197d29939f994df35405b6d7eaf47798040d4536d2ea35fb37910f6",
-  "conventions_hash": "9c365e6ca17a59cb6eee6ff5e94865ad9fc62e2c0d2d8650f8275fe7e8903e25",
+  "context_hash": "cf6012d358a3661b2cb5ebf82a8c61cb007ce45361da9d33f0e9ed9c780950bb",
+  "conventions_hash": "779e510da62525fc64235b4677fad3bb3ca70abea0822d70b94d77e4e9d892e2",
   "dataverse_web_api_capabilities": {
     "components": {
       "az_ai_*": {
@@ -959,6 +1102,15 @@
         }
       },
       "config_sla": {
+        "implementation_scope": "repository_and_dataverse_solution",
+        "operations": {
+          "create": "maker-portal-primary",
+          "delete": "maker-portal-primary",
+          "update": "maker-portal-primary",
+          "verify": "maker-portal-primary"
+        }
+      },
+      "config_workflow": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
           "create": "maker-portal-primary",
@@ -2844,7 +2996,7 @@
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "9e237671cb6fcd9db7bea4a4eb6dcfcf8f69910c08c9976946da088f3e3cc841",
+  "dataverse_web_api_capabilities_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
   "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
   "design_sources": {
     "schema_version": 1,

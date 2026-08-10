@@ -580,6 +580,7 @@ components:
   config_arc: *maker_component
   config_bpf: *maker_component
   config_business_rule: *maker_component
+  config_workflow: *maker_component
   config_routing_rule: *maker_component
   config_queue: &environment_component
     implementation_scope: repository_and_dataverse_environment

@@ -50,6 +50,35 @@
           "publisher_prefix": {
             "type": "string",
             "pattern": "^[a-z][a-z0-9]{1,7}$"
+          },
+          "unpack_path": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?:/[A-Za-z0-9._-]+)*$"
+          },
+          "component_projects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["component_type", "path", "project_type"],
+              "properties": {
+                "component_type": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*(?:\\*)?$"
+                },
+                "path": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?:/[A-Za-z0-9._-]+)*$"
+                },
+                "project_type": {
+                  "enum": [
+                    "dotnet_class_library",
+                    "pcf_project",
+                    "web_resource_source"
+                  ]
+                }
+              }
+            }
           }
         }
       }
