@@ -1,6 +1,309 @@
 {
-  "context_hash": "a005e31ed52c9fdaab2c454862bb990a2963bbdc7e7806a3fbb4f9cdbe7c8196",
-  "features": [],
+  "context_hash": "ed6b7f7ffc8fda2a79250b0a2809428156a8bc13128a430a5bde7142807f9e9f",
+  "features": [
+    {
+      "epic": "EPIC-01",
+      "feature": "FEAT-01",
+      "member_reqs": [
+        "INTK-0001-REQ-015",
+        "INTK-0001-REQ-016",
+        "INTK-0001-REQ-017",
+        "INTK-0001-REQ-018",
+        "INTK-0001-REQ-019",
+        "INTK-0001-REQ-020",
+        "INTK-0001-REQ-021",
+        "INTK-0001-REQ-040",
+        "INTK-0001-REQ-041",
+        "INTK-0001-REQ-046"
+      ],
+      "requirements": [
+        {
+          "hash": "33017e1e62686a66077e8f0fab417f3433c25ca60cd52b72e68f915046aad5a2",
+          "id": "INTK-0001-REQ-015"
+        },
+        {
+          "hash": "0085dd8d5ac92d9aa4c51e7eca327f432eb0817c799529029e66a2329b5365da",
+          "id": "INTK-0001-REQ-016"
+        },
+        {
+          "hash": "a6f6e8618e97f0c47094ddd8fb4b61daa5a8b5ef94e26e2f94500085edc8ca07",
+          "id": "INTK-0001-REQ-017"
+        },
+        {
+          "hash": "483ad4a8b51c1874013f7674b069ccef0419c3f0f2735ab0f59b73fcf8f0f5ef",
+          "id": "INTK-0001-REQ-018"
+        },
+        {
+          "hash": "186243a39d4409411a8d66b1e2867095183ae604760ea51863a16f156eed80ac",
+          "id": "INTK-0001-REQ-019"
+        },
+        {
+          "hash": "0f43a28d6109edc862e37eb3588b9cdf0857403d5cb6f6fb39aa2af18f7f808f",
+          "id": "INTK-0001-REQ-020"
+        },
+        {
+          "hash": "7cc61046de8da18dcbb613c95fbe32c7097d29790a1cbb7eac44f64a324224a2",
+          "id": "INTK-0001-REQ-021"
+        },
+        {
+          "hash": "3141c67072f6fbabf3146bbdce3faf2dc2d961e24a40f3da89e25879210e8518",
+          "id": "INTK-0001-REQ-040"
+        },
+        {
+          "hash": "e43501c6291707049c8ea157ff5f6d4057b99cc53077d12357b56829fd30d72d",
+          "id": "INTK-0001-REQ-041"
+        },
+        {
+          "hash": "066eb00282723aa6f85a0fcf6b40863dab45ac85765ef8d2a9e698cbe5640baf",
+          "id": "INTK-0001-REQ-046"
+        }
+      ],
+      "slug": "fleet-data-foundation",
+      "spec_hash": "2cd384c712bcf9cfb64e2b2f5243b1378b2efd8813fc8a02bc6d0e5acc5a0bbb",
+      "status": "reviewed",
+      "workspace": "specs/001-fleet-data-foundation"
+    },
+    {
+      "epic": "EPIC-01",
+      "feature": "FEAT-02",
+      "member_reqs": [
+        "INTK-0001-REQ-001",
+        "INTK-0001-REQ-002",
+        "INTK-0001-REQ-003",
+        "INTK-0001-REQ-004",
+        "INTK-0001-REQ-005",
+        "INTK-0001-REQ-006"
+      ],
+      "requirements": [
+        {
+          "hash": "7e19e0a4c0f7536c2484828c26e1f95124cb700e1c7c1213cc39f51f2aa1b297",
+          "id": "INTK-0001-REQ-001"
+        },
+        {
+          "hash": "b23c9a7125545346046a5611b391ffc88efa34f554265b8576920afc5555b9e5",
+          "id": "INTK-0001-REQ-002"
+        },
+        {
+          "hash": "c68edd3027ae1f3b712abec185e414febb08b1ee4a490ff07d3cec527d168e08",
+          "id": "INTK-0001-REQ-003"
+        },
+        {
+          "hash": "fbb11a6d491b431ab97441900cdb08119a2d1d1a7d5e1d9b0889b196133f11fe",
+          "id": "INTK-0001-REQ-004"
+        },
+        {
+          "hash": "8e593c99b284ccb0d2b9a97ac16311039d34652b90522458ac08a8dad8e69a15",
+          "id": "INTK-0001-REQ-005"
+        },
+        {
+          "hash": "861c96850bee6b22df7d3a075d13cacec647bc576f6010fbde8841cb79bf3ebb",
+          "id": "INTK-0001-REQ-006"
+        }
+      ],
+      "slug": "vehicle-fleet-register",
+      "spec_hash": "bce31c2b91c596d52ac059baa4cd69d8402400680cc0a82ec753ad84100c272d",
+      "status": "reviewed",
+      "workspace": "specs/002-vehicle-fleet-register"
+    },
+    {
+      "epic": "EPIC-01",
+      "feature": "FEAT-03",
+      "member_reqs": [
+        "INTK-0001-REQ-007",
+        "INTK-0001-REQ-008",
+        "INTK-0001-REQ-009",
+        "INTK-0001-REQ-010",
+        "INTK-0001-REQ-011",
+        "INTK-0001-REQ-012",
+        "INTK-0001-REQ-013",
+        "INTK-0001-REQ-014"
+      ],
+      "requirements": [
+        {
+          "hash": "91d744281964d3625cd381500edba4e8b5dd13638e1caa70bbf3f6a1cdee20b0",
+          "id": "INTK-0001-REQ-007"
+        },
+        {
+          "hash": "cb00565b48559eaf4b7173422acaafeb38e57ebd7e25594a1a7fcac34466bf68",
+          "id": "INTK-0001-REQ-008"
+        },
+        {
+          "hash": "841ccb8f2b287bf317a63d25f7a8bb01ee7f97c6dec2cd7a9cba57594e058dfe",
+          "id": "INTK-0001-REQ-009"
+        },
+        {
+          "hash": "cf872fca33088a24b3aac83de47898950568a7c3a3f8d2a58a8be229e2c2894a",
+          "id": "INTK-0001-REQ-010"
+        },
+        {
+          "hash": "34acac89fd20e6d99e905e65e61a29a665b9c775acd35674e1b12adebbfa3934",
+          "id": "INTK-0001-REQ-011"
+        },
+        {
+          "hash": "24c58a205b224455d65dc867f113c35bc1134755ff9127800e9573ce5eb2942a",
+          "id": "INTK-0001-REQ-012"
+        },
+        {
+          "hash": "d63ae99795e71005f6fb9087749814e3b15aa7d4b478fb52ca247691a119793b",
+          "id": "INTK-0001-REQ-013"
+        },
+        {
+          "hash": "7e4fcf73fa6176f075ec882fa95b4ac674180b30457da55130080907e9ca90d7",
+          "id": "INTK-0001-REQ-014"
+        }
+      ],
+      "slug": "maintenance-jobs-parts",
+      "spec_hash": "51a6b61aee59ee5e4d5f48b6d66d888eded655ab223cda899b6a98b355defb31",
+      "status": "reviewed",
+      "workspace": "specs/003-maintenance-jobs-parts"
+    },
+    {
+      "epic": "EPIC-01",
+      "feature": "FEAT-04",
+      "member_reqs": [
+        "INTK-0001-REQ-022",
+        "INTK-0001-REQ-023",
+        "INTK-0001-REQ-024",
+        "INTK-0001-REQ-025",
+        "INTK-0001-REQ-026",
+        "INTK-0001-REQ-027",
+        "INTK-0001-REQ-028",
+        "INTK-0001-REQ-029",
+        "INTK-0001-REQ-045"
+      ],
+      "requirements": [
+        {
+          "hash": "88a00c166c2be706b6997d67c567489ed67c7be8ebeae14e37b9b9f153a7e330",
+          "id": "INTK-0001-REQ-022"
+        },
+        {
+          "hash": "fcb1e3a3557bb7a9dff6ae4702b4ff93581682a21f00a649372cc90e12b7db5e",
+          "id": "INTK-0001-REQ-023"
+        },
+        {
+          "hash": "fd1a58590c186e7ad44679865d1343af0d960ae98a3587cbd85770525b2ad916",
+          "id": "INTK-0001-REQ-024"
+        },
+        {
+          "hash": "7f2ec6dc73eadbec05b5d3377e75873702473934a780d0d27b115ebc866b15d4",
+          "id": "INTK-0001-REQ-025"
+        },
+        {
+          "hash": "70609073bb1678f09d88783e8a2673d2a56015a74bbc6af949d34c233f81488d",
+          "id": "INTK-0001-REQ-026"
+        },
+        {
+          "hash": "ae92e734b62fc71aeb886962d2989396c375c5eeacccabb0510b45b94b424027",
+          "id": "INTK-0001-REQ-027"
+        },
+        {
+          "hash": "8206471d24f3422e89a9b121abb0632b1b06a6d61bf0f3b8fcdf28db4c154ab6",
+          "id": "INTK-0001-REQ-028"
+        },
+        {
+          "hash": "aadadff7972c7b36cd900e6aa93e4884a037870e4bfccc23654f221153af5f5b",
+          "id": "INTK-0001-REQ-029"
+        },
+        {
+          "hash": "d36dadaf89d05c424ddebad4a89af91b27cb2ba76d0d24b466c400ab977043fb",
+          "id": "INTK-0001-REQ-045"
+        }
+      ],
+      "slug": "job-completion-enforcement",
+      "spec_hash": "08c36bd776f0248fde21b3d8bb88b2ec822562cb6b70e1e9806766342e44e95a",
+      "status": "reviewed",
+      "workspace": "specs/004-job-completion-enforcement"
+    },
+    {
+      "epic": "EPIC-01",
+      "feature": "FEAT-05",
+      "member_reqs": [
+        "INTK-0001-REQ-030",
+        "INTK-0001-REQ-031",
+        "INTK-0001-REQ-032",
+        "INTK-0001-REQ-033",
+        "INTK-0001-REQ-034",
+        "INTK-0001-REQ-042",
+        "INTK-0001-REQ-043",
+        "INTK-0001-REQ-044"
+      ],
+      "requirements": [
+        {
+          "hash": "a7ea563ce63dc4536ee60b47581b0c92c922b21b8f18ef6f88381879ec9c1ecf",
+          "id": "INTK-0001-REQ-030"
+        },
+        {
+          "hash": "ec1697f3ffb82516c66020b99540e878213c3342ea828dedfcd52bc7ea85a271",
+          "id": "INTK-0001-REQ-031"
+        },
+        {
+          "hash": "b7f26ab13177d495def55e76b2fdbb22b260a4bcd28b45b32902b895b7a9bef3",
+          "id": "INTK-0001-REQ-032"
+        },
+        {
+          "hash": "96edae2cb3130ad3911240203ee5cf04f8194d38c222c01b491a637dd6ecd700",
+          "id": "INTK-0001-REQ-033"
+        },
+        {
+          "hash": "6c41e67de6defc29af4661be1eb001428f4829b9483c5424b2695f5b5cf146e9",
+          "id": "INTK-0001-REQ-034"
+        },
+        {
+          "hash": "03c02440c427dc0c99ecd91800ceb23791d519272e51896a94a857687359e0c1",
+          "id": "INTK-0001-REQ-042"
+        },
+        {
+          "hash": "9c02a4ed93f3c3e5ae7935f995556dd39ddf3a84f9aa417231308e7757975fd0",
+          "id": "INTK-0001-REQ-043"
+        },
+        {
+          "hash": "020a11003a3231ccab1dc7a54b2d00a8da759e42851a4cf00c22ee07d5a723d3",
+          "id": "INTK-0001-REQ-044"
+        }
+      ],
+      "slug": "automated-followup-orchestration",
+      "spec_hash": "13707f2d9e2fcdbb8ef1f0b528a1c5e23cc3820e32ac7acbce85c1289ea68934",
+      "status": "reviewed",
+      "workspace": "specs/005-automated-followup-orchestration"
+    },
+    {
+      "epic": "EPIC-01",
+      "feature": "FEAT-06",
+      "member_reqs": [
+        "INTK-0001-REQ-035",
+        "INTK-0001-REQ-036",
+        "INTK-0001-REQ-037",
+        "INTK-0001-REQ-038",
+        "INTK-0001-REQ-039"
+      ],
+      "requirements": [
+        {
+          "hash": "4164d9752de06b0297e20ec3bbd631cec82496410cb90f0460864c7f65273773",
+          "id": "INTK-0001-REQ-035"
+        },
+        {
+          "hash": "4e6dd6060436800828ac2f1c7a09ea8dd8e90567277a7811e1658faf3b1d7dbf",
+          "id": "INTK-0001-REQ-036"
+        },
+        {
+          "hash": "7c6fd8207398c25fa2e29e8246fc081cf8c4f274403053b88f5373eeafaa7b9b",
+          "id": "INTK-0001-REQ-037"
+        },
+        {
+          "hash": "e125edf2b61195b77f9b85ca9bcd5657c85c26f08c1da1bc89edf902da40cfee",
+          "id": "INTK-0001-REQ-038"
+        },
+        {
+          "hash": "fc22d5831b59f2145c625e9062ac3db3fc0911bf942fffe1cdfce309c9ada0e4",
+          "id": "INTK-0001-REQ-039"
+        }
+      ],
+      "slug": "access-roles-app-shell",
+      "spec_hash": "9ae07ae20bb0a5ddb2cf18c31727ff48d823a8ed354fb4446003eb23c308a65e",
+      "status": "reviewed",
+      "workspace": "specs/006-access-roles-app-shell"
+    }
+  ],
   "repository_context_hash": "cf6012d358a3661b2cb5ebf82a8c61cb007ce45361da9d33f0e9ed9c780950bb",
   "schema_version": 1
 }
