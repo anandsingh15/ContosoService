@@ -548,8 +548,15 @@ def expected_stage(definition: dict, stage_reference: str) -> dict:
     return stage
 
 
-def artifact_ids_for_stage(issue: dict, stage: dict) -> list[str]:
-    artifact_format = str(stage.get("artifact_id_format") or "")
+def readiness_artifact_format(
+    definition: dict, stage: dict, expected_stage_status: str
+) -> str:
+    if stage.get("id") == "development" and expected_stage_status == "Ready for Planning":
+        return str(expected_stage(definition, "design").get("artifact_id_format") or "")
+    return str(stage.get("artifact_id_format") or "")
+
+
+def artifact_ids_for_stage(issue: dict, artifact_format: str) -> list[str]:
     if not artifact_format:
         return []
     escaped = re.escape(artifact_format)
@@ -620,7 +627,10 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
         for item in items
         if (item.get("content") or {}).get("id") == issue.get("id")
     ]
-    artifact_ids = artifact_ids_for_stage(issue, stage)
+    artifact_format = readiness_artifact_format(
+        definition, stage, expected_stage_status
+    )
+    artifact_ids = artifact_ids_for_stage(issue, artifact_format)
     label_names = sorted(
         str(label.get("name") or "")
         for label in issue.get("labels", [])
@@ -640,7 +650,7 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
     if len(artifact_ids) != 1:
         blockers.append(
             f"issue #{args.issue_number} must identify exactly one "
-            f"{stage['artifact_id_format']} artifact; found {len(artifact_ids)}."
+            f"{artifact_format} artifact; found {len(artifact_ids)}."
         )
     if len(matching_items) != 1:
         blockers.append(
