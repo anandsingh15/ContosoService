@@ -1,6 +1,6 @@
 {
-  "context_hash": "262b513c9bf107970426b2bb05f83740d9a5ec9027a111e637c298c087e12ca1",
-  "plan_context_hash": "b021a46a7af3cd9ac0d0e52f69b0e0ec7e809690e2fa23869c118159ba470555",
+  "context_hash": "99982344c2f8d4222c15cddc12c2425805e53fa2f2ed807a51349d18ae08e1a5",
+  "plan_context_hash": "f9c63b873b7adf32a33299350ecf5feafb30696f73c9ed9e890be58922e704bb",
   "repository_context_hash": "fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2",
   "schema_version": 1,
   "tasks": [
@@ -1136,7 +1136,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -2291,7 +2291,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -3443,7 +3443,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -4723,7 +4723,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -5985,7 +5985,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7247,7 +7247,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7596,12 +7596,19 @@
           "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
           "environment_url": "https://org89912357.crm.dynamics.com",
           "expected_payload": {
-            "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+            "cascade_configuration": {
+              "Assign": "NoCascade",
+              "Delete": "RemoveLink",
+              "Merge": "NoCascade",
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
+            },
             "lookup_column": "aks_depotid",
             "name": "Depot (Account) to Vehicle",
             "referenced_attribute": "accountid",
             "related_table": "account",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "None",
             "satisfies": [
               "INTK-0001-REQ-015",
@@ -7897,12 +7904,19 @@
           },
           "declared_solution_unique_name": "ContosoServiceCore",
           "expected_payload": {
-            "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+            "cascade_configuration": {
+              "Assign": "NoCascade",
+              "Delete": "RemoveLink",
+              "Merge": "NoCascade",
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
+            },
             "lookup_column": "aks_depotid",
             "name": "Depot (Account) to Vehicle",
             "referenced_attribute": "accountid",
             "related_table": "account",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "None",
             "satisfies": [
               "INTK-0001-REQ-015",
@@ -8393,12 +8407,19 @@
       "implementation_scope": "repository_and_dataverse_solution",
       "owner": null,
       "payload": {
-        "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+        "cascade_configuration": {
+          "Assign": "NoCascade",
+          "Delete": "RemoveLink",
+          "Merge": "NoCascade",
+          "Reparent": "NoCascade",
+          "Share": "NoCascade",
+          "Unshare": "NoCascade"
+        },
         "lookup_column": "aks_depotid",
         "name": "Depot (Account) to Vehicle",
         "referenced_attribute": "accountid",
         "related_table": "account",
-        "relationship_type": "OneToMany",
+        "relationship_type": "many_to_one",
         "required_level": "None",
         "satisfies": [
           "INTK-0001-REQ-015",
@@ -8416,7 +8437,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -8765,12 +8786,19 @@
           "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
           "environment_url": "https://org89912357.crm.dynamics.com",
           "expected_payload": {
-            "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+            "cascade_configuration": {
+              "Assign": "NoCascade",
+              "Delete": "RemoveLink",
+              "Merge": "NoCascade",
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
+            },
             "lookup_column": "aks_technicianid",
             "name": "Technician (Contact) to Maintenance Job",
             "referenced_attribute": "contactid",
             "related_table": "contact",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "None",
             "satisfies": [
               "INTK-0001-REQ-015",
@@ -9066,12 +9094,19 @@
           },
           "declared_solution_unique_name": "ContosoServiceCore",
           "expected_payload": {
-            "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+            "cascade_configuration": {
+              "Assign": "NoCascade",
+              "Delete": "RemoveLink",
+              "Merge": "NoCascade",
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
+            },
             "lookup_column": "aks_technicianid",
             "name": "Technician (Contact) to Maintenance Job",
             "referenced_attribute": "contactid",
             "related_table": "contact",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "None",
             "satisfies": [
               "INTK-0001-REQ-015",
@@ -9562,12 +9597,19 @@
       "implementation_scope": "repository_and_dataverse_solution",
       "owner": null,
       "payload": {
-        "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+        "cascade_configuration": {
+          "Assign": "NoCascade",
+          "Delete": "RemoveLink",
+          "Merge": "NoCascade",
+          "Reparent": "NoCascade",
+          "Share": "NoCascade",
+          "Unshare": "NoCascade"
+        },
         "lookup_column": "aks_technicianid",
         "name": "Technician (Contact) to Maintenance Job",
         "referenced_attribute": "contactid",
         "related_table": "contact",
-        "relationship_type": "OneToMany",
+        "relationship_type": "many_to_one",
         "required_level": "None",
         "satisfies": [
           "INTK-0001-REQ-015",
@@ -9585,7 +9627,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -9935,12 +9977,19 @@
           "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
           "environment_url": "https://org89912357.crm.dynamics.com",
           "expected_payload": {
-            "cascade_configuration": "Parental — Cascade All on delete (dependent jobs removed with the vehicle)",
+            "cascade_configuration": {
+              "Assign": "Cascade",
+              "Delete": "Cascade",
+              "Merge": "Cascade",
+              "Reparent": "Cascade",
+              "Share": "Cascade",
+              "Unshare": "Cascade"
+            },
             "lookup_column": "aks_vehicleid",
             "name": "Vehicle to Maintenance Job",
             "referenced_attribute": "aks_vehicleid",
             "related_table": "aks_vehicle",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "ApplicationRequired",
             "satisfies": [
               "INTK-0001-REQ-017",
@@ -10235,12 +10284,19 @@
           },
           "declared_solution_unique_name": "ContosoServiceCore",
           "expected_payload": {
-            "cascade_configuration": "Parental — Cascade All on delete (dependent jobs removed with the vehicle)",
+            "cascade_configuration": {
+              "Assign": "Cascade",
+              "Delete": "Cascade",
+              "Merge": "Cascade",
+              "Reparent": "Cascade",
+              "Share": "Cascade",
+              "Unshare": "Cascade"
+            },
             "lookup_column": "aks_vehicleid",
             "name": "Vehicle to Maintenance Job",
             "referenced_attribute": "aks_vehicleid",
             "related_table": "aks_vehicle",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "ApplicationRequired",
             "satisfies": [
               "INTK-0001-REQ-017",
@@ -10730,12 +10786,19 @@
       "implementation_scope": "repository_and_dataverse_solution",
       "owner": null,
       "payload": {
-        "cascade_configuration": "Parental — Cascade All on delete (dependent jobs removed with the vehicle)",
+        "cascade_configuration": {
+          "Assign": "Cascade",
+          "Delete": "Cascade",
+          "Merge": "Cascade",
+          "Reparent": "Cascade",
+          "Share": "Cascade",
+          "Unshare": "Cascade"
+        },
         "lookup_column": "aks_vehicleid",
         "name": "Vehicle to Maintenance Job",
         "referenced_attribute": "aks_vehicleid",
         "related_table": "aks_vehicle",
-        "relationship_type": "OneToMany",
+        "relationship_type": "many_to_one",
         "required_level": "ApplicationRequired",
         "satisfies": [
           "INTK-0001-REQ-017",
@@ -10751,7 +10814,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -11101,12 +11164,19 @@
           "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
           "environment_url": "https://org89912357.crm.dynamics.com",
           "expected_payload": {
-            "cascade_configuration": "Parental — Cascade All on delete (dependent part lines removed with the job)",
+            "cascade_configuration": {
+              "Assign": "Cascade",
+              "Delete": "Cascade",
+              "Merge": "Cascade",
+              "Reparent": "Cascade",
+              "Share": "Cascade",
+              "Unshare": "Cascade"
+            },
             "lookup_column": "aks_maintenancejobid",
             "name": "Maintenance Job to Job Part",
             "referenced_attribute": "aks_maintenancejobid",
             "related_table": "aks_maintenancejob",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "ApplicationRequired",
             "satisfies": [
               "INTK-0001-REQ-017",
@@ -11401,12 +11471,19 @@
           },
           "declared_solution_unique_name": "ContosoServiceCore",
           "expected_payload": {
-            "cascade_configuration": "Parental — Cascade All on delete (dependent part lines removed with the job)",
+            "cascade_configuration": {
+              "Assign": "Cascade",
+              "Delete": "Cascade",
+              "Merge": "Cascade",
+              "Reparent": "Cascade",
+              "Share": "Cascade",
+              "Unshare": "Cascade"
+            },
             "lookup_column": "aks_maintenancejobid",
             "name": "Maintenance Job to Job Part",
             "referenced_attribute": "aks_maintenancejobid",
             "related_table": "aks_maintenancejob",
-            "relationship_type": "OneToMany",
+            "relationship_type": "many_to_one",
             "required_level": "ApplicationRequired",
             "satisfies": [
               "INTK-0001-REQ-017",
@@ -11896,12 +11973,19 @@
       "implementation_scope": "repository_and_dataverse_solution",
       "owner": null,
       "payload": {
-        "cascade_configuration": "Parental — Cascade All on delete (dependent part lines removed with the job)",
+        "cascade_configuration": {
+          "Assign": "Cascade",
+          "Delete": "Cascade",
+          "Merge": "Cascade",
+          "Reparent": "Cascade",
+          "Share": "Cascade",
+          "Unshare": "Cascade"
+        },
         "lookup_column": "aks_maintenancejobid",
         "name": "Maintenance Job to Job Part",
         "referenced_attribute": "aks_maintenancejobid",
         "related_table": "aks_maintenancejob",
-        "relationship_type": "OneToMany",
+        "relationship_type": "many_to_one",
         "required_level": "ApplicationRequired",
         "satisfies": [
           "INTK-0001-REQ-017",
@@ -11917,7 +12001,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -12966,7 +13050,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -14015,7 +14099,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -15064,7 +15148,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -16113,7 +16197,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -16754,7 +16838,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "status": "ready",
       "task_profile": {
         "evidence": [

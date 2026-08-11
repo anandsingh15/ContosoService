@@ -3,7 +3,7 @@ id: DES-01
 implements_feature: FEAT-01
 source_spec_hash: 2642c68742d36cfa4bf09d81275b299cf771ed945a35cde64877f0391e5a5304
 repository_context_hash: fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2
-plan_hash: 7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095
+plan_hash: 60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb
 status: draft
 ---
 
@@ -202,12 +202,18 @@ components:
     name: Depot (Account) to Vehicle
     schema_name: aks_account_vehicle_depot
     table: aks_vehicle
-    relationship_type: OneToMany
+    relationship_type: many_to_one
     related_table: account
     lookup_column: aks_depotid
     referenced_attribute: accountid
     required_level: None
-    cascade_configuration: "Referential — Remove Link on delete (link cleared, both rows preserved)"
+    cascade_configuration:
+      Assign: NoCascade
+      Delete: RemoveLink
+      Merge: NoCascade
+      Reparent: NoCascade
+      Share: NoCascade
+      Unshare: NoCascade
     depends_on: [DES-01-CMP-004]
     satisfies: [INTK-0001-REQ-015, INTK-0001-REQ-017, INTK-0001-REQ-018, INTK-0001-REQ-020]
   - id: DES-01-CMP-008
@@ -215,12 +221,18 @@ components:
     name: Technician (Contact) to Maintenance Job
     schema_name: aks_contact_maintenancejob_technician
     table: aks_maintenancejob
-    relationship_type: OneToMany
+    relationship_type: many_to_one
     related_table: contact
     lookup_column: aks_technicianid
     referenced_attribute: contactid
     required_level: None
-    cascade_configuration: "Referential — Remove Link on delete (link cleared, both rows preserved)"
+    cascade_configuration:
+      Assign: NoCascade
+      Delete: RemoveLink
+      Merge: NoCascade
+      Reparent: NoCascade
+      Share: NoCascade
+      Unshare: NoCascade
     depends_on: [DES-01-CMP-005]
     satisfies: [INTK-0001-REQ-015, INTK-0001-REQ-017, INTK-0001-REQ-018, INTK-0001-REQ-020]
   - id: DES-01-CMP-009
@@ -228,12 +240,18 @@ components:
     name: Vehicle to Maintenance Job
     schema_name: aks_vehicle_maintenancejob
     table: aks_maintenancejob
-    relationship_type: OneToMany
+    relationship_type: many_to_one
     related_table: aks_vehicle
     lookup_column: aks_vehicleid
     referenced_attribute: aks_vehicleid
     required_level: ApplicationRequired
-    cascade_configuration: "Parental — Cascade All on delete (dependent jobs removed with the vehicle)"
+    cascade_configuration:
+      Assign: Cascade
+      Delete: Cascade
+      Merge: Cascade
+      Reparent: Cascade
+      Share: Cascade
+      Unshare: Cascade
     depends_on: [DES-01-CMP-004, DES-01-CMP-005]
     satisfies: [INTK-0001-REQ-017, INTK-0001-REQ-018, INTK-0001-REQ-019]
   - id: DES-01-CMP-010
@@ -241,12 +259,18 @@ components:
     name: Maintenance Job to Job Part
     schema_name: aks_maintenancejob_jobpart
     table: aks_jobpart
-    relationship_type: OneToMany
+    relationship_type: many_to_one
     related_table: aks_maintenancejob
     lookup_column: aks_maintenancejobid
     referenced_attribute: aks_maintenancejobid
     required_level: ApplicationRequired
-    cascade_configuration: "Parental — Cascade All on delete (dependent part lines removed with the job)"
+    cascade_configuration:
+      Assign: Cascade
+      Delete: Cascade
+      Merge: Cascade
+      Reparent: Cascade
+      Share: Cascade
+      Unshare: Cascade
     depends_on: [DES-01-CMP-005, DES-01-CMP-006]
     satisfies: [INTK-0001-REQ-017, INTK-0001-REQ-018, INTK-0001-REQ-019]
   - id: DES-01-CMP-011

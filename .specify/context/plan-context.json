@@ -1,5 +1,5 @@
 {
-  "context_hash": "b021a46a7af3cd9ac0d0e52f69b0e0ec7e809690e2fa23869c118159ba470555",
+  "context_hash": "f9c63b873b7adf32a33299350ecf5feafb30696f73c9ed9e890be58922e704bb",
   "plans": [
     {
       "components": [
@@ -2639,7 +2639,14 @@
             "unpack_path": "src/solutions/ContosoServiceCore"
           },
           "build_skill": "dataverse-table",
-          "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+          "cascade_configuration": {
+            "Assign": "NoCascade",
+            "Delete": "RemoveLink",
+            "Merge": "NoCascade",
+            "Reparent": "NoCascade",
+            "Share": "NoCascade",
+            "Unshare": "NoCascade"
+          },
           "component_type": "schema_relationship",
           "depends_on": [
             "DES-01-CMP-004"
@@ -3024,7 +3031,7 @@
           "name": "Depot (Account) to Vehicle",
           "referenced_attribute": "accountid",
           "related_table": "account",
-          "relationship_type": "OneToMany",
+          "relationship_type": "many_to_one",
           "required_level": "None",
           "satisfies": [
             "INTK-0001-REQ-015",
@@ -3067,7 +3074,14 @@
             "unpack_path": "src/solutions/ContosoServiceCore"
           },
           "build_skill": "dataverse-table",
-          "cascade_configuration": "Referential — Remove Link on delete (link cleared, both rows preserved)",
+          "cascade_configuration": {
+            "Assign": "NoCascade",
+            "Delete": "RemoveLink",
+            "Merge": "NoCascade",
+            "Reparent": "NoCascade",
+            "Share": "NoCascade",
+            "Unshare": "NoCascade"
+          },
           "component_type": "schema_relationship",
           "depends_on": [
             "DES-01-CMP-005"
@@ -3452,7 +3466,7 @@
           "name": "Technician (Contact) to Maintenance Job",
           "referenced_attribute": "contactid",
           "related_table": "contact",
-          "relationship_type": "OneToMany",
+          "relationship_type": "many_to_one",
           "required_level": "None",
           "satisfies": [
             "INTK-0001-REQ-015",
@@ -3495,7 +3509,14 @@
             "unpack_path": "src/solutions/ContosoServiceCore"
           },
           "build_skill": "dataverse-table",
-          "cascade_configuration": "Parental — Cascade All on delete (dependent jobs removed with the vehicle)",
+          "cascade_configuration": {
+            "Assign": "Cascade",
+            "Delete": "Cascade",
+            "Merge": "Cascade",
+            "Reparent": "Cascade",
+            "Share": "Cascade",
+            "Unshare": "Cascade"
+          },
           "component_type": "schema_relationship",
           "depends_on": [
             "DES-01-CMP-004",
@@ -3881,7 +3902,7 @@
           "name": "Vehicle to Maintenance Job",
           "referenced_attribute": "aks_vehicleid",
           "related_table": "aks_vehicle",
-          "relationship_type": "OneToMany",
+          "relationship_type": "many_to_one",
           "required_level": "ApplicationRequired",
           "satisfies": [
             "INTK-0001-REQ-017",
@@ -3923,7 +3944,14 @@
             "unpack_path": "src/solutions/ContosoServiceCore"
           },
           "build_skill": "dataverse-table",
-          "cascade_configuration": "Parental — Cascade All on delete (dependent part lines removed with the job)",
+          "cascade_configuration": {
+            "Assign": "Cascade",
+            "Delete": "Cascade",
+            "Merge": "Cascade",
+            "Reparent": "Cascade",
+            "Share": "Cascade",
+            "Unshare": "Cascade"
+          },
           "component_type": "schema_relationship",
           "depends_on": [
             "DES-01-CMP-005",
@@ -4309,7 +4337,7 @@
           "name": "Maintenance Job to Job Part",
           "referenced_attribute": "aks_maintenancejobid",
           "related_table": "aks_maintenancejob",
-          "relationship_type": "OneToMany",
+          "relationship_type": "many_to_one",
           "required_level": "ApplicationRequired",
           "satisfies": [
             "INTK-0001-REQ-017",
@@ -6064,7 +6092,7 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
+      "plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
       "source_spec_hash": "2642c68742d36cfa4bf09d81275b299cf771ed945a35cde64877f0391e5a5304",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
