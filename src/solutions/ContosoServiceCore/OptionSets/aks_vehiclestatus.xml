@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="aks_vehiclestatus" localizedName="Vehicle Status global choice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <displaynames>
+    <displayname description="Vehicle Status global choice" languagecode="1033" />
+  </displaynames>
+  <options>
+    <option value="74873" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Active" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="74874" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="In maintenance" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="74875" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Out of service" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="74876" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Retired" languagecode="1033" />
+      </labels>
+    </option>
+  </options>
+</optionset>
