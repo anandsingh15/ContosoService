@@ -1,5 +1,5 @@
 {
-  "context_hash": "21cf6b1637db9b9573adb064e64bfe1b20fce334b6a87ed5f8a7548d92ce5564",
+  "context_hash": "98459f239ffb3a3171290dfe0e3d4e365cb9f37a5aa75cb672a13c42fd529319",
   "plan_context_hash": "b021a46a7af3cd9ac0d0e52f69b0e0ec7e809690e2fa23869c118159ba470555",
   "repository_context_hash": "fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2",
   "schema_version": 1,
@@ -17997,7 +17997,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0025",
       "implementation_scope": "repository_and_dataverse_solution",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "columns": [
           {
@@ -18036,7 +18036,7 @@
         "INTK-0001-REQ-004"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
@@ -18756,7 +18756,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0026",
       "implementation_scope": "repository_and_dataverse_solution",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "form_type": "Quick Create",
         "name": "Vehicle — Quick Create",
@@ -18784,7 +18784,7 @@
         "INTK-0001-REQ-003"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
@@ -19485,7 +19485,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0027",
       "implementation_scope": "repository_and_dataverse_solution",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "columns": [
           "aks_jobnumber (sort descending)",
@@ -19506,7 +19506,7 @@
         "INTK-0001-REQ-005"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
@@ -20260,7 +20260,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0028",
       "implementation_scope": "repository_and_dataverse_solution",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "form_type": "Main",
         "name": "Vehicle — Main",
@@ -20304,7 +20304,7 @@
         "INTK-0001-REQ-005"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
@@ -21009,7 +21009,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0029",
       "implementation_scope": "repository_and_dataverse_solution",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "columns": [
           "aks_registrationnumber (sort ascending)",
@@ -21031,7 +21031,7 @@
         "INTK-0001-REQ-006"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
@@ -21736,7 +21736,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0030",
       "implementation_scope": "repository_and_dataverse_solution",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "columns": [
           "aks_registrationnumber (sort ascending)",
@@ -21758,7 +21758,7 @@
         "INTK-0001-REQ-006"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
@@ -22463,7 +22463,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0031",
       "implementation_scope": "repository_and_dataverse_solution",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "columns": [
           "aks_depotid (sort ascending)",
@@ -22485,7 +22485,7 @@
         "INTK-0001-REQ-006"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
@@ -23115,7 +23115,7 @@
       "feature": "FEAT-02",
       "id": "DEV-0032",
       "implementation_scope": "repository_and_dataverse_environment",
-      "owner": null,
+      "owner": "anandsingh15",
       "payload": {
         "name": "Vehicle feature auditing",
         "record_name": "Contoso Service core-table auditing",
@@ -23138,7 +23138,7 @@
         "INTK-0001-REQ-004"
       ],
       "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "changed_solution_paths",
