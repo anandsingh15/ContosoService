@@ -78,6 +78,7 @@
       </Addresses>
     </Publisher>
     <RootComponents>
+      <RootComponent type="1" schemaName="aks_vehicle" behavior="0" />
       <RootComponent type="9" schemaName="aks_maintenancejobpriority" behavior="0" />
       <RootComponent type="9" schemaName="aks_maintenancejobstage" behavior="0" />
       <RootComponent type="9" schemaName="aks_vehiclestatus" behavior="0" />
