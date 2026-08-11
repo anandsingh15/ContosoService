@@ -1,5 +1,5 @@
 {
-  "context_hash": "da6d8b18ebec7729e8a66d42c177507ab9b27ec84a1059e67803af09c9d8b4c6",
+  "context_hash": "1deb76604b9c40ef0fb441b1312a8c405bb3731fd73819a061988eb0318e8d5d",
   "plans": [
     {
       "components": [
@@ -6064,13 +6064,13 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "4ed90e19e23e9eb9fbd4c5922c9cee246edfab7cc430832029248ce4e4fc11e8",
-      "source_spec_hash": "2cd384c712bcf9cfb64e2b2f5243b1378b2efd8813fc8a02bc6d0e5acc5a0bbb",
+      "plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_spec_hash": "2642c68742d36cfa4bf09d81275b299cf771ed945a35cde64877f0391e5a5304",
       "status": "reviewed",
       "workspace": "specs/001-fleet-data-foundation"
     }
   ],
   "repository_context_hash": "fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2",
   "schema_version": 1,
-  "spec_context_hash": "ed6b7f7ffc8fda2a79250b0a2809428156a8bc13128a430a5bde7142807f9e9f"
+  "spec_context_hash": "f136455580ae2f2848565d77d733def3e5b07a800065de702d80ccdc0c7c864d"
 }
