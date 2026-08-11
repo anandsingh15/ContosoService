@@ -633,6 +633,18 @@ def classify(paths: list[str]) -> tuple[str | None, list[str]]:
     return None, []
 
 
+def _dev_terminal_status(path: str) -> str | None:
+    """Return the on-disk DEV status when it is Test-eligible terminal, else None."""
+    file = Path(path)
+    if not file.is_file():
+        return None
+    try:
+        status = str(parse_frontmatter(file).get("status") or "").strip()
+    except HandoffError:
+        return None
+    return status if status in {"completed", "superseded"} else None
+
+
 def classify_records(records: list[dict]) -> tuple[str | None, list[str]]:
     added_devs = sorted({
         str(item["filename"])
@@ -649,7 +661,13 @@ def classify_records(records: list[dict]) -> tuple[str | None, list[str]]:
         and re.fullmatch(r"specs/[^/]+/development/DEV-\d{4}\.md", str(item.get("filename")))
     })
     if modified_devs:
-        return "test", modified_devs
+        terminal_devs = [p for p in modified_devs if _dev_terminal_status(p)]
+        if terminal_devs:
+            return "test", terminal_devs
+        # DEV files changed only for review status or sibling hash restamps;
+        # no terminal DEV means no Test handoff is due, and DEV paths must not
+        # fall through to classify() (which would misroute them to execution).
+        return None, []
     return classify(sorted({str(item["filename"]) for item in records}))
 
 
