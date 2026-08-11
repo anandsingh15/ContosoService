@@ -3,7 +3,7 @@ feature: FEAT-01
 plan: DES-01
 source_plan_hash: 7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095
 repository_context_hash: fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2
-task_context_hash: cd7c1854caff1912a3cc83abb5f3b49d8222c3ff016bb864374bfabbab7e5d61
+task_context_hash: 0ee7294d6055b792d3cf6a66e529804701a83b0defb2b09c938a595dd34fd74c
 status: draft
 ---
 # Development work index
@@ -12,7 +12,7 @@ Generated from the current plan.md. Historical DEV artifacts are retained but om
 
 | DEV | Component | Type | Scope | Execution host | Authoring target | Authentication policy | Required resources | Executor | Depends on | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [DEV-0001](development/DEV-0001.md) | DES-01-CMP-001 | schema_choice | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | in_review |
+| [DEV-0001](development/DEV-0001.md) | DES-01-CMP-001 | schema_choice | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | completed |
 | [DEV-0002](development/DEV-0002.md) | DES-01-CMP-002 | schema_choice | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | ready |
 | [DEV-0003](development/DEV-0003.md) | DES-01-CMP-003 | schema_choice | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | ready |
 | [DEV-0004](development/DEV-0004.md) | DES-01-CMP-004 | schema_table | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | ready |
