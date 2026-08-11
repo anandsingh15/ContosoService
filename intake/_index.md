@@ -15,4 +15,4 @@ different submitters — never collide.
 
 | INTK | Folder | Intake issue | Date | Submitter | REQ range | Status |
 |------|--------|--------------|------|-----------|-----------|--------|
-| INTK-0001 | intake/contoso/2026-08-11/ | [#5](https://github.com/anandsingh15/ContosoService/issues/5) | 2026-08-11 | anandsingh15 | — | Evidence Review |
+| INTK-0001 | intake/contoso/2026-08-11/ | [#5](https://github.com/anandsingh15/ContosoService/issues/5) | 2026-08-11 | anandsingh15 | INTK-0001-REQ-001 – INTK-0001-REQ-046 | Accepted |
