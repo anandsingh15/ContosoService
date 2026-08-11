@@ -1,5 +1,5 @@
 {
-  "context_hash": "eb2105329f9a2fe09ef73f23033433452cc09aa511c364a199c90a139019ffbb",
+  "context_hash": "b021a46a7af3cd9ac0d0e52f69b0e0ec7e809690e2fa23869c118159ba470555",
   "plans": [
     {
       "components": [
@@ -6068,6 +6068,2167 @@
       "source_spec_hash": "2642c68742d36cfa4bf09d81275b299cf771ed945a35cde64877f0391e5a5304",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
+    },
+    {
+      "components": [
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "core-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "core-solution",
+            "solution_unique_name": "ContosoServiceCore",
+            "unpack_path": "src/solutions/ContosoServiceCore"
+          },
+          "build_skill": "dataverse-table",
+          "columns": [
+            {
+              "choice": "aks_vehiclestatus",
+              "data_type": "Choice",
+              "name": "aks_status",
+              "required_level": "ApplicationRequired"
+            },
+            {
+              "data_type": "Boolean",
+              "name": "aks_roadworthy",
+              "required_level": "ApplicationRequired"
+            }
+          ],
+          "component_type": "schema_table",
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "http"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-create",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Target-read the exact logical name and verify routed-solution membership.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "DELETE",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-delete",
+                  "rationale": "HTTP DELETE destroys the table in the environment; it is never substituted for RemoveSolutionComponent.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Confirm the exact table no longer exists; do not infer another identity.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "publish": {
+                  "executor": {
+                    "builder": "publish_xml",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "PublishXml"
+                  },
+                  "official_references": [
+                    "publish_xml",
+                    "publish_request_schema"
+                  ],
+                  "operation": "publish",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-publish",
+                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Re-read only the published canonical metadata.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "column_definitions",
+                    "publish_xml"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-update",
+                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Verify only the exact existing table and child columns added by the compiler-owned extension payload.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "GET",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "table_definitions"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-verify",
+                  "rationale": "Web API or MCP targeted reads verify the result without solution export or unpack.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Read the canonical table identity and exact expected fields only.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_targeted_source_operations",
+                "rationale": "PAC is used only when the build skill explicitly requires supported source or package operations after the scoped write.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "metadata_contract",
+                "rationale": "Official Microsoft documentation defines the allowed metadata request contract.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses the pinned public-client MSAL dependency with an in-memory token cache.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              }
+            ],
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-02-CMP-001",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Vehicle feature extension",
+          "operation": "extend",
+          "ownership": "UserOwned",
+          "primary_name": "aks_name",
+          "satisfies": [
+            "INTK-0001-REQ-001",
+            "INTK-0001-REQ-002",
+            "INTK-0001-REQ-003",
+            "INTK-0001-REQ-004"
+          ],
+          "schema_name": "aks_vehicle",
+          "settings": {
+            "enable_quick_create": true
+          },
+          "table": "aks_vehicle",
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "validation_results",
+              "import_verification"
+            ],
+            "executor_default": "agent",
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "import_smoke"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "apps-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "apps-solution",
+            "solution_unique_name": "ContosoServiceApps",
+            "unpack_path": "src/solutions/ContosoServiceApps"
+          },
+          "build_skill": "model-driven-ui",
+          "component_type": "uiux_form",
+          "depends_on": [
+            "DES-02-CMP-001"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_source_operations",
+                "rationale": "PAC is used only for supported targeted solution/source operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "form_contract",
+                "rationale": "Official SystemForm documentation grounds the supported metadata surface and its limits.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "primary_form_authoring",
+                "rationale": "Portal remains primary because the capability matrix marks direct API form authoring not compiler-reliable.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "SystemForm CRUD exists, but complete safe FormXml or FormJson construction is not derivable from the current payload."
+          },
+          "execution_host": "local_interactive",
+          "form_type": "Quick Create",
+          "id": "DES-02-CMP-002",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Vehicle — Quick Create",
+          "satisfies": [
+            "INTK-0001-REQ-001",
+            "INTK-0001-REQ-002",
+            "INTK-0001-REQ-003"
+          ],
+          "schema_name": "aks_vehicle_quickcreate",
+          "sections": [
+            {
+              "columns": [
+                "aks_registrationnumber",
+                "aks_vin"
+              ],
+              "name": "Vehicle identifiers"
+            }
+          ],
+          "table": "aks_vehicle",
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "screenshots",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "accessibility_review",
+              "runtime_verification"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "apps-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "apps-solution",
+            "solution_unique_name": "ContosoServiceApps",
+            "unpack_path": "src/solutions/ContosoServiceApps"
+          },
+          "build_skill": "model-driven-ui",
+          "columns": [
+            "aks_jobnumber (sort descending)",
+            "aks_technicianid",
+            "createdon",
+            "modifiedon"
+          ],
+          "component_type": "uiux_view",
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_source_operations",
+                "rationale": "PAC remains limited to supported source and solution operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "ui_contract",
+                "rationale": "Official product documentation grounds the selected UI authoring route.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "primary_ui_authoring",
+                "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload."
+          },
+          "execution_host": "local_interactive",
+          "filter": "Related Maintenance Jobs through aks_vehicle_maintenancejob for the current Vehicle",
+          "id": "DES-02-CMP-003",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Vehicle — Maintenance History",
+          "satisfies": [
+            "INTK-0001-REQ-005"
+          ],
+          "schema_name": "aks_vehicle_maintenancehistory",
+          "table": "aks_maintenancejob",
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "screenshots",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "accessibility_review",
+              "runtime_verification"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "apps-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "apps-solution",
+            "solution_unique_name": "ContosoServiceApps",
+            "unpack_path": "src/solutions/ContosoServiceApps"
+          },
+          "build_skill": "model-driven-ui",
+          "component_type": "uiux_form",
+          "depends_on": [
+            "DES-02-CMP-001",
+            "DES-02-CMP-003"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "system_form",
+                    "optional_parameters"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "documented-form-not-reliable",
+                  "rationale": "SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "documented_but_not_compiler_reliable",
+                  "verification": {
+                    "rationale": "Verify exact form metadata after portal authoring.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_source_operations",
+                "rationale": "PAC is used only for supported targeted solution/source operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "form_contract",
+                "rationale": "Official SystemForm documentation grounds the supported metadata surface and its limits.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "primary_form_authoring",
+                "rationale": "Portal remains primary because the capability matrix marks direct API form authoring not compiler-reliable.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "SystemForm CRUD exists, but complete safe FormXml or FormJson construction is not derivable from the current payload."
+          },
+          "execution_host": "local_interactive",
+          "form_type": "Main",
+          "id": "DES-02-CMP-004",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Vehicle — Main",
+          "satisfies": [
+            "INTK-0001-REQ-001",
+            "INTK-0001-REQ-004",
+            "INTK-0001-REQ-005"
+          ],
+          "schema_name": "aks_vehicle_main",
+          "sections": [
+            {
+              "columns": [
+                "aks_status",
+                "aks_roadworthy",
+                "aks_depotid"
+              ],
+              "name": "Header"
+            },
+            {
+              "columns": [
+                "aks_name",
+                "aks_registrationnumber",
+                "aks_vin"
+              ],
+              "name": "Vehicle identity"
+            },
+            {
+              "name": "Maintenance history",
+              "read_only": true,
+              "records": "Only Related Records",
+              "relationship": "aks_vehicle_maintenancejob",
+              "subgrid": "aks_vehicle_maintenancehistory"
+            }
+          ],
+          "table": "aks_vehicle",
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "screenshots",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "accessibility_review",
+              "runtime_verification"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "apps-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "apps-solution",
+            "solution_unique_name": "ContosoServiceApps",
+            "unpack_path": "src/solutions/ContosoServiceApps"
+          },
+          "build_skill": "model-driven-ui",
+          "columns": [
+            "aks_registrationnumber (sort ascending)",
+            "aks_vin",
+            "aks_status",
+            "aks_roadworthy",
+            "aks_depotid"
+          ],
+          "component_type": "uiux_view",
+          "depends_on": [
+            "DES-02-CMP-001"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_source_operations",
+                "rationale": "PAC remains limited to supported source and solution operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "ui_contract",
+                "rationale": "Official product documentation grounds the selected UI authoring route.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "primary_ui_authoring",
+                "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload."
+          },
+          "execution_host": "local_interactive",
+          "filter": "aks_status equals 74873 (Active)",
+          "id": "DES-02-CMP-005",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Active Vehicles",
+          "satisfies": [
+            "INTK-0001-REQ-006"
+          ],
+          "schema_name": "aks_activevehicles",
+          "table": "aks_vehicle",
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "screenshots",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "accessibility_review",
+              "runtime_verification"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "apps-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "apps-solution",
+            "solution_unique_name": "ContosoServiceApps",
+            "unpack_path": "src/solutions/ContosoServiceApps"
+          },
+          "build_skill": "model-driven-ui",
+          "columns": [
+            "aks_registrationnumber (sort ascending)",
+            "aks_vin",
+            "aks_status",
+            "aks_roadworthy",
+            "aks_depotid"
+          ],
+          "component_type": "uiux_view",
+          "depends_on": [
+            "DES-02-CMP-001"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_source_operations",
+                "rationale": "PAC remains limited to supported source and solution operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "ui_contract",
+                "rationale": "Official product documentation grounds the selected UI authoring route.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "primary_ui_authoring",
+                "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload."
+          },
+          "execution_host": "local_interactive",
+          "filter": "aks_status equals 74874 (In maintenance)",
+          "id": "DES-02-CMP-006",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Vehicles in Maintenance",
+          "satisfies": [
+            "INTK-0001-REQ-006"
+          ],
+          "schema_name": "aks_vehiclesinmaintenance",
+          "table": "aks_vehicle",
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "screenshots",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "accessibility_review",
+              "runtime_verification"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "apps-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "apps-solution",
+            "solution_unique_name": "ContosoServiceApps",
+            "unpack_path": "src/solutions/ContosoServiceApps"
+          },
+          "build_skill": "model-driven-ui",
+          "columns": [
+            "aks_depotid (sort ascending)",
+            "aks_registrationnumber (sort ascending)",
+            "aks_vin",
+            "aks_status",
+            "aks_roadworthy"
+          ],
+          "component_type": "uiux_view",
+          "depends_on": [
+            "DES-02-CMP-001"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "maker_solutions"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "maker-portal",
+                  "profile": "maker-portal-primary",
+                  "rationale": "No documented compiler-reliable Web API payload contract is claimed for this component; the visual product authoring surface remains primary.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Use targeted Dataverse reads after the human authoring step.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_source_operations",
+                "rationale": "PAC remains limited to supported source and solution operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "ui_contract",
+                "rationale": "Official product documentation grounds the selected UI authoring route.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "primary_ui_authoring",
+                "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload."
+          },
+          "execution_host": "local_interactive",
+          "filter": "All vehicle records; no additional row filter",
+          "id": "DES-02-CMP-007",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Vehicles by Depot",
+          "satisfies": [
+            "INTK-0001-REQ-006"
+          ],
+          "schema_name": "aks_vehiclesbydepot",
+          "table": "aks_vehicle",
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "screenshots",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "accessibility_review",
+              "runtime_verification"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_environment",
+            "name": "dataverse-environment-authoring"
+          },
+          "build_skill": "dataverse-security",
+          "component_type": "config_audit",
+          "depends_on": [
+            "DES-02-CMP-001"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_environment",
+              "matrix_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "power-platform-admin-center"
+                  },
+                  "official_references": [
+                    "audit_administration"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-platform-admin-center",
+                  "profile": "admin-center-primary",
+                  "rationale": "Environment audit administration is not a custom-solution authoring operation.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify only the configured audit scope after the administrator action.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "power-platform-admin-center"
+                  },
+                  "official_references": [
+                    "audit_administration"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-platform-admin-center",
+                  "profile": "admin-center-primary",
+                  "rationale": "Environment audit administration is not a custom-solution authoring operation.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify only the configured audit scope after the administrator action.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "power-platform-admin-center"
+                  },
+                  "official_references": [
+                    "audit_administration"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-platform-admin-center",
+                  "profile": "admin-center-primary",
+                  "rationale": "Environment audit administration is not a custom-solution authoring operation.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify only the configured audit scope after the administrator action.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "power-platform-admin-center"
+                  },
+                  "official_references": [
+                    "audit_administration"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-platform-admin-center",
+                  "profile": "admin-center-primary",
+                  "rationale": "Environment audit administration is not a custom-solution authoring operation.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify only the configured audit scope after the administrator action.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "registry_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "audit_grounding",
+                "rationale": "Official audit guidance defines the supported administration path.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Human environment administration surface.",
+                "endpoint": "https://admin.powerplatform.microsoft.com",
+                "id": "power-platform-admin-center",
+                "kind": "portal",
+                "purpose": "primary_environment_audit_configuration",
+                "rationale": "The admin center is the registered environment-level audit authoring surface.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Dataverse audit enablement is an environment administration operation rather than custom-solution component authoring."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-02-CMP-008",
+          "implementation_scope": "repository_and_dataverse_environment",
+          "name": "Vehicle feature auditing",
+          "record_name": "Contoso Service core-table auditing",
+          "satisfies": [
+            "INTK-0001-REQ-001",
+            "INTK-0001-REQ-004"
+          ],
+          "scope": [
+            {
+              "aks_vehicle": [
+                "aks_status",
+                "aks_roadworthy"
+              ]
+            }
+          ],
+          "task_profile": {
+            "evidence": [
+              "changed_solution_paths",
+              "privilege_matrix",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions",
+              "config"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "least_privilege_review",
+              "import_smoke"
+            ]
+          }
+        }
+      ],
+      "feature": "FEAT-02",
+      "plan": "DES-02",
+      "plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_spec_hash": "aba6ee500256e6786644999d1488b6e39f83f18c3bf583c375948fa520ab5f1f",
+      "status": "reviewed",
+      "workspace": "specs/002-vehicle-fleet-register"
     },
     {
       "components": [
