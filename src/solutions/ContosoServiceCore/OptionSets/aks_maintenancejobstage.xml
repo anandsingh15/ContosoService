@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="aks_maintenancejobstage" localizedName="Maintenance Job Stage global choice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <displaynames>
+    <displayname description="Maintenance Job Stage global choice" languagecode="1033" />
+  </displaynames>
+  <options>
+    <option value="74877" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Scheduled" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="74878" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="In progress" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="74879" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="On hold" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="74880" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Completed" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="74881" ExternalValue="" IsHidden="0">
+      <labels>
+        <label description="Cancelled" languagecode="1033" />
+      </labels>
+    </option>
+  </options>
+</optionset>
