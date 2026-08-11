@@ -1,6 +1,6 @@
 {
-  "context_hash": "bc480f958a0c05669ea74b4ce073fefe60f4902afb5bc9c6521858153647af05",
-  "plan_context_hash": "1deb76604b9c40ef0fb441b1312a8c405bb3731fd73819a061988eb0318e8d5d",
+  "context_hash": "e758711f91f10fb23a530e5e7eb7348a8758d34b10f82b9f2be7b0fdb86697ed",
+  "plan_context_hash": "7c458e3d2287216126f038468b71dc0f161e09ff8b1cb01f106afb36e02e7e66",
   "repository_context_hash": "fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2",
   "schema_version": 1,
   "tasks": [
@@ -331,10 +331,10 @@
           "expected_payload": {
             "name": "Vehicle Status global choice",
             "options": [
-              "Active",
-              "In maintenance",
-              "Out of service",
-              "Retired"
+              "74873: Active",
+              "74874: In maintenance",
+              "74875: Out of service",
+              "74876: Retired"
             ],
             "satisfies": [
               "INTK-0001-REQ-016",
@@ -629,10 +629,10 @@
           "expected_payload": {
             "name": "Vehicle Status global choice",
             "options": [
-              "Active",
-              "In maintenance",
-              "Out of service",
-              "Retired"
+              "74873: Active",
+              "74874: In maintenance",
+              "74875: Out of service",
+              "74876: Retired"
             ],
             "satisfies": [
               "INTK-0001-REQ-016",
@@ -1120,10 +1120,10 @@
       "payload": {
         "name": "Vehicle Status global choice",
         "options": [
-          "Active",
-          "In maintenance",
-          "Out of service",
-          "Retired"
+          "74873: Active",
+          "74874: In maintenance",
+          "74875: Out of service",
+          "74876: Retired"
         ],
         "satisfies": [
           "INTK-0001-REQ-016",
@@ -1136,7 +1136,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -1483,11 +1483,11 @@
           "expected_payload": {
             "name": "Maintenance Job Stage global choice",
             "options": [
-              "Scheduled",
-              "In progress",
-              "On hold",
-              "Completed",
-              "Cancelled"
+              "74877: Scheduled",
+              "74878: In progress",
+              "74879: On hold",
+              "74880: Completed",
+              "74881: Cancelled"
             ],
             "satisfies": [
               "INTK-0001-REQ-016",
@@ -1782,11 +1782,11 @@
           "expected_payload": {
             "name": "Maintenance Job Stage global choice",
             "options": [
-              "Scheduled",
-              "In progress",
-              "On hold",
-              "Completed",
-              "Cancelled"
+              "74877: Scheduled",
+              "74878: In progress",
+              "74879: On hold",
+              "74880: Completed",
+              "74881: Cancelled"
             ],
             "satisfies": [
               "INTK-0001-REQ-016",
@@ -2274,11 +2274,11 @@
       "payload": {
         "name": "Maintenance Job Stage global choice",
         "options": [
-          "Scheduled",
-          "In progress",
-          "On hold",
-          "Completed",
-          "Cancelled"
+          "74877: Scheduled",
+          "74878: In progress",
+          "74879: On hold",
+          "74880: Completed",
+          "74881: Cancelled"
         ],
         "satisfies": [
           "INTK-0001-REQ-016",
@@ -2291,7 +2291,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -2638,10 +2638,10 @@
           "expected_payload": {
             "name": "Maintenance Job Priority global choice",
             "options": [
-              "Low",
-              "Medium",
-              "High",
-              "Critical"
+              "74882: Low",
+              "74883: Medium",
+              "74884: High",
+              "74885: Critical"
             ],
             "satisfies": [
               "INTK-0001-REQ-016",
@@ -2936,10 +2936,10 @@
           "expected_payload": {
             "name": "Maintenance Job Priority global choice",
             "options": [
-              "Low",
-              "Medium",
-              "High",
-              "Critical"
+              "74882: Low",
+              "74883: Medium",
+              "74884: High",
+              "74885: Critical"
             ],
             "satisfies": [
               "INTK-0001-REQ-016",
@@ -3427,10 +3427,10 @@
       "payload": {
         "name": "Maintenance Job Priority global choice",
         "options": [
-          "Low",
-          "Medium",
-          "High",
-          "Critical"
+          "74882: Low",
+          "74883: Medium",
+          "74884: High",
+          "74885: Critical"
         ],
         "satisfies": [
           "INTK-0001-REQ-016",
@@ -3443,7 +3443,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -4723,7 +4723,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -5985,7 +5985,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -7247,7 +7247,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -8416,7 +8416,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -9585,7 +9585,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -10751,7 +10751,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -11917,7 +11917,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -12966,7 +12966,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -14015,7 +14015,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -15064,7 +15064,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -16113,7 +16113,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -16754,7 +16754,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "source_plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "status": "ready",
       "task_profile": {
         "evidence": [

@@ -1,5 +1,5 @@
 {
-  "context_hash": "1deb76604b9c40ef0fb441b1312a8c405bb3731fd73819a061988eb0318e8d5d",
+  "context_hash": "7c458e3d2287216126f038468b71dc0f161e09ff8b1cb01f106afb36e02e7e66",
   "plans": [
     {
       "components": [
@@ -396,10 +396,10 @@
           "implementation_scope": "repository_and_dataverse_solution",
           "name": "Vehicle Status global choice",
           "options": [
-            "Active",
-            "In maintenance",
-            "Out of service",
-            "Retired"
+            "74873: Active",
+            "74874: In maintenance",
+            "74875: Out of service",
+            "74876: Retired"
           ],
           "satisfies": [
             "INTK-0001-REQ-016",
@@ -816,11 +816,11 @@
           "implementation_scope": "repository_and_dataverse_solution",
           "name": "Maintenance Job Stage global choice",
           "options": [
-            "Scheduled",
-            "In progress",
-            "On hold",
-            "Completed",
-            "Cancelled"
+            "74877: Scheduled",
+            "74878: In progress",
+            "74879: On hold",
+            "74880: Completed",
+            "74881: Cancelled"
           ],
           "satisfies": [
             "INTK-0001-REQ-016",
@@ -1237,10 +1237,10 @@
           "implementation_scope": "repository_and_dataverse_solution",
           "name": "Maintenance Job Priority global choice",
           "options": [
-            "Low",
-            "Medium",
-            "High",
-            "Critical"
+            "74882: Low",
+            "74883: Medium",
+            "74884: High",
+            "74885: Critical"
           ],
           "satisfies": [
             "INTK-0001-REQ-016",
@@ -6064,9 +6064,9 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84",
+      "plan_hash": "7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095",
       "source_spec_hash": "2642c68742d36cfa4bf09d81275b299cf771ed945a35cde64877f0391e5a5304",
-      "status": "reviewed",
+      "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
     }
   ],

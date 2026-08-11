@@ -3,8 +3,8 @@ id: DES-01
 implements_feature: FEAT-01
 source_spec_hash: 2642c68742d36cfa4bf09d81275b299cf771ed945a35cde64877f0391e5a5304
 repository_context_hash: fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2
-plan_hash: 2b574056d8d55618b736a7bd0e9dcc526f430fa7030df23e0923e1396f030e84
-status: reviewed
+plan_hash: 7be252c1456c6c63349ed9e39eb7702a465b4cc75a91f034cac298f1a1195095
+status: draft
 ---
 
 # Design — FEAT-01 fleet-data-foundation (DES-01)
@@ -113,31 +113,31 @@ components:
     name: Vehicle Status global choice
     schema_name: aks_vehiclestatus
     options:
-      - Active
-      - In maintenance
-      - Out of service
-      - Retired
+      - '74873: Active'
+      - '74874: In maintenance'
+      - '74875: Out of service'
+      - '74876: Retired'
     satisfies: [INTK-0001-REQ-016, INTK-0001-REQ-046]
   - id: DES-01-CMP-002
     component_type: schema_choice
     name: Maintenance Job Stage global choice
     schema_name: aks_maintenancejobstage
     options:
-      - Scheduled
-      - In progress
-      - On hold
-      - Completed
-      - Cancelled
+      - '74877: Scheduled'
+      - '74878: In progress'
+      - '74879: On hold'
+      - '74880: Completed'
+      - '74881: Cancelled'
     satisfies: [INTK-0001-REQ-016, INTK-0001-REQ-046]
   - id: DES-01-CMP-003
     component_type: schema_choice
     name: Maintenance Job Priority global choice
     schema_name: aks_maintenancejobpriority
     options:
-      - Low
-      - Medium
-      - High
-      - Critical
+      - '74882: Low'
+      - '74883: Medium'
+      - '74884: High'
+      - '74885: Critical'
     satisfies: [INTK-0001-REQ-016, INTK-0001-REQ-046]
   - id: DES-01-CMP-004
     component_type: schema_table
