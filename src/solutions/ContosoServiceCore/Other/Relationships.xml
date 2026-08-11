@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_aks_jobpart" />
   <EntityRelationship Name="business_unit_aks_maintenancejob" />
   <EntityRelationship Name="business_unit_aks_vehicle" />
+  <EntityRelationship Name="lk_aks_jobpart_createdby" />
+  <EntityRelationship Name="lk_aks_jobpart_modifiedby" />
   <EntityRelationship Name="lk_aks_maintenancejob_createdby" />
   <EntityRelationship Name="lk_aks_maintenancejob_modifiedby" />
   <EntityRelationship Name="lk_aks_vehicle_createdby" />
   <EntityRelationship Name="lk_aks_vehicle_modifiedby" />
+  <EntityRelationship Name="owner_aks_jobpart" />
   <EntityRelationship Name="owner_aks_maintenancejob" />
   <EntityRelationship Name="owner_aks_vehicle" />
+  <EntityRelationship Name="team_aks_jobpart" />
   <EntityRelationship Name="team_aks_maintenancejob" />
   <EntityRelationship Name="team_aks_vehicle" />
+  <EntityRelationship Name="user_aks_jobpart" />
   <EntityRelationship Name="user_aks_maintenancejob" />
   <EntityRelationship Name="user_aks_vehicle" />
 </EntityRelationships>
