@@ -67,7 +67,9 @@
             "solution": { "type": "string", "minLength": 1 },
             "solution_unique_name": { "type": "string", "minLength": 1 },
             "publisher_name": { "type": "string", "minLength": 1 },
-            "publisher_prefix": { "type": "string", "minLength": 1 }
+            "publisher_prefix": { "type": "string", "minLength": 1 },
+            "unpack_path": { "type": "string", "minLength": 1 },
+            "component_projects": { "type": "array" }
           }
         }
       ]
