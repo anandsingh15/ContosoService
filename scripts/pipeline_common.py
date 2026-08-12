@@ -1781,6 +1781,27 @@ def context_hash(data: dict[str, Any]) -> str:
     return hash_json(material)
 
 
+def task_context_binding_material(data: dict[str, Any]) -> dict[str, Any]:
+    material = dict(data)
+    material.pop("context_hash", None)
+    material.pop("content_hash", None)
+    material["tasks"] = [
+        {key: value for key, value in task.items() if key != "status"}
+        for task in material.get("tasks") or []
+    ]
+    return material
+
+
+def task_context_binding_hash(data: dict[str, Any]) -> str:
+    return hash_json(task_context_binding_material(data))
+
+
+def task_context_content_hash(data: dict[str, Any]) -> str:
+    material = dict(data)
+    material.pop("content_hash", None)
+    return hash_json(material)
+
+
 def read_context(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise PipelineError(f"required context not found: {path.relative_to(ROOT).as_posix()}")
@@ -1790,8 +1811,12 @@ def read_context(path: Path) -> dict[str, Any]:
         raise PipelineError(f"invalid JSON context {path.relative_to(ROOT).as_posix()}: {exc}") from exc
     if not isinstance(data, dict):
         raise PipelineError(f"context root must be an object: {path.relative_to(ROOT).as_posix()}")
-    declared = data.get("context_hash")
-    actual = context_hash(data)
+    if path.resolve() == TASK_CONTEXT_PATH.resolve() and "content_hash" in data:
+        declared = data.get("content_hash")
+        actual = task_context_content_hash(data)
+    else:
+        declared = data.get("context_hash")
+        actual = context_hash(data)
     if declared != actual:
         raise PipelineError(
             f"stale context hash in {path.relative_to(ROOT).as_posix()}: expected {actual}, found {declared}"

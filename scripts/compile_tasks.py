@@ -346,7 +346,20 @@ def main() -> int:
         "plan_context_hash": plan_context["context_hash"],
         "tasks": rows,
     }
-    context["context_hash"] = P.context_hash(context)
+    previous_context = (
+        P.read_context(P.TASK_CONTEXT_PATH)
+        if P.TASK_CONTEXT_PATH.exists()
+        else None
+    )
+    if (
+        previous_context
+        and P.task_context_binding_material(previous_context)
+        == P.task_context_binding_material(context)
+    ):
+        context["context_hash"] = previous_context["context_hash"]
+    else:
+        context["context_hash"] = P.task_context_binding_hash(context)
+    context["content_hash"] = P.task_context_content_hash(context)
     drifted = []
     if P.write_json(P.TASK_CONTEXT_PATH, context, args.check):
         drifted.append(P.TASK_CONTEXT_PATH.relative_to(P.ROOT).as_posix())
