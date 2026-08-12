@@ -78,6 +78,7 @@
       </Addresses>
     </Publisher>
     <RootComponents>
+      <RootComponent type="1" schemaName="account" behavior="1" />
       <RootComponent type="1" schemaName="aks_jobpart" behavior="0" />
       <RootComponent type="1" schemaName="aks_maintenancejob" behavior="0" />
       <RootComponent type="1" schemaName="aks_vehicle" behavior="0" />
