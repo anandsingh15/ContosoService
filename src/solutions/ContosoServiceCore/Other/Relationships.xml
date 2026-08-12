@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="aks_contact_maintenancejob_technician" />
   <EntityRelationship Name="business_unit_aks_jobpart" />
   <EntityRelationship Name="business_unit_aks_maintenancejob" />
   <EntityRelationship Name="business_unit_aks_vehicle" />

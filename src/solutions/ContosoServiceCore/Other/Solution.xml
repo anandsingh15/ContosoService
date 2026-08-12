@@ -81,10 +81,16 @@
       <RootComponent type="1" schemaName="aks_jobpart" behavior="0" />
       <RootComponent type="1" schemaName="aks_maintenancejob" behavior="0" />
       <RootComponent type="1" schemaName="aks_vehicle" behavior="0" />
+      <RootComponent type="1" schemaName="contact" behavior="1" />
       <RootComponent type="9" schemaName="aks_maintenancejobpriority" behavior="0" />
       <RootComponent type="9" schemaName="aks_maintenancejobstage" behavior="0" />
       <RootComponent type="9" schemaName="aks_vehiclestatus" behavior="0" />
     </RootComponents>
-    <MissingDependencies />
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="contact" displayName="Contact" parentSchemaName="" solution="msdynce_PortalPrivacyExtensions (9.2.10.0)" />
+        <Dependent type="1" schemaName="contact" displayName="Contact" />
+      </MissingDependency>
+    </MissingDependencies>
   </SolutionManifest>
 </ImportExportXml>
