@@ -378,8 +378,11 @@ Evidence comments are not compiler-owned and are never regenerated.
   in `.d365/authoring-targets.yml`, not components or DEV tasks. Solution
   export and downstream promotion are external-pipeline work and must not
   become plan components or DEV tasks. If targeted source synchronization is
-  genuinely required by an existing profile, it occurs only after a successful
-  scoped write and is not broad discovery export. Treat `config_queue` and
+  genuinely required by a hybrid or human profile, it occurs only after a
+  successful scoped write, is targeted to the changed component's paths under the
+  solution's `unpack_path` (recorded as `source_sync_evidence`), and is not broad
+  discovery export. Agent execution authors through the Web API and emits no
+  `source_sync_evidence`. Treat `config_queue` and
   `config_audit` as environment-bound composite records with no custom-solution membership.
 - Dataverse-bound execution requires `authentication_mode: interactive_user`
   directly against the declared endpoint and no token recording. Refuse

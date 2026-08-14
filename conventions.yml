@@ -221,32 +221,43 @@ component_type_payloads:
 # component_type_skills to exactly one profile. The generated task context
 # combines this profile with the approved plan payload and the skill's
 # component-specific guidance.
+# `evidence` lists the deterministic artifacts every executor must produce.
+# `source_sync_evidence` applies only when a hybrid or human executor
+# synchronizes source after a successful scoped write: it is targeted to the
+# changed component's paths under the solution's `unpack_path`, never a
+# whole-solution export. Agent executors author through the Web API and produce
+# no source diff, so they do not emit `source_sync_evidence`.
 component_task_profiles:
   dataverse-table:
     executor_default: agent
     target_roots: [src/solutions]
     validation_kinds: [payload_conformance, solution_schema, import_smoke]
-    evidence: [changed_solution_paths, validation_results, import_verification]
+    evidence: [validation_results, import_verification]
+    source_sync_evidence: [changed_solution_paths]
   dataverse-config:
     executor_default: hybrid
     target_roots: [src/solutions]
     validation_kinds: [payload_conformance, solution_schema, import_smoke, runtime_verification]
-    evidence: [changed_solution_paths, validation_results, environment_verification]
+    evidence: [validation_results, environment_verification]
+    source_sync_evidence: [changed_solution_paths]
   dataverse-security:
     executor_default: hybrid
     target_roots: [src/solutions, config]
     validation_kinds: [payload_conformance, least_privilege_review, import_smoke]
-    evidence: [changed_solution_paths, privilege_matrix, reviewer_evidence]
+    evidence: [privilege_matrix, reviewer_evidence]
+    source_sync_evidence: [changed_solution_paths]
   power-automate-flow:
     executor_default: hybrid
     target_roots: [src/solutions]
     validation_kinds: [payload_conformance, flow_definition, connection_reference, runtime_verification]
-    evidence: [changed_solution_paths, validation_results, run_history]
+    evidence: [validation_results, run_history]
+    source_sync_evidence: [changed_solution_paths]
   model-driven-ui:
     executor_default: hybrid
     target_roots: [src/solutions]
     validation_kinds: [payload_conformance, solution_schema, accessibility_review, runtime_verification]
-    evidence: [changed_solution_paths, screenshots, reviewer_evidence]
+    evidence: [screenshots, reviewer_evidence]
+    source_sync_evidence: [changed_solution_paths]
   alm-packaging:
     executor_default: agent
     target_roots: [src/solutions, config]
