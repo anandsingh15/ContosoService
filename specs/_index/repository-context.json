@@ -376,11 +376,13 @@
     },
     "dataverse-config": {
       "evidence": [
-        "changed_solution_paths",
         "validation_results",
         "environment_verification"
       ],
       "executor_default": "hybrid",
+      "source_sync_evidence": [
+        "changed_solution_paths"
+      ],
       "target_roots": [
         "src/solutions"
       ],
@@ -412,11 +414,13 @@
     },
     "dataverse-security": {
       "evidence": [
-        "changed_solution_paths",
         "privilege_matrix",
         "reviewer_evidence"
       ],
       "executor_default": "hybrid",
+      "source_sync_evidence": [
+        "changed_solution_paths"
+      ],
       "target_roots": [
         "src/solutions",
         "config"
@@ -429,11 +433,13 @@
     },
     "dataverse-table": {
       "evidence": [
-        "changed_solution_paths",
         "validation_results",
         "import_verification"
       ],
       "executor_default": "agent",
+      "source_sync_evidence": [
+        "changed_solution_paths"
+      ],
       "target_roots": [
         "src/solutions"
       ],
@@ -463,11 +469,13 @@
     },
     "model-driven-ui": {
       "evidence": [
-        "changed_solution_paths",
         "screenshots",
         "reviewer_evidence"
       ],
       "executor_default": "hybrid",
+      "source_sync_evidence": [
+        "changed_solution_paths"
+      ],
       "target_roots": [
         "src/solutions"
       ],
@@ -480,11 +488,13 @@
     },
     "power-automate-flow": {
       "evidence": [
-        "changed_solution_paths",
         "validation_results",
         "run_history"
       ],
       "executor_default": "hybrid",
+      "source_sync_evidence": [
+        "changed_solution_paths"
+      ],
       "target_roots": [
         "src/solutions"
       ],
@@ -879,8 +889,8 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2",
-  "conventions_hash": "779e510da62525fc64235b4677fad3bb3ca70abea0822d70b94d77e4e9d892e2",
+  "context_hash": "4c861280702113294a79dcc91e61fc43a33cc6c78440edfbb17ba7ea5fe4063e",
+  "conventions_hash": "74ba734dd61e956b29996184714bf151ef03328da70fe62f2f54ba22dca0e8af",
   "dataverse_web_api_capabilities": {
     "components": {
       "az_ai_*": {

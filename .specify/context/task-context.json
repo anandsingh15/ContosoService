@@ -1,8 +1,8 @@
 {
-  "content_hash": "8e30681c2abacf292f564adce0a83958aba107c6e34b16fb7714a8d217294dcf",
-  "context_hash": "d70210f26a9b08aa1d467e3e5baeef1906e9183fd9396b2230d4982634794793",
-  "plan_context_hash": "f9c63b873b7adf32a33299350ecf5feafb30696f73c9ed9e890be58922e704bb",
-  "repository_context_hash": "fc5d3500920545a6c95aafb7fc1ea428a257b8111265dbd41e6c8c5933e206d2",
+  "content_hash": "a8919190ff99b8463e51b21ade294b9865f4af4c728f7795f832fc81defc2f70",
+  "context_hash": "d948bb59a7085e3b1aa26423ce2102e3d346620ad6fd7cdbf014441930308043",
+  "plan_context_hash": "4c1c82cd30fb76448a41b46ef54067eb504f24d32637de082ffece48e6b81de1",
+  "repository_context_hash": "4c861280702113294a79dcc91e61fc43a33cc6c78440edfbb17ba7ea5fe4063e",
   "schema_version": 1,
   "tasks": [
     {
@@ -1137,15 +1137,17 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "completed",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -2292,15 +2294,17 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_review",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -3444,15 +3448,17 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -4724,15 +4730,17 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -5986,15 +5994,17 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_review",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -7248,15 +7258,17 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_review",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -8438,15 +8450,17 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_review",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -9628,15 +9642,17 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_review",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -10815,15 +10831,17 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_review",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -12002,15 +12020,17 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "in_review",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -13051,15 +13071,17 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -14100,15 +14122,17 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -15149,15 +15173,17 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -16198,15 +16224,17 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -16839,15 +16867,17 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "60b836b4a2abb95562a594f3efb5a99d3760369f907b1a09487919d779d5eaeb",
+      "source_plan_hash": "76cdb24a4a92fa4f5fca84754f3cd5ef9f4e870241abaeec2d129c664adeaba3",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "privilege_matrix",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions",
           "config"
@@ -18120,15 +18150,17 @@
         "INTK-0001-REQ-003",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -18868,15 +18900,17 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -19590,15 +19624,17 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -20388,15 +20424,17 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -21115,15 +21153,17 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -21842,15 +21882,17 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -22569,15 +22611,17 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -23222,15 +23266,17 @@
         "INTK-0001-REQ-001",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "cd71e6435ee2c7cb201837053a75925167e3bc4885b94380eea60a4061e4e7d5",
+      "source_plan_hash": "2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "privilege_matrix",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions",
           "config"
@@ -24618,15 +24664,17 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -25905,15 +25953,17 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "validation_results",
           "import_verification"
         ],
         "executor_default": "agent",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -26652,15 +26702,17 @@
       "satisfies": [
         "INTK-0001-REQ-009"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -27384,15 +27436,17 @@
         "INTK-0001-REQ-012",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -28248,15 +28302,17 @@
         "INTK-0001-REQ-013",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -28978,15 +29034,17 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -29705,15 +29763,17 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -30435,15 +30495,17 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "screenshots",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions"
         ],
@@ -31135,15 +31197,17 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "8ef6848475a71e124f736aeb229c4ba13e63adb4be154b9536239d26f10b26e1",
+      "source_plan_hash": "095a1ee790024e58d1ccd533684da5f214c47bc18491ae95109e545c1aed1e8b",
       "status": "ready",
       "task_profile": {
         "evidence": [
-          "changed_solution_paths",
           "privilege_matrix",
           "reviewer_evidence"
         ],
         "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
         "target_roots": [
           "src/solutions",
           "config"
