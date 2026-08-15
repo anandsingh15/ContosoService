@@ -867,6 +867,20 @@
           </Descriptions>
         </attribute>
       </attributes>
+      <EntityKeys>
+        <EntityKey>
+          <Name>aks_vehicle_vin_key</Name>
+          <LogicalName>aks_vehicle_vin_key</LogicalName>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <IsCustomizable>0</IsCustomizable>
+          <EntityKeyAttributes>
+            <AttributeName>aks_vin</AttributeName>
+          </EntityKeyAttributes>
+          <displaynames>
+            <displayname description="Vehicle VIN alternate key" languagecode="1033" />
+          </displaynames>
+        </EntityKey>
+      </EntityKeys>
       <EntitySetName>aks_vehicles</EntitySetName>
       <IsDuplicateCheckSupported>0</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
