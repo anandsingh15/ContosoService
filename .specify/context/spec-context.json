@@ -1,5 +1,5 @@
 {
-  "context_hash": "b8b414f3fb3114ad1adfd7b6babdb572e1f69f2f044115e2d08b2b63e902f7fb",
+  "context_hash": "a911b880732b9cf606c422992411e231028bac4da492cf005d0a46bec43a601d",
   "features": [
     {
       "epic": "EPIC-01",
@@ -59,7 +59,7 @@
         }
       ],
       "slug": "fleet-data-foundation",
-      "spec_hash": "81000e2e95f21daf38dda459d71c7ea48fa016b6fa2a7b01f3696ea96e06f630",
+      "spec_hash": "fb3ac0f3bb889a3b9d142102c38021bbd0232c5952ec6fb9d58e948df2cc459a",
       "status": "reviewed",
       "workspace": "specs/001-fleet-data-foundation"
     },
@@ -101,7 +101,7 @@
         }
       ],
       "slug": "vehicle-fleet-register",
-      "spec_hash": "69d6838ef5176a8de5a330d3a82a2b7a4eacac50fec91e378276022a3f28f62b",
+      "spec_hash": "31566b894f84d9c6e00443d66e2b886b27f0eee66a5b1b1a3b13eb4ca0c342a6",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
     },
@@ -153,7 +153,7 @@
         }
       ],
       "slug": "maintenance-jobs-parts",
-      "spec_hash": "bfbc51084022805d63f11e263e17f104eed501256163ebf27118ee91f9d11f0f",
+      "spec_hash": "f347b90e50aadba90eeba8e19a52753ee2508a9055fba015977896c7797303c8",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
     },
@@ -210,7 +210,7 @@
         }
       ],
       "slug": "job-completion-enforcement",
-      "spec_hash": "1611e47373cdbf1a6d5cf7500f91acf5bfcc6988a361f7af00f6ad2e568160b1",
+      "spec_hash": "0cc0f99b206eb18466113a3d2ac00fb2f4891508fbc24eb4f76972e0794043fa",
       "status": "reviewed",
       "workspace": "specs/004-job-completion-enforcement"
     },
@@ -262,7 +262,7 @@
         }
       ],
       "slug": "automated-followup-orchestration",
-      "spec_hash": "b1100907e02feb76404b6aa6ddf249bdde7181dca91ce0c4ebddc3dc09024cce",
+      "spec_hash": "792bfa4e65f433dc6d7fc6c0639a5926e38c39ea35ddc6744e8b3b4b3557a944",
       "status": "reviewed",
       "workspace": "specs/005-automated-followup-orchestration"
     },
@@ -299,11 +299,11 @@
         }
       ],
       "slug": "access-roles-app-shell",
-      "spec_hash": "93ffb2d074592bc300da5937430bdf36633f8d88ef9d524d4c242d4f216be078",
+      "spec_hash": "a11094e220fe88317724877cac48afcc245b4c48379dd290ff1b08b541b418e9",
       "status": "reviewed",
       "workspace": "specs/006-access-roles-app-shell"
     }
   ],
-  "repository_context_hash": "ced4735329e9b6e05b2e45ebdbabfadbe160bd2be1fb7a27f8364914c0cc4718",
+  "repository_context_hash": "cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35",
   "schema_version": 1
 }

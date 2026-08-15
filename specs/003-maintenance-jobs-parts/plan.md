@@ -2,9 +2,9 @@
 id: DES-03
 status: reviewed
 implements_feature: FEAT-03
-source_spec_hash: bfbc51084022805d63f11e263e17f104eed501256163ebf27118ee91f9d11f0f
+source_spec_hash: f347b90e50aadba90eeba8e19a52753ee2508a9055fba015977896c7797303c8
 repository_context_hash: cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35
-plan_hash: 2f48a1ab52c63396bd2df81fae0d2cd8a8236d201d512ded5a893ee8a35e8ae9
+plan_hash: 205ee7a34b695064bf64cb991c158481d95e0e576424386afa78120afbb12196
 ---
 
 # Design — FEAT-03 maintenance-jobs-parts (DES-03)
@@ -360,5 +360,5 @@ Vehicle lookup and table relationships.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-03 | FEAT-03 | `bfbc51084022805d63f11e263e17f104eed501256163ebf27118ee91f9d11f0f` | `cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35` |
+| DES-03 | FEAT-03 | `f347b90e50aadba90eeba8e19a52753ee2508a9055fba015977896c7797303c8` | `cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35` |
 <!-- COMPILER:END provenance -->

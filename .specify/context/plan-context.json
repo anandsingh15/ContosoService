@@ -1,5 +1,5 @@
 {
-  "context_hash": "49e9cdb673a2eb3d4fd9b399cdee71435679800a5994a5443700c228238b62f6",
+  "context_hash": "dd48a85478a1e7dc6cfc753cd2b413ee2a69bc652dfa12f046521e15c697f988",
   "plans": [
     {
       "components": [
@@ -6426,8 +6426,8 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "7ae12ebbbcd0ec8c4fd4d5b5929aff913dd57ca819b725cf48f966b7ff6a7e91",
-      "source_spec_hash": "81000e2e95f21daf38dda459d71c7ea48fa016b6fa2a7b01f3696ea96e06f630",
+      "plan_hash": "fa75c3debd571b8091410ebc21e3f8fb3f31268d49f10518b8209d71616c90f2",
+      "source_spec_hash": "fb3ac0f3bb889a3b9d142102c38021bbd0232c5952ec6fb9d58e948df2cc459a",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
     },
@@ -9103,8 +9103,8 @@
       ],
       "feature": "FEAT-02",
       "plan": "DES-02",
-      "plan_hash": "898efdc9bbe3751738ee1ae7236ef467879b2e8208e7abc7fecf09ec2f00f045",
-      "source_spec_hash": "69d6838ef5176a8de5a330d3a82a2b7a4eacac50fec91e378276022a3f28f62b",
+      "plan_hash": "c7daac198e50a951082f52b6a0178fe201581205f4240047bae12e20910a3467",
+      "source_spec_hash": "31566b894f84d9c6e00443d66e2b886b27f0eee66a5b1b1a3b13eb4ca0c342a6",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
     },
@@ -12323,13 +12323,13 @@
       ],
       "feature": "FEAT-03",
       "plan": "DES-03",
-      "plan_hash": "2f48a1ab52c63396bd2df81fae0d2cd8a8236d201d512ded5a893ee8a35e8ae9",
-      "source_spec_hash": "bfbc51084022805d63f11e263e17f104eed501256163ebf27118ee91f9d11f0f",
+      "plan_hash": "205ee7a34b695064bf64cb991c158481d95e0e576424386afa78120afbb12196",
+      "source_spec_hash": "f347b90e50aadba90eeba8e19a52753ee2508a9055fba015977896c7797303c8",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
     }
   ],
   "repository_context_hash": "cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35",
   "schema_version": 1,
-  "spec_context_hash": "b8b414f3fb3114ad1adfd7b6babdb572e1f69f2f044115e2d08b2b63e902f7fb"
+  "spec_context_hash": "a911b880732b9cf606c422992411e231028bac4da492cf005d0a46bec43a601d"
 }
