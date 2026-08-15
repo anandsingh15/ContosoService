@@ -1,9 +1,9 @@
 ---
 feature: FEAT-02
 plan: DES-02
-source_plan_hash: 2408823948644556daad97034968757faa7a356958cead995c4d5a60bb49b02b
-repository_context_hash: 4c861280702113294a79dcc91e61fc43a33cc6c78440edfbb17ba7ea5fe4063e
-task_context_hash: d948bb59a7085e3b1aa26423ce2102e3d346620ad6fd7cdbf014441930308043
+source_plan_hash: f12a61a6ae7f0064ed4e3626e242af562884eef2cb7afea14f6df8509cc29e33
+repository_context_hash: ced4735329e9b6e05b2e45ebdbabfadbe160bd2be1fb7a27f8364914c0cc4718
+task_context_hash: 16a82a9c4768e9d84e9742a80c107e29a2a67efa6badf55f22732eb6ec8b76bf
 status: draft
 ---
 # Development work index
@@ -12,11 +12,11 @@ Generated from the current plan.md. Historical DEV artifacts are retained but om
 
 | DEV | Component | Type | Scope | Execution host | Authoring target | Authentication policy | Required resources | Executor | Depends on | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [DEV-0025](development/DEV-0025.md) | DES-02-CMP-001 | schema_table | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | ready |
-| [DEV-0026](development/DEV-0026.md) | DES-02-CMP-002 | uiux_form | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, maker-portal | hybrid | DEV-0025 | ready |
-| [DEV-0027](development/DEV-0027.md) | DES-02-CMP-003 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, maker-portal | hybrid | — | ready |
-| [DEV-0028](development/DEV-0028.md) | DES-02-CMP-004 | uiux_form | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, maker-portal | hybrid | DEV-0025, DEV-0027 | ready |
-| [DEV-0029](development/DEV-0029.md) | DES-02-CMP-005 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, maker-portal | hybrid | DEV-0025 | ready |
-| [DEV-0030](development/DEV-0030.md) | DES-02-CMP-006 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, maker-portal | hybrid | DEV-0025 | ready |
-| [DEV-0031](development/DEV-0031.md) | DES-02-CMP-007 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, maker-portal | hybrid | DEV-0025 | ready |
-| [DEV-0032](development/DEV-0032.md) | DES-02-CMP-008 | config_audit | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring | reuse_if_valid | microsoft-learn, power-platform-admin-center | hybrid | DEV-0025 | ready |
+| [DEV-0025](development/DEV-0025.md) | DES-02-CMP-001 | schema_table | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | agent | — | ready |
+| [DEV-0026](development/DEV-0026.md) | DES-02-CMP-002 | uiux_form | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | hybrid | DEV-0025 | ready |
+| [DEV-0027](development/DEV-0027.md) | DES-02-CMP-003 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | hybrid | — | ready |
+| [DEV-0028](development/DEV-0028.md) | DES-02-CMP-004 | uiux_form | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | hybrid | DEV-0025, DEV-0027 | ready |
+| [DEV-0029](development/DEV-0029.md) | DES-02-CMP-005 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | hybrid | DEV-0025 | ready |
+| [DEV-0030](development/DEV-0030.md) | DES-02-CMP-006 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | hybrid | DEV-0025 | ready |
+| [DEV-0031](development/DEV-0031.md) | DES-02-CMP-007 | uiux_view | repository_and_dataverse_solution | local_interactive | apps-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | hybrid | DEV-0025 | ready |
+| [DEV-0032](development/DEV-0032.md) | DES-02-CMP-008 | config_audit | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring | reuse_if_valid | microsoft-learn, power-platform-admin-center, dataverse-mcp | hybrid | DEV-0025 | ready |

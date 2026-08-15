@@ -43,12 +43,23 @@ task_index_name: "tasks.md"
 dev_id_format: "DEV-%04d"
 dev_path_format: "development/DEV-%04d.md"
 dev_executor_types: [agent, human, hybrid]
+component_executor_defaults:
+  schema_*: agent
+  config_*: agent
+  uiux_*: agent
+  flow_*: agent
+  code_*: agent
+  sec_*: agent
+  integ_*: agent
+  mcs_*: agent
+  az_*: agent
+  bi_*: agent
 dev_execution_hosts: [local_interactive, cloud_or_local]
 dev_status_flow: [draft, ready, blocked, in_progress, waiting_for_human, in_review, completed, superseded, cancelled]
 decision_axes: [logic_tier, data_residency, alm_boundary, security, integration, environment, ux_surface, observability, batch_processing, reporting]
 decision_axes_baseline: [logic_tier, data_residency, alm_boundary, security, integration, environment, ux_surface, observability]  # minimum required of legacy designs
 legacy_designs: []                               # add existing designs only when preserving a documented legacy contract
-legacy_payload_designs: []                       # add existing designs only when preserving a documented legacy contract
+legacy_payload_designs: [DES-02, DES-03]          # approved before canonical payload-shape enforcement in Craft 0.28.x
 logic_tiers: [config, low_code, pro_code]        # declarative-first order
 escalation_requires_rationale: true              # a low_code/pro_code choice without a recorded reason FAILS
 observability_required: true                     # a DES with no observability block FAILS
@@ -86,10 +97,68 @@ component_implementation_scopes:
 component_identity_fields:
   repository_and_dataverse_solution: schema_name
   repository_and_dataverse_environment: record_name
+# --- Solution-Type buckets: Component Type -> logical Solution_Type ---------
+# Groups solution-bound component types into named buckets. During guided setup
+# the wizard prompts once per DISTINCT Solution_Type for a Dataverse solution
+# display name; a name reused across buckets collapses them into ONE solution
+# holding every mapped component type. Types absent here (az_*, bi_*) are
+# repository_only and are never routed into a Dataverse solution.
+#
+# Environment-scoped types (config_queue, config_audit, sec_business_unit,
+# sec_team) may appear under a bucket for documentation, but the generator
+# always routes them to the dataverse_environment target because Dataverse
+# cannot package data records / org-level settings inside a solution.
+component_solution_types:
+  Schema:
+    - schema_table
+    - schema_column
+    - schema_derived_column
+    - schema_relationship
+    - schema_choice
+    - schema_key
+    - config_audit
+  Configuration:
+    - config_sla
+    - config_arc
+    - config_bpf
+    - config_business_rule
+    - config_workflow
+    - config_routing_rule
+    - config_queue
+    - config_assignment_rule
+    - config_dup_detection
+    - config_env_variable
+    - config_ai_*
+  Customization:
+    - uiux_form
+    - uiux_view
+    - uiux_dashboard
+    - uiux_chart
+    - uiux_sitemap
+    - uiux_app
+    - code_plugin
+    - code_custom_api
+  PowerAutomate:
+    - flow_cloud
+  PCF:
+    - code_pcf
+  WebResource:
+    - code_webres_*
+  Agent:
+    - mcs_*
+  Security:
+    - sec_role
+    - sec_field_profile
+    - sec_business_unit
+    - sec_team
+  Connector:
+    - integ_connector
+    - integ_connection_ref
 component_types:
   # schema_ — Dataverse data model
   - schema_table
   - schema_column
+  - schema_derived_column
   - schema_relationship
   - schema_choice
   - schema_key
@@ -154,7 +223,7 @@ component_types:
 # `<component_type>.md` deep reference per covered type.
 # Wildcard members (e.g. `config_ai_*`) match the parameterised component_types.
 component_type_skills:
-  dataverse-table:      [schema_table, schema_column, schema_relationship, schema_choice, schema_key]
+  dataverse-table:      [schema_table, schema_column, schema_derived_column, schema_relationship, schema_choice, schema_key]
   dataverse-config:     [config_sla, config_arc, config_bpf, config_business_rule, config_workflow, config_routing_rule, config_queue, config_assignment_rule, config_dup_detection]
   dataverse-security:   [sec_role, sec_field_profile, sec_business_unit, sec_team, config_audit]
   power-automate-flow:  [flow_cloud]
@@ -178,12 +247,22 @@ skill_phases:
 # with no explicit entry falls back to `_default`. Every component always needs
 # `name` + `satisfies` (the REQ id(s) it traces to). Parameterised `*` types use
 # the wildcard key. Phase-B types not yet detailed rely on `_default` for now.
+# An optional `enums` map pins canonical values for named fields (a scalar field
+# must equal a listed value; a mapping field has every value checked), so
+# `validate_design.py` rejects non-canonical input before it reaches execution.
+# `schema_relationship` also supports a grouped shape: instead of one flat
+# relationship, a component may declare an owning `table` plus a `relationships:`
+# list (each entry a full relationship for that table) so all of a table's
+# relationships compile into ONE DEV task. The grouped shape is validated
+# structurally per entry (see validate_design.py / schema_relationship_violations);
+# the flat `required`/`enums` below apply to the legacy single-relationship shape.
 component_type_payloads:
   _default:              {required: [name, satisfies]}
   # schema_ (dataverse-table)
   schema_table:          {required: [name, table, operation, ownership, primary_name, columns, satisfies]}
   schema_column:         {required: [name, table, data_type, required_level, satisfies]}
-  schema_relationship:   {required: [name, table, relationship_type, related_table, lookup_column, referenced_attribute, required_level, cascade_configuration, satisfies]}
+  schema_derived_column: {required: [name, table, base_data_type, derived_type, formula, required_level, satisfies], enums: {derived_type: [formula, calculated, rollup]}}
+  schema_relationship:   {required: [name, table, relationship_type, related_table, satisfies], enums: {relationship_type: [one_to_many, many_to_one, many_to_many]}}
   schema_choice:         {required: [name, options, satisfies]}
   schema_key:            {required: [name, table, key_columns, satisfies]}
   # config_ (dataverse-config)
@@ -205,28 +284,34 @@ component_type_payloads:
   # flow_ (power-automate-flow)
   flow_cloud:            {required: [name, trigger, actions, satisfies]}
   # uiux_ (model-driven-ui)
-  uiux_form:             {required: [name, table, form_type, sections, satisfies]}
-  uiux_view:             {required: [name, table, filter, columns, satisfies]}
-  uiux_dashboard:        {required: [name, components, roles, satisfies]}
+  uiux_form:             {required: [name, table, form_type, sections, satisfies], enums: {form_type: [main, quick_create, quick_view, card]}}
+  uiux_view:             {required: [name, table, columns, view_type, satisfies], enums: {view_type: [public, advanced_find, associated, quick_find, lookup]}}
+  uiux_dashboard:        {required: [name, dashboard_type, components, roles, satisfies], enums: {dashboard_type: [classic, interactive_single_stream, interactive_multi_stream]}}
   uiux_chart:            {required: [name, table, series, satisfies]}
   uiux_sitemap:          {required: [name, app, areas, satisfies]}
-  uiux_app:              {required: [name, app_type, tables, satisfies]}
+  uiux_app:              {required: [name, app_type, tables, satisfies], enums: {app_type: [model_driven]}}
   # Environment-specific configuration separation (alm-packaging)
   config_env_variable:   {required: [name, data_type, satisfies]}
   # integ_ (integration-wiring)
   integ_connector:       {required: [name, connector_kind, api_spec, auth, satisfies]}
   integ_connection_ref:  {required: [name, connector, satisfies]}
+  # code_ (dataverse-procode)
+  code_plugin:            {required: [name, assembly, class_name, steps, satisfies]}
+  code_custom_api:        {required: [name, binding_type, is_function, request_parameters, response_properties, plugin_type, satisfies], enums: {binding_type: [global, entity, entity_collection]}}
+  code_pcf:               {required: [name, namespace, control_type, properties, satisfies], enums: {control_type: [field, dataset]}}
+  code_webres_*:          {required: [name, source_path, satisfies]}
 
 # Skill-level task profiles. Every component type resolves through
 # component_type_skills to exactly one profile. The generated task context
 # combines this profile with the approved plan payload and the skill's
 # component-specific guidance.
 # `evidence` lists the deterministic artifacts every executor must produce.
-# `source_sync_evidence` applies only when a hybrid or human executor
-# synchronizes source after a successful scoped write: it is targeted to the
-# changed component's paths under the solution's `unpack_path`, never a
-# whole-solution export. Agent executors author through the Web API and produce
-# no source diff, so they do not emit `source_sync_evidence`.
+# `source_sync_evidence` is produced by every executor that writes to a solution
+# declaring an `unpack_path`: after a successful scoped write and its targeted
+# verification, the post-verification packaging step projects only the changed
+# component's paths under that `unpack_path` (see `component_source_sync`), never
+# a whole-solution export. Environment-bound and repository-native components
+# emit no `source_sync_evidence`.
 component_task_profiles:
   dataverse-table:
     executor_default: agent
@@ -293,3 +378,76 @@ component_task_profiles:
     target_roots: [src/power-bi]
     validation_kinds: [payload_conformance, model_validation, visual_review, security_review]
     evidence: [changed_paths, validation_results, reviewer_evidence]
+
+# Independently authored code source requires one typed project/folder on its
+# routed solution. All other solution components inherit the solution's single
+# `unpack_path`; forms, views, dashboards, apps, and sitemaps never declare a
+# separate project location.
+component_project_types:
+  code_plugin:     dotnet_class_library
+  code_custom_api: dotnet_class_library
+  code_pcf:        pcf_project
+  code_webres_*:   web_resource_source
+
+# Component-specific source synchronization for the post-verification packaging
+# step. After a successful scoped write and its targeted read-only verification,
+# every executor that wrote to a solution declaring an `unpack_path` exports the
+# exact routed unmanaged solution, unpacks it into a temporary working directory,
+# and projects only the owning component's paths below into that `unpack_path`,
+# rejecting unrelated drift, before the local commit and `source_sync_evidence`.
+# The platform create is never replayed to repair missing source. `paths` are
+# SolutionPackager-relative templates under `unpack_path`; `<table>`, `<name>`,
+# and `<schemaname>` resolve from the approved payload. `strategy`:
+#   own_files        - the component owns discrete file(s); project them as-is.
+#   parent_owned_xml - the component is an element inside a parent-owned shared
+#                      XML file; merge only the owning element and reject any
+#                      unrelated change to that file.
+#   none             - environment-bound or repository-native source; the
+#                      post-verification packaging step does not apply.
+component_source_sync:
+  schema_table:           {strategy: own_files, paths: [Entities/<table>/Entity.xml]}
+  schema_column:          {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml]}
+  schema_derived_column:  {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml]}
+  schema_relationship:    {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml, Other/Relationships.xml]}
+  schema_choice:          {strategy: own_files, paths: [OptionSets/<name>.xml]}
+  schema_key:             {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml]}
+  config_sla:             {strategy: own_files, paths: [SLAs/<name>.xml]}
+  config_arc:             {strategy: own_files, paths: [Workflows/<name>.xml]}
+  config_bpf:             {strategy: own_files, paths: [Workflows/<name>.xml]}
+  config_business_rule:   {strategy: own_files, paths: [Workflows/<name>.xml]}
+  config_workflow:        {strategy: own_files, paths: [Workflows/<name>.xml]}
+  config_routing_rule:    {strategy: own_files, paths: [RoutingRuleSets/<name>.xml]}
+  config_queue:           {strategy: none, paths: []}
+  config_assignment_rule: {strategy: own_files, paths: [Workflows/<name>.xml]}
+  config_dup_detection:   {strategy: own_files, paths: [DuplicateRules/<name>.xml]}
+  config_env_variable:    {strategy: own_files, paths: [environmentvariabledefinitions/<schemaname>/]}
+  config_audit:           {strategy: none, paths: []}
+  config_ai_*:            {strategy: own_files, paths: [AIConfigurations/<name>.xml]}
+  uiux_form:              {strategy: own_files, paths: [Entities/<table>/FormXml/]}
+  uiux_view:              {strategy: own_files, paths: [Entities/<table>/SavedQueries/]}
+  uiux_dashboard:         {strategy: own_files, paths: [Dashboards/, Entities/<table>/Dashboards/]}
+  uiux_chart:             {strategy: own_files, paths: [Entities/<table>/Charts/]}
+  uiux_sitemap:           {strategy: own_files, paths: [AppModuleSiteMaps/, SiteMaps/]}
+  uiux_app:               {strategy: own_files, paths: [AppModules/]}
+  flow_cloud:             {strategy: own_files, paths: [Workflows/<name>.json]}
+  code_plugin:            {strategy: own_files, paths: [PluginAssemblies/, SdkMessageProcessingSteps/]}
+  code_custom_api:        {strategy: own_files, paths: [CustomApis/, PluginAssemblies/]}
+  code_pcf:               {strategy: own_files, paths: [Controls/]}
+  code_webres_*:          {strategy: own_files, paths: [WebResources/]}
+  mcs_*:                  {strategy: own_files, paths: [botcomponents/, Bots/]}
+  sec_role:               {strategy: own_files, paths: [Roles/]}
+  sec_field_profile:      {strategy: own_files, paths: [FieldSecurityProfiles/]}
+  sec_business_unit:      {strategy: none, paths: []}
+  sec_team:               {strategy: none, paths: []}
+  az_apim:                {strategy: none, paths: []}
+  az_service_bus:         {strategy: none, paths: []}
+  az_key_vault:           {strategy: none, paths: []}
+  az_function_app:        {strategy: none, paths: []}
+  az_func_scheduled:      {strategy: none, paths: []}
+  az_app_insights:        {strategy: none, paths: []}
+  az_event_grid:          {strategy: none, paths: []}
+  az_ai_*:                {strategy: none, paths: []}
+  bi_dataset:             {strategy: none, paths: []}
+  bi_report:              {strategy: none, paths: []}
+  integ_connector:        {strategy: own_files, paths: [Connector/]}
+  integ_connection_ref:   {strategy: own_files, paths: [connectionreferences/]}

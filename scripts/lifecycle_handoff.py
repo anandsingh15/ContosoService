@@ -274,12 +274,14 @@ def handoff_body(
     pr_number: int,
     marker: str,
     instructions: str,
+    artifact_id: str = "",
 ) -> str:
     links = "\n".join(f"- [{path}]({url})" for path, url in artifacts)
+    artifact_line = f"**Allocated artifact ID:** {artifact_id}\n" if artifact_id else ""
     return f"""## Automated handoff draft
 
 **Purpose:** {purpose}
-**Parent artifact:** {parent}
+{artifact_line}**Parent artifact:** {parent}
 **Merged pull request:** #{pr_number}
 **Initial Project Status (creation snapshot):** Backlog
 **Initial Stage Status (creation snapshot):** Handoff Draft
@@ -473,26 +475,78 @@ def create_feature_handoff(repo: str, pr_number: int, merge_sha: str, paths: lis
     return [url] if url else []
 
 
+def repo_design_ids() -> set[int]:
+    """DES-## numbers already committed to the repository (merged plans)."""
+    ids: set[int] = set()
+    for plan in Path("specs").glob("*/plan.md"):
+        try:
+            data = parse_frontmatter(plan)
+        except HandoffError:
+            continue
+        match = re.fullmatch(r"DES-(\d{2})", str(data.get("id") or "").strip())
+        if match:
+            ids.add(int(match.group(1)))
+    return ids
+
+
+def issue_design_ids(repo: str) -> set[int]:
+    """DES-## numbers already carried by any Design-labeled issue.
+
+    Includes open and closed issues so a number is never reused, and reflects
+    handoffs created by a concurrent or earlier run before their plan.md is
+    merged. Merges to the default branch serialize, so this live view plus the
+    committed plans form the authoritative, collision-free allocation basis.
+    """
+    result = json.loads(run_gh([
+        "api",
+        "--method",
+        "GET",
+        "search/issues",
+        "-f",
+        f"q=repo:{repo} label:design",
+        "-f",
+        "per_page=100",
+    ]))
+    ids: set[int] = set()
+    for item in result.get("items") or []:
+        if "pull_request" in item:
+            continue
+        text = f"{item.get('title') or ''}\n{item.get('body') or ''}"
+        ids.update(int(number) for number in re.findall(r"\bDES-(\d{2})\b", text))
+    return ids
+
+
 def create_design_handoffs(repo: str, pr_number: int, merge_sha: str, paths: list[str]) -> list[str]:
     assignee = require_env("D365_ARCHITECT_ASSIGNEE")
     urls: list[str] = []
+    used = repo_design_ids() | issue_design_ids(repo)
     for path in paths:
         data = parse_frontmatter(Path(path))
         feature_id = str(data.get("id") or Path(path).parent.name)
+        slug = data.get("slug", Path(path).parent.name)
         marker = f"d365-handoff-key:design:{path}:{merge_sha}"
+        next_number = (max(used) + 1) if used else 1
+        used.add(next_number)
+        design_id = f"DES-{next_number:02d}"
         url = create_issue(
             repo,
-            title=f"Design: {feature_id} {data.get('slug', Path(path).parent.name)}",
+            title=f"Design: {design_id} {feature_id} {slug}",
             label="design",
             assignee=assignee,
             marker=marker,
             body=handoff_body(
                 purpose="Create the authoritative technical plan and typed component decomposition.",
                 parent=feature_id,
+                artifact_id=design_id,
                 artifacts=[(path, artifact_url(repo, merge_sha, path))],
                 pr_number=pr_number,
                 marker=marker,
-                instructions="The assigned Solution Architect reviews the approved specification, then changes Status to Ready and Stage Status to Ready for Design.",
+                instructions=(
+                    f"Automation allocated {design_id} as this design's sequential "
+                    "identity; author plan.md with that exact id. The assigned "
+                    "Solution Architect reviews the approved specification, then "
+                    "changes Status to Ready and Stage Status to Ready for Design."
+                ),
             ),
         )
         if url:
@@ -580,7 +634,7 @@ def create_test_handoffs(repo: str, pr_number: int, merge_sha: str, paths: list[
     for path in paths:
         data = parse_frontmatter(Path(path))
         dev_id = str(data.get("id") or Path(path).stem)
-        if data.get("status") not in {"completed", "superseded"}:
+        if data.get("status") not in TEST_HANDOFF_STATUSES:
             raise HandoffError(
                 f"{path} changed in an implementation merge but status is "
                 f"'{data.get('status')}'; set a reviewed terminal status before Test handoff"
@@ -633,16 +687,17 @@ def classify(paths: list[str]) -> tuple[str | None, list[str]]:
     return None, []
 
 
-def _dev_terminal_status(path: str) -> str | None:
-    """Return the on-disk DEV status when it is Test-eligible terminal, else None."""
-    file = Path(path)
-    if not file.is_file():
-        return None
+TEST_HANDOFF_STATUSES = {"completed", "superseded"}
+
+
+def dev_status(path: str) -> str | None:
+    """Merged front-matter status of a DEV artifact, or None if unreadable."""
     try:
-        status = str(parse_frontmatter(file).get("status") or "").strip()
+        data = parse_frontmatter(Path(path))
     except HandoffError:
         return None
-    return status if status in {"completed", "superseded"} else None
+    status = data.get("status")
+    return str(status) if status is not None else None
 
 
 def classify_records(records: list[dict]) -> tuple[str | None, list[str]]:
@@ -661,13 +716,22 @@ def classify_records(records: list[dict]) -> tuple[str | None, list[str]]:
         and re.fullmatch(r"specs/[^/]+/development/DEV-\d{4}\.md", str(item.get("filename")))
     })
     if modified_devs:
-        terminal_devs = [p for p in modified_devs if _dev_terminal_status(p)]
-        if terminal_devs:
-            return "test", terminal_devs
-        # DEV files changed only for review status or sibling hash restamps;
-        # no terminal DEV means no Test handoff is due, and DEV paths must not
-        # fall through to classify() (which would misroute them to execution).
-        return None, []
+        # Only DEVs that reached a reviewed terminal status in this merge get a
+        # Test handoff. Completing one DEV restamps the shared task_context_hash
+        # into every still-nonterminal sibling DEV, so a single-DEV completion
+        # PR necessarily also modifies those siblings. Routing them to Test
+        # would abort the whole handoff; ignore them and only hand off the DEVs
+        # actually completed here. A pure hash-restamp PR (no terminal DEV)
+        # produces no Test handoff.
+        testable = [path for path in modified_devs if dev_status(path) in TEST_HANDOFF_STATUSES]
+        if testable:
+            return "test", testable
+        remaining = sorted({
+            str(item["filename"])
+            for item in records
+            if str(item["filename"]) not in set(modified_devs)
+        })
+        return classify(remaining)
     return classify(sorted({str(item["filename"]) for item in records}))
 
 

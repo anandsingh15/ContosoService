@@ -169,6 +169,7 @@ def main() -> int:
             row["execution_host"],
             row["authoring_target"],
             row["payload"],
+            P.resolve_component_source_sync(row["component_type"], conv),
         )
         if row["developer_preflight"] != current_preflight:
             errors.append(P.error(rel, "task context developer_preflight is stale"))

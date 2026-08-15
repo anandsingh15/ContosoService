@@ -259,11 +259,11 @@ configuration.
 Before loading a DEV artifact, run the read-only live GitHub Project gate in
 `scripts/tracking_automation.py check-readiness`. Require an open issue with
 the `development` label, exactly one configured Project item, and live
-`Lifecycle Stage=Development`, `Status=Ready`, and
-`Stage Status=Ready for Build`. Issue-body status values are creation
-snapshots only and are never a fallback. Separately require compiler-owned DEV
-front-matter `status: ready`, current compiler hashes, completed dependencies,
-valid resource/target routing, and the mapped build skill. Before implementation, run
+`Lifecycle Stage=Development` and `Status=Ready`. Issue-body status values are
+creation snapshots only and are never a fallback. Separately require
+compiler-owned DEV front-matter `status: ready`, current compiler hashes,
+completed dependencies, valid resource/target routing, and the mapped build
+skill. Before implementation, run
 `python scripts/validate_development_environment.py DEV-####` with the optional
 per-run `--authentication-policy reuse_if_valid|always_prompt` override. The
 CLI override takes precedence over the project default in
@@ -364,7 +364,9 @@ human issue status text, or compiler-owned issue snapshot blocks.
 `/d365.implement --submit` must use the helper's read-only `verify` mode to
 require a current succeeded comment matching the exact issue, DEV ID,
 `task_context_hash`, and `source_plan_hash`. Local DEV notes do not substitute.
-Evidence comments are not compiler-owned and are never regenerated.
+Submit issues no Dataverse request, so it runs only read-only gates and neither
+re-authenticates nor re-runs the write-capability, MCP, or executor-configuration
+gate. Evidence comments are not compiler-owned and are never regenerated.
 
 **Project bindings:**
 
@@ -377,13 +379,14 @@ Evidence comments are not compiler-owned and are never regenerated.
   custom solutions are administrator-created authoring prerequisites recorded
   in `.d365/authoring-targets.yml`, not components or DEV tasks. Solution
   export and downstream promotion are external-pipeline work and must not
-  become plan components or DEV tasks. If targeted source synchronization is
-  genuinely required by a hybrid or human profile, it occurs only after a
-  successful scoped write, is targeted to the changed component's paths under the
-  solution's `unpack_path` (recorded as `source_sync_evidence`), and is not broad
-  discovery export. Agent execution authors through the Web API and emits no
-  `source_sync_evidence`. Treat `config_queue` and
-  `config_audit` as environment-bound composite records with no custom-solution membership.
+  become plan components or DEV tasks. Targeted source synchronization runs for
+  every executor -- agent included -- that writes to a solution declaring an
+  `unpack_path`: only after a successful scoped write, it exports the routed
+  unmanaged solution, unpacks it into a temporary working directory, and projects
+  only the changed component's paths under that `unpack_path` (per
+  `component_source_sync`, recorded as `source_sync_evidence`), rejecting
+  unrelated drift and never replaying the platform create. Treat `config_queue`
+  and `config_audit` as environment-bound composite records with no custom-solution membership.
 - Dataverse-bound execution requires `authentication_mode: interactive_user`
   directly against the declared endpoint and no token recording. Refuse
   service-principal or unattended authentication. Block while either URL or ID

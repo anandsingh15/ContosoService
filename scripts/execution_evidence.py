@@ -30,6 +30,7 @@ DEV_RE = re.compile(r"DEV-\d{4}")
 COMPONENT_RE = re.compile(r"DES-\d{2}-CMP-\d{3}")
 SLUG_RE = re.compile(r"[a-z][a-z0-9_-]{1,63}")
 FIELD_RE = re.compile(r"[A-Za-z][A-Za-z0-9_.-]{0,63}")
+PARAMETER_NAME_RE = re.compile(r"@?[A-Za-z][A-Za-z0-9_.-]{0,63}")
 FORBIDDEN_OPERATION_RE = re.compile(
     r"(?i)(?:solution.{0,40}\b(?:export|unpack)\b|"
     r"\b(?:export|unpack)\b.{0,40}solution|pac\s+solution\s+(?:export|unpack))"
@@ -346,7 +347,7 @@ def validate_payload(payload: dict[str, Any]) -> dict[str, Any]:
         request["parameter_names"], "$.request.parameter_names"
     )
     for name in parameter_names:
-        if not FIELD_RE.fullmatch(name):
+        if not PARAMETER_NAME_RE.fullmatch(name):
             raise EvidenceError(f"Unsafe request parameter name: {name}.")
         normalized = normalized_key(name)
         if any(part in normalized for part in SENSITIVE_NAME_PARTS):
