@@ -212,7 +212,8 @@ SAFE_PATH_METHODS = (
     (re.compile(r"^GlobalOptionSetDefinitions$"), {"POST"}),
     (
         re.compile(
-            r"^GlobalOptionSetDefinitions\(Name='[A-Za-z][A-Za-z0-9_]*'\)$"
+            r"^GlobalOptionSetDefinitions\(Name='[A-Za-z][A-Za-z0-9_]*'\)"
+            r"(?:\?\$select=MetadataId)?$"
         ),
         {"GET", "DELETE"},
     ),
@@ -519,6 +520,56 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
             }
         )
     return common
+
+
+def global_choice_metadata_request(
+    request: OperationRequest,
+) -> OperationRequest | None:
+    if request.method != "POST" or not isinstance(request.body, dict):
+        return None
+    binding = str(request.body.get("GlobalOptionSet@odata.bind") or "")
+    matched = re.fullmatch(
+        r"/GlobalOptionSetDefinitions\(Name='([A-Za-z][A-Za-z0-9_]*)'\)",
+        binding,
+    )
+    if matched is None:
+        return None
+    choice_name = matched.group(1)
+    return OperationRequest(
+        "GET",
+        f"GlobalOptionSetDefinitions(Name='{choice_name}')?$select=MetadataId",
+        None,
+        (),
+        (),
+        "none",
+        "resolve exact global choice MetadataId",
+    )
+
+
+def bind_global_choice_metadata_id(
+    request: OperationRequest,
+    metadata: dict[str, Any],
+) -> OperationRequest:
+    metadata_id = str(metadata.get("MetadataId") or "")
+    if not GUID_RE.fullmatch(metadata_id):
+        raise ExecutorError(
+            "declared global choice has no canonical MetadataId",
+            category="not_found",
+        )
+    body = dict(request.body or {})
+    body["GlobalOptionSet@odata.bind"] = (
+        f"/GlobalOptionSetDefinitions({metadata_id})"
+    )
+    return OperationRequest(
+        request.method,
+        request.path,
+        body,
+        request.parameter_names,
+        request.changed_fields,
+        request.solution_context,
+        request.description,
+        request.merge_labels,
+    )
 
 
 def derived_column_definition(derived_col: dict[str, Any]) -> dict[str, Any]:
@@ -4062,6 +4113,25 @@ def _execute_single(
         outputs = []
         for raw_request in requests:
             validate_capability_request(capability, raw_request)
+            choice_metadata_request = global_choice_metadata_request(raw_request)
+            if choice_metadata_request is not None:
+                request = choice_metadata_request
+                status_payload = {
+                    "status": "request-invoked",
+                    "action": "schema_table.resolve-global-choice",
+                    "environment_url": row["authoring_target"]["environment_url"].rstrip("/"),
+                    "method": request.method,
+                    "endpoint_family": "metadata",
+                    "note": "Exact global-choice metadata is being resolved before the scoped write",
+                }
+                print(
+                    json.dumps({"executor_state": status_payload}, sort_keys=True),
+                    file=sys.stderr,
+                )
+                choice_result = client.request(choice_metadata_request)
+                raw_request = bind_global_choice_metadata_id(
+                    raw_request, choice_result.data
+                )
             request = merge_metadata_update(row, raw_request, client)
             # Emit request-invoked status before sending HTTP request
             # This marks the point where DEV lifecycle is committed to in_progress
