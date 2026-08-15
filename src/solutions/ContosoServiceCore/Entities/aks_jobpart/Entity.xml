@@ -830,6 +830,20 @@
           </Descriptions>
         </attribute>
       </attributes>
+      <EntityKeys>
+        <EntityKey>
+          <Name>aks_jobpart_number_key</Name>
+          <LogicalName>aks_jobpart_number_key</LogicalName>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <IsCustomizable>0</IsCustomizable>
+          <EntityKeyAttributes>
+            <AttributeName>aks_partnumber</AttributeName>
+          </EntityKeyAttributes>
+          <displaynames>
+            <displayname description="Job Part number alternate key" languagecode="1033" />
+          </displaynames>
+        </EntityKey>
+      </EntityKeys>
       <EntitySetName>aks_jobparts</EntitySetName>
       <IsDuplicateCheckSupported>0</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
