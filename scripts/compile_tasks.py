@@ -97,7 +97,12 @@ def task_material(plan_context: dict, conv: dict, existing: dict[str, dict], max
             else:
                 if next_id > 9999:
                     raise P.PipelineError("DEV id space exhausted at DEV-9999")
-                executor = component.get("executor", profile.get("executor_default"))
+                executor = component.get(
+                    "executor",
+                    P.resolve_component_executor_default(
+                        component["component_type"], conv, profile
+                    ),
+                )
                 owner = component.get("owner")
                 status = "draft"
                 dev_id = f"DEV-{next_id:04d}"
@@ -124,6 +129,7 @@ def task_material(plan_context: dict, conv: dict, existing: dict[str, dict], max
                 component["execution_host"],
                 component["authoring_target"],
                 payload,
+                P.resolve_component_source_sync(component["component_type"], conv),
             )
             rows.append(
                 {
@@ -346,20 +352,7 @@ def main() -> int:
         "plan_context_hash": plan_context["context_hash"],
         "tasks": rows,
     }
-    previous_context = (
-        P.read_context(P.TASK_CONTEXT_PATH)
-        if P.TASK_CONTEXT_PATH.exists()
-        else None
-    )
-    if (
-        previous_context
-        and P.task_context_binding_material(previous_context)
-        == P.task_context_binding_material(context)
-    ):
-        context["context_hash"] = previous_context["context_hash"]
-    else:
-        context["context_hash"] = P.task_context_binding_hash(context)
-    context["content_hash"] = P.task_context_content_hash(context)
+    context["context_hash"] = P.context_hash(context)
     drifted = []
     if P.write_json(P.TASK_CONTEXT_PATH, context, args.check):
         drifted.append(P.TASK_CONTEXT_PATH.relative_to(P.ROOT).as_posix())

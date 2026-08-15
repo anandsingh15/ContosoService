@@ -205,7 +205,7 @@ python scripts/tracking_automation.py check-readiness `
   --issue-number <issue-number> `
   --expected-stage development `
   --expected-status Ready `
-  --expected-stage-status "Ready for Build"
+  --activation execution
 ```
 
 The read-only command fetches the live issue and every page of the configured

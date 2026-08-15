@@ -1274,7 +1274,15 @@ def main() -> int:
         rows = {row["id"]: row for row in context.get("tasks") or []}
         simulation = load_simulation(args.simulate)
         host_proof = load_host_proof(args.host_proof_json, args.host_proof_stdin)
-        references = sorted(rows) if args.check_all else [find_dev(args.dev).stem]
+        references = (
+            sorted(
+                dev_id
+                for dev_id, row in rows.items()
+                if row.get("status") not in P.TERMINAL_DEV_STATUSES
+            )
+            if args.check_all
+            else [find_dev(args.dev).stem]
+        )
         if args.host_requirements:
             if args.check_all:
                 raise P.PipelineError("--host-requirements requires one DEV reference")

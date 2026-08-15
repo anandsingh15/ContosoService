@@ -132,6 +132,22 @@ ALLOWED_CAPABILITY_PATH_TEMPLATES = frozenset(
         "environmentvariabledefinitions({record_id})",
         "connectionreferences",
         "connectionreferences({record_id})",
+        "savedqueries",
+        "savedqueries({record_id})",
+        "systemforms",
+        "systemforms({record_id})",
+        "fieldsecurityprofiles",
+        "fieldsecurityprofiles({record_id})",
+        "roles",
+        "roles({record_id})",
+        "systemdashboards",
+        "systemdashboards({record_id})",
+        "savedqueryvisualizations",
+        "savedqueryvisualizations({record_id})",
+        "sitemaps",
+        "sitemaps({record_id})",
+        "appmodules",
+        "appmodules({record_id})",
         "PublishXml",
         "AddSolutionComponent",
         "RemoveSolutionComponent",
@@ -377,6 +393,81 @@ def resolve_implementation_scope(component_type: str, data: dict[str, Any]) -> s
     return winners[0][0]
 
 
+def resolve_component_source_sync(component_type: str, data: dict[str, Any]) -> dict[str, Any]:
+    mappings = data.get("component_source_sync") or {}
+    matches: list[tuple[int, str, dict[str, Any]]] = []
+    for key, entry in mappings.items():
+        key = str(key)
+        if type_matches(component_type, key):
+            matches.append((2 if "*" not in key else 1, key, entry or {}))
+    if not matches:
+        raise PipelineError(f"component_type '{component_type}' has no component_source_sync entry")
+    precedence = max(item[0] for item in matches)
+    winners = [(key, entry) for rank, key, entry in matches if rank == precedence]
+    if len(winners) != 1:
+        raise PipelineError(
+            f"component_type '{component_type}' must resolve to exactly one component_source_sync entry; "
+            f"resolved: {[key for key, _ in winners]}"
+        )
+    entry = winners[0][1]
+    return {
+        "strategy": str(entry.get("strategy")),
+        "paths": [str(path) for path in entry.get("paths") or []],
+    }
+
+
+def resolve_component_project_type(component_type: str, data: dict[str, Any]) -> str | None:
+    matches: list[tuple[int, str, str]] = []
+    for pattern, project_type in (data.get("component_project_types") or {}).items():
+        pattern = str(pattern)
+        if type_matches(component_type, pattern):
+            matches.append((2 if "*" not in pattern else 1, pattern, str(project_type)))
+    if not matches:
+        return None
+    precedence = max(item[0] for item in matches)
+    winners = [(pattern, project_type) for rank, pattern, project_type in matches if rank == precedence]
+    if len(winners) != 1:
+        raise PipelineError(
+            f"component_type '{component_type}' must resolve to at most one component_project_types entry; "
+            f"resolved: {[pattern for pattern, _ in winners]}"
+        )
+    return winners[0][1]
+
+
+def resolve_component_executor_default(
+    component_type: str,
+    data: dict[str, Any],
+    profile: dict[str, Any],
+) -> str:
+    mappings = data.get("component_executor_defaults") or {}
+    matches: list[tuple[int, str, str]] = []
+    for pattern, executor in mappings.items():
+        pattern = str(pattern)
+        if type_matches(component_type, pattern):
+            matches.append((2 if "*" not in pattern else 1, pattern, str(executor)))
+    if matches:
+        precedence = max(item[0] for item in matches)
+        winners = [
+            (pattern, executor)
+            for rank, pattern, executor in matches
+            if rank == precedence
+        ]
+        if len(winners) != 1:
+            raise PipelineError(
+                f"component_type '{component_type}' must resolve to exactly one "
+                f"component_executor_defaults entry; resolved: "
+                f"{[pattern for pattern, _ in winners]}"
+            )
+        executor = winners[0][1]
+    else:
+        executor = str(profile.get("executor_default") or "")
+    if executor not in (data.get("dev_executor_types") or []):
+        raise PipelineError(
+            f"component_type '{component_type}' resolves to invalid executor '{executor}'"
+        )
+    return executor
+
+
 def resolve_execution_host(
     implementation_scope: str,
     development_resources: dict[str, Any],
@@ -574,6 +665,19 @@ def load_authoring_targets(data: dict[str, Any] | None = None) -> dict[str, Any]
                     f"solution '{solution_name}' component project #{index + 1} has unknown "
                     f"project_type '{project_type}'"
                 )
+            expected_project_type = resolve_component_project_type(
+                project["component_type"], conventions()
+            )
+            if expected_project_type is None:
+                raise PipelineError(
+                    f"solution '{solution_name}' component project '{project['component_type']}' "
+                    "is not an independently authored source component"
+                )
+            if project_type != expected_project_type:
+                raise PipelineError(
+                    f"solution '{solution_name}' component project '{project['component_type']}' "
+                    f"requires project_type '{expected_project_type}', found '{project_type}'"
+                )
             normalized_project_path = _normalize_repo_relative_path(
                 f"solution '{solution_name}' component project '{project['component_type']}' path",
                 project["path"],
@@ -708,8 +812,26 @@ def resolve_authoring_target(
         )
         if solution.get("unpack_path"):
             resolved["unpack_path"] = solution["unpack_path"]
-        if solution.get("component_projects"):
-            resolved["component_projects"] = solution["component_projects"]
+        required_project_type = resolve_component_project_type(
+            component_type, conventions()
+        )
+        if required_project_type is not None:
+            component_projects = [
+                project
+                for project in solution.get("component_projects") or []
+                if type_matches(component_type, project["component_type"])
+            ]
+            if len(component_projects) != 1:
+                raise PipelineError(
+                    f"component {component_id} ({component_type}) requires exactly one "
+                    f"'{required_project_type}' component project in solution '{solution_name}'; "
+                    f"resolved: {len(component_projects)}"
+                )
+            resolved["component_projects"] = component_projects
+        if solution.get("publisher_option_value_prefix") is not None:
+            resolved["publisher_option_value_prefix"] = solution[
+                "publisher_option_value_prefix"
+            ]
     return resolved
 
 
@@ -725,7 +847,7 @@ def resolve_component_authoring(
     return scope, target
 
 
-def required_component_fields(component_type: str, data: dict[str, Any]) -> list[str]:
+def _component_payload_contract(component_type: str, data: dict[str, Any]) -> Any:
     payloads = data.get("component_type_payloads") or {}
     exact = payloads.get(component_type)
     if exact is None:
@@ -736,10 +858,575 @@ def required_component_fields(component_type: str, data: dict[str, Any]) -> list
         if len(matches) > 1:
             raise PipelineError(f"component_type '{component_type}' matches multiple payload contracts")
         exact = matches[0] if matches else payloads.get("_default")
+    return exact
+
+
+def required_component_fields(component_type: str, data: dict[str, Any]) -> list[str]:
+    exact = _component_payload_contract(component_type, data)
     required = exact.get("required") if isinstance(exact, dict) else None
     if not isinstance(required, list) or not required:
         raise PipelineError(f"component_type '{component_type}' has no required payload contract")
     return [str(item) for item in required]
+
+
+def component_field_enums(component_type: str, data: dict[str, Any]) -> dict[str, list[str]]:
+    exact = _component_payload_contract(component_type, data)
+    enums = exact.get("enums") if isinstance(exact, dict) else None
+    if not isinstance(enums, dict):
+        return {}
+    resolved: dict[str, list[str]] = {}
+    for field, allowed in enums.items():
+        if isinstance(allowed, list) and allowed:
+            resolved[str(field)] = [str(value) for value in allowed]
+    return resolved
+
+
+# Canonical Dataverse schema vocabulary, shared by design-time validation and
+# the Dataverse Web API executor so both layers enforce one identical contract.
+SCHEMA_NAME = re.compile(r"[A-Za-z][A-Za-z0-9_]{1,99}")
+LOGICAL_NAME = re.compile(r"[A-Za-z][A-Za-z0-9_]*")
+
+# Leading publisher prefix on a schema name, e.g. ``new_`` or ``sdd_``.
+_SCHEMA_PREFIX = re.compile(r"^[A-Za-z][A-Za-z0-9]*_")
+# camelCase / PascalCase word boundary (insert a space between).
+_CAMEL_BOUNDARY = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
+
+
+def humanize_schema_name(value: str) -> str:
+    """Derive a human-friendly display label from a Dataverse schema name.
+
+    Strips a single leading publisher prefix (``new_`` / ``sdd_`` ...), splits the
+    remaining ``snake_case`` and ``camelCase``/``PascalCase`` tokens, and returns
+    Title Case words separated by single spaces
+    (``new_case_number`` -> ``Case Number``).
+    """
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    text = _SCHEMA_PREFIX.sub("", text, count=1)
+    text = _CAMEL_BOUNDARY.sub(" ", text.replace("_", " "))
+    words = [word for word in text.split() if word]
+    return " ".join(word[:1].upper() + word[1:].lower() for word in words)
+
+
+def display_label(
+    raw_name: Any, schema_name: str, *, drop_suffixes: tuple[str, ...] = ()
+) -> str:
+    """Choose a clean human display label for a schema component.
+
+    Prefers the authored ``name`` after removing unwanted trailing descriptor
+    words (e.g. ``Global Choice`` on a choice, ``Skeleton`` on a table). When the
+    authored name is empty or is merely the schema name, a friendly label is
+    derived from the schema name via :func:`humanize_schema_name`.
+    """
+    schema = str(schema_name or "").strip()
+    base = str(raw_name or "").strip()
+    for suffix in drop_suffixes:
+        base = re.sub(
+            r"[\s_-]*" + re.escape(suffix) + r"\s*$", "", base, flags=re.IGNORECASE
+        ).strip()
+    if not base or base == schema:
+        return humanize_schema_name(schema)
+    return base
+
+REQUIRED_LEVELS: dict[str, str] = {
+    "none": "None",
+    "optional": "None",
+    "recommended": "Recommended",
+    "required": "ApplicationRequired",
+    "applicationrequired": "ApplicationRequired",
+}
+
+ENV_VARIABLE_TYPES: dict[str, int] = {
+    "string": 100000000,
+    "number": 100000001,
+    "boolean": 100000002,
+    "json": 100000003,
+    "data source": 100000004,
+    "secret": 100000005,
+}
+
+COLUMN_DATA_TYPE_PATTERNS: tuple[tuple[str, "re.Pattern[str]"], ...] = (
+    ("choice", re.compile(r"(?i)choice\s*\(([^()]+)\)")),
+    ("multiline", re.compile(r"(?i)multiline\s+text(?:\s*\((\d+)\))?")),
+    ("text", re.compile(r"(?i)(?:single[- ]line\s+)?text(?:\s*\((\d+)\))?")),
+    ("integer", re.compile(r"(?i)whole\s+number(?:\s*\(minimum\s+(-?\d+)\))?")),
+)
+COLUMN_BOOLEAN_TYPES: frozenset[str] = frozenset({"boolean", "yes/no", "yes no"})
+
+# Canonical schema_relationship contract.
+RELATIONSHIP_TYPES: tuple[str, ...] = ("one_to_many", "many_to_one", "many_to_many")
+RELATIONSHIP_ONE_TO_MANY: frozenset[str] = frozenset({"one_to_many", "many_to_one"})
+CASCADE_ACTIONS: tuple[str, ...] = ("Assign", "Delete", "Merge", "Reparent", "Share", "Unshare")
+CASCADE_VALUES: frozenset[str] = frozenset(
+    {"Cascade", "Active", "UserOwned", "NoCascade", "RemoveLink", "Restrict"}
+)
+RELATIONSHIP_NOT_APPLICABLE: frozenset[str] = frozenset(
+    {"", "not-applicable", "n/a", "na"}
+)
+
+
+def normalize_required_level(value: Any) -> str:
+    """Normalize a required-level token the same way the executor does."""
+    return str(value or "none").replace("_", "").lower()
+
+
+def match_column_data_type(data_type: Any) -> "tuple[str, re.Match[str] | None] | None":
+    """Resolve a compiler column data_type to its (kind, match) or None.
+
+    This is the single source of the supported column-type grammar; both
+    validate_design.py and the executor's column_definition consume it so a
+    non-canonical data_type is rejected at design time, not at execution.
+    """
+    value = str(data_type or "").strip()
+    for kind, pattern in COLUMN_DATA_TYPE_PATTERNS:
+        matched = pattern.fullmatch(value)
+        if matched:
+            return kind, matched
+    if value.lower() in COLUMN_BOOLEAN_TYPES:
+        return "boolean", None
+    return None
+
+
+def column_contract_violations(column: dict[str, Any]) -> list[str]:
+    """Design-time contract errors for a column payload, mirroring the executor's
+    column_definition: a canonical schema name, a supported data_type, and a
+    canonical required_level (when supplied)."""
+    violations: list[str] = []
+    schema_name = str(column.get("schema_name") or column.get("name") or "").strip()
+    if not SCHEMA_NAME.fullmatch(schema_name):
+        violations.append("column has no canonical schema name")
+    data_type = str(column.get("data_type") or "").strip()
+    if not data_type:
+        violations.append("column is missing data_type")
+    elif match_column_data_type(data_type) is None:
+        violations.append(
+            f"column data_type '{data_type}' is not a supported canonical type"
+        )
+    if normalize_required_level(column.get("required_level")) not in REQUIRED_LEVELS:
+        violations.append(
+            f"column required_level '{column.get('required_level')}' is not canonical; "
+            "use one of: none, optional, recommended, required"
+        )
+    return violations
+
+
+def view_contract_violations(view: dict[str, Any]) -> list[str]:
+    violations: list[str] = []
+    if "is_default" not in view:
+        return violations
+    is_default = view.get("is_default")
+    if not isinstance(is_default, bool):
+        violations.append("view is_default must be a boolean")
+    elif is_default and str(view.get("view_type") or "").lower() != "public":
+        violations.append("only a public view can set is_default to true")
+    return violations
+
+
+FORM_CONTROL_TYPES = frozenset(
+    {"text", "memo", "number", "money", "choice", "boolean", "datetime", "lookup"}
+)
+
+
+def form_contract_violations(form: dict[str, Any]) -> list[str]:
+    violations: list[str] = []
+    sections = form.get("sections")
+    if not isinstance(sections, list) or not sections:
+        return ["form sections must be a non-empty list"]
+    seen_fields: set[str] = set()
+    for section_index, section in enumerate(sections):
+        if not isinstance(section, dict):
+            violations.append(f"form section[{section_index}] must be a mapping")
+            continue
+        name = str(section.get("name") or "").strip()
+        if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", name):
+            violations.append(
+                f"form section[{section_index}] name must be a canonical identifier"
+            )
+        columns = section.get("columns", 1)
+        if not isinstance(columns, int) or not 1 <= columns <= 4:
+            violations.append(f"form section[{section_index}] columns must be 1-4")
+        fields = section.get("fields")
+        if not isinstance(fields, list) or not fields:
+            violations.append(f"form section[{section_index}] fields must be non-empty")
+            continue
+        for field_index, entry in enumerate(fields):
+            field = {"name": entry} if isinstance(entry, str) else entry
+            if not isinstance(field, dict):
+                violations.append(
+                    f"form section[{section_index}] field[{field_index}] must be a string or mapping"
+                )
+                continue
+            logical_name = str(field.get("name") or "").strip().lower()
+            if not re.fullmatch(r"[a-z][a-z0-9_]*", logical_name):
+                violations.append(
+                    f"form section[{section_index}] field[{field_index}] has invalid logical name"
+                )
+            elif logical_name in seen_fields:
+                violations.append(f"form field '{logical_name}' is duplicated")
+            else:
+                seen_fields.add(logical_name)
+            control_type = str(field.get("control_type") or "text").strip().lower()
+            if control_type not in FORM_CONTROL_TYPES:
+                violations.append(
+                    f"form field '{logical_name or field_index}' control_type '{control_type}' "
+                    f"is unsupported; use one of: {', '.join(sorted(FORM_CONTROL_TYPES))}"
+                )
+    return violations
+
+
+def field_security_profile_violations(profile: dict[str, Any]) -> list[str]:
+    violations: list[str] = []
+    columns = profile.get("protected_columns")
+    if not isinstance(columns, list) or not columns:
+        violations.append("protected_columns must be a non-empty list")
+    else:
+        seen: set[tuple[str, str]] = set()
+        for index, entry in enumerate(columns):
+            if not isinstance(entry, dict):
+                violations.append(f"protected_columns[{index}] must be a mapping")
+                continue
+            table = str(entry.get("table") or "").strip().lower()
+            column = str(entry.get("column") or "").strip().lower()
+            if not re.fullmatch(r"[a-z][a-z0-9_]*", table):
+                violations.append(f"protected_columns[{index}] table is invalid")
+            if not re.fullmatch(r"[a-z][a-z0-9_]*", column):
+                violations.append(f"protected_columns[{index}] column is invalid")
+            identity = (table, column)
+            if identity in seen:
+                violations.append(f"protected column '{table}.{column}' is duplicated")
+            seen.add(identity)
+            for permission in ("read", "create", "update"):
+                if permission in entry and not isinstance(entry[permission], bool):
+                    violations.append(
+                        f"protected_columns[{index}] {permission} must be a boolean"
+                    )
+    grantees = profile.get("grantee_roles")
+    if not isinstance(grantees, list) or not grantees:
+        violations.append("grantee_roles must contain user/team grantee mappings")
+    else:
+        for index, entry in enumerate(grantees):
+            if not isinstance(entry, dict):
+                violations.append(f"grantee_roles[{index}] must be a mapping")
+                continue
+            principal_type = str(entry.get("principal_type") or "").strip().lower()
+            principal = str(entry.get("principal") or "").strip()
+            if principal_type not in {"team", "user"}:
+                violations.append(
+                    f"grantee_roles[{index}] principal_type must be team or user"
+                )
+            if not principal:
+                violations.append(f"grantee_roles[{index}] principal is required")
+    return violations
+
+
+def dashboard_contract_violations(dashboard: dict[str, Any]) -> list[str]:
+    """Design-time shape errors for uiux_dashboard. Dashboard type must be
+    canonical; components must be a non-empty list of tile mappings."""
+    violations: list[str] = []
+    dashboard_type = str(dashboard.get("dashboard_type") or "").strip().lower()
+    if dashboard_type not in {"classic", "interactive_single_stream", "interactive_multi_stream"}:
+        violations.append("dashboard_type must be classic, interactive_single_stream, or interactive_multi_stream")
+    components = dashboard.get("components")
+    if not isinstance(components, list) or not components:
+        violations.append("components must contain at least one tile")
+    else:
+        for index, tile in enumerate(components):
+            if not isinstance(tile, dict):
+                violations.append(f"components[{index}] must be a mapping")
+                continue
+            tile_type = str(tile.get("type") or "").strip().lower()
+            if tile_type not in {"chart", "list", "webresource"}:
+                violations.append(f"components[{index}] type must be chart, list, or webresource")
+            if not str(tile.get("name") or "").strip():
+                violations.append(f"components[{index}] name is required")
+    roles = dashboard.get("roles")
+    if not isinstance(roles, list) or not roles:
+        violations.append("roles must contain at least one security role")
+    return violations
+
+
+def chart_contract_violations(chart: dict[str, Any]) -> list[str]:
+    """Design-time shape errors for uiux_chart. Table must be canonical;
+    series must be a non-empty list of data series mappings."""
+    violations: list[str] = []
+    table = str(chart.get("table") or "").strip().lower()
+    if not re.fullmatch(r"[a-z][a-z0-9_]*", table):
+        violations.append("table is required and must be a canonical logical name")
+    series = chart.get("series")
+    if not isinstance(series, list) or not series:
+        violations.append("series must contain at least one data series")
+    else:
+        for index, s in enumerate(series):
+            if not isinstance(s, dict):
+                violations.append(f"series[{index}] must be a mapping")
+                continue
+            if not str(s.get("name") or "").strip():
+                violations.append(f"series[{index}] name is required")
+            chart_type = str(s.get("chart_type") or "").strip().lower()
+            if chart_type not in {"column", "bar", "line", "area", "pie", "funnel"}:
+                violations.append(f"series[{index}] chart_type must be one of: column, bar, line, area, pie, funnel")
+    return violations
+
+
+def sitemap_contract_violations(sitemap: dict[str, Any]) -> list[str]:
+    """Design-time shape errors for uiux_sitemap. App name is required;
+    areas must be a non-empty list with groups and subareas."""
+    violations: list[str] = []
+    app = str(sitemap.get("app") or "").strip()
+    if not app:
+        violations.append("app name is required")
+    areas = sitemap.get("areas")
+    if not isinstance(areas, list) or not areas:
+        violations.append("areas must contain at least one area")
+    else:
+        for area_idx, area in enumerate(areas):
+            if not isinstance(area, dict):
+                violations.append(f"areas[{area_idx}] must be a mapping")
+                continue
+            if not str(area.get("name") or "").strip():
+                violations.append(f"areas[{area_idx}] name is required")
+            groups = area.get("groups")
+            if not isinstance(groups, list) or not groups:
+                violations.append(f"areas[{area_idx}] groups must contain at least one group")
+            else:
+                for group_idx, group in enumerate(groups):
+                    if not isinstance(group, dict):
+                        violations.append(f"areas[{area_idx}].groups[{group_idx}] must be a mapping")
+                        continue
+                    if not str(group.get("name") or "").strip():
+                        violations.append(f"areas[{area_idx}].groups[{group_idx}] name is required")
+    return violations
+
+
+def app_contract_violations(app: dict[str, Any]) -> list[str]:
+    """Design-time shape errors for uiux_app. App type must be canonical;
+    tables must be a non-empty list."""
+    violations: list[str] = []
+    app_type = str(app.get("app_type") or "").strip().lower()
+    if app_type not in {"model_driven"}:
+        violations.append("app_type must be model_driven")
+    tables = app.get("tables")
+    if not isinstance(tables, list) or not tables:
+        violations.append("tables must contain at least one table reference")
+    else:
+        for index, table_ref in enumerate(tables):
+            if isinstance(table_ref, dict):
+                table = str(table_ref.get("name") or "").strip().lower()
+            else:
+                table = str(table_ref or "").strip().lower()
+            if not re.fullmatch(r"[a-z][a-z0-9_]*", table):
+                violations.append(f"tables[{index}] must be a canonical logical name")
+    return violations
+
+
+def derived_column_contract_violations(derived_col: dict[str, Any]) -> list[str]:
+    """Design-time shape errors for schema_derived_column. Table must be canonical;
+    derived_type must be formula/calculated/rollup; formula is required for formula type;
+    base_data_type must match supported column data types."""
+    violations: list[str] = []
+    table = str(derived_col.get("table") or "").strip().lower()
+    if not re.fullmatch(r"[a-z][a-z0-9_]*", table):
+        violations.append("table is required and must be a canonical logical name")
+    derived_type = str(derived_col.get("derived_type") or "").strip().lower()
+    if derived_type not in {"formula", "calculated", "rollup"}:
+        violations.append("derived_type must be one of: formula, calculated, rollup")
+    if derived_type == "formula":
+        formula = str(derived_col.get("formula") or "").strip()
+        if not formula:
+            violations.append("formula-type derived column requires a formula expression")
+    base_type = str(derived_col.get("base_data_type") or "").strip().lower()
+    if not base_type or base_type not in {
+        "text", "integer", "number", "boolean", "datetime", "decimal", "multiline"
+    }:
+        violations.append("base_data_type must be one of: text, integer, number, boolean, datetime, decimal, multiline")
+    return violations
+
+
+def choice_option_violations(options: Any) -> list[str]:
+    """Design-time shape errors for schema_choice options. Each entry must be a
+    compiler-owned '<integer>: <label>' pair or a non-empty label (<=200 chars);
+    explicit integer values must be unique. Prefix derivation for bare labels is
+    resolved at execution against the authoring target."""
+    if not isinstance(options, list) or not options:
+        return ["choice payload has no options"]
+    violations: list[str] = []
+    explicit: list[int] = []
+    for raw in options:
+        text = str(raw)
+        matched = re.fullmatch(r"\s*(\d{1,10})\s*:\s*(.{1,200})\s*", text)
+        if matched:
+            explicit.append(int(matched.group(1)))
+            continue
+        bare = text.strip()
+        if not bare or len(bare) > 200:
+            violations.append(
+                f"choice option '{text}' must be '<integer>: <label>' or a non-empty label"
+            )
+    if len(set(explicit)) != len(explicit):
+        violations.append("choice payload contains duplicate integer values")
+    return violations
+
+
+def key_column_violations(key_columns: Any) -> list[str]:
+    """Design-time errors for schema_key.key_columns: a non-empty list of
+    canonical logical names."""
+    if not isinstance(key_columns, list) or not key_columns:
+        return ["schema_key payload has no key_columns"]
+    violations: list[str] = []
+    for column in key_columns:
+        value = str(column or "").strip()
+        if not LOGICAL_NAME.fullmatch(value):
+            violations.append(f"key_column '{column}' is not a canonical logical name")
+    return violations
+
+
+def _single_relationship_violations(
+    relationship: dict[str, Any], *, require_identity: bool
+) -> list[str]:
+    """Structural/conditional contract errors for one relationship mapping.
+
+    Used for both a flat schema_relationship component and each entry of a
+    grouped `relationships:` list. When `require_identity` is set (a grouped
+    entry), the entry's own `name`, `relationship_type`, and `related_table` are
+    enforced here because the generic presence/enum checks only see the grouped
+    component's top level. For a flat component those top-level fields stay with
+    the generic checks, so a non-canonical type defers to the enum check.
+    """
+    violations: list[str] = []
+    rel_type = str(relationship.get("relationship_type") or "").strip()
+
+    def is_blank(value: Any) -> bool:
+        return str(value or "").strip().lower() in RELATIONSHIP_NOT_APPLICABLE
+
+    if require_identity:
+        name = str(
+            relationship.get("name") or relationship.get("schema_name") or ""
+        ).strip()
+        if not SCHEMA_NAME.fullmatch(name):
+            violations.append("requires a canonical relationship 'name' schema name")
+        if not str(relationship.get("related_table") or "").strip():
+            violations.append("requires 'related_table'")
+        if rel_type not in RELATIONSHIP_TYPES:
+            violations.append(
+                "relationship_type is not canonical; use one of: "
+                + ", ".join(RELATIONSHIP_TYPES)
+            )
+            return violations
+    elif rel_type not in RELATIONSHIP_TYPES:
+        return []  # non-canonical type is already reported by the enum check
+
+    if rel_type in RELATIONSHIP_ONE_TO_MANY:
+        for field in ("lookup_column", "referenced_attribute"):
+            value = str(relationship.get(field) or "").strip()
+            if not SCHEMA_NAME.fullmatch(value):
+                violations.append(
+                    f"relationship_type '{rel_type}' requires a canonical '{field}' schema name"
+                )
+        if is_blank(relationship.get("required_level")):
+            violations.append(f"relationship_type '{rel_type}' requires 'required_level'")
+        cascade = relationship.get("cascade_configuration")
+        if not isinstance(cascade, dict):
+            violations.append(
+                "cascade_configuration must be a mapping of "
+                + ", ".join(CASCADE_ACTIONS)
+            )
+        else:
+            missing = [a for a in CASCADE_ACTIONS if not str(cascade.get(a) or "").strip()]
+            if missing:
+                violations.append(
+                    "cascade_configuration is missing action(s): " + ", ".join(missing)
+                )
+            bad = [
+                f"{a}={str(cascade.get(a)).strip()}"
+                for a in CASCADE_ACTIONS
+                if str(cascade.get(a) or "").strip()
+                and str(cascade.get(a)).strip() not in CASCADE_VALUES
+            ]
+            if bad:
+                violations.append(
+                    "cascade_configuration has non-canonical value(s): "
+                    + ", ".join(bad)
+                    + "; use one of: "
+                    + ", ".join(sorted(CASCADE_VALUES))
+                )
+    else:  # many_to_many
+        for field in (
+            "lookup_column",
+            "referenced_attribute",
+            "required_level",
+            "cascade_configuration",
+        ):
+            value = relationship.get(field)
+            if isinstance(value, dict):
+                if any(str(item or "").strip() for item in value.values()):
+                    violations.append(
+                        f"relationship_type 'many_to_many' must not declare '{field}' "
+                        "(set not-applicable or omit)"
+                    )
+            elif not is_blank(value):
+                violations.append(
+                    f"relationship_type 'many_to_many' must set '{field}' to "
+                    "not-applicable or omit it"
+                )
+    return violations
+
+
+def schema_relationship_violations(component: dict[str, Any]) -> list[str]:
+    """Structural/conditional contract errors for a schema_relationship component.
+
+    Two authoring shapes are supported so all of a table's relationships can be
+    grouped into a single DEV task:
+
+    - Flat: the component *is* one relationship (legacy). Conditional facets are
+      enforced here; presence/enum of name/relationship_type/related_table stays
+      with the generic checks.
+    - Grouped: the component owns a `table` and a `relationships:` list, each
+      entry a full relationship for that owning table. The owning table and every
+      entry (identity, type, and conditional facets) are enforced here, because
+      the generic checks only see the grouped component's top level.
+
+    Either way an invalid relationship is rejected at design time instead of
+    first failing at executor preflight.
+    """
+    relationships = component.get("relationships")
+    if isinstance(relationships, list):
+        violations: list[str] = []
+        table = str(component.get("table") or "").strip()
+        if not LOGICAL_NAME.fullmatch(table):
+            violations.append(
+                "grouped schema_relationship requires a canonical owning 'table'"
+            )
+        if not relationships:
+            violations.append("schema_relationship 'relationships' list is empty")
+        for index, entry in enumerate(relationships):
+            if not isinstance(entry, dict):
+                violations.append(f"relationships[{index}] is not a mapping")
+                continue
+            for message in _single_relationship_violations(entry, require_identity=True):
+                violations.append(f"relationships[{index}] {message}")
+        return violations
+    return _single_relationship_violations(component, require_identity=False)
+
+
+def component_field_enum_violations(
+    component: dict[str, Any], component_type: str, data: dict[str, Any]
+) -> list[tuple[str, str, list[str]]]:
+    """Non-canonical field values for a component, per its enum contract.
+
+    A mapping field (e.g. cascade_configuration) is checked value-by-value; any
+    other field is compared directly. Returns (field, offending_value, allowed).
+    """
+    violations: list[tuple[str, str, list[str]]] = []
+    for field, allowed in component_field_enums(component_type, data).items():
+        value = component.get(field)
+        if value is None:
+            continue
+        candidates = value.values() if isinstance(value, dict) else [value]
+        for candidate in candidates:
+            if str(candidate) not in allowed:
+                violations.append((field, str(candidate), allowed))
+    return violations
 
 
 def required_component_identity_field(scope: str, data: dict[str, Any]) -> str | None:
@@ -1239,6 +1926,7 @@ def resolve_developer_preflight(
     execution_host: str,
     authoring_target: dict[str, Any] | None,
     component_payload: dict[str, Any],
+    component_source_sync: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     resolved_execution_host = resolve_execution_host(
         implementation_scope, development_resources
@@ -1525,6 +2213,24 @@ def resolve_developer_preflight(
         "rebuild_before_export": bool(pre_export_build),
         "local_solution_pack": False,
         "is_discovery_preflight_or_verification": False,
+        "unpack_to_temp_workspace": True,
+        "project_owning_component_only": True,
+        "reject_unrelated_drift": True,
+        "records_source_sync_evidence": True,
+        "replay_platform_create": False,
+        "component_source_sync": (
+            {
+                "strategy": component_source_sync["strategy"],
+                "paths": list(component_source_sync.get("paths") or []),
+            }
+            if (
+                implementation_scope == "repository_and_dataverse_solution"
+                and packaging_unpack_path
+                and component_source_sync
+                and component_source_sync.get("strategy") not in (None, "none")
+            )
+            else None
+        ),
     }
     snapshot = {
         "schema_version": 3,
@@ -1775,30 +2481,34 @@ def parse_components(body: str) -> list[dict[str, Any]]:
     return value["components"]
 
 
+# Lifecycle/runtime fields that legitimately change after an artifact is
+# compiled (status transitions, assignee reassignment). They are stored in the
+# context JSON but excluded from the structural context hash, so a status or
+# owner change never restamps sibling artifacts or cascades down the
+# repository -> spec -> plan -> task hash chain. Structural drift (component,
+# payload, plan hash, decomposition) still changes the hash and is still caught.
+VOLATILE_HASH_KEYS = ("status", "owner")
+
+# Top-level collections whose per-entry rows carry the volatile fields above.
+CONTEXT_ENTRY_COLLECTIONS = ("features", "plans", "tasks")
+
+
 def context_hash(data: dict[str, Any]) -> str:
     material = dict(data)
     material.pop("context_hash", None)
-    return hash_json(material)
-
-
-def task_context_binding_material(data: dict[str, Any]) -> dict[str, Any]:
-    material = dict(data)
-    material.pop("context_hash", None)
-    material.pop("content_hash", None)
-    material["tasks"] = [
-        {key: value for key, value in task.items() if key != "status"}
-        for task in material.get("tasks") or []
-    ]
-    return material
-
-
-def task_context_binding_hash(data: dict[str, Any]) -> str:
-    return hash_json(task_context_binding_material(data))
-
-
-def task_context_content_hash(data: dict[str, Any]) -> str:
-    material = dict(data)
-    material.pop("content_hash", None)
+    for collection in CONTEXT_ENTRY_COLLECTIONS:
+        entries = material.get(collection)
+        if isinstance(entries, list):
+            material[collection] = [
+                {
+                    key: value
+                    for key, value in entry.items()
+                    if key not in VOLATILE_HASH_KEYS
+                }
+                if isinstance(entry, dict)
+                else entry
+                for entry in entries
+            ]
     return hash_json(material)
 
 
@@ -1811,12 +2521,8 @@ def read_context(path: Path) -> dict[str, Any]:
         raise PipelineError(f"invalid JSON context {path.relative_to(ROOT).as_posix()}: {exc}") from exc
     if not isinstance(data, dict):
         raise PipelineError(f"context root must be an object: {path.relative_to(ROOT).as_posix()}")
-    if path.resolve() == TASK_CONTEXT_PATH.resolve() and "content_hash" in data:
-        declared = data.get("content_hash")
-        actual = task_context_content_hash(data)
-    else:
-        declared = data.get("context_hash")
-        actual = context_hash(data)
+    declared = data.get("context_hash")
+    actual = context_hash(data)
     if declared != actual:
         raise PipelineError(
             f"stale context hash in {path.relative_to(ROOT).as_posix()}: expected {actual}, found {declared}"

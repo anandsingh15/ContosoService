@@ -548,15 +548,8 @@ def expected_stage(definition: dict, stage_reference: str) -> dict:
     return stage
 
 
-def readiness_artifact_format(
-    definition: dict, stage: dict, expected_stage_status: str
-) -> str:
-    if stage.get("id") == "development" and expected_stage_status == "Ready for Planning":
-        return str(expected_stage(definition, "design").get("artifact_id_format") or "")
-    return str(stage.get("artifact_id_format") or "")
-
-
-def artifact_ids_for_stage(issue: dict, artifact_format: str) -> list[str]:
+def artifact_ids_for_format(issue: dict, artifact_format: str) -> list[str]:
+    artifact_format = str(artifact_format or "")
     if not artifact_format:
         return []
     escaped = re.escape(artifact_format)
@@ -567,6 +560,47 @@ def artifact_ids_for_stage(issue: dict, artifact_format: str) -> list[str]:
     )
     text = f"{issue.get('title') or ''}\n{issue.get('body') or ''}"
     return sorted(set(re.findall(rf"\b{pattern}\b", text)))
+
+
+def artifact_ids_for_stage(issue: dict, stage: dict) -> list[str]:
+    return artifact_ids_for_format(issue, str(stage.get("artifact_id_format") or ""))
+
+
+def predecessor_stage(definition: dict, stage: dict) -> dict | None:
+    stage_id = str(stage.get("id") or "")
+    if not stage_id:
+        return None
+    return next(
+        (
+            item
+            for item in definition.get("stages", [])
+            if str(item.get("next_stage") or "") == stage_id
+        ),
+        None,
+    )
+
+
+def readiness_identity_format(definition: dict, stage: dict, activation: str) -> str:
+    """Return the artifact identity format the readiness gate must find.
+
+    A stage may declare ``planning_activation: true`` to expose a pre-allocation
+    planning gate that runs before the stage's own artifact has been allocated.
+    At the ``planning`` activation the issue instead carries the predecessor
+    stage's approved identity (for example a Design ``DES-##`` plan feeding
+    Development planning, before any ``DEV-####`` exists), so readiness validates
+    the predecessor's ``artifact_id_format`` resolved via ``next_stage`` linkage.
+    The ``execution`` activation validates the stage's own format unchanged.
+
+    Activation is a closed vocabulary supplied by the calling command, not the
+    free-text Stage Status field, which the gate never reads.
+    """
+    if activation == "planning" and bool(stage.get("planning_activation")):
+        predecessor_format = str(
+            (predecessor_stage(definition, stage) or {}).get("artifact_id_format") or ""
+        )
+        if predecessor_format:
+            return predecessor_format
+    return str(stage.get("artifact_id_format") or "")
 
 
 def blocked_readiness_result(message: str, issue_number: int) -> dict:
@@ -598,7 +632,7 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
     definition = load_definition()
     stage = expected_stage(definition, args.expected_stage)
     expected_status = args.expected_status.strip()
-    expected_stage_status = args.expected_stage_status.strip()
+    activation = args.activation
     canonical_statuses = {
         str(option.get("name") or "")
         for option in (definition.get("status") or {}).get("options", [])
@@ -607,10 +641,9 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
         raise TrackingAutomationError(
             f"expected Status '{expected_status}' is not defined in the tracking contract."
         )
-    if expected_stage_status not in (stage.get("stage_status_flow") or []):
+    if activation == "planning" and not bool(stage.get("planning_activation")):
         raise TrackingAutomationError(
-            f"expected Stage Status '{expected_stage_status}' is not defined for "
-            f"Lifecycle Stage '{stage['name']}'."
+            f"Lifecycle Stage '{stage['name']}' does not define a planning activation."
         )
 
     repo = resolve_repository(args.repo)
@@ -627,10 +660,8 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
         for item in items
         if (item.get("content") or {}).get("id") == issue.get("id")
     ]
-    artifact_format = readiness_artifact_format(
-        definition, stage, expected_stage_status
-    )
-    artifact_ids = artifact_ids_for_stage(issue, artifact_format)
+    identity_format = readiness_identity_format(definition, stage, activation)
+    artifact_ids = artifact_ids_for_format(issue, identity_format)
     label_names = sorted(
         str(label.get("name") or "")
         for label in issue.get("labels", [])
@@ -650,7 +681,7 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
     if len(artifact_ids) != 1:
         blockers.append(
             f"issue #{args.issue_number} must identify exactly one "
-            f"{artifact_format} artifact; found {len(artifact_ids)}."
+            f"{identity_format} artifact; found {len(artifact_ids)}."
         )
     if len(matching_items) != 1:
         blockers.append(
@@ -675,11 +706,10 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
             blockers.append(
                 f"live Status is '{live_status}', expected '{expected_status}'."
             )
-        if live_stage_status != expected_stage_status:
-            blockers.append(
-                f"live Stage Status is '{live_stage_status}', expected "
-                f"'{expected_stage_status}'."
-            )
+        # Stage Status is a human-maintained free-text field. The gate never
+        # branches on its value: single-select Status and Lifecycle Stage plus
+        # the structural artifact identity above are the authoritative signals.
+        # live_stage_status is surfaced below for observability only.
 
     content = item.get("content") or {}
     result = {
@@ -708,7 +738,7 @@ def evaluate_live_readiness(args: argparse.Namespace) -> dict:
             "lifecycle_stage_id": stage.get("id"),
             "lifecycle_stage": stage.get("name"),
             "status": expected_status,
-            "stage_status": expected_stage_status,
+            "activation": activation,
             "issue_state": "OPEN",
             "label": required_label,
             "project_item_count": 1,
@@ -794,9 +824,24 @@ def cmd_init_issue(args: argparse.Namespace) -> None:
         set_text(project["id"], item_id, fields["Stage Status"], stage["stage_status_flow"][0])
         stage_status_note = stage["stage_status_flow"][0]
 
+    # Artifact ID must agree with the issue's stage identity and, like Status
+    # and Stage Status, only ever be *initialized*, never reset once set. A
+    # single stage artifact id in the issue title/body (for example the DES-##
+    # allocated at Design handoff creation) is copied to the Project field so
+    # the readiness gate and Project surface report one consistent identity.
+    artifact_ids = artifact_ids_for_stage(issue, stage)
+    if "Artifact ID" not in fields or len(artifact_ids) != 1:
+        artifact_note = "not set (no single stage artifact id)"
+    elif existing_values.get("Artifact ID"):
+        artifact_note = f"unchanged ({existing_values['Artifact ID']})"
+    else:
+        set_text(project["id"], item_id, fields["Artifact ID"], artifact_ids[0])
+        artifact_note = artifact_ids[0]
+
     print(
         f"Initialized issue #{args.issue_number}: Lifecycle Stage={stage['name']}, "
-        f"Status={status_note}, Stage Status={stage_status_note}."
+        f"Status={status_note}, Stage Status={stage_status_note}, "
+        f"Artifact ID={artifact_note}."
     )
 
 
@@ -999,7 +1044,9 @@ def main() -> int:
     readiness_p.add_argument("--issue-number", type=int, required=True)
     readiness_p.add_argument("--expected-stage", required=True)
     readiness_p.add_argument("--expected-status", required=True)
-    readiness_p.add_argument("--expected-stage-status", required=True)
+    readiness_p.add_argument(
+        "--activation", choices=("planning", "execution"), default="execution"
+    )
     readiness_p.add_argument("--project-owner", default="")
     readiness_p.add_argument("--project-number", type=int)
     readiness_p.add_argument("--repo", default="")

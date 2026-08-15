@@ -128,6 +128,7 @@ stages:
     purpose: "Plan and implement independently assignable DEV items without changing the approved plan intent."
     label: {name: development, color: "D93F0B", description: "Component implementation and build"}
     artifact_id_format: "DEV-%04d"
+    planning_activation: true
     issue_form: development.yml
     input: "Approved plan.md components or one approved DEV-####.md"
     output: "Generated tasks.md/DEV artifacts, then solution configuration, source, infrastructure, and build evidence"

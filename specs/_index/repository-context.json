@@ -237,7 +237,7 @@
     }
   },
   "authoring_targets_hash": "0d5329e0fe0755fe27180a3c6a96441e68da8ea3b6147a11b3f8cfef2e82ac59",
-  "authoring_targets_schema_hash": "628de63ca51d72329c8cb58976792bf58329d04944670823f5fc7e5334d60bed",
+  "authoring_targets_schema_hash": "3833d87460022fab0b0f740df27fe1ebb65e0d0b0b29c520eca4efd9565664b3",
   "compatibility": {
     "canonical_artifacts": {
       "development_artifact": "development/DEV-####.md",
@@ -530,6 +530,55 @@
         "satisfies"
       ]
     },
+    "code_custom_api": {
+      "enums": {
+        "binding_type": [
+          "global",
+          "entity",
+          "entity_collection"
+        ]
+      },
+      "required": [
+        "name",
+        "binding_type",
+        "is_function",
+        "request_parameters",
+        "response_properties",
+        "plugin_type",
+        "satisfies"
+      ]
+    },
+    "code_pcf": {
+      "enums": {
+        "control_type": [
+          "field",
+          "dataset"
+        ]
+      },
+      "required": [
+        "name",
+        "namespace",
+        "control_type",
+        "properties",
+        "satisfies"
+      ]
+    },
+    "code_plugin": {
+      "required": [
+        "name",
+        "assembly",
+        "class_name",
+        "steps",
+        "satisfies"
+      ]
+    },
+    "code_webres_*": {
+      "required": [
+        "name",
+        "source_path",
+        "satisfies"
+      ]
+    },
     "config_arc": {
       "required": [
         "name",
@@ -658,6 +707,24 @@
         "satisfies"
       ]
     },
+    "schema_derived_column": {
+      "enums": {
+        "derived_type": [
+          "formula",
+          "calculated",
+          "rollup"
+        ]
+      },
+      "required": [
+        "name",
+        "table",
+        "base_data_type",
+        "derived_type",
+        "formula",
+        "required_level",
+        "satisfies"
+      ]
+    },
     "schema_key": {
       "required": [
         "name",
@@ -667,15 +734,18 @@
       ]
     },
     "schema_relationship": {
+      "enums": {
+        "relationship_type": [
+          "one_to_many",
+          "many_to_one",
+          "many_to_many"
+        ]
+      },
       "required": [
         "name",
         "table",
         "relationship_type",
         "related_table",
-        "lookup_column",
-        "referenced_attribute",
-        "required_level",
-        "cascade_configuration",
         "satisfies"
       ]
     },
@@ -721,6 +791,11 @@
       ]
     },
     "uiux_app": {
+      "enums": {
+        "app_type": [
+          "model_driven"
+        ]
+      },
       "required": [
         "name",
         "app_type",
@@ -737,14 +812,30 @@
       ]
     },
     "uiux_dashboard": {
+      "enums": {
+        "dashboard_type": [
+          "classic",
+          "interactive_single_stream",
+          "interactive_multi_stream"
+        ]
+      },
       "required": [
         "name",
+        "dashboard_type",
         "components",
         "roles",
         "satisfies"
       ]
     },
     "uiux_form": {
+      "enums": {
+        "form_type": [
+          "main",
+          "quick_create",
+          "quick_view",
+          "card"
+        ]
+      },
       "required": [
         "name",
         "table",
@@ -762,11 +853,20 @@
       ]
     },
     "uiux_view": {
+      "enums": {
+        "view_type": [
+          "public",
+          "advanced_find",
+          "associated",
+          "quick_find",
+          "lookup"
+        ]
+      },
       "required": [
         "name",
         "table",
-        "filter",
         "columns",
+        "view_type",
         "satisfies"
       ]
     }
@@ -818,6 +918,7 @@
     "dataverse-table": [
       "schema_table",
       "schema_column",
+      "schema_derived_column",
       "schema_relationship",
       "schema_choice",
       "schema_key"
@@ -845,6 +946,7 @@
   "component_types": [
     "schema_table",
     "schema_column",
+    "schema_derived_column",
     "schema_relationship",
     "schema_choice",
     "schema_key",
@@ -889,8 +991,8 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "4c861280702113294a79dcc91e61fc43a33cc6c78440edfbb17ba7ea5fe4063e",
-  "conventions_hash": "74ba734dd61e956b29996184714bf151ef03328da70fe62f2f54ba22dca0e8af",
+  "context_hash": "ced4735329e9b6e05b2e45ebdbabfadbe160bd2be1fb7a27f8364914c0cc4718",
+  "conventions_hash": "50042d1b6a869b98b9eb12a1005944f607562d838756159860478af444214c16",
   "dataverse_web_api_capabilities": {
     "components": {
       "az_ai_*": {
@@ -1132,10 +1234,10 @@
       "flow_cloud": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "documented-flow-not-reliable",
-          "delete": "documented-flow-not-reliable",
-          "update": "documented-flow-not-reliable",
-          "verify": "documented-flow-not-reliable"
+          "create": "flowagent-primary",
+          "delete": "flowagent-primary",
+          "update": "flowagent-primary",
+          "verify": "flowagent-primary"
         }
       },
       "integ_connection_ref": {
@@ -1191,6 +1293,18 @@
           "verify": "metadata-column-verify"
         }
       },
+      "schema_derived_column": {
+        "implementation_scope": "repository_and_dataverse_solution",
+        "operations": {
+          "add_solution_component": "add-solution-component",
+          "create": "derived-column-create",
+          "delete": "derived-column-delete",
+          "publish": "metadata-publish",
+          "remove_solution_component": "remove-solution-component",
+          "update": "derived-column-update",
+          "verify": "derived-column-verify"
+        }
+      },
       "schema_key": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
@@ -1238,19 +1352,19 @@
       "sec_field_profile": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "maker-portal-primary",
-          "delete": "maker-portal-primary",
-          "update": "maker-portal-primary",
-          "verify": "maker-portal-primary"
+          "create": "field-security-profile-create",
+          "delete": "field-security-profile-delete",
+          "update": "field-security-profile-update",
+          "verify": "field-security-profile-verify"
         }
       },
       "sec_role": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "documented-role-not-reliable",
-          "delete": "documented-role-not-reliable",
-          "update": "documented-role-not-reliable",
-          "verify": "documented-role-not-reliable"
+          "create": "role-create",
+          "delete": "role-delete",
+          "update": "role-update",
+          "verify": "role-verify"
         }
       },
       "sec_team": {
@@ -1265,59 +1379,63 @@
       "uiux_app": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "maker-portal-primary",
-          "delete": "maker-portal-primary",
-          "update": "maker-portal-primary",
-          "verify": "maker-portal-primary"
+          "create": "app-create",
+          "delete": "app-delete",
+          "update": "app-update",
+          "verify": "app-verify"
         }
       },
       "uiux_chart": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "maker-portal-primary",
-          "delete": "maker-portal-primary",
-          "update": "maker-portal-primary",
-          "verify": "maker-portal-primary"
+          "create": "chart-create",
+          "delete": "chart-delete",
+          "update": "chart-update",
+          "verify": "chart-verify"
         }
       },
       "uiux_dashboard": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "maker-portal-primary",
-          "delete": "maker-portal-primary",
-          "update": "maker-portal-primary",
-          "verify": "maker-portal-primary"
+          "create": "dashboard-create",
+          "delete": "dashboard-delete",
+          "update": "dashboard-update",
+          "verify": "dashboard-verify"
         }
       },
       "uiux_form": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "documented-form-not-reliable",
-          "delete": "documented-form-not-reliable",
-          "update": "documented-form-not-reliable",
-          "verify": "documented-form-not-reliable"
+          "create": "form-create",
+          "delete": "form-delete",
+          "update": "form-update",
+          "verify": "form-verify"
         }
       },
       "uiux_sitemap": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "maker-portal-primary",
-          "delete": "maker-portal-primary",
-          "update": "maker-portal-primary",
-          "verify": "maker-portal-primary"
+          "create": "sitemap-create",
+          "delete": "sitemap-delete",
+          "update": "sitemap-update",
+          "verify": "sitemap-verify"
         }
       },
       "uiux_view": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "maker-portal-primary",
-          "delete": "maker-portal-primary",
-          "update": "maker-portal-primary",
-          "verify": "maker-portal-primary"
+          "create": "view-create",
+          "delete": "view-delete",
+          "update": "view-update",
+          "verify": "view-verify"
         }
       }
     },
     "official_references": {
+      "add_privileges_role": {
+        "title": "AddPrivilegesRole action reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/addprivilegesrole"
+      },
       "add_solution_component": {
         "title": "AddSolutionComponent action",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/addsolutioncomponent"
@@ -1342,6 +1460,10 @@
         "title": "Azure Resource Manager overview",
         "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview"
       },
+      "chart": {
+        "title": "Visualization (SavedQueryVisualization) table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/savedqueryvisualization"
+      },
       "choice_definitions": {
         "title": "Create and update choices using the Web API",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/create-update-optionsets"
@@ -1349,6 +1471,10 @@
       "column_definitions": {
         "title": "Create and update column definitions using the Web API",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/create-update-column-definitions-using-web-api"
+      },
+      "column_level_security": {
+        "title": "Column-level security with code",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/column-level-security"
       },
       "connection_reference": {
         "title": "Connection Reference table reference",
@@ -1378,6 +1504,14 @@
         "title": "Environment Variable Value table reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/environmentvariablevalue"
       },
+      "field_permission": {
+        "title": "Field Permission table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/fieldpermission"
+      },
+      "field_security_profile": {
+        "title": "Field Security Profile table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/fieldsecurityprofile"
+      },
       "http": {
         "title": "Compose HTTP requests and handle errors",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/compose-http-requests-handle-errors"
@@ -1386,6 +1520,10 @@
         "title": "Solutions overview",
         "url": "https://learn.microsoft.com/en-us/power-apps/maker/data-platform/solutions-overview"
       },
+      "model_app": {
+        "title": "Model-Driven App (AppModule) table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/appmodule"
+      },
       "oauth": {
         "title": "Use OAuth authentication with Microsoft Dataverse",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth"
@@ -1393,6 +1531,10 @@
       "optional_parameters": {
         "title": "Associate a solution component with a solution",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/optional-parameters#associate-a-solution-component-with-a-solution"
+      },
+      "power_automate_flowagent": {
+        "title": "Microsoft Power Automate plugin with FlowAgent MCP",
+        "url": "https://github.com/microsoft/power-platform-skills/tree/main/plugins/power-automate"
       },
       "power_bi_rest": {
         "title": "Power BI REST APIs",
@@ -1418,13 +1560,25 @@
         "title": "RemoveSolutionComponent action",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/removesolutioncomponent"
       },
+      "saved_query": {
+        "title": "Saved Query (view) table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/savedquery"
+      },
       "security_role": {
         "title": "Security Role table reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/role"
       },
+      "site_map": {
+        "title": "Site Map table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sitemap"
+      },
       "solution_component_types": {
         "title": "Solution Component table reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/solutioncomponent#componenttype"
+      },
+      "system_dashboard": {
+        "title": "System Dashboard (systemdashboards) table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/systemdashboard"
       },
       "system_form": {
         "title": "System Form table reference",
@@ -1508,6 +1662,336 @@
         "support": "unsupported_or_not_applicable",
         "verification": {
           "rationale": "Verify only the configured audit scope after the administrator action.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "app-create": {
+        "executor": {
+          "builder": "uiux_app",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "appmodules"
+        },
+        "official_references": [
+          "optional_parameters",
+          "model_app"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "appmodules"
+          },
+          "rationale": "Query the exact app by name and verify compiler-generated app module definition.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "app-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "uiux_app",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "appmodules({record_id})"
+        },
+        "official_references": [
+          "model_app"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the AppModule row and is never substituted for solution-membership removal.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "appmodules"
+          },
+          "rationale": "Confirm only the exact app was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "app-update": {
+        "executor": {
+          "builder": "uiux_app",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "appmodules({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "model_app"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "appmodules"
+          },
+          "rationale": "Verify the exact app by name after the patch.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "app-verify": {
+        "executor": {
+          "builder": "uiux_app",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "appmodules"
+        },
+        "official_references": [
+          "model_app"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification reads only the exact app, not the full app inventory.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "appmodules"
+          },
+          "rationale": "Target-read the exact app by name.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "chart-create": {
+        "executor": {
+          "builder": "uiux_chart",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "savedqueryvisualizations"
+        },
+        "official_references": [
+          "optional_parameters",
+          "chart"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates chart XML from the validated series payload and writes the SavedQueryVisualization row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueryvisualizations"
+          },
+          "rationale": "Query the exact chart by name and table, verifying compiler-generated visualization XML.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "chart-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "uiux_chart",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "savedqueryvisualizations({record_id})"
+        },
+        "official_references": [
+          "chart"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the SavedQueryVisualization row and is never substituted for solution-membership removal.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueryvisualizations"
+          },
+          "rationale": "Confirm only the exact chart was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "chart-update": {
+        "executor": {
+          "builder": "uiux_chart",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "savedqueryvisualizations({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "chart"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates chart XML from the validated series payload and writes the SavedQueryVisualization row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueryvisualizations"
+          },
+          "rationale": "Verify the exact chart by name and table after the patch.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "chart-verify": {
+        "executor": {
+          "builder": "uiux_chart",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "savedqueryvisualizations"
+        },
+        "official_references": [
+          "chart"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification reads only the exact chart, not the full visualization inventory.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueryvisualizations"
+          },
+          "rationale": "Target-read the exact chart by name and table.",
           "resource": "dataverse-mcp",
           "tools": [
             "describe",
@@ -1710,29 +2194,334 @@
           ]
         }
       },
-      "documented-flow-not-reliable": {
+      "dashboard-create": {
         "executor": {
-          "builder": "unsupported",
-          "supported": false
+          "builder": "uiux_dashboard",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "systemdashboards"
+        },
+        "official_references": [
+          "optional_parameters",
+          "system_dashboard"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates deterministic dashboard FormXML from validated components and writes the SystemDashboard row under the documented solution header; classic dashboards only (interactive dashboards require visual authoring).",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemdashboards"
+          },
+          "rationale": "Query the exact dashboard by name and verify compiler-generated FormXML.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "dashboard-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "uiux_dashboard",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "systemdashboards({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "system_dashboard"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the SystemDashboard row and is never substituted for solution-membership removal.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemdashboards"
+          },
+          "rationale": "Confirm only the exact dashboard was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "dashboard-update": {
+        "executor": {
+          "builder": "uiux_dashboard",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "systemdashboards({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "system_dashboard"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates deterministic dashboard FormXML from validated components and writes the SystemDashboard row under the documented solution header; classic dashboards only (interactive dashboards require visual authoring).",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemdashboards"
+          },
+          "rationale": "Verify the exact dashboard by name after the patch.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "dashboard-verify": {
+        "executor": {
+          "builder": "uiux_dashboard",
+          "supported": true
         },
         "fallback": {
           "allowed_when": "not_applicable",
           "issue_evidence_required": false,
           "resource": "maker-portal"
         },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "systemdashboards"
+        },
         "official_references": [
-          "workflow",
-          "optional_parameters"
+          "system_dashboard"
         ],
-        "operation": "any",
-        "primary_resource": "maker-portal",
-        "rationale": "Workflow row CRUD is documented, but Microsoft does not document the complete cloud-flow clientdata construction contract required for safe compiler authoring.",
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification reads only the exact dashboard, not the full dashboard inventory.",
         "solution_context": {
           "mechanism": "not_applicable"
         },
-        "support": "documented_but_not_compiler_reliable",
+        "support": "supported",
         "verification": {
-          "rationale": "Verify the exact workflow identity and runtime outcome after supported visual authoring.",
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemdashboards"
+          },
+          "rationale": "Target-read the exact dashboard by name.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "derived-column-create": {
+        "executor": {
+          "builder": "schema_derived_column",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "metadata",
+          "method": "POST",
+          "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes"
+        },
+        "official_references": [
+          "optional_parameters",
+          "column_definitions",
+          "publish_xml"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "metadata",
+            "method": "GET",
+            "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+          },
+          "rationale": "Verify the exact derived column by table and logical name.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "derived-column-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "schema_derived_column",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "metadata",
+          "method": "DELETE",
+          "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+        },
+        "official_references": [
+          "column_definitions",
+          "publish_xml"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the derived column in the environment and never means solution-membership removal.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "metadata",
+            "method": "GET",
+            "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+          },
+          "rationale": "Confirm only the exact derived column was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "derived-column-update": {
+        "executor": {
+          "builder": "schema_derived_column",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "metadata",
+          "method": "PUT",
+          "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+        },
+        "official_references": [
+          "optional_parameters",
+          "column_definitions",
+          "publish_xml"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "metadata",
+            "method": "GET",
+            "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+          },
+          "rationale": "Retrieve, merge, and verify the exact derived column definition.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "derived-column-verify": {
+        "executor": {
+          "builder": "schema_derived_column",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "metadata",
+          "method": "GET",
+          "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+        },
+        "official_references": [
+          "column_definitions",
+          "publish_xml"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification avoids broad table or solution inventory.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "metadata",
+            "method": "GET",
+            "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+          },
+          "rationale": "Target-read the exact derived column.",
           "resource": "dataverse-mcp",
           "tools": [
             "describe",
@@ -1763,36 +2552,6 @@
         "support": "documented_but_not_compiler_reliable",
         "verification": {
           "rationale": "Verify exact form metadata after portal authoring.",
-          "resource": "dataverse-mcp",
-          "tools": [
-            "describe",
-            "read_query"
-          ]
-        }
-      },
-      "documented-role-not-reliable": {
-        "executor": {
-          "builder": "unsupported",
-          "supported": false
-        },
-        "fallback": {
-          "allowed_when": "not_applicable",
-          "issue_evidence_required": false,
-          "resource": "maker-portal"
-        },
-        "official_references": [
-          "security_role",
-          "optional_parameters"
-        ],
-        "operation": "any",
-        "primary_resource": "maker-portal",
-        "rationale": "Role CRUD and privilege actions are documented, but canonical role identity, base-role copy, business-unit scoping, and privilege resolution are not safely derivable from the current payload.",
-        "solution_context": {
-          "mechanism": "not_applicable"
-        },
-        "support": "documented_but_not_compiler_reliable",
-        "verification": {
-          "rationale": "Verify the exact role and effective privileges after human least-privilege review.",
           "resource": "dataverse-mcp",
           "tools": [
             "describe",
@@ -1961,6 +2720,376 @@
             "path_template": "environmentvariabledefinitions"
           },
           "rationale": "Read definition field names and status only; withhold all values.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "field-security-profile-create": {
+        "executor": {
+          "builder": "sec_field_profile",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "fieldsecurityprofiles"
+        },
+        "official_references": [
+          "optional_parameters",
+          "field_security_profile",
+          "field_permission",
+          "column_level_security"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor uses documented profile and permission row APIs, secures exact columns through metadata replacement, and associates only exact users or teams.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "fieldsecurityprofiles"
+          },
+          "rationale": "Verify the exact profile, secured columns, field permissions, and user/team associations.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "field-security-profile-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "sec_field_profile",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "fieldsecurityprofiles({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "field_security_profile",
+          "field_permission"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the profile and cascading permissions and is never solution-membership removal.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "fieldsecurityprofiles"
+          },
+          "rationale": "Confirm the exact profile and cascading field permissions were removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "field-security-profile-update": {
+        "executor": {
+          "builder": "sec_field_profile",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "fieldsecurityprofiles({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "field_security_profile",
+          "field_permission",
+          "column_level_security"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor uses documented profile and permission row APIs, secures exact columns through metadata replacement, and associates only exact users or teams.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "fieldsecurityprofiles"
+          },
+          "rationale": "Verify the exact profile and declared child permissions after idempotent upsert.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "field-security-profile-verify": {
+        "executor": {
+          "builder": "sec_field_profile",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "fieldsecurityprofiles"
+        },
+        "official_references": [
+          "field_security_profile",
+          "field_permission",
+          "column_level_security"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification avoids broad security inventory reads.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "fieldsecurityprofiles"
+          },
+          "rationale": "Target-read the exact profile identity and non-secret permission metadata.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "flowagent-primary": {
+        "executor": {
+          "builder": "unsupported",
+          "supported": false
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "official_references": [
+          "workflow",
+          "power_automate_flowagent"
+        ],
+        "operation": "any",
+        "primary_resource": "power-automate-flowagent",
+        "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "unsupported_or_not_applicable",
+        "verification": {
+          "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+          "resource": "power-automate-flowagent",
+          "tools": [
+            "get_flow",
+            "get_run_history",
+            "diagnose_run"
+          ]
+        }
+      },
+      "form-create": {
+        "executor": {
+          "builder": "uiux_form",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "systemforms"
+        },
+        "official_references": [
+          "optional_parameters",
+          "system_form"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates deterministic FormXML from validated sections and supported control types, then writes the SystemForm row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemforms"
+          },
+          "rationale": "Query the exact form by name, table, and type and verify compiler-generated FormXML.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "form-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "uiux_form",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "systemforms({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "system_form"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the SystemForm row and is never substituted for solution-membership removal.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemforms"
+          },
+          "rationale": "Confirm only the exact form was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "form-update": {
+        "executor": {
+          "builder": "uiux_form",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "systemforms({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "system_form"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates deterministic FormXML from validated sections and supported control types, then writes the SystemForm row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemforms"
+          },
+          "rationale": "Verify the exact form content after the patch by name, table, and type.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "form-verify": {
+        "executor": {
+          "builder": "uiux_form",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "systemforms"
+        },
+        "official_references": [
+          "system_form"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification reads one canonical form identity rather than the form inventory.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "systemforms"
+          },
+          "rationale": "Target-read the exact form by name, table, and type.",
           "resource": "dataverse-mcp",
           "tools": [
             "describe",
@@ -3002,11 +4131,509 @@
           "rationale": "Use the component's native repository build and validation tools.",
           "resource": "repository"
         }
+      },
+      "role-create": {
+        "executor": {
+          "builder": "sec_role",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "roles"
+        },
+        "official_references": [
+          "security_role",
+          "add_privileges_role",
+          "optional_parameters"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor creates the role at the root business unit under the documented solution header, then assigns each compiler-declared privilege by exact name and depth through the AddPrivilegesRole bound action; MCP stays verification-only.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "roles"
+          },
+          "rationale": "Read the exact role by name and confirm the declared privileges resolved and assigned at the requested depths.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "role-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "sec_role",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "roles({record_id})"
+        },
+        "official_references": [
+          "security_role"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the role row in the environment; it is never substituted for RemoveSolutionComponent.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "roles"
+          },
+          "rationale": "Confirm only the exact role was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "role-update": {
+        "executor": {
+          "builder": "sec_role",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "roles({record_id})"
+        },
+        "official_references": [
+          "security_role",
+          "add_privileges_role",
+          "optional_parameters"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor creates the role at the root business unit under the documented solution header, then assigns each compiler-declared privilege by exact name and depth through the AddPrivilegesRole bound action; MCP stays verification-only.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "roles"
+          },
+          "rationale": "Verify the exact role after the patch by name and re-confirm the declared privileges.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "role-verify": {
+        "executor": {
+          "builder": "sec_role",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "roles"
+        },
+        "official_references": [
+          "security_role"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification reads only the exact role, not the full role inventory.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "roles"
+          },
+          "rationale": "Target-read the exact role by name.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "sitemap-create": {
+        "executor": {
+          "builder": "uiux_sitemap",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "sitemaps"
+        },
+        "official_references": [
+          "optional_parameters",
+          "site_map"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "sitemaps"
+          },
+          "rationale": "Query the exact sitemap by name and verify compiler-generated sitemap XML.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "sitemap-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "uiux_sitemap",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "sitemaps({record_id})"
+        },
+        "official_references": [
+          "site_map"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the SiteMap row and is never substituted for solution-membership removal.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "sitemaps"
+          },
+          "rationale": "Confirm only the exact sitemap was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "sitemap-update": {
+        "executor": {
+          "builder": "uiux_sitemap",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "sitemaps({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "site_map"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "sitemaps"
+          },
+          "rationale": "Verify the exact sitemap by name after the patch.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "sitemap-verify": {
+        "executor": {
+          "builder": "uiux_sitemap",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "sitemaps"
+        },
+        "official_references": [
+          "site_map"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification reads only the exact sitemap, not the full sitemap inventory.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "sitemaps"
+          },
+          "rationale": "Target-read the exact sitemap by name.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "view-create": {
+        "executor": {
+          "builder": "uiux_view",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "savedqueries"
+        },
+        "official_references": [
+          "optional_parameters",
+          "saved_query"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates FetchXML and LayoutXML from the structured view payload and writes the SavedQuery row under the documented solution header; MCP stays verification-only.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueries"
+          },
+          "rationale": "Query the exact view by name, returned type, and query type to confirm the compiler-generated FetchXML and LayoutXML.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "view-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "uiux_view",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "savedqueries({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "saved_query"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "HTTP DELETE destroys the SavedQuery row in the environment; it is never substituted for RemoveSolutionComponent.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueries"
+          },
+          "rationale": "Confirm only the exact view was removed.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "view-update": {
+        "executor": {
+          "builder": "uiux_view",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "savedqueries({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "saved_query"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "The executor generates FetchXML and LayoutXML from the structured view payload and writes the SavedQuery row under the documented solution header; MCP stays verification-only.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueries"
+          },
+          "rationale": "Verify the exact view content after the patch by name and returned type.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
+      },
+      "view-verify": {
+        "executor": {
+          "builder": "uiux_view",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "savedqueries"
+        },
+        "official_references": [
+          "saved_query"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted verification reads only the exact saved query, not the full view inventory.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "savedqueries"
+          },
+          "rationale": "Target-read the exact view by name and returned type.",
+          "resource": "dataverse-mcp",
+          "tools": [
+            "describe",
+            "read_query"
+          ]
+        }
       }
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "7a25c456afddca7fdc029277e246361d89a30d1f52d91f63c8f8c76cb6aac87d",
+  "dataverse_web_api_capabilities_hash": "edcc32f74c53a0b2ee14d3adc8c70e8ed88d2b29db50d4a629a935a4ff355a0f",
   "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
   "design_sources": {
     "schema_version": 1,
@@ -3423,7 +5050,7 @@
                 "instructions": "Start a new in-memory MSAL public-client session with account selection against the exact Dataverse scope."
               },
               "id": "interactive-sign-in",
-              "instructions": "Complete interactive OAuth for <environment-url>/user_impersonation; the token cache is memory-only and no token or authentication output is persisted.",
+              "instructions": "Complete interactive OAuth for <environment-url>/user_impersonation; the token cache is memory-only and no token or authentication output is persisted.\n\nISSUE #22: Cross-Process MSAL Handoff - Consolidated Executor Flow\n===========================================================================\n\nAuthentication is now consolidated into the executor process to avoid cross-process MSAL cache failures.\n\nObservable Executor States (emitted to stderr as JSON):\n1. \"waiting-for-human\": Emitted before browser OAuth prompt. DEV remains ready.\n2. \"auth-succeeded\": Emitted after successful token acquisition. DEV can transition to in_progress.\n3. \"auth-failed\": Emitted if authentication failed. DEV must remain ready, no action invoked.\n4. \"request-invoked\": Emitted before sending HTTP request. DEV is in_progress, evidence will be required.\n\nWorkflow:\n1. Readiness gate: Validate DEV and environment are ready\n2. Launch executor: python scripts/dataverse_web_api_executor.py <DEV-ID> --operation create --issue-number <N>\n3. Monitor stderr: Parse JSON executor_state events\n4. On \"waiting-for-human\": Terminal automation should:\n   - Display \"waiting for browser authentication...\" to user\n   - Wait for next state or user interaction\n5. On \"auth-succeeded\": Workflow caller should:\n   - Transition DEV to in_progress (auth succeeded, request will be sent)\n   - Continue waiting for \"request-invoked\"\n6. On \"auth-failed\": Workflow caller should:\n   - Keep DEV in ready state (no action invoked, no evidence)\n   - Retry or escalate per policy\n7. On \"request-invoked\": Web API request is being sent:\n   - DEV is already in in_progress\n   - Sanitized evidence will be posted to issue\n   - If interrupted here, evidence is required\n8. Executor completes with success/failure and posts final evidence\n\nDO NOT:\n- Call executor with --authenticate-only separately (deprecated per issue #22)\n- Transition DEV to in_progress before executor sends request\n- Assume success if no evidence is posted to the issue\n",
               "phase": "authentication",
               "session_probe": {
                 "instructions": "Use only an in-process silent MSAL lookup to confirm the current user and exact Dataverse resource; never print token data."
@@ -3703,6 +5330,78 @@
         "version": "v9.2",
         "version_policy": "api_contract"
       },
+      "power-automate-flowagent": {
+        "authentication": "interactive_user",
+        "description": "Microsoft Power Automate plugin FlowAgent MCP for cloud-flow authoring, validation, publishing, execution, and diagnosis.",
+        "kind": "mcp",
+        "preflight": {
+          "installation": {
+            "guidance": "Install power-automate@power-platform-skills 3.0.1 so its self-contained server/mcp.mjs bundle registers the flowagent MCP; Node.js 18+ and Azure CLI are required, with no npm install.",
+            "policy": "manual"
+          },
+          "steps": [
+            {
+              "action": "mcp_server",
+              "behavior": "automatic",
+              "description": "Verify the exact flowagent MCP server from the Microsoft Power Automate plugin is registered and reports version 3.0.1.",
+              "id": "flowagent-registration",
+              "phase": "availability_version"
+            },
+            {
+              "action": "mcp_tools",
+              "behavior": "automatic",
+              "description": "Verify the required environment, connector, validation, create, edit, publish, run, and diagnosis tools are callable.",
+              "id": "cloud-flow-tools",
+              "phase": "capability"
+            },
+            {
+              "action": "interactive_auth",
+              "behavior": "interactive",
+              "description": "Authenticate the current human through the FlowAgent Azure CLI and MSAL flow.",
+              "fresh_authentication": {
+                "force_supported": false,
+                "instructions": "Sign out only the FlowAgent Azure CLI session, complete a fresh interactive sign-in, and reselect the compiler-owned environment before resuming."
+              },
+              "id": "azure-cli-sign-in",
+              "instructions": "Complete Azure CLI interactive sign-in, then let FlowAgent resolve the exact compiler-owned environment; never record tokens or account output.",
+              "phase": "authentication",
+              "session_probe": {
+                "instructions": "Call get_current_env and confirm its environment ID matches authoring_target.environment_id; resolve and select the compiler-owned environment when no current environment is set."
+              }
+            }
+          ]
+        },
+        "server": "flowagent",
+        "supported_execution_hosts": [
+          "local_interactive"
+        ],
+        "tools": [
+          "resolve_environment",
+          "set_current_env",
+          "get_current_env",
+          "list_connections",
+          "pick_or_create_connection",
+          "get_connector",
+          "get_operation_details",
+          "resolve_entity",
+          "resolve_refs",
+          "resolve_params",
+          "validate_flow",
+          "preflight_flow",
+          "create_flow",
+          "update_flow",
+          "edit_flow",
+          "delete_flow",
+          "get_flow",
+          "publish_flow",
+          "run_flow",
+          "smoke_test",
+          "get_run_history",
+          "diagnose_run"
+        ],
+        "version": "3.0.1",
+        "version_policy": "exact"
+      },
       "power-bi-model-sdk": {
         "authentication": "interactive_user",
         "description": "Project-pinned semantic-model SDK.",
@@ -3944,6 +5643,16 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "discovery_and_targeted_verification",
+              "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -3975,6 +5684,48 @@
             {
               "purpose": "primary_solution_aware_authoring",
               "rationale": "The documented solution header binds the exact column operation to the routed custom solution.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "discovery_and_targeted_verification",
+              "rationale": "MCP generic writes are not primary because they do not guarantee compiler-validated explicit custom-solution context.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "match": {
+          "component_type": "schema_key"
+        },
+        "rationale": "Alternate-key create and exact post-action identity, payload, index-status, and solution-membership verification are fully owned by the compiler-bound Web API executor.",
+        "resources": {
+          "fallback": [
+            {
+              "purpose": "documented_api_failure_fallback",
+              "rationale": "Portal fallback is allowed only with issue evidence for the specific API failure or unsupported payload.",
+              "resource": "maker-portal"
+            }
+          ],
+          "required": [
+            {
+              "purpose": "metadata_contract_grounding",
+              "rationale": "Official alternate-key documentation grounds the compiler-approved request and verification contract.",
+              "resource": "microsoft-learn"
+            },
+            {
+              "purpose": "delegated_authentication",
+              "rationale": "The executor requires the pinned in-memory public-client authentication library.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "primary_authoring_and_verification",
+              "rationale": "The executor performs the solution-aware write and all exact targeted verification without an MCP dependency.",
               "resource": "dataverse-web-api"
             }
           ]
@@ -4008,6 +5759,16 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "discovery_and_targeted_verification",
+              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4062,6 +5823,16 @@
               "purpose": "primary_environment_audit_configuration",
               "rationale": "The admin center is the registered environment-level audit authoring surface.",
               "resource": "power-platform-admin-center"
+            },
+            {
+              "purpose": "targeted_audit_verification",
+              "rationale": "MCP is used only to verify the exact configured audit scope.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4101,6 +5872,16 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "Definition CRUD uses MSCRM.SolutionUniqueName and never logs variable values.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "definition_verification_only",
+              "rationale": "Generic MCP writes lack compiler-validated explicit custom-solution context, so MCP verifies only non-secret definition metadata.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4121,6 +5902,17 @@
               "purpose": "primary_agent_authoring",
               "rationale": "The product-specific authoring resource owns AI-agent changes.",
               "resource": "copilot-studio-authoring"
+            },
+            {
+              "purpose": "data_grounding_and_verification",
+              "rationale": "MCP provides targeted Dataverse grounding and verification only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "search_data",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4148,6 +5940,16 @@
               "purpose": "primary_visual_configuration",
               "rationale": "Portal is primary only because the capability matrix explicitly marks Web API construction unsupported or unreliable.",
               "resource": "maker-portal"
+            },
+            {
+              "purpose": "targeted_verification_only",
+              "rationale": "MCP generic writes cannot guarantee explicit custom-solution context and are not used for solution-aware authoring.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4156,8 +5958,15 @@
         "match": {
           "component_type": "uiux_form"
         },
-        "rationale": "SystemForm CRUD exists, but complete safe FormXml or FormJson construction is not derivable from the current payload.",
+        "rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header.",
         "resources": {
+          "fallback": [
+            {
+              "purpose": "unsupported_form_control_fallback",
+              "rationale": "Portal fallback requires sanitized issue evidence naming the unsupported FormXML control or platform rejection.",
+              "resource": "maker-portal"
+            }
+          ],
           "preferred": [
             {
               "purpose": "supported_solution_source_operations",
@@ -4172,9 +5981,66 @@
               "resource": "microsoft-learn"
             },
             {
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "resource": "msal-python"
+            },
+            {
               "purpose": "primary_form_authoring",
-              "rationale": "Portal remains primary because the capability matrix marks direct API form authoring not compiler-reliable.",
+              "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "targeted_form_verification",
+              "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "match": {
+          "component_type": "uiux_view"
+        },
+        "rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts.",
+        "resources": {
+          "fallback": [
+            {
+              "purpose": "unsupported_view_fallback",
+              "rationale": "Portal fallback requires sanitized evidence for an unsupported SavedQuery payload.",
               "resource": "maker-portal"
+            }
+          ],
+          "required": [
+            {
+              "purpose": "view_contract",
+              "rationale": "Official SavedQuery documentation grounds query types and writable fields.",
+              "resource": "microsoft-learn"
+            },
+            {
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "primary_view_authoring",
+              "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "targeted_view_verification",
+              "rationale": "MCP verifies the exact view identity and result surface.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4202,6 +6068,16 @@
               "purpose": "primary_ui_authoring",
               "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
               "resource": "maker-portal"
+            },
+            {
+              "purpose": "targeted_ui_verification",
+              "rationale": "MCP is restricted to discovery and targeted post-action verification.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4210,8 +6086,15 @@
         "match": {
           "component_type": "flow_cloud"
         },
-        "rationale": "Workflow row CRUD does not document the complete cloud-flow clientdata authoring contract, so visual authoring remains primary.",
+        "rationale": "Microsoft FlowAgent owns complete cloud-flow definition construction, connector discovery, validation, solution preflight, creation, publishing, execution, and diagnosis.",
         "resources": {
+          "fallback": [
+            {
+              "purpose": "approved_visual_fallback",
+              "rationale": "Portal fallback is allowed only when FlowAgent is unavailable or rejects an unsupported operation and sanitized issue evidence records the blocker.",
+              "resource": "maker-portal"
+            }
+          ],
           "preferred": [
             {
               "purpose": "supported_solution_operations",
@@ -4226,9 +6109,85 @@
               "resource": "microsoft-learn"
             },
             {
-              "purpose": "primary_visual_flow_authoring",
-              "rationale": "Portal is primary because direct clientdata construction is not compiler-reliable.",
+              "purpose": "primary_flow_authoring",
+              "rationale": "The Microsoft FlowAgent MCP owns validated flow definitions and lifecycle operations without fabricated clientdata.",
+              "resource": "power-automate-flowagent",
+              "tools": [
+                "resolve_environment",
+                "set_current_env",
+                "get_current_env",
+                "list_connections",
+                "pick_or_create_connection",
+                "get_connector",
+                "get_operation_details",
+                "resolve_entity",
+                "resolve_refs",
+                "resolve_params",
+                "validate_flow",
+                "preflight_flow",
+                "create_flow",
+                "update_flow",
+                "edit_flow",
+                "delete_flow",
+                "get_flow",
+                "publish_flow",
+                "run_flow",
+                "smoke_test",
+                "get_run_history",
+                "diagnose_run"
+              ]
+            },
+            {
+              "purpose": "schema_and_runtime_verification",
+              "rationale": "MCP provides targeted discovery and verification only, not solution-aware writes.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "match": {
+          "component_type": "sec_field_profile"
+        },
+        "rationale": "Field security profiles, permissions, secured-column metadata, and user/team associations have documented compiler-gated Web API contracts.",
+        "resources": {
+          "fallback": [
+            {
+              "purpose": "unsupported_field_security_fallback",
+              "rationale": "Portal fallback requires sanitized issue evidence for a platform-rejected column or principal association.",
               "resource": "maker-portal"
+            }
+          ],
+          "required": [
+            {
+              "purpose": "field_security_contract",
+              "rationale": "Official profile, permission, and column-security references ground every write.",
+              "resource": "microsoft-learn"
+            },
+            {
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "primary_field_security_authoring",
+              "rationale": "The executor creates the profile and idempotently applies exact secured columns, permissions, and grantees.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "targeted_field_security_verification",
+              "rationale": "MCP verifies exact non-secret profile and permission metadata only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4259,6 +6218,16 @@
               "purpose": "registration_and_solution_operations",
               "rationale": "PAC is primary only for documented registration and solution/source operations.",
               "resource": "power-platform-cli"
+            },
+            {
+              "purpose": "schema_and_runtime_verification",
+              "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4289,6 +6258,16 @@
               "purpose": "registration_and_solution_operations",
               "rationale": "PAC is primary only for documented registration and solution/source operations.",
               "resource": "power-platform-cli"
+            },
+            {
+              "purpose": "schema_and_runtime_verification",
+              "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4314,6 +6293,16 @@
               "purpose": "pcf_and_solution_operations",
               "rationale": "PAC owns supported PCF and solution packaging operations.",
               "resource": "power-platform-cli"
+            },
+            {
+              "purpose": "schema_and_runtime_verification",
+              "rationale": "MCP is used for targeted reads only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4334,6 +6323,16 @@
               "purpose": "primary_solution_source_operations",
               "rationale": "PAC remains primary for supported solution source and package operations.",
               "resource": "power-platform-cli"
+            },
+            {
+              "purpose": "targeted_runtime_verification",
+              "rationale": "MCP verifies exact metadata and runtime behavior only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4361,6 +6360,17 @@
               "purpose": "primary_agent_authoring",
               "rationale": "The approved Copilot Studio resource performs product-specific authoring.",
               "resource": "copilot-studio-authoring"
+            },
+            {
+              "purpose": "data_grounding_and_verification",
+              "rationale": "Dataverse MCP remains targeted grounding and verification only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "search_data",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4381,26 +6391,16 @@
               "purpose": "primary_least_privilege_authoring",
               "rationale": "Portal is primary because the capability matrix rejects unreliable direct role construction.",
               "resource": "maker-portal"
-            }
-          ]
-        }
-      },
-      {
-        "match": {
-          "component_type": "sec_field_profile"
-        },
-        "rationale": "Field-security authoring remains visual until the payload contract can safely construct the profile and every field permission.",
-        "resources": {
-          "required": [
-            {
-              "purpose": "security_model_grounding",
-              "rationale": "Official security documentation grounds the exact field profile behavior.",
-              "resource": "microsoft-learn"
             },
             {
-              "purpose": "primary_field_security_authoring",
-              "rationale": "Portal is primary because no complete compiler-reliable Web API payload is claimed.",
-              "resource": "maker-portal"
+              "purpose": "targeted_role_verification",
+              "rationale": "MCP verifies exact effective privileges only and is not used for generic solution-aware writes.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4586,6 +6586,16 @@
               "purpose": "connector_and_solution_operations",
               "rationale": "PAC remains primary for documented connector and solution operations.",
               "resource": "power-platform-cli"
+            },
+            {
+              "purpose": "schema_and_test_data_verification",
+              "rationale": "MCP provides targeted schema and test-data reads only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4625,6 +6635,16 @@
               "purpose": "primary_solution_aware_authoring",
               "rationale": "Supported row operations use compiler-owned paths and the explicit solution header.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "targeted_reference_verification",
+              "rationale": "Generic MCP writes do not guarantee compiler-validated custom-solution context and are verification-only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -4645,11 +6665,11 @@
       ]
     }
   },
-  "development_resources_hash": "e1816849942ee5651fe6ce71f5e2a2fadec87417d403c08aef71aec615757512",
+  "development_resources_hash": "5e173c21cce30b099e7d154306d393be1486570b0b5df076ccd2288fa220239f",
   "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
   "schema_version": 1,
   "schemas": {
-    "dev.schema.json": "d05e5eb60b949fc8af2bd4b6cbf61c275f7f9a0d559d6e68832d4a989b773090",
+    "dev.schema.json": "b9f3644a10037534650755133d50d3091798762535ec0dff41114768f3ffaff9",
     "plan.schema.json": "ee8630c0dac8bafc829fef93b5468caed47b886840361f3a74d771ec23a2e30e",
     "req.schema.json": "0913a06f2154521b7b1ac044b199db0aad0d74f7ada592925fddac9cc1988718",
     "requirement-groups.schema.json": "7527df1e7eda95666e9b4fbc482bc4bc908b229baad2454503e6247521da2e2b",

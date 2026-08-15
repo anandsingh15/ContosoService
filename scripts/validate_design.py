@@ -83,6 +83,9 @@ def main() -> int:
         member_reqs = set(spec_front.get("member_reqs") or [])
         covered = set()
         local_ids = set()
+        validate_payload_contract = plan_id not in set(
+            conv.get("legacy_payload_designs") or []
+        )
         for component in components:
             component_id = component.get("id")
             forbidden = {
@@ -133,10 +136,107 @@ def main() -> int:
                         f"{scope} identity field '{identity_field}'",
                     )
                 )
+            grouped_relationship = (
+                component_type == "schema_relationship"
+                and isinstance(component.get("relationships"), list)
+            )
+            if grouped_relationship:
+                required = ["table", "satisfies"]
             for field in required:
-                if not present(component.get(field)):
+                if validate_payload_contract and not present(component.get(field)):
                     errors.append(
                         P.error(rel, f"component {component_id} ({component_type}) missing required field '{field}'")
+                    )
+            if validate_payload_contract and not grouped_relationship:
+                for field, bad, allowed in P.component_field_enum_violations(component, component_type, conv):
+                    errors.append(
+                        P.error(
+                            rel,
+                            f"component {component_id} ({component_type}) field '{field}' value "
+                            f"'{bad}' is not canonical; use one of: {', '.join(allowed)}",
+                        )
+                    )
+            if validate_payload_contract and component_type == "schema_relationship":
+                for message in P.schema_relationship_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "schema_column":
+                for message in P.column_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "uiux_view":
+                for message in P.view_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "uiux_form":
+                for message in P.form_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "sec_field_profile":
+                for message in P.field_security_profile_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "uiux_dashboard":
+                for message in P.dashboard_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "uiux_chart":
+                for message in P.chart_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "uiux_sitemap":
+                for message in P.sitemap_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "uiux_app":
+                for message in P.app_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "schema_derived_column":
+                for message in P.derived_column_contract_violations(component):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "schema_table":
+                for index, column in enumerate(component.get("columns") or []):
+                    if not isinstance(column, dict):
+                        continue
+                    for message in P.column_contract_violations(column):
+                        errors.append(
+                            P.error(
+                                rel,
+                                f"component {component_id} ({component_type}) "
+                                f"column[{index}] {message}",
+                            )
+                        )
+            elif validate_payload_contract and component_type == "schema_choice":
+                for message in P.choice_option_violations(component.get("options")):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "schema_key":
+                for message in P.key_column_violations(component.get("key_columns")):
+                    errors.append(
+                        P.error(rel, f"component {component_id} ({component_type}) {message}")
+                    )
+            elif validate_payload_contract and component_type == "config_env_variable":
+                data_type = str(component.get("data_type") or "").strip().lower()
+                if data_type and data_type not in P.ENV_VARIABLE_TYPES:
+                    errors.append(
+                        P.error(
+                            rel,
+                            f"component {component_id} ({component_type}) data_type "
+                            f"'{data_type}' is not a supported environment-variable type",
+                        )
                     )
             satisfies = component.get("satisfies")
             if not isinstance(satisfies, list) or not satisfies:

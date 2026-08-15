@@ -68,6 +68,7 @@
             "solution_unique_name": { "type": "string", "minLength": 1 },
             "publisher_name": { "type": "string", "minLength": 1 },
             "publisher_prefix": { "type": "string", "minLength": 1 },
+            "publisher_option_value_prefix": { "type": "integer" },
             "unpack_path": { "type": "string", "minLength": 1 },
             "component_projects": { "type": "array" }
           }
@@ -188,7 +189,8 @@
                 { "required": ["solution"] },
                 { "required": ["solution_unique_name"] },
                 { "required": ["publisher_name"] },
-                { "required": ["publisher_prefix"] }
+                { "required": ["publisher_prefix"] },
+                { "required": ["publisher_option_value_prefix"] }
               ]
             }
           }

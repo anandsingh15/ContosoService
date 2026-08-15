@@ -59,6 +59,21 @@ official_references:
   security_role:
     title: Security Role table reference
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/role
+  field_security_profile:
+    title: Field Security Profile table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/fieldsecurityprofile
+  field_permission:
+    title: Field Permission table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/fieldpermission
+  column_level_security:
+    title: Column-level security with code
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/column-level-security
+  saved_query:
+    title: Saved Query (view) table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/savedquery
+  add_privileges_role:
+    title: AddPrivilegesRole action reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/addprivilegesrole
   add_solution_component:
     title: AddSolutionComponent action
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/addsolutioncomponent
@@ -92,6 +107,9 @@ official_references:
   power_platform_cli:
     title: Microsoft Power Platform CLI
     url: https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction
+  power_automate_flowagent:
+    title: Microsoft Power Automate plugin with FlowAgent MCP
+    url: https://github.com/microsoft/power-platform-skills/tree/main/plugins/power-automate
   dataverse_mcp:
     title: Dataverse Model Context Protocol server
     url: https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp
@@ -107,6 +125,18 @@ official_references:
   power_bi_rest:
     title: Power BI REST APIs
     url: https://learn.microsoft.com/en-us/rest/api/power-bi/
+  system_dashboard:
+    title: System Dashboard (systemdashboards) table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/systemdashboard
+  chart:
+    title: Visualization (SavedQueryVisualization) table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/savedqueryvisualization
+  site_map:
+    title: Site Map table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sitemap
+  model_app:
+    title: Model-Driven App (AppModule) table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/appmodule
 
 profiles:
   metadata-table-create:
@@ -199,6 +229,51 @@ profiles:
     executor: {supported: true, builder: schema_column}
     rationale: Targeted verification avoids broad table or solution inventory.
     official_references: [column_definitions]
+  derived-column-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Verify the exact derived column by table and logical name.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: schema_derived_column}
+    rationale: &derived_rationale The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.
+    official_references: [optional_parameters, column_definitions, publish_xml]
+  derived-column-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PUT, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: "Retrieve, merge, and verify the exact derived column definition."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: schema_derived_column}
+    rationale: *derived_rationale
+    official_references: [optional_parameters, column_definitions, publish_xml]
+  derived-column-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Confirm only the exact derived column was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: schema_derived_column}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the derived column in the environment and never means solution-membership removal.
+    official_references: [column_definitions, publish_xml]
+  derived-column-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Target-read the exact derived column.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: schema_derived_column}
+    rationale: Targeted verification avoids broad table or solution inventory.
+    official_references: [column_definitions, publish_xml]
   metadata-relationship-create:
     support: supported
     operation: create
@@ -423,6 +498,366 @@ profiles:
     executor: {supported: true, builder: integ_connection_ref}
     rationale: Targeted verification does not inspect or bind a concrete connection.
     official_references: [connection_reference]
+  form-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: systemforms}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemforms}, rationale: "Query the exact form by name, table, and type and verify compiler-generated FormXML."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_form}
+    rationale: &form_rationale The executor generates deterministic FormXML from validated sections and supported control types, then writes the SystemForm row under the documented solution header.
+    official_references: [optional_parameters, system_form]
+  form-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "systemforms({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemforms}, rationale: "Verify the exact form content after the patch by name, table, and type."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_form}
+    rationale: *form_rationale
+    official_references: [optional_parameters, system_form]
+  form-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "systemforms({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemforms}, rationale: Confirm only the exact form was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_form}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the SystemForm row and is never substituted for solution-membership removal.
+    official_references: [optional_parameters, system_form]
+  form-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: systemforms}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemforms}, rationale: "Target-read the exact form by name, table, and type."}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: uiux_form}
+    rationale: Targeted verification reads one canonical form identity rather than the form inventory.
+    official_references: [system_form]
+  view-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: savedqueries}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueries}, rationale: "Query the exact view by name, returned type, and query type to confirm the compiler-generated FetchXML and LayoutXML."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_view}
+    rationale: &view_rationale The executor generates FetchXML and LayoutXML from the structured view payload and writes the SavedQuery row under the documented solution header; MCP stays verification-only.
+    official_references: [optional_parameters, saved_query]
+  view-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "savedqueries({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueries}, rationale: Verify the exact view content after the patch by name and returned type.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_view}
+    rationale: *view_rationale
+    official_references: [optional_parameters, saved_query]
+  view-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "savedqueries({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueries}, rationale: Confirm only the exact view was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_view}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the SavedQuery row in the environment; it is never substituted for RemoveSolutionComponent.
+    official_references: [optional_parameters, saved_query]
+  view-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: savedqueries}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueries}, rationale: Target-read the exact view by name and returned type.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: uiux_view}
+    rationale: Targeted verification reads only the exact saved query, not the full view inventory.
+    official_references: [saved_query]
+  role-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: roles}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: roles}, rationale: "Read the exact role by name and confirm the declared privileges resolved and assigned at the requested depths."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: sec_role}
+    rationale: &role_rationale The executor creates the role at the root business unit under the documented solution header, then assigns each compiler-declared privilege by exact name and depth through the AddPrivilegesRole bound action; MCP stays verification-only.
+    official_references: [security_role, add_privileges_role, optional_parameters]
+  field-security-profile-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: fieldsecurityprofiles}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: fieldsecurityprofiles}, rationale: "Verify the exact profile, secured columns, field permissions, and user/team associations."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: sec_field_profile}
+    rationale: &field_profile_rationale The executor uses documented profile and permission row APIs, secures exact columns through metadata replacement, and associates only exact users or teams.
+    official_references: [optional_parameters, field_security_profile, field_permission, column_level_security]
+  field-security-profile-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "fieldsecurityprofiles({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: fieldsecurityprofiles}, rationale: Verify the exact profile and declared child permissions after idempotent upsert.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: sec_field_profile}
+    rationale: *field_profile_rationale
+    official_references: [optional_parameters, field_security_profile, field_permission, column_level_security]
+  field-security-profile-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "fieldsecurityprofiles({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: fieldsecurityprofiles}, rationale: Confirm the exact profile and cascading field permissions were removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: sec_field_profile}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the profile and cascading permissions and is never solution-membership removal.
+    official_references: [optional_parameters, field_security_profile, field_permission]
+  field-security-profile-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: fieldsecurityprofiles}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: fieldsecurityprofiles}, rationale: Target-read the exact profile identity and non-secret permission metadata.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: sec_field_profile}
+    rationale: Targeted verification avoids broad security inventory reads.
+    official_references: [field_security_profile, field_permission, column_level_security]
+  role-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "roles({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: roles}, rationale: Verify the exact role after the patch by name and re-confirm the declared privileges.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: sec_role}
+    rationale: *role_rationale
+    official_references: [security_role, add_privileges_role, optional_parameters]
+  role-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "roles({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: roles}, rationale: Confirm only the exact role was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: sec_role}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the role row in the environment; it is never substituted for RemoveSolutionComponent.
+    official_references: [security_role]
+  role-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: roles}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: roles}, rationale: Target-read the exact role by name.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: sec_role}
+    rationale: Targeted verification reads only the exact role, not the full role inventory.
+    official_references: [security_role]
+  dashboard-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: systemdashboards}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemdashboards}, rationale: "Query the exact dashboard by name and verify compiler-generated FormXML."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_dashboard}
+    rationale: &dashboard_rationale The executor generates deterministic dashboard FormXML from validated components and writes the SystemDashboard row under the documented solution header; classic dashboards only (interactive dashboards require visual authoring).
+    official_references: [optional_parameters, system_dashboard]
+  dashboard-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "systemdashboards({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemdashboards}, rationale: Verify the exact dashboard by name after the patch.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_dashboard}
+    rationale: *dashboard_rationale
+    official_references: [optional_parameters, system_dashboard]
+  dashboard-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "systemdashboards({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemdashboards}, rationale: Confirm only the exact dashboard was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_dashboard}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the SystemDashboard row and is never substituted for solution-membership removal.
+    official_references: [optional_parameters, system_dashboard]
+  dashboard-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: systemdashboards}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: systemdashboards}, rationale: Target-read the exact dashboard by name.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: uiux_dashboard}
+    rationale: Targeted verification reads only the exact dashboard, not the full dashboard inventory.
+    official_references: [system_dashboard]
+  chart-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: savedqueryvisualizations}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueryvisualizations}, rationale: "Query the exact chart by name and table, verifying compiler-generated visualization XML."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_chart}
+    rationale: &chart_rationale The executor generates chart XML from the validated series payload and writes the SavedQueryVisualization row under the documented solution header.
+    official_references: [optional_parameters, chart]
+  chart-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "savedqueryvisualizations({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueryvisualizations}, rationale: Verify the exact chart by name and table after the patch.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_chart}
+    rationale: *chart_rationale
+    official_references: [optional_parameters, chart]
+  chart-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "savedqueryvisualizations({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueryvisualizations}, rationale: Confirm only the exact chart was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_chart}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the SavedQueryVisualization row and is never substituted for solution-membership removal.
+    official_references: [chart]
+  chart-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: savedqueryvisualizations}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: savedqueryvisualizations}, rationale: Target-read the exact chart by name and table.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: uiux_chart}
+    rationale: Targeted verification reads only the exact chart, not the full visualization inventory.
+    official_references: [chart]
+  sitemap-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: sitemaps}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: "Query the exact sitemap by name and verify compiler-generated sitemap XML."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_sitemap}
+    rationale: &sitemap_rationale The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.
+    official_references: [optional_parameters, site_map]
+  sitemap-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "sitemaps({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: Verify the exact sitemap by name after the patch.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_sitemap}
+    rationale: *sitemap_rationale
+    official_references: [optional_parameters, site_map]
+  sitemap-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "sitemaps({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: Confirm only the exact sitemap was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_sitemap}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the SiteMap row and is never substituted for solution-membership removal.
+    official_references: [site_map]
+  sitemap-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: Target-read the exact sitemap by name.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: uiux_sitemap}
+    rationale: Targeted verification reads only the exact sitemap, not the full sitemap inventory.
+    official_references: [site_map]
+  app-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: appmodules}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: "Query the exact app by name and verify compiler-generated app module definition."}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_app}
+    rationale: &app_rationale The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.
+    official_references: [optional_parameters, model_app]
+  app-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "appmodules({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: Verify the exact app by name after the patch.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_app}
+    rationale: *app_rationale
+    official_references: [optional_parameters, model_app]
+  app-delete:
+    support: supported
+    operation: delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "appmodules({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: Confirm only the exact app was removed.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: uiux_app}
+    destructive_effect: environment_delete
+    rationale: HTTP DELETE destroys the AppModule row and is never substituted for solution-membership removal.
+    official_references: [model_app]
+  app-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: appmodules}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: Target-read the exact app by name.}
+    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    executor: {supported: true, builder: uiux_app}
+    rationale: Targeted verification reads only the exact app, not the full app inventory.
+    official_references: [model_app]
   metadata-publish:
     support: supported
     operation: publish
@@ -477,26 +912,16 @@ profiles:
     executor: {supported: false, builder: unsupported}
     rationale: SystemForm CRUD is documented, but the current required payload cannot safely construct or merge complete FormXml/FormJson and role/order dependencies.
     official_references: [system_form, optional_parameters]
-  documented-flow-not-reliable:
-    support: documented_but_not_compiler_reliable
+  flowagent-primary:
+    support: unsupported_or_not_applicable
     operation: any
-    primary_resource: maker-portal
+    primary_resource: power-automate-flowagent
     solution_context: {mechanism: not_applicable}
-    verification: {resource: dataverse-mcp, tools: [describe, read_query], rationale: Verify the exact workflow identity and runtime outcome after supported visual authoring.}
-    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    verification: {resource: power-automate-flowagent, tools: [get_flow, get_run_history, diagnose_run], rationale: "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
     executor: {supported: false, builder: unsupported}
-    rationale: Workflow row CRUD is documented, but Microsoft does not document the complete cloud-flow clientdata construction contract required for safe compiler authoring.
-    official_references: [workflow, optional_parameters]
-  documented-role-not-reliable:
-    support: documented_but_not_compiler_reliable
-    operation: any
-    primary_resource: maker-portal
-    solution_context: {mechanism: not_applicable}
-    verification: {resource: dataverse-mcp, tools: [describe, read_query], rationale: Verify the exact role and effective privileges after human least-privilege review.}
-    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
-    executor: {supported: false, builder: unsupported}
-    rationale: Role CRUD and privilege actions are documented, but canonical role identity, base-role copy, business-unit scoping, and privilege resolution are not safely derivable from the current payload.
-    official_references: [security_role, optional_parameters]
+    rationale: Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.
+    official_references: [workflow, power_automate_flowagent]
   pac-primary:
     support: unsupported_or_not_applicable
     operation: any
@@ -565,6 +990,9 @@ components:
   schema_column:
     implementation_scope: repository_and_dataverse_solution
     operations: {create: metadata-column-create, update: metadata-column-update, delete: metadata-column-delete, verify: metadata-column-verify, publish: metadata-publish, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}
+  schema_derived_column:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: derived-column-create, update: derived-column-update, delete: derived-column-delete, verify: derived-column-verify, publish: metadata-publish, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}
   schema_relationship:
     implementation_scope: repository_and_dataverse_solution
     operations: {create: metadata-relationship-create, update: metadata-relationship-update, delete: metadata-relationship-delete, verify: metadata-relationship-verify, publish: metadata-publish, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}
@@ -598,15 +1026,25 @@ components:
     operations: {create: copilot-studio-primary, update: copilot-studio-primary, delete: copilot-studio-primary, verify: copilot-studio-primary}
   uiux_form:
     implementation_scope: repository_and_dataverse_solution
-    operations: {create: documented-form-not-reliable, update: documented-form-not-reliable, delete: documented-form-not-reliable, verify: documented-form-not-reliable}
-  uiux_view: *maker_component
-  uiux_dashboard: *maker_component
-  uiux_chart: *maker_component
-  uiux_sitemap: *maker_component
-  uiux_app: *maker_component
+    operations: {create: form-create, update: form-update, delete: form-delete, verify: form-verify}
+  uiux_view:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: view-create, update: view-update, delete: view-delete, verify: view-verify}
+  uiux_dashboard:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: dashboard-create, update: dashboard-update, delete: dashboard-delete, verify: dashboard-verify}
+  uiux_chart:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: chart-create, update: chart-update, delete: chart-delete, verify: chart-verify}
+  uiux_sitemap:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: sitemap-create, update: sitemap-update, delete: sitemap-delete, verify: sitemap-verify}
+  uiux_app:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: app-create, update: app-update, delete: app-delete, verify: app-verify}
   flow_cloud:
     implementation_scope: repository_and_dataverse_solution
-    operations: {create: documented-flow-not-reliable, update: documented-flow-not-reliable, delete: documented-flow-not-reliable, verify: documented-flow-not-reliable}
+    operations: {create: flowagent-primary, update: flowagent-primary, delete: flowagent-primary, verify: flowagent-primary}
   code_plugin: &pac_component
     implementation_scope: repository_and_dataverse_solution
     operations: {create: pac-primary, update: pac-primary, delete: pac-primary, verify: pac-primary}
@@ -616,8 +1054,10 @@ components:
   mcs_*: *copilot_component
   sec_role:
     implementation_scope: repository_and_dataverse_solution
-    operations: {create: documented-role-not-reliable, update: documented-role-not-reliable, delete: documented-role-not-reliable, verify: documented-role-not-reliable}
-  sec_field_profile: *maker_component
+    operations: {create: role-create, update: role-update, delete: role-delete, verify: role-verify}
+  sec_field_profile:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: field-security-profile-create, update: field-security-profile-update, delete: field-security-profile-delete, verify: field-security-profile-verify}
   sec_business_unit: *environment_component
   sec_team: *environment_component
   az_apim: &repository_component
