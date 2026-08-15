@@ -2299,6 +2299,139 @@ def acquire_token(row: dict[str, Any], policy: str, emit_waiting_status: bool = 
     return token
 
 
+def _get_dev_markdown_path(dev_id: str) -> Path:
+    """Resolve DEV markdown file path from its ID."""
+    context = P.read_context(P.TASK_CONTEXT_PATH)
+    rows = [row for row in context.get("tasks") or [] if row.get("id") == dev_id]
+    if len(rows) != 1:
+        raise ExecutorError(f"{dev_id} does not resolve to one current task")
+    row = rows[0]
+    return P.ROOT / row["workspace"] / "development" / f"{dev_id}.md"
+
+
+def _transition_dev_to_in_progress(dev_id: str) -> None:
+    """
+    Atomically transition DEV to in_progress after auth succeeds.
+
+    This implements executor-owned lifecycle transition for issue #22:
+    1. Load DEV markdown file
+    2. Verify status is 'ready'
+    3. Change status to 'in_progress'
+    4. Write markdown file
+    5. Regenerate task artifacts (compile_tasks.py, validate_tasks.py)
+    6. Reload and validate against updated task-context
+
+    On failure, restores DEV to 'ready' and raises error.
+
+    Skips transition if DEV file doesn't exist or isn't in 'ready' status.
+    """
+    import subprocess
+
+    try:
+        dev_path = _get_dev_markdown_path(dev_id)
+    except (ExecutorError, P.PipelineError):
+        # DEV file not found or task-context unavailable; skip transition
+        # (likely a read-only operation or test scenario)
+        return
+
+    if not dev_path.exists():
+        # DEV markdown file doesn't exist; skip transition
+        return
+
+    # Step 1: Load and verify current status
+    try:
+        front, body, text = P.read_markdown(dev_path)
+    except P.PipelineError:
+        # Can't read DEV file; skip transition
+        return
+
+    current_status = front.get("status")
+    if current_status != "ready":
+        # DEV is not in ready state; skip transition
+        # (already in progress or in a different state)
+        return
+
+    # Step 2: Transition status to in_progress
+    new_front = dict(front)
+    new_front["status"] = "in_progress"
+    new_text = P.render_markdown(new_front, body)
+
+    try:
+        # Step 3: Write markdown file
+        dev_path.write_text(new_text, encoding="utf-8")
+
+        # Step 4: Regenerate task artifacts
+        compile_result = subprocess.run(
+            [sys.executable, str(P.ROOT / "scripts" / "compile_tasks.py")],
+            capture_output=True,
+            text=True,
+            cwd=str(P.ROOT),
+        )
+        if compile_result.returncode != 0:
+            raise ExecutorError(
+                f"compile_tasks.py failed during DEV lifecycle transition: {compile_result.stderr}",
+                category="lifecycle_error",
+            )
+
+        # Step 5: Validate task artifacts
+        validate_result = subprocess.run(
+            [sys.executable, str(P.ROOT / "scripts" / "validate_tasks.py")],
+            capture_output=True,
+            text=True,
+            cwd=str(P.ROOT),
+        )
+        if validate_result.returncode != 0:
+            raise ExecutorError(
+                f"validate_tasks.py failed during DEV lifecycle transition: {validate_result.stderr}",
+                category="lifecycle_error",
+            )
+
+        # Step 6: Verify updated task-context (hashes must still match)
+        updated_row, _ = load_row(dev_id)
+
+        # Emit lifecycle-transitioned state
+        status_payload = {
+            "executor_state": {
+                "status": "lifecycle-transitioned",
+                "action": f"{dev_id}.transition-to-in-progress",
+                "note": "DEV successfully transitioned to in_progress; task artifacts regenerated and validated",
+            }
+        }
+        print(json.dumps(status_payload, sort_keys=True), file=sys.stderr)
+
+    except ExecutorError:
+        raise
+    except Exception as e:
+        # On any error, restore DEV to ready
+        _restore_dev_to_ready(dev_id)
+        raise ExecutorError(
+            f"DEV lifecycle transition failed: {sanitize_text(str(e))}",
+            category="lifecycle_error",
+        ) from e
+
+
+def _restore_dev_to_ready(dev_id: str) -> None:
+    """Restore DEV to ready state (used for error recovery)."""
+    try:
+        dev_path = _get_dev_markdown_path(dev_id)
+        front, body, text = P.read_markdown(dev_path)
+        if front.get("status") == "in_progress":
+            new_front = dict(front)
+            new_front["status"] = "ready"
+            new_text = P.render_markdown(new_front, body)
+            dev_path.write_text(new_text, encoding="utf-8")
+    except Exception as e:
+        # Log but don't re-raise - we're already in error handling
+        print(
+            json.dumps({
+                "error": "Failed to restore DEV to ready",
+                "dev_id": dev_id,
+                "details": sanitize_text(str(e)),
+            }, sort_keys=True),
+            file=sys.stderr,
+        )
+
+
 def load_row(dev_id: str) -> tuple[dict[str, Any], Path]:
     context = P.read_context(P.TASK_CONTEXT_PATH)
     rows = [row for row in context.get("tasks") or [] if row.get("id") == dev_id]
@@ -3838,6 +3971,13 @@ def _execute_single(
         # prompt and auth-succeeded/auth-failed after auth attempt.
         token = acquire_token(row, row["authentication_policy"], emit_waiting_status=True, emit_auth_result=True)
         auth_succeeded = True
+
+        # Implement executor-owned DEV lifecycle transition (issue #22):
+        # After auth succeeds, atomically transition DEV to in_progress with regenerated
+        # task artifacts. This ensures task-context and hashes are fresh before request invocation.
+        # If transition fails, DEV is restored to ready and exception propagates.
+        _transition_dev_to_in_progress(row["id"])
+
         client = DataverseClient(service_root, token, solution_name)
         if verification_id:
             request = metadata_verification_request(row, verification_id)
@@ -4064,13 +4204,28 @@ def _execute_single(
         # - Auth failures: action_invoked=False, no evidence, DEV remains ready
         # - Action failures: action_invoked=True, evidence required, DEV stays in_progress
         exc.action_invoked = bool(client and client.request_count)
+
+        # If auth succeeded but lifecycle transition or preflight failed before any request,
+        # restore DEV to ready (issue #22: executor-owned lifecycle transition).
+        if auth_succeeded and not exc.action_invoked:
+            try:
+                _restore_dev_to_ready(row["id"])
+            except Exception as restore_err:
+                print(
+                    json.dumps({
+                        "warning": "Failed to restore DEV during error recovery",
+                        "error": sanitize_text(str(restore_err)),
+                    }, sort_keys=True),
+                    file=sys.stderr,
+                )
+
         if not auth_succeeded and exc.category == "unauthenticated":
             # Authentication did not complete. DEV caller must restore to ready state.
             # No execution evidence posted (action was never invoked).
             raise
         if not exc.action_invoked:
-            # Validation or preflight failed before any HTTP request.
-            # No evidence posted; DEV can remain ready.
+            # Validation, preflight, or lifecycle transition failed before any HTTP request.
+            # No evidence posted; DEV can remain ready (or was restored to ready).
             raise
         # At least one HTTP request was sent. Post evidence of failure.
         evidence = evidence_payload(
