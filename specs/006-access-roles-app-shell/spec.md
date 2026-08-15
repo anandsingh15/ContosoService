@@ -8,8 +8,8 @@ member_reqs:
 - INTK-0001-REQ-037
 - INTK-0001-REQ-038
 - INTK-0001-REQ-039
-repository_context_hash: ced4735329e9b6e05b2e45ebdbabfadbe160bd2be1fb7a27f8364914c0cc4718
-spec_hash: 93ffb2d074592bc300da5937430bdf36633f8d88ef9d524d4c242d4f216be078
+repository_context_hash: cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35
+spec_hash: a11094e220fe88317724877cac48afcc245b4c48379dd290ff1b08b541b418e9
 status: reviewed
 ---
 

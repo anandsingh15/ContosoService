@@ -991,7 +991,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "ced4735329e9b6e05b2e45ebdbabfadbe160bd2be1fb7a27f8364914c0cc4718",
+  "context_hash": "cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35",
   "conventions_hash": "50042d1b6a869b98b9eb12a1005944f607562d838756159860478af444214c16",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -5612,7 +5612,7 @@
         "match": {
           "component_type": "schema_table"
         },
-        "rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context.",
+        "rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor.",
         "resources": {
           "fallback": [
             {
@@ -5640,19 +5640,9 @@
               "resource": "msal-python"
             },
             {
-              "purpose": "primary_solution_aware_authoring",
-              "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
+              "purpose": "primary_authoring_and_verification",
+              "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -5958,7 +5948,7 @@
         "match": {
           "component_type": "uiux_form"
         },
-        "rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header.",
+        "rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor.",
         "resources": {
           "fallback": [
             {
@@ -5986,19 +5976,9 @@
               "resource": "msal-python"
             },
             {
-              "purpose": "primary_form_authoring",
-              "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
+              "purpose": "primary_form_authoring_and_verification",
+              "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "targeted_form_verification",
-              "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -6007,7 +5987,7 @@
         "match": {
           "component_type": "uiux_view"
         },
-        "rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts.",
+        "rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor.",
         "resources": {
           "fallback": [
             {
@@ -6028,19 +6008,9 @@
               "resource": "msal-python"
             },
             {
-              "purpose": "primary_view_authoring",
-              "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
+              "purpose": "primary_view_authoring_and_verification",
+              "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "targeted_view_verification",
-              "rationale": "MCP verifies the exact view identity and result surface.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "search",
-                "describe",
-                "read_query"
-              ]
             }
           ]
         }
@@ -6665,7 +6635,7 @@
       ]
     }
   },
-  "development_resources_hash": "5e173c21cce30b099e7d154306d393be1486570b0b5df076ccd2288fa220239f",
+  "development_resources_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
   "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
   "schema_version": 1,
   "schemas": {
