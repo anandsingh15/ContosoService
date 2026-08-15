@@ -2262,10 +2262,7 @@ def acquire_token(row: dict[str, Any], policy: str, emit_waiting_status: bool = 
                 "note": "Complete interactive OAuth in browser; token cache is memory-only and not persisted",
             }
             print(json.dumps({"executor_state": status_payload}, sort_keys=True), file=sys.stderr)
-        kwargs: dict[str, Any] = {
-            "scopes": scopes,
-            "redirect_uri": config["redirect_uri"],
-        }
+        kwargs: dict[str, Any] = {"scopes": scopes}
         if policy == "always_prompt":
             kwargs["prompt"] = "select_account"
         result = app.acquire_token_interactive(**kwargs)
