@@ -466,6 +466,7 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
                 "@odata.type": "Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
                 "AttributeType": "Picklist",
                 "AttributeTypeName": {"Value": "PicklistType"},
+                "SourceTypeMask": 0,
                 "GlobalOptionSet@odata.bind": (
                     "/GlobalOptionSetDefinitions(Name='"
                     + odata_string(option_set_name)
