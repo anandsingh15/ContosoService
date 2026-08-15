@@ -3,8 +3,8 @@ id: DES-02
 status: reviewed
 implements_feature: FEAT-02
 source_spec_hash: 69d6838ef5176a8de5a330d3a82a2b7a4eacac50fec91e378276022a3f28f62b
-repository_context_hash: ced4735329e9b6e05b2e45ebdbabfadbe160bd2be1fb7a27f8364914c0cc4718
-plan_hash: f12a61a6ae7f0064ed4e3626e242af562884eef2cb7afea14f6df8509cc29e33
+repository_context_hash: cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35
+plan_hash: 898efdc9bbe3751738ee1ae7236ef467879b2e8208e7abc7fecf09ec2f00f045
 ---
 
 # Design — FEAT-02 vehicle-fleet-register (DES-02)
@@ -296,5 +296,5 @@ constraint and alternatives were presented.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-02 | FEAT-02 | `69d6838ef5176a8de5a330d3a82a2b7a4eacac50fec91e378276022a3f28f62b` | `ced4735329e9b6e05b2e45ebdbabfadbe160bd2be1fb7a27f8364914c0cc4718` |
+| DES-02 | FEAT-02 | `69d6838ef5176a8de5a330d3a82a2b7a4eacac50fec91e378276022a3f28f62b` | `cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35` |
 <!-- COMPILER:END provenance -->
