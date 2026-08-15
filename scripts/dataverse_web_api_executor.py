@@ -451,9 +451,16 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
     }
     matched = P.match_column_data_type(data_type)
     if matched is None:
-        raise ExecutorError(f"unsupported compiler column data_type '{data_type}'")
-    kind, groups = matched
+        choice_name = str(column.get("choice") or "").strip()
+        if data_type.lower() != "choice" or not re.fullmatch(
+            r"[A-Za-z][A-Za-z0-9_]{1,99}", choice_name
+        ):
+            raise ExecutorError(f"unsupported compiler column data_type '{data_type}'")
+        kind, groups = "choice", None
+    else:
+        kind, groups = matched
     if kind == "choice":
+        option_set_name = groups.group(1) if groups is not None else choice_name
         common.update(
             {
                 "@odata.type": "Microsoft.Dynamics.CRM.PicklistAttributeMetadata",
@@ -461,7 +468,7 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
                 "AttributeTypeName": {"Value": "PicklistType"},
                 "GlobalOptionSet@odata.bind": (
                     "/GlobalOptionSetDefinitions(Name='"
-                    + odata_string(groups.group(1))
+                    + odata_string(option_set_name)
                     + "')"
                 ),
             }
