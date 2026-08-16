@@ -407,7 +407,7 @@ component_project_types:
 component_source_sync:
   schema_table:           {strategy: own_files, paths: [Entities/<table>/Entity.xml]}
   schema_column:          {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml]}
-  schema_derived_column:  {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml]}
+  schema_derived_column:  {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml, Entities/<table>/Formulas/<table>-FormulaDefinitions.yaml]}
   schema_relationship:    {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml, Other/Relationships.xml]}
   schema_choice:          {strategy: own_files, paths: [OptionSets/<name>.xml]}
   schema_key:             {strategy: parent_owned_xml, paths: [Entities/<table>/Entity.xml]}
