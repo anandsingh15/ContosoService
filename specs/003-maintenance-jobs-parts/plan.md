@@ -4,7 +4,7 @@ status: reviewed
 implements_feature: FEAT-03
 source_spec_hash: 6dc71217117ed1649efb2ede88ff764b2a639c518a9c15eb49e7b3e26b15f737
 repository_context_hash: cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a
-plan_hash: b7d8c55938fbc8a1a41ffa5161062b49cd047f5db605209f4aa547213e7fecb5
+plan_hash: 86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c
 ---
 
 # Design — FEAT-03 maintenance-jobs-parts (DES-03)
@@ -21,10 +21,13 @@ The app shell and role-based access remain owned by FEAT-06.
 ### Material decisions (architect-confirmed 2026-08-11)
 
 - **Cost calculation — declarative Dataverse (Option A).** Job Part line value
-  and Maintenance Job labour cost are calculated currency columns. Total parts
-  cost is a currency rollup over related Job Parts, and total cost is a
-  calculated currency column using the latest total-parts rollup plus labour
-  cost. Anand Singh selected this configuration-first option on 2026-08-11.
+  and Maintenance Job labour cost are Decimal Power Fx formula columns. Total
+  parts cost is a Decimal rollup over related Job Parts, and total cost is a
+  Decimal Power Fx formula column using the latest total-parts rollup plus
+  labour cost. Anand Singh selected this configuration-first option on
+  2026-08-11 and confirmed migration from legacy calculated columns to formula
+  columns on 2026-08-16. Currency operands are converted with `Decimal(...)`
+  because Dataverse formula columns do not expose Currency as an output type.
   A cloud flow (Option B) was rejected because it adds run latency, operations,
   and connection dependencies; a synchronous plug-in (Option C) was rejected
   because the requirements do not justify pro-code deployment and test scope.
@@ -60,7 +63,7 @@ The app shell and role-based access remain owned by FEAT-06.
 
 ### Decision axes
 
-1. **logic_tier — Configuration only.** Calculated and rollup columns, forms,
+1. **logic_tier — Configuration only.** Formula and rollup columns, forms,
    the Power Apps grid control, and public views satisfy the feature. No flow,
    plug-in, JavaScript, PCF, or Azure component is introduced.
 2. **data_residency — Dataverse-native.** Maintenance Job and Job Part remain in
@@ -147,18 +150,6 @@ components:
         data_type: Currency
         minimum: 0
         required_level: None
-      - name: aks_labourcost
-        data_type: Calculated Currency
-        expression: aks_labourhours * aks_hourlyrate
-        required_level: None
-      - name: aks_totalpartscost
-        data_type: Rollup Currency
-        aggregation: SUM aks_jobpart.aks_linevalue via aks_maintenancejob_jobpart
-        required_level: None
-      - name: aks_totalcost
-        data_type: Calculated Currency
-        expression: aks_totalpartscost + aks_labourcost
-        required_level: None
     satisfies: [INTK-0001-REQ-007, INTK-0001-REQ-013]
   - id: DES-03-CMP-002
     component_type: schema_table
@@ -178,10 +169,6 @@ components:
         data_type: Currency
         minimum: 0
         required_level: ApplicationRequired
-      - name: aks_linevalue
-        data_type: Calculated Currency
-        expression: aks_quantity * aks_unitprice
-        required_level: None
     satisfies: [INTK-0001-REQ-011, INTK-0001-REQ-012]
   - id: DES-03-CMP-003
     component_type: uiux_form
@@ -204,7 +191,7 @@ components:
       - aks_quantity
       - aks_unitprice
       - aks_linevalue
-    depends_on: [DES-03-CMP-002]
+    depends_on: [DES-03-CMP-002, DES-03-CMP-010]
     satisfies: [INTK-0001-REQ-011, INTK-0001-REQ-012, INTK-0001-REQ-014]
   - id: DES-03-CMP-005
     component_type: uiux_form
@@ -226,7 +213,7 @@ components:
         relationship: aks_maintenancejob_jobpart
         control: Power Apps grid
         editable: true
-    depends_on: [DES-03-CMP-001, DES-03-CMP-002, DES-03-CMP-003, DES-03-CMP-004]
+    depends_on: [DES-03-CMP-001, DES-03-CMP-002, DES-03-CMP-003, DES-03-CMP-004, DES-03-CMP-010, DES-03-CMP-011, DES-03-CMP-012, DES-03-CMP-013]
     satisfies: [INTK-0001-REQ-007, INTK-0001-REQ-008, INTK-0001-REQ-009, INTK-0001-REQ-011, INTK-0001-REQ-012, INTK-0001-REQ-013, INTK-0001-REQ-014]
   - id: DES-03-CMP-006
     component_type: uiux_view
@@ -279,8 +266,56 @@ components:
     scope:
       - aks_maintenancejob: [aks_stage, aks_priority, aks_scheduleddate, aks_completeddate, aks_labourhours, aks_hourlyrate, aks_labourcost, aks_totalpartscost, aks_totalcost]
       - aks_jobpart: [aks_quantity, aks_unitprice, aks_linevalue]
-    depends_on: [DES-03-CMP-001, DES-03-CMP-002]
+    depends_on: [DES-03-CMP-001, DES-03-CMP-002, DES-03-CMP-010, DES-03-CMP-011, DES-03-CMP-012, DES-03-CMP-013]
     satisfies: [INTK-0001-REQ-007, INTK-0001-REQ-011, INTK-0001-REQ-013]
+  - id: DES-03-CMP-010
+    component_type: schema_derived_column
+    name: Job Part line value formula
+    schema_name: aks_linevalue
+    table: aks_jobpart
+    base_data_type: decimal
+    derived_type: formula
+    formula: aks_quantity * Decimal(aks_unitprice)
+    required_level: None
+    depends_on: [DES-03-CMP-002]
+    satisfies: [INTK-0001-REQ-011, INTK-0001-REQ-012]
+  - id: DES-03-CMP-011
+    component_type: schema_derived_column
+    name: Maintenance Job labour cost formula
+    schema_name: aks_labourcost
+    table: aks_maintenancejob
+    base_data_type: decimal
+    derived_type: formula
+    formula: aks_labourhours * Decimal(aks_hourlyrate)
+    required_level: None
+    depends_on: [DES-03-CMP-001]
+    satisfies: [INTK-0001-REQ-007, INTK-0001-REQ-013]
+  - id: DES-03-CMP-012
+    component_type: schema_derived_column
+    name: Maintenance Job total parts cost rollup
+    schema_name: aks_totalpartscost
+    table: aks_maintenancejob
+    base_data_type: decimal
+    derived_type: rollup
+    formula: null
+    rollup_spec:
+      related_entity: aks_jobpart
+      aggregate_function: SUM
+      aggregate_attribute: aks_linevalue
+    required_level: None
+    depends_on: [DES-03-CMP-010]
+    satisfies: [INTK-0001-REQ-013]
+  - id: DES-03-CMP-013
+    component_type: schema_derived_column
+    name: Maintenance Job total cost formula
+    schema_name: aks_totalcost
+    table: aks_maintenancejob
+    base_data_type: decimal
+    derived_type: formula
+    formula: aks_totalpartscost + aks_labourcost
+    required_level: None
+    depends_on: [DES-03-CMP-011, DES-03-CMP-012]
+    satisfies: [INTK-0001-REQ-013]
 ```
 <!-- /FILL -->
 
@@ -331,13 +366,13 @@ components such as model-driven app definitions and site maps.
 <!-- COMPILER:BEGIN coverage -->
 | REQ | Components |
 | --- | --- |
-| INTK-0001-REQ-007 | DES-03-CMP-001, DES-03-CMP-005, DES-03-CMP-009 |
+| INTK-0001-REQ-007 | DES-03-CMP-001, DES-03-CMP-005, DES-03-CMP-009, DES-03-CMP-011 |
 | INTK-0001-REQ-008 | DES-03-CMP-005 |
 | INTK-0001-REQ-009 | DES-03-CMP-003, DES-03-CMP-005 |
 | INTK-0001-REQ-010 | DES-03-CMP-006, DES-03-CMP-007, DES-03-CMP-008 |
-| INTK-0001-REQ-011 | DES-03-CMP-002, DES-03-CMP-004, DES-03-CMP-005, DES-03-CMP-009 |
-| INTK-0001-REQ-012 | DES-03-CMP-002, DES-03-CMP-004, DES-03-CMP-005 |
-| INTK-0001-REQ-013 | DES-03-CMP-001, DES-03-CMP-005, DES-03-CMP-009 |
+| INTK-0001-REQ-011 | DES-03-CMP-002, DES-03-CMP-004, DES-03-CMP-005, DES-03-CMP-009, DES-03-CMP-010 |
+| INTK-0001-REQ-012 | DES-03-CMP-002, DES-03-CMP-004, DES-03-CMP-005, DES-03-CMP-010 |
+| INTK-0001-REQ-013 | DES-03-CMP-001, DES-03-CMP-005, DES-03-CMP-009, DES-03-CMP-011, DES-03-CMP-012, DES-03-CMP-013 |
 | INTK-0001-REQ-014 | DES-03-CMP-004, DES-03-CMP-005 |
 <!-- COMPILER:END coverage -->
 
@@ -355,6 +390,10 @@ components such as model-driven app definitions and site maps.
 | DES-03-CMP-007 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
 | DES-03-CMP-008 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
 | DES-03-CMP-009 | config_audit | dataverse-security | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring |
+| DES-03-CMP-010 | schema_derived_column | dataverse-table | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-011 | schema_derived_column | dataverse-table | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-012 | schema_derived_column | dataverse-table | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-013 | schema_derived_column | dataverse-table | repository_and_dataverse_solution | local_interactive | core-solution-target |
 <!-- COMPILER:END skills -->
 
 ## Provenance

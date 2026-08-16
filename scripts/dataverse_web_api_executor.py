@@ -516,6 +516,42 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
                 "MaxValue": 2147483647,
             }
         )
+    elif kind == "datetime":
+        behavior = str(column.get("behavior") or "UserLocal").strip()
+        if behavior not in {"UserLocal", "DateOnly", "TimeZoneIndependent"}:
+            raise ExecutorError(f"unsupported DateTime behavior '{behavior}'")
+        common.update(
+            {
+                "@odata.type": "Microsoft.Dynamics.CRM.DateTimeAttributeMetadata",
+                "AttributeType": "DateTime",
+                "AttributeTypeName": {"Value": "DateTimeType"},
+                "Format": "DateOnly" if behavior == "DateOnly" else "DateAndTime",
+                "DateTimeBehavior": {"Value": behavior},
+            }
+        )
+    elif kind == "decimal":
+        common.update(
+            {
+                "@odata.type": "Microsoft.Dynamics.CRM.DecimalAttributeMetadata",
+                "AttributeType": "Decimal",
+                "AttributeTypeName": {"Value": "DecimalType"},
+                "Precision": int(column.get("precision", 2)),
+                "MinValue": float(column.get("minimum", -100000000000)),
+                "MaxValue": float(column.get("maximum", 100000000000)),
+            }
+        )
+    elif kind == "currency":
+        common.update(
+            {
+                "@odata.type": "Microsoft.Dynamics.CRM.MoneyAttributeMetadata",
+                "AttributeType": "Money",
+                "AttributeTypeName": {"Value": "MoneyType"},
+                "Precision": int(column.get("precision", 2)),
+                "PrecisionSource": 2,
+                "MinValue": float(column.get("minimum", -922337203685477)),
+                "MaxValue": float(column.get("maximum", 922337203685477)),
+            }
+        )
     else:  # boolean
         common.update(
             {
@@ -590,8 +626,7 @@ def canonical_child_schema_name(column: dict[str, Any]) -> str:
 
 
 def derived_column_definition(derived_col: dict[str, Any]) -> dict[str, Any]:
-    """Build a computed/calculated/rollup column definition for Dataverse metadata API.
-    Supports formula, calculated, and rollup derived types with base_data_type mapping."""
+    """Build a formula or rollup column definition for the metadata API."""
     violations = P.derived_column_contract_violations(derived_col)
     if violations:
         raise ExecutorError(f"derived column contract violations: {'; '.join(violations)}")
@@ -647,14 +682,41 @@ def derived_column_definition(derived_col: dict[str, Any]) -> dict[str, Any]:
         formula = str(derived_col.get("formula") or "").strip()
         if not formula:
             raise ExecutorError("formula-type derived column requires a formula expression")
+        common["SourceType"] = 3
         common["FormulaDefinition"] = formula
     elif derived_type == "calculated":
-        # Calculated columns don't require additional properties beyond definition
-        pass
+        raise ExecutorError(
+            "calculated columns are not supported by the Web API executor; "
+            "use a Power Fx formula column"
+        )
     elif derived_type == "rollup":
-        # Rollup columns would require additional aggregation configuration
-        # (aggregation function, rollup entity, etc.) — stub for now
-        pass
+        rollup_spec = derived_col.get("rollup_spec") or {}
+        related_entity = str(rollup_spec.get("related_entity") or "").strip()
+        aggregate_function = str(
+            rollup_spec.get("aggregate_function") or ""
+        ).strip().upper()
+        aggregate_attribute = str(
+            rollup_spec.get("aggregate_attribute") or ""
+        ).strip()
+        if not related_entity or not aggregate_function or not aggregate_attribute:
+            raise ExecutorError(
+                "rollup-type derived column requires rollup_spec with related_entity, "
+                "aggregate_function, and aggregate_attribute"
+            )
+        if aggregate_function not in {"SUM", "AVG", "MIN", "MAX", "COUNT"}:
+            raise ExecutorError(
+                "aggregate_function must be SUM, AVG, MIN, MAX, or COUNT"
+            )
+        common["SourceType"] = 2
+        common["RollupStateData"] = (
+            "<RollupStateData>"
+            f'<Aggregation Name="{schema_name}">'
+            f"<AggregateFunction>{aggregate_function}</AggregateFunction>"
+            f"<AggregateAttribute>{aggregate_attribute}</AggregateAttribute>"
+            f"<RelatedEntityName>{related_entity}</RelatedEntityName>"
+            "</Aggregation>"
+            "</RollupStateData>"
+        )
 
     return common
 
@@ -4141,6 +4203,49 @@ def verify_result(
     )
 
 
+def verify_publish_result(
+    row: dict[str, Any], client: DataverseClient, request: OperationRequest
+) -> tuple[dict[str, str], str]:
+    payload = row.get("payload") or {}
+    if not (
+        row["component_type"] == "schema_table"
+        and str(payload.get("operation") or "").lower() == "extend"
+    ):
+        return verify_result(
+            row,
+            client,
+            "",
+            deleted=False,
+            membership_removed=False,
+            request=request,
+        )
+
+    child_requests = build_static_requests(
+        row,
+        "update",
+        capability_for(row, "update"),
+    )
+    if not child_requests:
+        raise ExecutorError(
+            "bundled schema_table publish resolved to no child columns",
+            category="verification_mismatch",
+        )
+    for child_request in child_requests:
+        verify_result(
+            row,
+            client,
+            "",
+            deleted=False,
+            membership_removed=False,
+            request=child_request,
+        )
+    return {
+        "identity": "matched",
+        "payload": "matched",
+        "membership": "matched",
+    }, ""
+
+
 def remediation(category: str) -> str:
     return {
         "unauthenticated": "Reauthenticate the current human against the exact compiler-owned environment.",
@@ -4689,14 +4794,19 @@ def _execute_single(
                     capability_for(row, "create"),
                     form_subgrid_context=resolve_form_subgrid_context(row, client),
                 )[0]
-            verification, immutable_id = verify_result(
-                row,
-                client,
-                immutable_id,
-                deleted=operation == "delete",
-                membership_removed=operation == "remove_solution_component",
-                request=verification_source,
-            )
+            if operation == "publish":
+                verification, immutable_id = verify_publish_result(
+                    row, client, verification_source
+                )
+            else:
+                verification, immutable_id = verify_result(
+                    row,
+                    client,
+                    immutable_id,
+                    deleted=operation == "delete",
+                    membership_removed=operation == "remove_solution_component",
+                    request=verification_source,
+                )
             posted = {"result": "deferred"}
             if not is_bundled_recovery:
                 evidence = evidence_payload(

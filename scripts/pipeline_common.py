@@ -951,6 +951,9 @@ COLUMN_DATA_TYPE_PATTERNS: tuple[tuple[str, "re.Pattern[str]"], ...] = (
     ("multiline", re.compile(r"(?i)multiline\s+text(?:\s*\((\d+)\))?")),
     ("text", re.compile(r"(?i)(?:single[- ]line\s+)?text(?:\s*\((\d+)\))?")),
     ("integer", re.compile(r"(?i)whole\s+number(?:\s*\(minimum\s+(-?\d+)\))?")),
+    ("datetime", re.compile(r"(?i)datetime")),
+    ("decimal", re.compile(r"(?i)decimal")),
+    ("currency", re.compile(r"(?i)currency")),
 )
 COLUMN_BOOLEAN_TYPES: frozenset[str] = frozenset({"boolean", "yes/no", "yes no"})
 
