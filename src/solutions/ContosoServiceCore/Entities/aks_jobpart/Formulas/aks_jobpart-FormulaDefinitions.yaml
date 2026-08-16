@@ -1,0 +1,1 @@
+aks_linevalue: =aks_quantity * Decimal(aks_unitprice)
