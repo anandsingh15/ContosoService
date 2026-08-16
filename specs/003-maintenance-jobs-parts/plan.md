@@ -2,9 +2,9 @@
 id: DES-03
 status: reviewed
 implements_feature: FEAT-03
-source_spec_hash: 6dc71217117ed1649efb2ede88ff764b2a639c518a9c15eb49e7b3e26b15f737
-repository_context_hash: cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a
-plan_hash: 86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c
+source_spec_hash: d7e232bd56c2b43bb6532c03299d5f69ccbb18753271ba57deabb37e6b1a5658
+repository_context_hash: 98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb
+plan_hash: e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf
 ---
 
 # Design — FEAT-03 maintenance-jobs-parts (DES-03)
@@ -401,5 +401,5 @@ components such as model-driven app definitions and site maps.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-03 | FEAT-03 | `6dc71217117ed1649efb2ede88ff764b2a639c518a9c15eb49e7b3e26b15f737` | `cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a` |
+| DES-03 | FEAT-03 | `d7e232bd56c2b43bb6532c03299d5f69ccbb18753271ba57deabb37e6b1a5658` | `98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb` |
 <!-- COMPILER:END provenance -->

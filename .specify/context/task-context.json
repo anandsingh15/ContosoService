@@ -1,7 +1,7 @@
 {
-  "context_hash": "aa9dd514051eac715dcc1884298943593cd578900ec2ba27b5aff7b497091481",
-  "plan_context_hash": "12c51f45189f8e6e77802e9ab992ffcbd7edffff30397e53cf1c7e20a55a31e2",
-  "repository_context_hash": "cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a",
+  "context_hash": "d72786ab974f19749be5d9a44cda9082dc4a2418a015c506361302eac050a08d",
+  "plan_context_hash": "3fed7d9246f9cad77efa9c937ff36a712e938a51e110b797a210274382a7d9bb",
+  "repository_context_hash": "98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb",
   "schema_version": 1,
   "tasks": [
     {
@@ -26,7 +26,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -666,7 +666,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehiclestatus",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -820,7 +820,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -1251,7 +1251,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -1295,7 +1295,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -1936,7 +1936,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_maintenancejobstage",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -2091,7 +2091,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -2523,7 +2523,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -2567,7 +2567,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -3207,7 +3207,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_maintenancejobpriority",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -3361,7 +3361,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -3792,7 +3792,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -3836,7 +3836,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -4485,7 +4485,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -4656,7 +4656,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -5085,7 +5085,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -5129,7 +5129,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -5772,7 +5772,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -5937,7 +5937,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -6360,7 +6360,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -6404,7 +6404,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -7047,7 +7047,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -7212,7 +7212,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -7635,7 +7635,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7681,7 +7681,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -8333,7 +8333,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_account_vehicle_depot",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -8498,7 +8498,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -8943,7 +8943,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -8989,7 +8989,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -9641,7 +9641,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_contact_maintenancejob_technician",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -9806,7 +9806,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -10251,7 +10251,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -10298,7 +10298,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -10949,7 +10949,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -11113,7 +11113,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -11556,7 +11556,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -11603,7 +11603,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -12254,7 +12254,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_maintenancejob_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -12418,7 +12418,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -12861,7 +12861,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -12907,7 +12907,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -13435,7 +13435,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_registration_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -13575,7 +13575,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -13923,7 +13923,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -13969,7 +13969,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -14497,7 +14497,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_vin_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -14637,7 +14637,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -14985,7 +14985,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -15031,7 +15031,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -15559,7 +15559,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_maintenancejob_number_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -15699,7 +15699,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -16047,7 +16047,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -16093,7 +16093,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -16621,7 +16621,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_jobpart_number_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -16761,7 +16761,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -17109,7 +17109,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -17152,7 +17152,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -17532,7 +17532,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -17635,7 +17635,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "create": {
               "executor": {
@@ -17862,7 +17862,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
+      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -17907,7 +17907,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -18555,7 +18555,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -18725,7 +18725,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -19156,7 +19156,7 @@
         "INTK-0001-REQ-003",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -19202,7 +19202,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -19801,7 +19801,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_quickcreate",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -19953,7 +19953,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -20334,7 +20334,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -20379,7 +20379,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -20919,7 +20919,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_maintenancehistory",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -21066,7 +21066,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -21424,7 +21424,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -21471,7 +21471,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -22012,7 +22012,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_activevehicles",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -22160,7 +22160,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -22519,7 +22519,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -22566,7 +22566,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -23107,7 +23107,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehiclesinmaintenance",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -23255,7 +23255,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -23614,7 +23614,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -23661,7 +23661,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -24202,7 +24202,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehiclesbydepot",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -24350,7 +24350,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -24709,7 +24709,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -24751,7 +24751,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -25135,7 +25135,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -25242,7 +25242,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "create": {
               "executor": {
@@ -25474,7 +25474,7 @@
         "INTK-0001-REQ-001",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -25522,7 +25522,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -26137,7 +26137,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -26305,7 +26305,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -26702,7 +26702,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -26749,7 +26749,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -27351,7 +27351,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_quickcreate",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -27506,7 +27506,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -27890,7 +27890,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -27937,7 +27937,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -28480,7 +28480,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_maintenancehistory",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -28630,7 +28630,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -28991,7 +28991,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -29038,7 +29038,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -29656,7 +29656,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -29827,7 +29827,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -30227,7 +30227,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -30274,7 +30274,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -30818,7 +30818,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_activevehicles",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -30969,7 +30969,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -31331,7 +31331,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
+      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -31376,7 +31376,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -32045,7 +32045,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -32236,7 +32236,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -32686,7 +32686,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -32730,7 +32730,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -33375,7 +33375,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -33542,7 +33542,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -33968,7 +33968,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -34012,7 +34012,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -34612,7 +34612,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_vehicle_jobcontext_quickview",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -34765,7 +34765,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -35145,7 +35145,7 @@
       "satisfies": [
         "INTK-0001-REQ-009"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -35193,7 +35193,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -35735,7 +35735,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_jobparts_inlineentry",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -35884,7 +35884,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -36246,7 +36246,7 @@
         "INTK-0001-REQ-012",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -36300,7 +36300,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -36935,7 +36935,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_maintenancejob_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -37123,7 +37123,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -37544,7 +37544,7 @@
         "INTK-0001-REQ-013",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -37591,7 +37591,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -38133,7 +38133,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_activejobs",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -38282,7 +38282,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -38642,7 +38642,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -38689,7 +38689,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -39230,7 +39230,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_jobsassignedtome",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -39378,7 +39378,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -39737,7 +39737,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -39784,7 +39784,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -40326,7 +40326,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_highcriticaljobs",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -40475,7 +40475,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -40835,7 +40835,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -40882,7 +40882,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -41281,7 +41281,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -41403,7 +41403,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "create": {
               "executor": {
@@ -41651,7 +41651,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -41698,7 +41698,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -41727,8 +41727,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -41736,12 +41736,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -41780,12 +41776,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -41824,12 +41816,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -41853,19 +41841,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -41890,8 +41874,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -41899,12 +41883,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -41943,12 +41923,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -41984,12 +41960,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -42075,28 +42047,6 @@
               "role": "required",
               "session_probe": {
                 "instructions": "Use only an in-process silent MSAL lookup to confirm the current user and exact Dataverse resource; never print token data."
-              }
-            },
-            {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "blocking": true,
-              "description": "Authenticate the current human directly to the declared Dataverse environment.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
-              },
-              "id": "interactive-sign-in",
-              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
-              "key": "dataverse-mcp.interactive-sign-in",
-              "phase": "authentication",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "session_probe": {
-                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
               }
             },
             {
@@ -42193,26 +42143,6 @@
               "role": "required"
             },
             {
-              "action": "mcp_server",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify the configured server key and resolved GA endpoint.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_version": "ga",
-              "id": "server-registration",
-              "installation": {
-                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
-                "policy": "not_applicable"
-              },
-              "key": "dataverse-mcp.server-registration",
-              "phase": "availability_version",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
-            },
-            {
               "action": "endpoint",
               "behavior": "automatic",
               "blocking": false,
@@ -42271,27 +42201,6 @@
               "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api",
               "role": "required"
-            },
-            {
-              "action": "mcp_tools",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_tools": [
-                "search",
-                "describe",
-                "read_query"
-              ],
-              "expected_version": "ga",
-              "id": "required-tools",
-              "key": "dataverse-mcp.required-tools",
-              "phase": "capability",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
             }
           ],
           "ready_to_attempt": [
@@ -42306,8 +42215,7 @@
               "required_resources": [
                 "microsoft-learn",
                 "msal-python",
-                "dataverse-web-api",
-                "dataverse-mcp"
+                "dataverse-web-api"
               ],
               "resource": "preflight",
               "role": "required"
@@ -42318,15 +42226,13 @@
               "action": "session_validation",
               "authentication_mode": "interactive_user",
               "authentication_resources": [
-                "dataverse-mcp",
                 "dataverse-web-api"
               ],
               "behavior": "automatic",
               "blocking": true,
               "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
               "expected_endpoints": [
-                "https://org89912357.crm.dynamics.com/api/data/v9.2",
-                "https://org89912357.crm.dynamics.com/api/mcp"
+                "https://org89912357.crm.dynamics.com/api/data/v9.2"
               ],
               "key": "authentication.endpoint-session",
               "phase": "session_validation",
@@ -42341,7 +42247,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_linevalue",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -42385,12 +42291,8 @@
           "targeted_read_only_verification": true,
           "verification_resources": {
             "add_solution_component": {
-              "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+              "resource": "dataverse-web-api"
             },
             "create": {
               "http": {
@@ -42398,12 +42300,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Verify the exact derived column by table and logical name.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "delete": {
               "http": {
@@ -42411,28 +42309,16 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Confirm only the exact derived column was removed.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+              "resource": "dataverse-web-api"
             },
             "publish": {
-              "rationale": "Re-read only the published canonical metadata.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "remove_solution_component": {
-              "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+              "resource": "dataverse-web-api"
             },
             "update": {
               "http": {
@@ -42440,12 +42326,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "verify": {
               "http": {
@@ -42453,12 +42335,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Target-read the exact derived column.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             }
           },
           "verify_absence_from_other_declared_custom_solutions": true
@@ -42494,7 +42372,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -42517,8 +42395,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -42526,12 +42404,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -42570,12 +42444,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -42614,12 +42484,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -42643,19 +42509,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -42680,8 +42542,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -42689,12 +42551,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -42733,12 +42591,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -42774,12 +42628,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -42862,44 +42712,6 @@
             ],
             "version": "v9.2",
             "version_policy": "api_contract"
-          },
-          {
-            "authentication": "interactive_user",
-            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-            "id": "dataverse-mcp",
-            "kind": "mcp",
-            "purpose": "discovery_and_targeted_verification",
-            "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-            "release_channel": "ga",
-            "required_tools": [
-              "search",
-              "describe",
-              "read_query"
-            ],
-            "server": "dataverse-authoring",
-            "supported_execution_hosts": [
-              "local_interactive"
-            ],
-            "tools": [
-              "search_data",
-              "search",
-              "create_record",
-              "update_record",
-              "delete_record",
-              "create_table",
-              "update_table",
-              "delete_table",
-              "read_query",
-              "describe",
-              "upsert_skill",
-              "delete_skill",
-              "init_file_upload",
-              "commit_file_upload",
-              "file_download"
-            ],
-            "version": "ga",
-            "version_policy": "service_managed"
           }
         ],
         "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -42928,7 +42740,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -42974,7 +42786,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -43003,8 +42815,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -43012,12 +42824,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -43056,12 +42864,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -43100,12 +42904,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -43129,19 +42929,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -43166,8 +42962,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -43175,12 +42971,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -43219,12 +43011,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -43260,12 +43048,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -43351,28 +43135,6 @@
               "role": "required",
               "session_probe": {
                 "instructions": "Use only an in-process silent MSAL lookup to confirm the current user and exact Dataverse resource; never print token data."
-              }
-            },
-            {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "blocking": true,
-              "description": "Authenticate the current human directly to the declared Dataverse environment.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
-              },
-              "id": "interactive-sign-in",
-              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
-              "key": "dataverse-mcp.interactive-sign-in",
-              "phase": "authentication",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "session_probe": {
-                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
               }
             },
             {
@@ -43469,26 +43231,6 @@
               "role": "required"
             },
             {
-              "action": "mcp_server",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify the configured server key and resolved GA endpoint.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_version": "ga",
-              "id": "server-registration",
-              "installation": {
-                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
-                "policy": "not_applicable"
-              },
-              "key": "dataverse-mcp.server-registration",
-              "phase": "availability_version",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
-            },
-            {
               "action": "endpoint",
               "behavior": "automatic",
               "blocking": false,
@@ -43547,27 +43289,6 @@
               "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api",
               "role": "required"
-            },
-            {
-              "action": "mcp_tools",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_tools": [
-                "search",
-                "describe",
-                "read_query"
-              ],
-              "expected_version": "ga",
-              "id": "required-tools",
-              "key": "dataverse-mcp.required-tools",
-              "phase": "capability",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
             }
           ],
           "ready_to_attempt": [
@@ -43582,8 +43303,7 @@
               "required_resources": [
                 "microsoft-learn",
                 "msal-python",
-                "dataverse-web-api",
-                "dataverse-mcp"
+                "dataverse-web-api"
               ],
               "resource": "preflight",
               "role": "required"
@@ -43594,15 +43314,13 @@
               "action": "session_validation",
               "authentication_mode": "interactive_user",
               "authentication_resources": [
-                "dataverse-mcp",
                 "dataverse-web-api"
               ],
               "behavior": "automatic",
               "blocking": true,
               "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
               "expected_endpoints": [
-                "https://org89912357.crm.dynamics.com/api/data/v9.2",
-                "https://org89912357.crm.dynamics.com/api/mcp"
+                "https://org89912357.crm.dynamics.com/api/data/v9.2"
               ],
               "key": "authentication.endpoint-session",
               "phase": "session_validation",
@@ -43617,7 +43335,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_labourcost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -43661,12 +43379,8 @@
           "targeted_read_only_verification": true,
           "verification_resources": {
             "add_solution_component": {
-              "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+              "resource": "dataverse-web-api"
             },
             "create": {
               "http": {
@@ -43674,12 +43388,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Verify the exact derived column by table and logical name.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "delete": {
               "http": {
@@ -43687,28 +43397,16 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Confirm only the exact derived column was removed.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+              "resource": "dataverse-web-api"
             },
             "publish": {
-              "rationale": "Re-read only the published canonical metadata.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "remove_solution_component": {
-              "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+              "resource": "dataverse-web-api"
             },
             "update": {
               "http": {
@@ -43716,12 +43414,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "verify": {
               "http": {
@@ -43729,12 +43423,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Target-read the exact derived column.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             }
           },
           "verify_absence_from_other_declared_custom_solutions": true
@@ -43770,7 +43460,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -43793,8 +43483,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -43802,12 +43492,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -43846,12 +43532,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -43890,12 +43572,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -43919,19 +43597,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -43956,8 +43630,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -43965,12 +43639,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -44009,12 +43679,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -44050,12 +43716,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -44138,44 +43800,6 @@
             ],
             "version": "v9.2",
             "version_policy": "api_contract"
-          },
-          {
-            "authentication": "interactive_user",
-            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-            "id": "dataverse-mcp",
-            "kind": "mcp",
-            "purpose": "discovery_and_targeted_verification",
-            "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-            "release_channel": "ga",
-            "required_tools": [
-              "search",
-              "describe",
-              "read_query"
-            ],
-            "server": "dataverse-authoring",
-            "supported_execution_hosts": [
-              "local_interactive"
-            ],
-            "tools": [
-              "search_data",
-              "search",
-              "create_record",
-              "update_record",
-              "delete_record",
-              "create_table",
-              "update_table",
-              "delete_table",
-              "read_query",
-              "describe",
-              "upsert_skill",
-              "delete_skill",
-              "init_file_upload",
-              "commit_file_upload",
-              "file_download"
-            ],
-            "version": "ga",
-            "version_policy": "service_managed"
           }
         ],
         "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -44204,7 +43828,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -44250,7 +43874,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -44279,8 +43903,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -44288,12 +43912,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -44332,12 +43952,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -44376,12 +43992,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -44405,19 +44017,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -44442,8 +44050,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -44451,12 +44059,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -44495,12 +44099,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -44536,12 +44136,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -44634,28 +44230,6 @@
               }
             },
             {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "blocking": true,
-              "description": "Authenticate the current human directly to the declared Dataverse environment.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
-              },
-              "id": "interactive-sign-in",
-              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
-              "key": "dataverse-mcp.interactive-sign-in",
-              "phase": "authentication",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "session_probe": {
-                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
-              }
-            },
-            {
               "action": "portal",
               "behavior": "interactive",
               "blocking": false,
@@ -44749,26 +44323,6 @@
               "role": "required"
             },
             {
-              "action": "mcp_server",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify the configured server key and resolved GA endpoint.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_version": "ga",
-              "id": "server-registration",
-              "installation": {
-                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
-                "policy": "not_applicable"
-              },
-              "key": "dataverse-mcp.server-registration",
-              "phase": "availability_version",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
-            },
-            {
               "action": "endpoint",
               "behavior": "automatic",
               "blocking": false,
@@ -44827,27 +44381,6 @@
               "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api",
               "role": "required"
-            },
-            {
-              "action": "mcp_tools",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_tools": [
-                "search",
-                "describe",
-                "read_query"
-              ],
-              "expected_version": "ga",
-              "id": "required-tools",
-              "key": "dataverse-mcp.required-tools",
-              "phase": "capability",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
             }
           ],
           "ready_to_attempt": [
@@ -44862,8 +44395,7 @@
               "required_resources": [
                 "microsoft-learn",
                 "msal-python",
-                "dataverse-web-api",
-                "dataverse-mcp"
+                "dataverse-web-api"
               ],
               "resource": "preflight",
               "role": "required"
@@ -44874,15 +44406,13 @@
               "action": "session_validation",
               "authentication_mode": "interactive_user",
               "authentication_resources": [
-                "dataverse-mcp",
                 "dataverse-web-api"
               ],
               "behavior": "automatic",
               "blocking": true,
               "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
               "expected_endpoints": [
-                "https://org89912357.crm.dynamics.com/api/data/v9.2",
-                "https://org89912357.crm.dynamics.com/api/mcp"
+                "https://org89912357.crm.dynamics.com/api/data/v9.2"
               ],
               "key": "authentication.endpoint-session",
               "phase": "session_validation",
@@ -44897,7 +44427,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_totalpartscost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -44945,12 +44475,8 @@
           "targeted_read_only_verification": true,
           "verification_resources": {
             "add_solution_component": {
-              "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+              "resource": "dataverse-web-api"
             },
             "create": {
               "http": {
@@ -44958,12 +44484,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Verify the exact derived column by table and logical name.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "delete": {
               "http": {
@@ -44971,28 +44493,16 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Confirm only the exact derived column was removed.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+              "resource": "dataverse-web-api"
             },
             "publish": {
-              "rationale": "Re-read only the published canonical metadata.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "remove_solution_component": {
-              "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+              "resource": "dataverse-web-api"
             },
             "update": {
               "http": {
@@ -45000,12 +44510,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "verify": {
               "http": {
@@ -45013,12 +44519,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Target-read the exact derived column.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             }
           },
           "verify_absence_from_other_declared_custom_solutions": true
@@ -45054,7 +44556,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -45077,8 +44579,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -45086,12 +44588,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -45130,12 +44628,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -45174,12 +44668,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -45203,19 +44693,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -45240,8 +44726,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -45249,12 +44735,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -45293,12 +44775,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -45334,12 +44812,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -45422,44 +44896,6 @@
             ],
             "version": "v9.2",
             "version_policy": "api_contract"
-          },
-          {
-            "authentication": "interactive_user",
-            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-            "id": "dataverse-mcp",
-            "kind": "mcp",
-            "purpose": "discovery_and_targeted_verification",
-            "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-            "release_channel": "ga",
-            "required_tools": [
-              "search",
-              "describe",
-              "read_query"
-            ],
-            "server": "dataverse-authoring",
-            "supported_execution_hosts": [
-              "local_interactive"
-            ],
-            "tools": [
-              "search_data",
-              "search",
-              "create_record",
-              "update_record",
-              "delete_record",
-              "create_table",
-              "update_table",
-              "delete_table",
-              "read_query",
-              "describe",
-              "upsert_skill",
-              "delete_skill",
-              "init_file_upload",
-              "commit_file_upload",
-              "file_download"
-            ],
-            "version": "ga",
-            "version_policy": "service_managed"
           }
         ],
         "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -45491,7 +44927,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -45538,7 +44974,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -45567,8 +45003,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -45576,12 +45012,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -45620,12 +45052,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -45664,12 +45092,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -45693,19 +45117,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -45730,8 +45150,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -45739,12 +45159,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -45783,12 +45199,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -45824,12 +45236,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -45914,28 +45322,6 @@
               "role": "required",
               "session_probe": {
                 "instructions": "Use only an in-process silent MSAL lookup to confirm the current user and exact Dataverse resource; never print token data."
-              }
-            },
-            {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "blocking": true,
-              "description": "Authenticate the current human directly to the declared Dataverse environment.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
-              },
-              "id": "interactive-sign-in",
-              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
-              "key": "dataverse-mcp.interactive-sign-in",
-              "phase": "authentication",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "session_probe": {
-                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
               }
             },
             {
@@ -46032,26 +45418,6 @@
               "role": "required"
             },
             {
-              "action": "mcp_server",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify the configured server key and resolved GA endpoint.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_version": "ga",
-              "id": "server-registration",
-              "installation": {
-                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
-                "policy": "not_applicable"
-              },
-              "key": "dataverse-mcp.server-registration",
-              "phase": "availability_version",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
-            },
-            {
               "action": "endpoint",
               "behavior": "automatic",
               "blocking": false,
@@ -46110,27 +45476,6 @@
               "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api",
               "role": "required"
-            },
-            {
-              "action": "mcp_tools",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_tools": [
-                "search",
-                "describe",
-                "read_query"
-              ],
-              "expected_version": "ga",
-              "id": "required-tools",
-              "key": "dataverse-mcp.required-tools",
-              "phase": "capability",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
             }
           ],
           "ready_to_attempt": [
@@ -46145,8 +45490,7 @@
               "required_resources": [
                 "microsoft-learn",
                 "msal-python",
-                "dataverse-web-api",
-                "dataverse-mcp"
+                "dataverse-web-api"
               ],
               "resource": "preflight",
               "role": "required"
@@ -46157,15 +45501,13 @@
               "action": "session_validation",
               "authentication_mode": "interactive_user",
               "authentication_resources": [
-                "dataverse-mcp",
                 "dataverse-web-api"
               ],
               "behavior": "automatic",
               "blocking": true,
               "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
               "expected_endpoints": [
-                "https://org89912357.crm.dynamics.com/api/data/v9.2",
-                "https://org89912357.crm.dynamics.com/api/mcp"
+                "https://org89912357.crm.dynamics.com/api/data/v9.2"
               ],
               "key": "authentication.endpoint-session",
               "phase": "session_validation",
@@ -46180,7 +45522,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "component_identity": "aks_totalcost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -46223,12 +45565,8 @@
           "targeted_read_only_verification": true,
           "verification_resources": {
             "add_solution_component": {
-              "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+              "resource": "dataverse-web-api"
             },
             "create": {
               "http": {
@@ -46236,12 +45574,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Verify the exact derived column by table and logical name.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "delete": {
               "http": {
@@ -46249,28 +45583,16 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Confirm only the exact derived column was removed.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+              "resource": "dataverse-web-api"
             },
             "publish": {
-              "rationale": "Re-read only the published canonical metadata.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "remove_solution_component": {
-              "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+              "resource": "dataverse-web-api"
             },
             "update": {
               "http": {
@@ -46278,12 +45600,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "verify": {
               "http": {
@@ -46291,12 +45609,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Target-read the exact derived column.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             }
           },
           "verify_absence_from_other_declared_custom_solutions": true
@@ -46332,7 +45646,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -46355,8 +45669,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -46364,12 +45678,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
@@ -46408,12 +45718,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact derived column by table and logical name.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
@@ -46452,12 +45758,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the exact derived column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -46481,19 +45783,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -46518,8 +45816,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -46527,12 +45825,8 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
@@ -46571,12 +45865,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
@@ -46612,12 +45902,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact derived column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -46700,44 +45986,6 @@
             ],
             "version": "v9.2",
             "version_policy": "api_contract"
-          },
-          {
-            "authentication": "interactive_user",
-            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-            "id": "dataverse-mcp",
-            "kind": "mcp",
-            "purpose": "discovery_and_targeted_verification",
-            "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-            "release_channel": "ga",
-            "required_tools": [
-              "search",
-              "describe",
-              "read_query"
-            ],
-            "server": "dataverse-authoring",
-            "supported_execution_hosts": [
-              "local_interactive"
-            ],
-            "tools": [
-              "search_data",
-              "search",
-              "create_record",
-              "update_record",
-              "delete_record",
-              "create_table",
-              "update_table",
-              "delete_table",
-              "read_query",
-              "describe",
-              "upsert_skill",
-              "delete_skill",
-              "init_file_upload",
-              "commit_file_upload",
-              "file_download"
-            ],
-            "version": "ga",
-            "version_policy": "service_managed"
           }
         ],
         "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -46764,7 +46012,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
+      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
       "status": "draft",
       "task_profile": {
         "evidence": [

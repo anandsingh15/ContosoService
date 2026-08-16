@@ -1891,11 +1891,28 @@ def resolve_development_resources(
             component_type, load_dataverse_capabilities()
         ),
     }
+    operations = resolved["capabilities"]["operations"].values()
+    web_api_owned = bool(operations) and all(
+        operation.get("primary_resource") == "dataverse-web-api"
+        for operation in operations
+    )
+    verification_resources = {
+        str((operation.get("verification") or {}).get("resource") or "")
+        for operation in resolved["capabilities"]["operations"].values()
+    }
     catalog = registry["resources"]
     for role, assignments in (winner.get("resources") or {}).items():
         resolved[role] = []
         for assignment in assignments or []:
             item = dict(catalog[assignment["resource"]])
+            if (
+                role == "required"
+                and web_api_owned
+                and item.get("kind") == "mcp"
+                and assignment.get("tools")
+                and assignment["resource"] not in verification_resources
+            ):
+                continue
             item.pop("preflight", None)
             if authoring_target:
                 for key in ("endpoint",):

@@ -1062,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a",
+  "context_hash": "98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb",
   "conventions_hash": "50042d1b6a869b98b9eb12a1005944f607562d838756159860478af444214c16",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -1367,11 +1367,11 @@
       "schema_derived_column": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "add_solution_component": "add-solution-component",
+          "add_solution_component": "derived-column-add-solution-component",
           "create": "derived-column-create",
           "delete": "derived-column-delete",
-          "publish": "metadata-publish",
-          "remove_solution_component": "remove-solution-component",
+          "publish": "derived-column-publish",
+          "remove_solution_component": "derived-column-remove-solution-component",
           "update": "derived-column-update",
           "verify": "derived-column-verify"
         }
@@ -2435,6 +2435,39 @@
           ]
         }
       },
+      "derived-column-add-solution-component": {
+        "executor": {
+          "builder": "add_solution_component",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "unbound_action",
+          "method": "POST",
+          "path_template": "AddSolutionComponent"
+        },
+        "official_references": [
+          "add_solution_component",
+          "solution_component_types"
+        ],
+        "operation": "add_solution_component",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
+        "solution_context": {
+          "mechanism": "action_parameter",
+          "name": "SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+          "resource": "dataverse-web-api"
+        }
+      },
       "derived-column-create": {
         "executor": {
           "builder": "schema_derived_column",
@@ -2470,12 +2503,8 @@
             "method": "GET",
             "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
           },
-          "rationale": "Verify the exact derived column by table and logical name.",
-          "resource": "dataverse-mcp",
-          "tools": [
-            "describe",
-            "read_query"
-          ]
+          "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+          "resource": "dataverse-web-api"
         }
       },
       "derived-column-delete": {
@@ -2513,12 +2542,73 @@
             "method": "GET",
             "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
           },
-          "rationale": "Confirm only the exact derived column was removed.",
-          "resource": "dataverse-mcp",
-          "tools": [
-            "describe",
-            "read_query"
-          ]
+          "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "derived-column-publish": {
+        "executor": {
+          "builder": "publish_xml",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "unbound_action",
+          "method": "POST",
+          "path_template": "PublishXml"
+        },
+        "official_references": [
+          "publish_xml",
+          "publish_request_schema"
+        ],
+        "operation": "publish",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "derived-column-remove-solution-component": {
+        "destructive_effect": "solution_membership_only",
+        "executor": {
+          "builder": "remove_solution_component",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "unbound_action",
+          "method": "POST",
+          "path_template": "RemoveSolutionComponent"
+        },
+        "official_references": [
+          "remove_solution_component",
+          "solution_component_types"
+        ],
+        "operation": "remove_solution_component",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
+        "solution_context": {
+          "mechanism": "action_parameter",
+          "name": "SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+          "resource": "dataverse-web-api"
         }
       },
       "derived-column-update": {
@@ -2556,12 +2646,8 @@
             "method": "GET",
             "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
           },
-          "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-          "resource": "dataverse-mcp",
-          "tools": [
-            "describe",
-            "read_query"
-          ]
+          "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+          "resource": "dataverse-web-api"
         }
       },
       "derived-column-verify": {
@@ -2596,12 +2682,8 @@
             "method": "GET",
             "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
           },
-          "rationale": "Target-read the exact derived column.",
-          "resource": "dataverse-mcp",
-          "tools": [
-            "describe",
-            "read_query"
-          ]
+          "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+          "resource": "dataverse-web-api"
         }
       },
       "documented-form-not-reliable": {
@@ -4708,7 +4790,7 @@
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+  "dataverse_web_api_capabilities_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
   "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
   "design_sources": {
     "schema_version": 1,
