@@ -24710,7 +24710,7 @@
         "INTK-0001-REQ-006"
       ],
       "source_plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "screenshots",
