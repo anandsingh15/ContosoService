@@ -10,6 +10,7 @@ import re
 import sys
 import time
 import uuid
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -54,6 +55,7 @@ class OperationRequest:
     solution_context: str
     description: str
     merge_labels: bool = False
+    expected_body: dict[str, Any] | None = None
 
 
 @dataclass(frozen=True)
@@ -130,6 +132,7 @@ FORM_CONTROL_CLASS_IDS = {
     "datetime": "{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}",
     "lookup": "{270BD3DB-D9AF-4782-9025-509E298DEC0A}",
 }
+FORM_SUBGRID_CLASS_ID = "{E7A81278-8635-4D9E-8D4D-59480B391C5B}"
 # Conservative FetchXML condition operators the executor will emit.
 VIEW_FILTER_OPERATORS = frozenset(
     {
@@ -185,6 +188,13 @@ SAFE_PATH_METHODS = (
             r"Attributes\(LogicalName='[A-Za-z][A-Za-z0-9_]*'\)$"
         ),
         {"GET", "PUT", "DELETE"},
+    ),
+    (
+        re.compile(
+            r"^EntityDefinitions\(LogicalName='[A-Za-z][A-Za-z0-9_]*'\)/"
+            r"Attributes\([0-9a-fA-F-]{36}\)$"
+        ),
+        {"GET"},
     ),
     (
         re.compile(
@@ -572,6 +582,13 @@ def bind_global_choice_metadata_id(
     )
 
 
+def canonical_child_schema_name(column: dict[str, Any]) -> str:
+    schema_name = str(column.get("schema_name") or column.get("name") or "").strip()
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{1,99}", schema_name):
+        raise ExecutorError("column payload has no canonical schema name")
+    return schema_name.lower()
+
+
 def derived_column_definition(derived_col: dict[str, Any]) -> dict[str, Any]:
     """Build a computed/calculated/rollup column definition for Dataverse metadata API.
     Supports formula, calculated, and rollup derived types with base_data_type mapping."""
@@ -790,6 +807,57 @@ def view_querytype(payload: dict[str, Any]) -> int:
     return querytype
 
 
+def normalize_legacy_uiux_view(payload: dict[str, Any]) -> dict[str, Any]:
+    columns = payload.get("columns")
+    if not isinstance(columns, list):
+        return payload
+    normalized_columns: list[Any] = []
+    inline_sorts: list[dict[str, Any]] = []
+    changed = False
+    for entry in columns:
+        if not isinstance(entry, str):
+            normalized_columns.append(entry)
+            continue
+        match = re.fullmatch(
+            r"([a-z][a-z0-9_]*)\s+\(sort\s+(ascending|descending)\)",
+            entry.strip(),
+            flags=re.IGNORECASE,
+        )
+        if match is None:
+            normalized_columns.append(entry)
+            continue
+        column = match.group(1).lower()
+        normalized_columns.append(column)
+        inline_sorts.append(
+            {"column": column, "descending": match.group(2).lower() == "descending"}
+        )
+        changed = True
+    legacy_filter = str(payload.get("filter") or "").strip()
+    filter_match = re.fullmatch(
+        r"([a-z][a-z0-9_]*)\s+equals\s+(-?\d+)\s+\([^)]+\)",
+        legacy_filter,
+        flags=re.IGNORECASE,
+    )
+    normalized_filters = payload.get("filters")
+    if normalized_filters is None and filter_match is not None:
+        normalized_filters = [
+            {
+                "column": filter_match.group(1).lower(),
+                "operator": "eq",
+                "value": filter_match.group(2),
+            }
+        ]
+        changed = True
+    if not changed:
+        return payload
+    normalized = dict(payload)
+    normalized["columns"] = normalized_columns
+    normalized["sorts"] = [*(payload.get("sorts") or []), *inline_sorts]
+    if normalized_filters is not None:
+        normalized["filters"] = normalized_filters
+    return normalized
+
+
 def view_is_default(payload: dict[str, Any]) -> bool | None:
     if "is_default" not in payload:
         return None
@@ -910,8 +978,36 @@ def view_layoutxml(
     )
 
 
+def normalize_form_type(value: Any) -> str:
+    return re.sub(r"[\s-]+", "_", str(value or "").strip().lower())
+
+
+def normalize_legacy_uiux_form(payload: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(payload)
+    normalized["form_type"] = normalize_form_type(payload.get("form_type"))
+    sections: list[Any] = []
+    for section in payload.get("sections") or []:
+        if not isinstance(section, dict):
+            sections.append(section)
+            continue
+        normalized_section = dict(section)
+        legacy_fields = section.get("columns")
+        is_subgrid = bool(section.get("subgrid"))
+        if ("fields" not in section and isinstance(legacy_fields, list)) or is_subgrid:
+            raw_name = str(section.get("name") or "").strip()
+            canonical_name = re.sub(r"[^A-Za-z0-9_]+", "_", raw_name).strip("_").lower()
+            normalized_section["name"] = canonical_name
+            normalized_section["label"] = str(section.get("label") or raw_name)
+            normalized_section["columns"] = 1
+            if not is_subgrid:
+                normalized_section["fields"] = legacy_fields
+        sections.append(normalized_section)
+    normalized["sections"] = sections
+    return normalized
+
+
 def form_type_code(payload: dict[str, Any]) -> int:
-    value = str(payload.get("form_type") or "").strip().lower()
+    value = normalize_form_type(payload.get("form_type"))
     code = FORM_TYPE_CODES.get(value)
     if code is None:
         raise ExecutorError("form_type is not a supported SystemForm type")
@@ -923,7 +1019,7 @@ def deterministic_form_guid(payload: dict[str, Any], *parts: Any) -> str:
         [
             str(payload.get("table") or ""),
             str(payload.get("name") or ""),
-            str(payload.get("form_type") or ""),
+            normalize_form_type(payload.get("form_type")),
             *(str(part) for part in parts),
         ]
     )
@@ -947,28 +1043,76 @@ def form_field(entry: Any) -> dict[str, Any]:
     }
 
 
-def formxml(payload: dict[str, Any]) -> str:
-    violations = P.form_contract_violations(payload)
+def formxml(
+    payload: dict[str, Any],
+    subgrid_context: dict[str, dict[str, str]] | None = None,
+) -> str:
+    payload = normalize_legacy_uiux_form(payload)
+    field_payload = dict(payload)
+    field_payload["sections"] = [
+        section
+        for section in payload.get("sections") or []
+        if isinstance(section, dict) and not section.get("subgrid")
+    ]
+    violations = P.form_contract_violations(field_payload)
     if violations:
         raise ExecutorError("; ".join(violations))
-    form_type = str(payload.get("form_type") or "").strip().lower()
+    form_type = normalize_form_type(payload.get("form_type"))
+    subgrid_context = subgrid_context or {}
     grouped_tabs: dict[str, dict[str, Any]] = {}
     for section_index, section in enumerate(payload["sections"]):
         section_name = str(section["name"])
         section_label = str(section.get("label") or section_name.replace("_", " ").title())
         section_columns = int(section.get("columns", 1))
         cells: list[str] = []
-        for field_index, raw_field in enumerate(section["fields"]):
-            field = form_field(raw_field)
-            disabled = ' disabled="true"' if field["disabled"] or form_type == "quick_view" else ""
-            cell_id = deterministic_form_guid(
-                payload, "section", section_index, "field", field_index, field["name"]
+        subgrid_name = str(section.get("subgrid") or "").strip().lower()
+        if subgrid_name:
+            if not re.fullmatch(r"[a-z][a-z0-9_]*", subgrid_name):
+                raise ExecutorError("form subgrid identity is not canonical")
+            relationship = canonical_column(section.get("relationship"))
+            records = re.sub(r"[\s_-]+", " ", str(section.get("records") or "").strip().lower())
+            if records != "only related records":
+                raise ExecutorError("form subgrid records must be Only Related Records")
+            if section.get("read_only") is not True:
+                raise ExecutorError("form subgrid must be read_only")
+            context = subgrid_context.get(subgrid_name) or {}
+            target_table = canonical_table(context.get("table"))
+            raw_view_id = str(context.get("view_id") or "").strip()
+            view_id = (
+                raw_view_id
+                if raw_view_id == "{savedquery_id}"
+                else raw_view_id.strip("{}")
             )
+            if view_id != "{savedquery_id}" and not GUID_RE.fullmatch(view_id):
+                raise ExecutorError("form subgrid has no resolved SavedQuery ID")
+            view_id_xml = (
+                view_id
+                if view_id == "{savedquery_id}"
+                else "{" + view_id.upper() + "}"
+            )
+            cell_id = deterministic_form_guid(payload, "section", section_index, "subgrid", subgrid_name)
             cells.append(
-                f'<cell id="{cell_id}"><labels><label description="{xml_attr(field["label"])}" '
-                f'languagecode="1033" /></labels><control id="{xml_attr(field["name"])}" '
-                f'classid="{field["class_id"]}" datafieldname="{xml_attr(field["name"])}"{disabled} /></cell>'
+                f'<cell id="{cell_id}"><labels><label description="{xml_attr(section_label)}" '
+                f'languagecode="1033" /></labels><control id="{xml_attr(subgrid_name)}" '
+                f'classid="{FORM_SUBGRID_CLASS_ID}"><parameters>'
+                f'<TargetEntityType>{xml_attr(target_table)}</TargetEntityType>'
+                f'<ViewId>{view_id_xml}</ViewId><IsUserView>false</IsUserView>'
+                f'<RelationshipName>{xml_attr(relationship)}</RelationshipName>'
+                '<ChartGridMode>Grid</ChartGridMode><RecordsPerPage>10</RecordsPerPage>'
+                '</parameters></control></cell>'
             )
+        else:
+            for field_index, raw_field in enumerate(section["fields"]):
+                field = form_field(raw_field)
+                disabled = ' disabled="true"' if field["disabled"] or form_type == "quick_view" else ""
+                cell_id = deterministic_form_guid(
+                    payload, "section", section_index, "field", field_index, field["name"]
+                )
+                cells.append(
+                    f'<cell id="{cell_id}"><labels><label description="{xml_attr(field["label"])}" '
+                    f'languagecode="1033" /></labels><control id="{xml_attr(field["name"])}" '
+                    f'classid="{field["class_id"]}" datafieldname="{xml_attr(field["name"])}"{disabled} /></cell>'
+                )
         rows = "".join(
             "<row>" + "".join(cells[index : index + section_columns]) + "</row>"
             for index in range(0, len(cells), section_columns)
@@ -1088,12 +1232,14 @@ def build_row_requests(
     object_type_code: str,
     primary_id_attribute: str,
     business_unit_id: str,
+    form_subgrid_context: dict[str, dict[str, str]] | None = None,
 ) -> list[OperationRequest]:
     payload = row["payload"]
     component_type = row["component_type"]
     entity_set = ROW_ENTITY_SETS[component_type]
     name = row_component_name(row)
     if component_type == "uiux_view":
+        payload = normalize_legacy_uiux_view(payload)
         table = canonical_table(payload.get("table"))
         querytype = view_querytype(payload)
         is_default = view_is_default(payload)
@@ -1145,10 +1291,14 @@ def build_row_requests(
                 )
             ]
     if component_type == "uiux_form":
+        payload = normalize_legacy_uiux_form(payload)
         table = canonical_table(payload.get("table"))
         type_code = form_type_code(payload)
         if operation in {"create", "update"}:
-            body: dict[str, Any] = {"name": name, "formxml": formxml(payload)}
+            body: dict[str, Any] = {
+                "name": name,
+                "formxml": formxml(payload, form_subgrid_context),
+            }
             if payload.get("description"):
                 body["description"] = str(payload["description"])
             if operation == "create":
@@ -1206,6 +1356,10 @@ def build_row_requests(
                     (),
                     "none",
                     "verify exact model-driven form",
+                    expected_body={
+                        "name": name,
+                        "formxml": formxml(payload, form_subgrid_context),
+                    },
                 )
             ]
     if component_type == "uiux_view":
@@ -1615,6 +1769,8 @@ def build_static_requests(
     object_type_code: str = "{object_type_code}",
     primary_id_attribute: str = "{primary_id_attribute}",
     business_unit_id: str = "{business_unit_id}",
+    skip_child_schema_names: set[str] | None = None,
+    form_subgrid_context: dict[str, dict[str, str]] | None = None,
 ) -> list[OperationRequest]:
     payload = row["payload"]
     component_type = row["component_type"]
@@ -1635,6 +1791,7 @@ def build_static_requests(
             object_type_code=object_type_code,
             primary_id_attribute=primary_id_attribute,
             business_unit_id=business_unit_id,
+            form_subgrid_context=form_subgrid_context,
         )
     _, identity = canonical_identity(row)
     if component_type == "schema_table":
@@ -1652,6 +1809,9 @@ def build_static_requests(
             ]
         if operation == "update" and str(payload.get("operation") or "").lower() == "extend":
             table = canonical_table(payload.get("table") or identity)
+            skip_children = {
+                name.lower() for name in (skip_child_schema_names or set())
+            }
             return [
                 OperationRequest(
                     "POST",
@@ -1664,6 +1824,7 @@ def build_static_requests(
                 )
                 for column in payload.get("columns") or []
                 if isinstance(column, dict)
+                and canonical_child_schema_name(column) not in skip_children
             ]
         path = f"EntityDefinitions(LogicalName='{odata_string(identity)}')"
         if operation == "delete":
@@ -2213,6 +2374,26 @@ class DataverseClient:
                 ) from None
         raise ExecutorError("Dataverse read retry budget exhausted", category="unavailable")
 
+    def request_with_404_retries(
+        self, operation: OperationRequest, max_attempts: int = 5
+    ) -> HttpResult:
+        if operation.method != "GET":
+            raise ExecutorError(
+                "404 retries only apply to GET requests",
+                category="validation_error",
+            )
+        for attempt in range(max_attempts):
+            try:
+                return self.request(operation)
+            except ExecutorError as exc:
+                if exc.status == 404 and attempt + 1 < max_attempts:
+                    time.sleep(min(1 + attempt, 5))
+                    continue
+                raise
+        raise ExecutorError(
+            "Dataverse 404 retry budget exhausted", category="not_found"
+        )
+
 
 def error_category(status: int | None, code: str = "") -> str:
     if status == 401:
@@ -2514,6 +2695,51 @@ def load_row(dev_id: str) -> tuple[dict[str, Any], Path]:
     return row, path
 
 
+def resolve_form_subgrid_context(
+    row: dict[str, Any], client: DataverseClient | None = None
+) -> dict[str, dict[str, str]]:
+    if row.get("component_type") != "uiux_form":
+        return {}
+    identities = {
+        str(section.get("subgrid") or "").strip().lower()
+        for section in (row.get("payload") or {}).get("sections") or []
+        if isinstance(section, dict) and section.get("subgrid")
+    }
+    if not identities:
+        return {}
+    context = P.read_context(P.TASK_CONTEXT_PATH)
+    dependencies = set(row.get("depends_on") or [])
+    tasks = context.get("tasks") or []
+    resolved: dict[str, dict[str, str]] = {}
+    for identity in identities:
+        matches = [
+            task
+            for task in tasks
+            if task.get("id") in dependencies
+            and task.get("component_type") == "uiux_view"
+            and str((task.get("payload") or {}).get("schema_name") or "").lower()
+            == identity
+        ]
+        if len(matches) != 1:
+            raise ExecutorError(
+                f"form subgrid '{identity}' resolved to {len(matches)} compiler-owned uiux_view dependencies"
+            )
+        dependency = matches[0]
+        target = dependency.get("authoring_target") or {}
+        row_target = row.get("authoring_target") or {}
+        for field in ("environment_id", "environment_url", "solution_unique_name"):
+            if target.get(field) != row_target.get(field):
+                raise ExecutorError(
+                    f"form subgrid '{identity}' dependency has a different {field}"
+                )
+        view_id = resolve_record_id(dependency, client) if client else "{savedquery_id}"
+        resolved[identity] = {
+            "table": canonical_table((dependency.get("payload") or {}).get("table")),
+            "view_id": view_id,
+        }
+    return resolved
+
+
 def capability_for(row: dict[str, Any], operation: str) -> dict[str, Any]:
     capability = (
         row["development_resources"].get("capabilities", {}).get("operations", {})
@@ -2681,7 +2907,12 @@ def _preflight_single(
         check_oauth=True,
     )
     if operation not in {"add_solution_component", "remove_solution_component"}:
-        requests = build_static_requests(row, operation, capability)
+        requests = build_static_requests(
+            row,
+            operation,
+            capability,
+            form_subgrid_context=resolve_form_subgrid_context(row),
+        )
         if not requests:
             raise ExecutorError("compiler-owned operation resolved to no requests")
         for request in requests:
@@ -3401,7 +3632,11 @@ def effective_solution_component_rows(
     solution_id: str = "",
 ) -> list[dict[str, Any]]:
     rows = solution_component_rows(client, object_id, solution_id=solution_id)
-    if row["component_type"] not in {"schema_relationship", "schema_key"}:
+    if row["component_type"] not in {
+        "schema_relationship",
+        "schema_key",
+        "schema_table",
+    }:
         return rows
     table = canonical_table(row["payload"].get("table"))
     table_result = client.request(
@@ -3513,6 +3748,32 @@ def solution_action_request(
 def verification_request(
     row: dict[str, Any], request: OperationRequest | None = None
 ) -> OperationRequest:
+    if request and row["component_type"] == "uiux_form":
+        if request.method == "GET":
+            return request
+        payload = row["payload"]
+        name = row_component_name(row)
+        table = canonical_table(payload.get("table"))
+        type_code = form_type_code(payload)
+        query = urlencode(
+            {
+                "$select": "formid,name,objecttypecode,type,formxml",
+                "$filter": (
+                    f"name eq '{odata_string(name)}' and "
+                    f"objecttypecode eq '{odata_string(table)}' and type eq {type_code}"
+                ),
+            }
+        )
+        return OperationRequest(
+            "GET",
+            f"systemforms?{query}",
+            None,
+            (),
+            (),
+            "none",
+            "verify exact model-driven form",
+            expected_body=request.expected_body or request.body,
+        )
     if (
         request
         and row["component_type"] == "schema_table"
@@ -3542,15 +3803,13 @@ def expected_payload_matches(
 ) -> bool:
     if not item:
         return False
-    body = request.body or {}
+    body = request.expected_body or request.body or {}
     component_type = row["component_type"]
     if component_type == "uiux_form":
         if str(item.get("name") or "").lower() != row_component_name(row).lower():
             return False
-        expected_formxml = str(body.get("formxml") or "")
-        actual_formxml = str(item.get("formxml") or "")
-        if expected_formxml and "".join(actual_formxml.split()) != "".join(
-            expected_formxml.split()
+        if not formxml_semantically_matches(
+            str(body.get("formxml") or ""), str(item.get("formxml") or "")
         ):
             return False
         return True
@@ -3595,6 +3854,65 @@ def expected_payload_matches(
     return True
 
 
+def formxml_semantically_matches(expected_xml: str, actual_xml: str) -> bool:
+    if not expected_xml:
+        return True
+    if not actual_xml:
+        return False
+    try:
+        expected_root = ET.fromstring(expected_xml)
+        actual_root = ET.fromstring(actual_xml)
+    except ET.ParseError:
+        return False
+
+    def controls(root: ET.Element) -> dict[str, ET.Element]:
+        return {
+            str(element.get("id") or "").lower(): element
+            for element in root.iter()
+            if element.tag.rsplit("}", 1)[-1] == "control" and element.get("id")
+        }
+
+    expected_controls = controls(expected_root)
+    actual_controls = controls(actual_root)
+    for control_id, expected in expected_controls.items():
+        actual = actual_controls.get(control_id)
+        if actual is None:
+            return False
+        expected_field = str(expected.get("datafieldname") or "").lower()
+        if expected_field:
+            if str(actual.get("datafieldname") or "").lower() != expected_field:
+                return False
+            continue
+        expected_class = str(expected.get("classid") or "").strip("{}").lower()
+        if expected_class != FORM_SUBGRID_CLASS_ID.strip("{}").lower():
+            continue
+        actual_class = str(actual.get("classid") or "").strip("{}").lower()
+        if actual_class != expected_class:
+            return False
+
+        def parameters(control: ET.Element) -> dict[str, str]:
+            return {
+                child.tag.rsplit("}", 1)[-1]: str(child.text or "").strip()
+                for element in control
+                if element.tag.rsplit("}", 1)[-1] == "parameters"
+                for child in element
+            }
+
+        expected_parameters = parameters(expected)
+        actual_parameters = parameters(actual)
+        for name, expected_value in expected_parameters.items():
+            actual_value = actual_parameters.get(name, "")
+            if name == "ViewId":
+                expected_value = expected_value.strip("{}").lower()
+                actual_value = actual_value.strip("{}").lower()
+            elif name in {"TargetEntityType", "RelationshipName", "IsUserView"}:
+                expected_value = expected_value.lower()
+                actual_value = actual_value.lower()
+            if actual_value != expected_value:
+                return False
+    return True
+
+
 def guard_get_only_guid_path(method: str, path: str) -> None:
     """A verification path built from a caller-supplied immutable ID must stay
     GET-only, so a recovery identifier can never be routed into a write."""
@@ -3614,11 +3932,10 @@ def guard_get_only_guid_path(method: str, path: str) -> None:
 def metadata_verification_request(
     row: dict[str, Any], immutable_id: str
 ) -> OperationRequest:
-    """Verify a relationship by its immutable MetadataId rather than a mutable
-    SchemaName, confirming the identifier the create actually returned."""
-    if row["component_type"] != "schema_relationship":
+    """Verify supported metadata by immutable MetadataId."""
+    if row["component_type"] not in {"schema_relationship", "schema_table"}:
         raise ExecutorError(
-            "immutable-ID verification is limited to schema_relationship",
+            "immutable-ID verification is limited to schema_relationship and schema_table children",
             category="unsupported_operation",
         )
     if not GUID_RE.fullmatch(immutable_id):
@@ -3626,7 +3943,14 @@ def metadata_verification_request(
             "immutable MetadataId is not a canonical GUID",
             category="validation_error",
         )
-    path = f"RelationshipDefinitions({immutable_id})"
+    if row["component_type"] == "schema_relationship":
+        path = f"RelationshipDefinitions({immutable_id})"
+    else:
+        table = canonical_table(row["payload"].get("table"))
+        path = (
+            f"EntityDefinitions(LogicalName='{odata_string(table)}')/"
+            f"Attributes({immutable_id})"
+        )
     guard_get_only_guid_path("GET", path)
     return OperationRequest(
         "GET",
@@ -3635,7 +3959,7 @@ def metadata_verification_request(
         (),
         (),
         "none",
-        "verify relationship by immutable MetadataId",
+        f"verify {row['component_type']} by immutable MetadataId",
     )
 
 
@@ -3649,13 +3973,15 @@ def verify_result(
     request: OperationRequest | None = None,
 ) -> tuple[dict[str, str], str]:
     try:
-        if row["component_type"] == "schema_relationship" and GUID_RE.fullmatch(
-            immutable_id
-        ):
+        if row["component_type"] in {"schema_relationship", "schema_table"} and GUID_RE.fullmatch(immutable_id):
             verify_request = metadata_verification_request(row, immutable_id)
+            if row["component_type"] == "schema_table":
+                result = client.request_with_404_retries(verify_request)
+            else:
+                result = client.request(verify_request)
         else:
             verify_request = verification_request(row, request)
-        result = client.request(verify_request)
+            result = client.request(verify_request)
         item = response_item(row, result.data)
         found = bool(item)
     except ExecutorError as exc:
@@ -3848,6 +4174,39 @@ def post_evidence(payload: dict[str, Any], issue_number: int) -> dict[str, Any]:
     )
 
 
+def validate_bundled_recovery_evidence(
+    row: dict[str, Any], issue_number: int, immutable_id: str
+) -> None:
+    import execution_evidence
+
+    repository = execution_evidence.resolve_repo(None)
+    execution_evidence.validate_development_issue(
+        repository, issue_number, row["id"]
+    )
+    required = (
+        "d365-execution-evidence:v1",
+        f"dev={row['id']}",
+        f"task={row['task_context_hash']}",
+        f"plan={row['source_plan_hash']}",
+        "| Result | blocked |",
+        f"| DEV / component / type | {row['id']} / {row['component']} / schema_table |",
+        f"| Environment URL | {row['authoring_target']['environment_url']} |",
+        f"| Solution or record target | {row['authoring_target']['solution_unique_name']} |",
+        "| Write occurred | yes |",
+        f"- Immutable component/record ID: {immutable_id}",
+    )
+    matches = [
+        comment
+        for comment in execution_evidence.issue_comments(repository, issue_number)
+        if all(fragment in str(comment.get("body") or "") for fragment in required)
+    ]
+    if len(matches) != 1:
+        raise ExecutorError(
+            "verification-id must match exactly one current interrupted-write evidence comment",
+            category="validation_error",
+        )
+
+
 def execute(
     row: dict[str, Any],
     operation: str,
@@ -3914,9 +4273,24 @@ def _execute_single(
     dry_run: bool,
     verification_id: str = "",
 ) -> list[dict[str, Any]]:
+    payload = row.get("payload") or {}
+    is_bundled_recovery = bool(
+        verification_id
+        and operation == "verify"
+        and row["component_type"] == "schema_table"
+        and str(payload.get("operation") or "").lower() == "extend"
+    )
+    effective_operation = "update" if is_bundled_recovery else operation
+    if is_bundled_recovery:
+        if not GUID_RE.fullmatch(verification_id):
+            raise ExecutorError(
+                "verification-id must be an immutable MetadataId GUID",
+                category="validation_error",
+            )
+        validate_bundled_recovery_evidence(row, issue_number, verification_id)
     capability, service_root, solution_name = validate_executor_preflight(
         row,
-        operation,
+        effective_operation,
         approval=approval,
         check_oauth=not dry_run,
     )
@@ -3926,9 +4300,9 @@ def _execute_single(
                 "verification-id recovery requires the verify operation",
                 category="unsupported_operation",
             )
-        if row["component_type"] != "schema_relationship":
+        if row["component_type"] not in {"schema_relationship", "schema_table"}:
             raise ExecutorError(
-                "verification-id recovery is limited to schema_relationship",
+                "verification-id recovery is limited to schema_relationship and bundled schema_table children",
                 category="unsupported_operation",
             )
         if not GUID_RE.fullmatch(verification_id):
@@ -3936,7 +4310,7 @@ def _execute_single(
                 "verification-id must be an immutable MetadataId GUID",
                 category="validation_error",
             )
-        if dry_run:
+        if dry_run and not is_bundled_recovery:
             return [
                 {
                     "method": "GET",
@@ -3952,6 +4326,37 @@ def _execute_single(
                     "parameter_names": [],
                     "body_withheld": False,
                 }
+            ]
+        if dry_run:
+            recovery_request = metadata_verification_request(row, verification_id)
+            remaining = build_static_requests(
+                row,
+                "update",
+                capability,
+                skip_child_schema_names=set(),
+            )
+            return [
+                {
+                    "method": recovery_request.method,
+                    "endpoint_family": "metadata",
+                    "path_template": recovery_request.path,
+                    "solution_context": "none",
+                    "description": recovery_request.description,
+                    "parameter_names": [],
+                    "body_withheld": False,
+                },
+                *[
+                    {
+                        "method": request.method,
+                        "endpoint_family": capability["http"]["endpoint_family"],
+                        "path_template": request.path,
+                        "solution_context": capability["solution_context"]["mechanism"],
+                        "description": request.description,
+                        "parameter_names": list(request.parameter_names),
+                        "body_withheld": request.body is not None,
+                    }
+                    for request in remaining
+                ],
             ]
     if dry_run:
         if operation in {"add_solution_component", "remove_solution_component"}:
@@ -3983,7 +4388,12 @@ def _execute_single(
                     "body_withheld": True,
                 }
             ]
-        requests = build_static_requests(row, operation, capability)
+        requests = build_static_requests(
+            row,
+            operation,
+            capability,
+            form_subgrid_context=resolve_form_subgrid_context(row),
+        )
         for request in requests:
             validate_capability_request(capability, request)
         return [
@@ -4035,43 +4445,63 @@ def _execute_single(
         _transition_dev_to_in_progress(row["id"])
 
         client = DataverseClient(service_root, token, solution_name)
-        if verification_id:
+        recovered_request: OperationRequest | None = None
+        recovered_schema_name = ""
+        if is_bundled_recovery:
             request = metadata_verification_request(row, verification_id)
+            recovered_result = client.request_with_404_retries(request)
+            recovered_item = response_item(row, recovered_result.data)
+            recovered_schema_name = str(
+                recovered_item.get("SchemaName") or recovered_item.get("LogicalName") or ""
+            ).lower()
+            matching_columns = [
+                column
+                for column in payload.get("columns") or []
+                if isinstance(column, dict)
+                and canonical_child_schema_name(column) == recovered_schema_name
+            ]
+            if len(matching_columns) != 1:
+                raise ExecutorError(
+                    "recovered child does not match exactly one declared payload column",
+                    category="verification_mismatch",
+                )
+            recovered_request = OperationRequest(
+                "POST",
+                f"EntityDefinitions(LogicalName='{odata_string(canonical_table(payload.get('table')))}')/Attributes",
+                column_definition(matching_columns[0]),
+                ("SchemaName", "AttributeType", "RequiredLevel"),
+                ("SchemaName", "AttributeType", "RequiredLevel"),
+                "header",
+                "create exact child column for table extension",
+            )
+            choice_request = global_choice_metadata_request(recovered_request)
+            if choice_request is not None:
+                choice_result = client.request(choice_request)
+                recovered_request = bind_global_choice_metadata_id(
+                    recovered_request, choice_result.data
+                )
             verification, immutable_id = verify_result(
                 row,
                 client,
                 verification_id,
                 deleted=False,
                 membership_removed=False,
-                request=request,
+                request=recovered_request,
+            )
+        elif verification_id:
+            request = metadata_verification_request(row, verification_id)
+            verification, immutable_id = verify_result(
+                row, client, verification_id, deleted=False, request=request
             )
             evidence = evidence_payload(
-                row,
-                issue_number,
-                operation,
-                request,
-                result="succeeded",
-                status="200",
-                error_code="no_error",
-                message=(
-                    "Verify-only recovery reconciled the captured immutable "
-                    "MetadataId without writing."
-                ),
-                immutable_id=immutable_id,
-                correlation_id="",
-                verification=verification,
+                row, issue_number, operation, request,
+                result="succeeded", status="200", error_code="no_error",
+                message="Verify-only recovery reconciled the captured immutable MetadataId without writing.",
+                immutable_id=immutable_id, correlation_id="", verification=verification,
                 write_occurred=False,
             )
             posted = post_evidence(evidence, issue_number)
-            return [
-                {
-                    "result": "succeeded",
-                    "status": 200,
-                    "operation": request.description,
-                    "immutable_id": immutable_id,
-                    "evidence": posted.get("result"),
-                }
-            ]
+            return [{"result": "succeeded", "status": 200, "operation": request.description, "immutable_id": immutable_id, "evidence": posted.get("result")}]
         resolved_id = ""
         metadata_id = ""
         if operation in {"update", "delete"}:
@@ -4090,6 +4520,12 @@ def _execute_single(
         business_unit_id = ""
         if row["component_type"] == "sec_role" and operation == "create":
             business_unit_id = resolve_root_business_unit(client)
+        form_subgrid_context = (
+            resolve_form_subgrid_context(row, client)
+            if row["component_type"] == "uiux_form"
+            and effective_operation in {"create", "update", "verify"}
+            else None
+        )
         action_object_id = ""
         if operation in {"add_solution_component", "remove_solution_component"}:
             action_request, action_object_id = solution_action_request(
@@ -4099,7 +4535,7 @@ def _execute_single(
         else:
             requests = build_static_requests(
                 row,
-                operation,
+                effective_operation,
                 capability,
                 resolved_id=resolved_id or "{record_id}",
                 metadata_id=metadata_id or "{metadata_id}",
@@ -4107,6 +4543,10 @@ def _execute_single(
                 primary_id_attribute=primary_id_attribute
                 or "{primary_id_attribute}",
                 business_unit_id=business_unit_id or "{business_unit_id}",
+                form_subgrid_context=form_subgrid_context,
+                skip_child_schema_names=(
+                    {recovered_schema_name} if is_bundled_recovery else None
+                ),
             )
         if not requests:
             raise ExecutorError("compiler-owned operation resolved to no requests")
@@ -4138,7 +4578,7 @@ def _execute_single(
             # and scoped action evidence will be required
             status_payload = {
                 "status": "request-invoked",
-                "action": f"{row['component_type']}.{operation}",
+                "action": f"{row['component_type']}.{effective_operation}",
                 "environment_url": row["authoring_target"]["environment_url"].rstrip("/"),
                 "method": request.method,
                 "endpoint_family": capability["http"]["endpoint_family"],
@@ -4164,21 +4604,16 @@ def _execute_single(
                 membership_removed=operation == "remove_solution_component",
                 request=request,
             )
-            evidence = evidence_payload(
-                row,
-                issue_number,
-                operation,
-                request,
-                result="succeeded",
-                status=str(http_result.status),
-                error_code="no_error",
-                message="Scoped operation and targeted verification succeeded.",
-                immutable_id=immutable_id,
-                correlation_id=http_result.correlation_id,
-                verification=verification,
-                write_occurred=request.method in WRITE_METHODS,
-            )
-            posted = post_evidence(evidence, issue_number)
+            posted = {"result": "deferred"}
+            if not is_bundled_recovery:
+                evidence = evidence_payload(
+                    row, issue_number, effective_operation, request,
+                    result="succeeded", status=str(http_result.status), error_code="no_error",
+                    message="Scoped operation and targeted verification succeeded.",
+                    immutable_id=immutable_id, correlation_id=http_result.correlation_id,
+                    verification=verification, write_occurred=request.method in WRITE_METHODS,
+                )
+                posted = post_evidence(evidence, issue_number)
             outputs.append(
                 {
                     "result": "succeeded",
@@ -4188,6 +4623,48 @@ def _execute_single(
                     "evidence": posted.get("result"),
                 }
             )
+        if is_bundled_recovery:
+            if recovered_request is None:
+                raise ExecutorError("bundled recovery has no reconciled child request")
+            final_verification, _ = verify_result(
+                row,
+                client,
+                verification_id,
+                deleted=False,
+                membership_removed=False,
+                request=recovered_request,
+            )
+            child_names = tuple(
+                canonical_child_schema_name(column)
+                for column in payload.get("columns") or []
+                if isinstance(column, dict)
+            )
+            completion_request = OperationRequest(
+                "POST",
+                f"EntityDefinitions(LogicalName='{odata_string(canonical_table(payload.get('table')))}')/Attributes",
+                None,
+                child_names,
+                child_names,
+                "header",
+                "complete bundled schema_table extension recovery",
+            )
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                effective_operation,
+                completion_request,
+                result="succeeded",
+                status="204",
+                error_code="no_error",
+                message="Recovered existing child and verified every declared bundled child after creating only the remaining column.",
+                immutable_id=write_immutable_id,
+                correlation_id=write_correlation_id,
+                verification=final_verification,
+                write_occurred=True,
+            )
+            posted = post_evidence(evidence, issue_number)
+            for output in outputs:
+                output["evidence"] = posted.get("result")
         if row["component_type"] == "sec_role" and operation in {
             "create",
             "update",
@@ -4282,7 +4759,7 @@ def _execute_single(
 
         # If auth succeeded but lifecycle transition or preflight failed before any request,
         # restore DEV to ready (issue #22: executor-owned lifecycle transition).
-        if auth_succeeded and not exc.action_invoked:
+        if auth_succeeded and not exc.action_invoked and not is_bundled_recovery:
             try:
                 _restore_dev_to_ready(row["id"])
             except Exception as restore_err:

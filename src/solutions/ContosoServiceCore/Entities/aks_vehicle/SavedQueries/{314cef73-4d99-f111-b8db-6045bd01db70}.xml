@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{314cef73-4d99-f111-b8db-6045bd01db70}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="aks_registrationnumber" select="1" icon="1" preview="1">
+        <row name="result" id="aks_vehicleid">
+          <cell name="aks_registrationnumber" width="100" />
+          <cell name="aks_vin" width="100" />
+          <cell name="aks_status" width="100" />
+          <cell name="aks_roadworthy" width="100" />
+          <cell name="aks_depotid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical" no-lock="false">
+        <entity name="aks_vehicle">
+          <attribute name="aks_registrationnumber" />
+          <attribute name="aks_vin" />
+          <attribute name="aks_status" />
+          <attribute name="aks_roadworthy" />
+          <attribute name="aks_depotid" />
+          <order attribute="aks_registrationnumber" descending="false" />
+          <filter type="and">
+            <condition attribute="aks_status" operator="eq" value="74873" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Vehicles" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

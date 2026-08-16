@@ -161,10 +161,45 @@ routing:
     target: core-solution-target
     rationale: Tables, columns, relationships, choices, and keys form the core data model.
 
-  # 6) Model-driven UI — apps plus forms/views/dashboards/charts/sitemaps.
-  - match: {component_type: "uiux_*"}
+  # 6) App shells stay isolated from table-level UI customizations.
+  - match: {component_type: uiux_app}
     target: apps-solution-target
-    rationale: All model-driven UI (apps and their forms/views/etc.) ships together.
+    rationale: Model-driven app definitions belong in the app-shell solution.
+  - match: {component_type: uiux_sitemap}
+    target: apps-solution-target
+    rationale: Site maps define app navigation and belong with their app shell.
+  - match: {component_id: DES-02-CMP-010}
+    target: apps-solution-target
+    rationale: One-time Vehicle Quick Create membership removal must address its exact source solution.
+    approved_by: Anand Singh
+    approved_on: "2026-08-16"
+  - match: {component_id: DES-02-CMP-011}
+    target: apps-solution-target
+    rationale: One-time Maintenance History membership removal must address its exact source solution.
+    approved_by: Anand Singh
+    approved_on: "2026-08-16"
+  - match: {component_id: DES-02-CMP-012}
+    target: apps-solution-target
+    rationale: One-time Vehicle Main membership removal must address its exact source solution.
+    approved_by: Anand Singh
+    approved_on: "2026-08-16"
+  - match: {component_id: DES-02-CMP-013}
+    target: apps-solution-target
+    rationale: One-time Active Vehicles membership removal must address its exact source solution.
+    approved_by: Anand Singh
+    approved_on: "2026-08-16"
+  - match: {component_type: uiux_form}
+    target: core-solution-target
+    rationale: Table forms ship with their owning tables in the core solution.
+  - match: {component_type: uiux_view}
+    target: core-solution-target
+    rationale: Table views ship with their owning tables in the core solution.
+  - match: {component_type: uiux_dashboard}
+    target: core-solution-target
+    rationale: Table-level dashboards ship with their underlying data model in the core solution.
+  - match: {component_type: uiux_chart}
+    target: core-solution-target
+    rationale: Table charts ship with their owning tables in the core solution.
 
   # 7) Automation & integration.
   - match: {component_type: "flow_*"}

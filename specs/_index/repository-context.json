@@ -89,10 +89,81 @@
       },
       {
         "match": {
-          "component_type": "uiux_*"
+          "component_type": "uiux_app"
         },
-        "rationale": "All model-driven UI (apps and their forms/views/etc.) ships together.",
+        "rationale": "Model-driven app definitions belong in the app-shell solution.",
         "target": "apps-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "uiux_sitemap"
+        },
+        "rationale": "Site maps define app navigation and belong with their app shell.",
+        "target": "apps-solution-target"
+      },
+      {
+        "approved_by": "Anand Singh",
+        "approved_on": "2026-08-16",
+        "match": {
+          "component_id": "DES-02-CMP-010"
+        },
+        "rationale": "One-time Vehicle Quick Create membership removal must address its exact source solution.",
+        "target": "apps-solution-target"
+      },
+      {
+        "approved_by": "Anand Singh",
+        "approved_on": "2026-08-16",
+        "match": {
+          "component_id": "DES-02-CMP-011"
+        },
+        "rationale": "One-time Maintenance History membership removal must address its exact source solution.",
+        "target": "apps-solution-target"
+      },
+      {
+        "approved_by": "Anand Singh",
+        "approved_on": "2026-08-16",
+        "match": {
+          "component_id": "DES-02-CMP-012"
+        },
+        "rationale": "One-time Vehicle Main membership removal must address its exact source solution.",
+        "target": "apps-solution-target"
+      },
+      {
+        "approved_by": "Anand Singh",
+        "approved_on": "2026-08-16",
+        "match": {
+          "component_id": "DES-02-CMP-013"
+        },
+        "rationale": "One-time Active Vehicles membership removal must address its exact source solution.",
+        "target": "apps-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "uiux_form"
+        },
+        "rationale": "Table forms ship with their owning tables in the core solution.",
+        "target": "core-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "uiux_view"
+        },
+        "rationale": "Table views ship with their owning tables in the core solution.",
+        "target": "core-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "uiux_dashboard"
+        },
+        "rationale": "Table-level dashboards ship with their underlying data model in the core solution.",
+        "target": "core-solution-target"
+      },
+      {
+        "match": {
+          "component_type": "uiux_chart"
+        },
+        "rationale": "Table charts ship with their owning tables in the core solution.",
+        "target": "core-solution-target"
       },
       {
         "match": {
@@ -236,7 +307,7 @@
       }
     }
   },
-  "authoring_targets_hash": "0d5329e0fe0755fe27180a3c6a96441e68da8ea3b6147a11b3f8cfef2e82ac59",
+  "authoring_targets_hash": "18795f4739aa7153465a83bda2657ef9a37bf8ad7fd0f9b8813ee2e9038cc0a7",
   "authoring_targets_schema_hash": "3833d87460022fab0b0f740df27fe1ebb65e0d0b0b29c520eca4efd9565664b3",
   "compatibility": {
     "canonical_artifacts": {
@@ -991,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35",
+  "context_hash": "cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a",
   "conventions_hash": "50042d1b6a869b98b9eb12a1005944f607562d838756159860478af444214c16",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -1406,8 +1477,10 @@
       "uiux_form": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
+          "add_solution_component": "add-solution-component",
           "create": "form-create",
           "delete": "form-delete",
+          "remove_solution_component": "remove-solution-component",
           "update": "form-update",
           "verify": "form-verify"
         }
@@ -1424,8 +1497,10 @@
       "uiux_view": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
+          "add_solution_component": "add-solution-component",
           "create": "view-create",
           "delete": "view-delete",
+          "remove_solution_component": "remove-solution-component",
           "update": "view-update",
           "verify": "view-verify"
         }
@@ -4633,7 +4708,7 @@
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "edcc32f74c53a0b2ee14d3adc8c70e8ed88d2b29db50d4a629a935a4ff355a0f",
+  "dataverse_web_api_capabilities_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
   "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
   "design_sources": {
     "schema_version": 1,
