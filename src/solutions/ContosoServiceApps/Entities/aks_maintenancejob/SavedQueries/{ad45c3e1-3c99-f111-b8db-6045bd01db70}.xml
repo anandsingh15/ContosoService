@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{ad45c3e1-3c99-f111-b8db-6045bd01db70}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="aks_jobnumber" select="1" icon="1" preview="1">
+        <row name="result" id="aks_maintenancejobid">
+          <cell name="aks_jobnumber" width="100" />
+          <cell name="aks_technicianid" width="100" />
+          <cell name="createdon" width="100" />
+          <cell name="modifiedon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical" no-lock="false">
+        <entity name="aks_maintenancejob">
+          <attribute name="aks_jobnumber" />
+          <attribute name="aks_technicianid" />
+          <attribute name="createdon" />
+          <attribute name="modifiedon" />
+          <order attribute="aks_jobnumber" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Vehicle — Maintenance History" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
