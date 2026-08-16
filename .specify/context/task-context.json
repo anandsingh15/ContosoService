@@ -19157,7 +19157,7 @@
         "INTK-0001-REQ-004"
       ],
       "source_plan_hash": "c7daac198e50a951082f52b6a0178fe201581205f4240047bae12e20910a3467",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "validation_results",
