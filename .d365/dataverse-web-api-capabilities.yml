@@ -235,7 +235,7 @@ profiles:
     primary_resource: dataverse-web-api
     http: {method: POST, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes"}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
-    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Verify the exact derived column by table and logical name.}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Verify the exact derived column by table and logical name through the compiler-bound executor.}
     fallback: *portal_fallback
     executor: {supported: true, builder: schema_derived_column}
     rationale: &derived_rationale The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.
@@ -246,7 +246,7 @@ profiles:
     primary_resource: dataverse-web-api
     http: {method: PUT, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
-    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: "Retrieve, merge, and verify the exact derived column definition."}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor."}
     fallback: *portal_fallback
     executor: {supported: true, builder: schema_derived_column}
     rationale: *derived_rationale
@@ -257,7 +257,7 @@ profiles:
     primary_resource: dataverse-web-api
     http: {method: DELETE, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
-    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Confirm only the exact derived column was removed.}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Confirm through the compiler-bound executor that only the exact derived column was removed.}
     fallback: *portal_fallback
     executor: {supported: true, builder: schema_derived_column}
     destructive_effect: environment_delete
@@ -269,7 +269,7 @@ profiles:
     primary_resource: dataverse-web-api
     http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}
     solution_context: {mechanism: not_applicable}
-    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Target-read the exact derived column.}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Target-read the exact derived column through the compiler-bound executor.}
     fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: schema_derived_column}
     rationale: Targeted verification avoids broad table or solution inventory.
@@ -869,6 +869,17 @@ profiles:
     executor: {supported: true, builder: publish_xml}
     rationale: PublishXml targets named entities or choices; PublishAllXml is prohibited.
     official_references: [publish_xml, publish_request_schema]
+  derived-column-publish:
+    support: supported
+    operation: publish
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: unbound_action, path_template: PublishXml}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-web-api, rationale: Re-read only the published derived column through the compiler-bound executor.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: publish_xml}
+    rationale: PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.
+    official_references: [publish_xml, publish_request_schema]
   add-solution-component:
     support: supported
     operation: add_solution_component
@@ -879,6 +890,17 @@ profiles:
     fallback: *portal_fallback
     executor: {supported: true, builder: add_solution_component}
     rationale: Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.
+    official_references: [add_solution_component, solution_component_types]
+  derived-column-add-solution-component:
+    support: supported
+    operation: add_solution_component
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: unbound_action, path_template: AddSolutionComponent}
+    solution_context: {mechanism: action_parameter, name: SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-web-api, rationale: Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: add_solution_component}
+    rationale: Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.
     official_references: [add_solution_component, solution_component_types]
   remove-solution-component:
     support: supported
@@ -891,6 +913,18 @@ profiles:
     executor: {supported: true, builder: remove_solution_component}
     destructive_effect: solution_membership_only
     rationale: RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.
+    official_references: [remove_solution_component, solution_component_types]
+  derived-column-remove-solution-component:
+    support: supported
+    operation: remove_solution_component
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: unbound_action, path_template: RemoveSolutionComponent}
+    solution_context: {mechanism: action_parameter, name: SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-web-api, rationale: Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.}
+    fallback: *portal_fallback
+    executor: {supported: true, builder: remove_solution_component}
+    destructive_effect: solution_membership_only
+    rationale: RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.
     official_references: [remove_solution_component, solution_component_types]
   maker-portal-primary:
     support: unsupported_or_not_applicable
@@ -992,7 +1026,7 @@ components:
     operations: {create: metadata-column-create, update: metadata-column-update, delete: metadata-column-delete, verify: metadata-column-verify, publish: metadata-publish, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}
   schema_derived_column:
     implementation_scope: repository_and_dataverse_solution
-    operations: {create: derived-column-create, update: derived-column-update, delete: derived-column-delete, verify: derived-column-verify, publish: metadata-publish, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}
+    operations: {create: derived-column-create, update: derived-column-update, delete: derived-column-delete, verify: derived-column-verify, publish: derived-column-publish, add_solution_component: derived-column-add-solution-component, remove_solution_component: derived-column-remove-solution-component}
   schema_relationship:
     implementation_scope: repository_and_dataverse_solution
     operations: {create: metadata-relationship-create, update: metadata-relationship-update, delete: metadata-relationship-delete, verify: metadata-relationship-verify, publish: metadata-publish, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}

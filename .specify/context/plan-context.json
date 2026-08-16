@@ -1,5 +1,5 @@
 {
-  "context_hash": "12c51f45189f8e6e77802e9ab992ffcbd7edffff30397e53cf1c7e20a55a31e2",
+  "context_hash": "3fed7d9246f9cad77efa9c937ff36a712e938a51e110b797a210274382a7d9bb",
   "plans": [
     {
       "components": [
@@ -23,7 +23,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -483,7 +483,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -944,7 +944,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1424,7 +1424,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1877,7 +1877,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2330,7 +2330,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2780,7 +2780,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3255,7 +3255,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3731,7 +3731,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4206,7 +4206,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4672,7 +4672,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5051,7 +5051,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5430,7 +5430,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5809,7 +5809,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6185,7 +6185,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "create": {
                   "executor": {
@@ -6426,8 +6426,8 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2",
-      "source_spec_hash": "e8b397fe5dcfecd9eeb5513bb020cf6dbe707dab57ee8a16722358335cfa6308",
+      "plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_spec_hash": "98ab1b11dff0d784d3e9ed895744f0d20ef6ec9c81b5a2995ad5be3e89c02231",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
     },
@@ -6466,7 +6466,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6914,7 +6914,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7330,7 +7330,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7723,7 +7723,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8116,7 +8116,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8509,7 +8509,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8890,7 +8890,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "create": {
                   "executor": {
@@ -9156,7 +9156,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -9585,7 +9585,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10007,7 +10007,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10396,7 +10396,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10835,7 +10835,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11204,8 +11204,8 @@
       ],
       "feature": "FEAT-02",
       "plan": "DES-02",
-      "plan_hash": "b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1",
-      "source_spec_hash": "8d88969ff9bfba41acc3f842831fa4d9f78519d0cc3c8d880de4ea666528ff39",
+      "plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_spec_hash": "99b45470a6cb2e2f9049880275f5cfa74776108018ba44164557e2456354d301",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
     },
@@ -11270,7 +11270,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11725,7 +11725,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12165,7 +12165,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12586,7 +12586,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12981,7 +12981,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13438,7 +13438,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13831,7 +13831,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14225,7 +14225,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14611,7 +14611,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "create": {
                   "executor": {
@@ -14893,7 +14893,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14916,8 +14916,8 @@
                   ],
                   "operation": "add_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "add-solution-component",
-                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "profile": "derived-column-add-solution-component",
+                  "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -14925,12 +14925,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "create": {
@@ -14969,12 +14965,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Verify the exact derived column by table and logical name.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "delete": {
@@ -15013,12 +15005,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Confirm only the exact derived column was removed.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "publish": {
@@ -15042,19 +15030,15 @@
                   ],
                   "operation": "publish",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "metadata-publish",
-                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "profile": "derived-column-publish",
+                  "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
                   "solution_context": {
                     "mechanism": "not_applicable"
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Re-read only the published canonical metadata.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "remove_solution_component": {
@@ -15079,8 +15063,8 @@
                   ],
                   "operation": "remove_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "remove-solution-component",
-                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "profile": "derived-column-remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -15088,12 +15072,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "update": {
@@ -15132,12 +15112,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "verify": {
@@ -15173,12 +15149,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Target-read the exact derived column.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 }
               },
@@ -15261,44 +15233,6 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
-              },
-              {
-                "authentication": "interactive_user",
-                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-                "id": "dataverse-mcp",
-                "kind": "mcp",
-                "purpose": "discovery_and_targeted_verification",
-                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-                "release_channel": "ga",
-                "required_tools": [
-                  "search",
-                  "describe",
-                  "read_query"
-                ],
-                "server": "dataverse-authoring",
-                "supported_execution_hosts": [
-                  "local_interactive"
-                ],
-                "tools": [
-                  "search_data",
-                  "search",
-                  "create_record",
-                  "update_record",
-                  "delete_record",
-                  "create_table",
-                  "update_table",
-                  "delete_table",
-                  "read_query",
-                  "describe",
-                  "upsert_skill",
-                  "delete_skill",
-                  "init_file_upload",
-                  "commit_file_upload",
-                  "file_download"
-                ],
-                "version": "ga",
-                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -15359,7 +15293,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15382,8 +15316,8 @@
                   ],
                   "operation": "add_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "add-solution-component",
-                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "profile": "derived-column-add-solution-component",
+                  "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -15391,12 +15325,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "create": {
@@ -15435,12 +15365,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Verify the exact derived column by table and logical name.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "delete": {
@@ -15479,12 +15405,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Confirm only the exact derived column was removed.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "publish": {
@@ -15508,19 +15430,15 @@
                   ],
                   "operation": "publish",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "metadata-publish",
-                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "profile": "derived-column-publish",
+                  "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
                   "solution_context": {
                     "mechanism": "not_applicable"
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Re-read only the published canonical metadata.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "remove_solution_component": {
@@ -15545,8 +15463,8 @@
                   ],
                   "operation": "remove_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "remove-solution-component",
-                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "profile": "derived-column-remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -15554,12 +15472,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "update": {
@@ -15598,12 +15512,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "verify": {
@@ -15639,12 +15549,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Target-read the exact derived column.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 }
               },
@@ -15727,44 +15633,6 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
-              },
-              {
-                "authentication": "interactive_user",
-                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-                "id": "dataverse-mcp",
-                "kind": "mcp",
-                "purpose": "discovery_and_targeted_verification",
-                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-                "release_channel": "ga",
-                "required_tools": [
-                  "search",
-                  "describe",
-                  "read_query"
-                ],
-                "server": "dataverse-authoring",
-                "supported_execution_hosts": [
-                  "local_interactive"
-                ],
-                "tools": [
-                  "search_data",
-                  "search",
-                  "create_record",
-                  "update_record",
-                  "delete_record",
-                  "create_table",
-                  "update_table",
-                  "delete_table",
-                  "read_query",
-                  "describe",
-                  "upsert_skill",
-                  "delete_skill",
-                  "init_file_upload",
-                  "commit_file_upload",
-                  "file_download"
-                ],
-                "version": "ga",
-                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -15825,7 +15693,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15848,8 +15716,8 @@
                   ],
                   "operation": "add_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "add-solution-component",
-                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "profile": "derived-column-add-solution-component",
+                  "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -15857,12 +15725,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "create": {
@@ -15901,12 +15765,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Verify the exact derived column by table and logical name.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "delete": {
@@ -15945,12 +15805,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Confirm only the exact derived column was removed.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "publish": {
@@ -15974,19 +15830,15 @@
                   ],
                   "operation": "publish",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "metadata-publish",
-                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "profile": "derived-column-publish",
+                  "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
                   "solution_context": {
                     "mechanism": "not_applicable"
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Re-read only the published canonical metadata.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "remove_solution_component": {
@@ -16011,8 +15863,8 @@
                   ],
                   "operation": "remove_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "remove-solution-component",
-                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "profile": "derived-column-remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -16020,12 +15872,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "update": {
@@ -16064,12 +15912,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "verify": {
@@ -16105,12 +15949,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Target-read the exact derived column.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 }
               },
@@ -16193,44 +16033,6 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
-              },
-              {
-                "authentication": "interactive_user",
-                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-                "id": "dataverse-mcp",
-                "kind": "mcp",
-                "purpose": "discovery_and_targeted_verification",
-                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-                "release_channel": "ga",
-                "required_tools": [
-                  "search",
-                  "describe",
-                  "read_query"
-                ],
-                "server": "dataverse-authoring",
-                "supported_execution_hosts": [
-                  "local_interactive"
-                ],
-                "tools": [
-                  "search_data",
-                  "search",
-                  "create_record",
-                  "update_record",
-                  "delete_record",
-                  "create_table",
-                  "update_table",
-                  "delete_table",
-                  "read_query",
-                  "describe",
-                  "upsert_skill",
-                  "delete_skill",
-                  "init_file_upload",
-                  "commit_file_upload",
-                  "file_download"
-                ],
-                "version": "ga",
-                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -16296,7 +16098,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "2f757cd8dfa8e2a770af13a7e396e0fff029aa02143020cabf6b48855693750b",
+              "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -16319,8 +16121,8 @@
                   ],
                   "operation": "add_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "add-solution-component",
-                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "profile": "derived-column-add-solution-component",
+                  "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -16328,12 +16130,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "create": {
@@ -16372,12 +16170,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Verify the exact derived column by table and logical name.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "delete": {
@@ -16416,12 +16210,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Confirm only the exact derived column was removed.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "publish": {
@@ -16445,19 +16235,15 @@
                   ],
                   "operation": "publish",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "metadata-publish",
-                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "profile": "derived-column-publish",
+                  "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
                   "solution_context": {
                     "mechanism": "not_applicable"
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Re-read only the published canonical metadata.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "remove_solution_component": {
@@ -16482,8 +16268,8 @@
                   ],
                   "operation": "remove_solution_component",
                   "primary_resource": "dataverse-web-api",
-                  "profile": "remove-solution-component",
-                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "profile": "derived-column-remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
                   "solution_context": {
                     "mechanism": "action_parameter",
                     "name": "SolutionUniqueName",
@@ -16491,12 +16277,8 @@
                   },
                   "support": "supported",
                   "verification": {
-                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "update": {
@@ -16535,12 +16317,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Retrieve, merge, and verify the exact derived column definition.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 },
                 "verify": {
@@ -16576,12 +16354,8 @@
                       "method": "GET",
                       "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                     },
-                    "rationale": "Target-read the exact derived column.",
-                    "resource": "dataverse-mcp",
-                    "tools": [
-                      "describe",
-                      "read_query"
-                    ]
+                    "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                    "resource": "dataverse-web-api"
                   }
                 }
               },
@@ -16664,44 +16438,6 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
-              },
-              {
-                "authentication": "interactive_user",
-                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-                "id": "dataverse-mcp",
-                "kind": "mcp",
-                "purpose": "discovery_and_targeted_verification",
-                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
-                "release_channel": "ga",
-                "required_tools": [
-                  "search",
-                  "describe",
-                  "read_query"
-                ],
-                "server": "dataverse-authoring",
-                "supported_execution_hosts": [
-                  "local_interactive"
-                ],
-                "tools": [
-                  "search_data",
-                  "search",
-                  "create_record",
-                  "update_record",
-                  "delete_record",
-                  "create_table",
-                  "update_table",
-                  "delete_table",
-                  "read_query",
-                  "describe",
-                  "upsert_skill",
-                  "delete_skill",
-                  "init_file_upload",
-                  "commit_file_upload",
-                  "file_download"
-                ],
-                "version": "ga",
-                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -16739,13 +16475,13 @@
       ],
       "feature": "FEAT-03",
       "plan": "DES-03",
-      "plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
-      "source_spec_hash": "6dc71217117ed1649efb2ede88ff764b2a639c518a9c15eb49e7b3e26b15f737",
+      "plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_spec_hash": "d7e232bd56c2b43bb6532c03299d5f69ccbb18753271ba57deabb37e6b1a5658",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
     }
   ],
-  "repository_context_hash": "cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a",
+  "repository_context_hash": "98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb",
   "schema_version": 1,
-  "spec_context_hash": "ee593eb45f9ed33c3cf4f4c030af6dc0b96bdfbe474da7af7ae46b84ddda639f"
+  "spec_context_hash": "23a9b628ba3bd8a00992c1ce3e5323c26cc73b69bcb34a50f7c5e16c9ffd0d98"
 }

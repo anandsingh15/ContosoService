@@ -1,9 +1,9 @@
 ---
 id: DES-01
 implements_feature: FEAT-01
-source_spec_hash: e8b397fe5dcfecd9eeb5513bb020cf6dbe707dab57ee8a16722358335cfa6308
-repository_context_hash: cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a
-plan_hash: ca8ff189e8796fc18b4f0fdac12b627d5e1d0dded1b607fe9a7b0e00978b01b2
+source_spec_hash: 98ab1b11dff0d784d3e9ed895744f0d20ef6ec9c81b5a2995ad5be3e89c02231
+repository_context_hash: 98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb
+plan_hash: 8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9
 status: draft
 ---
 
@@ -427,5 +427,5 @@ and Dataverse analytics rather than custom telemetry.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-01 | FEAT-01 | `e8b397fe5dcfecd9eeb5513bb020cf6dbe707dab57ee8a16722358335cfa6308` | `cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a` |
+| DES-01 | FEAT-01 | `98ab1b11dff0d784d3e9ed895744f0d20ef6ec9c81b5a2995ad5be3e89c02231` | `98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb` |
 <!-- COMPILER:END provenance -->

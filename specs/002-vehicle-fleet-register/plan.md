@@ -2,9 +2,9 @@
 id: DES-02
 status: reviewed
 implements_feature: FEAT-02
-source_spec_hash: 8d88969ff9bfba41acc3f842831fa4d9f78519d0cc3c8d880de4ea666528ff39
-repository_context_hash: cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a
-plan_hash: b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1
+source_spec_hash: 99b45470a6cb2e2f9049880275f5cfa74776108018ba44164557e2456354d301
+repository_context_hash: 98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb
+plan_hash: 1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34
 ---
 
 # Design — FEAT-02 vehicle-fleet-register (DES-02)
@@ -382,5 +382,5 @@ Craft change and no deletion of the underlying Dataverse rows.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-02 | FEAT-02 | `8d88969ff9bfba41acc3f842831fa4d9f78519d0cc3c8d880de4ea666528ff39` | `cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a` |
+| DES-02 | FEAT-02 | `99b45470a6cb2e2f9049880275f5cfa74776108018ba44164557e2456354d301` | `98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb` |
 <!-- COMPILER:END provenance -->
