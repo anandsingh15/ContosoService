@@ -3699,10 +3699,12 @@ def solution_component_rows(
     ).data.get("value") or []
     rows = [item for item in values if isinstance(item, dict)]
     if solution_id:
+        normalized_solution_id = solution_id.lower()
         rows = [
             item
             for item in rows
-            if str(item.get("_solutionid_value") or "") == solution_id
+            if str(item.get("_solutionid_value") or "").lower()
+            == normalized_solution_id
         ]
     return rows
 
@@ -4169,7 +4171,8 @@ def verify_result(
             client, object_id, solution_id=solution_id
         )
         routed_membership = any(
-            str(item.get("_solutionid_value") or "") == solution_id
+            str(item.get("_solutionid_value") or "").lower()
+            == solution_id.lower()
             for item in memberships
         )
         if routed_membership == membership_removed:
@@ -4178,16 +4181,19 @@ def verify_result(
                 category="verification_mismatch",
             )
         if not membership_removed:
-            declared_ids = set(declared_solution_ids(client).values())
+            declared_ids = {
+                value.lower() for value in declared_solution_ids(client).values()
+            }
             all_memberships = effective_solution_component_rows(
                 row, client, object_id
             )
             actual_declared_ids = {
-                str(item.get("_solutionid_value") or "")
+                str(item.get("_solutionid_value") or "").lower()
                 for item in all_memberships
-                if str(item.get("_solutionid_value") or "") in declared_ids
+                if str(item.get("_solutionid_value") or "").lower()
+                in declared_ids
             }
-            if actual_declared_ids != {solution_id}:
+            if actual_declared_ids != {solution_id.lower()}:
                 raise ExecutorError(
                     "component membership does not resolve only to the routed "
                     "solution among declared custom solutions",

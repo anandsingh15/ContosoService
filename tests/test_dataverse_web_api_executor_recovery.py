@@ -332,7 +332,7 @@ class MembershipAddVerificationTests(unittest.TestCase):
 
     def test_membership_lookup_filters_solution_after_exact_object_query(self):
         object_id = "d0031527-4399-f111-b8db-6045bd01d8e8"
-        solution_id = "6e0dd563-bd3d-f011-b4cc-7c1e521687a1"
+        solution_id = "6E0DD563-BD3D-F011-B4CC-7C1E521687A1"
         client = mock.Mock()
         client.request.return_value = executor.HttpResult(
             200,
