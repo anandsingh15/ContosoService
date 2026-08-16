@@ -43831,7 +43831,7 @@
         "INTK-0001-REQ-013"
       ],
       "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "validation_results",
@@ -44931,7 +44931,7 @@
         "INTK-0001-REQ-013"
       ],
       "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "validation_results",
