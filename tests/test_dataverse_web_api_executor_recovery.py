@@ -52,6 +52,81 @@ class FakeClient:
         )
 
 
+class ColumnDefinitionTests(unittest.TestCase):
+    def test_builds_dev_0016_base_column_types(self):
+        datetime = executor.column_definition(
+            {
+                "name": "aks_scheduleddate",
+                "data_type": "DateTime",
+                "behavior": "UserLocal",
+                "required_level": "Recommended",
+            }
+        )
+        decimal = executor.column_definition(
+            {
+                "name": "aks_labourhours",
+                "data_type": "Decimal",
+                "precision": 2,
+                "minimum": 0,
+                "required_level": "None",
+            }
+        )
+        currency = executor.column_definition(
+            {
+                "name": "aks_hourlyrate",
+                "data_type": "Currency",
+                "minimum": 0,
+                "required_level": "None",
+            }
+        )
+
+        self.assertEqual(datetime["AttributeType"], "DateTime")
+        self.assertEqual(datetime["DateTimeBehavior"], {"Value": "UserLocal"})
+        self.assertEqual(decimal["AttributeType"], "Decimal")
+        self.assertEqual(decimal["Precision"], 2)
+        self.assertEqual(currency["AttributeType"], "Money")
+        self.assertEqual(currency["PrecisionSource"], 2)
+
+    def test_builds_power_fx_formula_column(self):
+        definition = executor.derived_column_definition(
+            {
+                "name": "aks_labourcost",
+                "table": "aks_maintenancejob",
+                "base_data_type": "decimal",
+                "derived_type": "formula",
+                "formula": "aks_labourhours * Decimal(aks_hourlyrate)",
+                "required_level": "None",
+            }
+        )
+
+        self.assertEqual(definition["SourceType"], 3)
+        self.assertEqual(
+            definition["FormulaDefinition"],
+            "aks_labourhours * Decimal(aks_hourlyrate)",
+        )
+
+    def test_builds_rollup_column(self):
+        definition = executor.derived_column_definition(
+            {
+                "name": "aks_totalpartscost",
+                "table": "aks_maintenancejob",
+                "base_data_type": "decimal",
+                "derived_type": "rollup",
+                "formula": None,
+                "rollup_spec": {
+                    "related_entity": "aks_jobpart",
+                    "aggregate_function": "SUM",
+                    "aggregate_attribute": "aks_linevalue",
+                },
+                "required_level": "None",
+            }
+        )
+
+        self.assertEqual(definition["SourceType"], 2)
+        self.assertIn("<AggregateFunction>SUM</AggregateFunction>", definition["RollupStateData"])
+        self.assertIn("<AggregateAttribute>aks_linevalue</AggregateAttribute>", definition["RollupStateData"])
+
+
 class MembershipOnlyIdentityTests(unittest.TestCase):
     def test_uses_compiler_approved_immutable_id_without_lookup(self):
         immutable_id = "600a01e0-3499-f111-b8db-6045bd01db1c"
@@ -377,6 +452,71 @@ class BundledRecoveryTests(unittest.TestCase):
         self.assertEqual(
             membership_rows.call_args_list[1].args[1],
             "5f484590-ad95-f111-8075-6045bd01d8e8",
+        )
+
+    def test_bundled_publish_verifies_each_child_not_parent_table(self):
+        row = {
+            "component_type": "schema_table",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "payload": {
+                "operation": "extend",
+                "schema_name": "aks_maintenancejob",
+                "table": "aks_maintenancejob",
+                "columns": [
+                    {
+                        "name": "aks_labourhours",
+                        "data_type": "Decimal",
+                        "required_level": "None",
+                    },
+                    {
+                        "name": "aks_hourlyrate",
+                        "data_type": "Currency",
+                        "required_level": "None",
+                    },
+                ],
+            },
+        }
+        publish_request = executor.OperationRequest(
+            "POST",
+            "PublishXml",
+            {"ParameterXml": "<importexportxml />"},
+            ("ParameterXml",),
+            ("published_customizations",),
+            "none",
+            "publish only the exact component scope",
+        )
+
+        with (
+            mock.patch.object(
+                executor,
+                "capability_for",
+                return_value={
+                    "solution_context": {"mechanism": "MSCRM.SolutionUniqueName"}
+                },
+            ),
+            mock.patch.object(
+                executor,
+                "verify_result",
+                side_effect=[
+                    ({"identity": "matched", "payload": "matched", "membership": "matched"}, "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                    ({"identity": "matched", "payload": "matched", "membership": "matched"}, "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
+                ],
+            ) as verify,
+        ):
+            result, immutable_id = executor.verify_publish_result(
+                row, mock.Mock(), publish_request
+            )
+
+        self.assertEqual(result["membership"], "matched")
+        self.assertEqual(immutable_id, "")
+        self.assertEqual(verify.call_count, 2)
+        verified_requests = [call.kwargs["request"] for call in verify.call_args_list]
+        self.assertEqual(
+            [request.body["SchemaName"] for request in verified_requests],
+            ["aks_labourhours", "aks_hourlyrate"],
+        )
+        self.assertTrue(
+            all(request.path.endswith("/Attributes") for request in verified_requests)
         )
 
     def test_execute_skips_status_and_posts_only_roadworthy(self):
