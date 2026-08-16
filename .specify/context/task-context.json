@@ -32687,7 +32687,7 @@
         "INTK-0001-REQ-013"
       ],
       "source_plan_hash": "86935c046a8f818b594f880313d865b14cddf7bfeb9f3c82e40359eed0ae7f7c",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "validation_results",
