@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{d0031527-4399-f111-b8db-6045bd01d8e8}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab name="general" id="{D0BBDE55-E2CD-55F3-8520-E05D2631D893}">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="header" id="{DBB4349E-F5A0-5B91-AD81-18BA92CB0009}" showlabel="true" columns="1">
+                  <labels>
+                    <label description="Header" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{22738CCD-DFB9-56D7-9DBA-D0E180A719C4}">
+                        <labels>
+                          <label description="Aks Status" languagecode="1033" />
+                        </labels>
+                        <control id="aks_status" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_status" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{941E631A-F5B3-57BF-8B0C-B555A6F8897A}">
+                        <labels>
+                          <label description="Aks Roadworthy" languagecode="1033" />
+                        </labels>
+                        <control id="aks_roadworthy" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_roadworthy" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6160F1AE-7CA5-5BD6-80B1-AD445ACF722C}">
+                        <labels>
+                          <label description="Aks Depotid" languagecode="1033" />
+                        </labels>
+                        <control id="aks_depotid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_depotid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="vehicle_identity" id="{95319741-ADCA-52B0-BFEB-D41DD80D4EF0}" showlabel="true" columns="1">
+                  <labels>
+                    <label description="Vehicle identity" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{482B28AF-D254-5A80-8C14-2DCD597988AC}">
+                        <labels>
+                          <label description="Aks Name" languagecode="1033" />
+                        </labels>
+                        <control id="aks_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{13C4114F-AF52-5F25-BBB7-912BB93A1CA0}">
+                        <labels>
+                          <label description="Aks Registrationnumber" languagecode="1033" />
+                        </labels>
+                        <control id="aks_registrationnumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_registrationnumber" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{62F8F16A-2722-5488-9B3D-781143DD6B5A}">
+                        <labels>
+                          <label description="Aks Vin" languagecode="1033" />
+                        </labels>
+                        <control id="aks_vin" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_vin" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="maintenance_history" id="{88C569CF-9558-54A1-9E43-6A8664E67ED6}" showlabel="true" columns="1">
+                  <labels>
+                    <label description="Maintenance history" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{C722D579-1586-5432-A950-5CC7E04797EA}">
+                        <labels>
+                          <label description="Maintenance history" languagecode="1033" />
+                        </labels>
+                        <control id="aks_vehicle_maintenancehistory" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <TargetEntityType>aks_maintenancejob</TargetEntityType>
+                            <ViewId>{AD45C3E1-3C99-F111-B8DB-6045BD01DB70}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>aks_vehicle_maintenancejob</RelationshipName>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <RecordsPerPage>10</RecordsPerPage>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Vehicle — Main" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>
