@@ -52,6 +52,135 @@ class FakeClient:
         )
 
 
+class MembershipOnlyIdentityTests(unittest.TestCase):
+    def test_uses_compiler_approved_immutable_id_without_lookup(self):
+        immutable_id = "600a01e0-3499-f111-b8db-6045bd01db1c"
+        row = {
+            "component_type": "uiux_form",
+            "payload": {
+                "immutable_id": immutable_id,
+                "membership_only": True,
+            },
+        }
+        client = mock.Mock()
+
+        self.assertEqual(
+            executor.resolve_component_object_id(row, client), immutable_id
+        )
+        client.request.assert_not_called()
+
+    def test_rejects_invalid_membership_only_immutable_id(self):
+        row = {
+            "component_type": "uiux_view",
+            "payload": {
+                "immutable_id": "not-a-guid",
+                "membership_only": True,
+            },
+        }
+
+        with self.assertRaisesRegex(
+            executor.ExecutorError,
+            "membership-only component has no valid immutable ID",
+        ):
+            executor.resolve_component_object_id(row, mock.Mock())
+
+    def test_remove_action_uses_component_object_id(self):
+        object_id = "600a01e0-3499-f111-b8db-6045bd01db1c"
+        membership_id = "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+        row = {
+            "component_type": "uiux_form",
+            "payload": {
+                "immutable_id": object_id,
+                "membership_only": True,
+            },
+            "authoring_target": {
+                "solution_unique_name": "ContosoServiceApps",
+            },
+        }
+
+        with (
+            mock.patch.object(
+                executor,
+                "resolve_solution_id",
+                return_value="bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+            ),
+            mock.patch.object(
+                executor,
+                "solution_component_rows",
+                return_value=[
+                    {
+                        "componenttype": 60,
+                        "solutioncomponentid": membership_id,
+                    }
+                ],
+            ),
+        ):
+            request, resolved_id = executor.solution_action_request(
+                row, "remove_solution_component", mock.Mock()
+            )
+
+        self.assertEqual(resolved_id, object_id)
+        self.assertEqual(
+            request.body["SolutionComponent"]["solutioncomponentid"], object_id
+        )
+        self.assertNotEqual(
+            request.body["SolutionComponent"]["solutioncomponentid"], membership_id
+        )
+
+    def test_membership_only_row_verification_targets_immutable_id(self):
+        immutable_id = "600a01e0-3499-f111-b8db-6045bd01db1c"
+        row = {
+            "component_type": "uiux_form",
+            "payload": {"membership_only": True},
+        }
+
+        request = executor.row_verification_request_by_id(row, immutable_id)
+
+        self.assertEqual(request.method, "GET")
+        self.assertEqual(
+            request.path,
+            f"systemforms({immutable_id})?$select=formid",
+        )
+
+    def test_membership_only_verification_skips_cleanup_payload_comparison(self):
+        immutable_id = "600a01e0-3499-f111-b8db-6045bd01db1c"
+        solution_id = "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
+        row = {
+            "component_type": "uiux_form",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "payload": {"membership_only": True},
+        }
+        client = mock.Mock()
+        client.request.return_value = executor.HttpResult(
+            200,
+            "",
+            "",
+            {"formid": immutable_id},
+        )
+
+        with (
+            mock.patch.object(
+                executor, "resolve_solution_id", return_value=solution_id
+            ),
+            mock.patch.object(
+                executor, "effective_solution_component_rows", return_value=[]
+            ),
+            mock.patch.object(executor, "expected_payload_matches") as payload_match,
+        ):
+            verification, resolved_id = executor.verify_result(
+                row,
+                client,
+                immutable_id,
+                deleted=False,
+                membership_removed=True,
+            )
+
+        self.assertEqual(resolved_id, immutable_id)
+        self.assertEqual(verification["identity"], "matched")
+        self.assertEqual(verification["membership"], "matched")
+        payload_match.assert_not_called()
+
+
 class BundledRecoveryTests(unittest.TestCase):
     def test_bundled_child_inherits_parent_table_solution_membership(self):
         row = {
