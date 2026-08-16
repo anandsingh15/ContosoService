@@ -393,6 +393,33 @@ class MembershipAddVerificationTests(unittest.TestCase):
         self.assertEqual(request.body["ComponentType"], 60)
         memberships.assert_not_called()
 
+    def test_derived_column_add_uses_documented_type_without_existing_membership(self):
+        object_id = "1032d5a1-9399-f111-b8db-6045bd01db70"
+        row = {
+            "component_type": "schema_derived_column",
+            "authoring_target": {"solution_unique_name": "ContosoServiceCore"},
+        }
+        client = mock.Mock()
+
+        with (
+            mock.patch.object(executor, "resolve_solution_id"),
+            mock.patch.object(
+                executor,
+                "resolve_component_object_id",
+                return_value=object_id,
+            ),
+            mock.patch.object(executor, "solution_component_rows") as memberships,
+        ):
+            request, resolved_id = executor.solution_action_request(
+                row,
+                "add_solution_component",
+                client,
+            )
+
+        self.assertEqual(resolved_id, object_id)
+        self.assertEqual(request.body["ComponentType"], 2)
+        memberships.assert_not_called()
+
     def test_dev_0033_create_shape_resolves_live_subgrid_id(self):
         context = executor.P.read_context(executor.P.TASK_CONTEXT_PATH)
         row = next(task for task in context["tasks"] if task["id"] == "DEV-0033")

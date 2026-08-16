@@ -103,6 +103,7 @@ ROW_ID_FIELDS = {
 }
 # Documented solutioncomponent.componenttype values.
 ROW_SOLUTION_COMPONENT_TYPES = {
+    "schema_derived_column": 2,
     "uiux_view": 26,
     "uiux_form": 60,
     "sec_role": 20,
