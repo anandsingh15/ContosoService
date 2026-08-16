@@ -42741,7 +42741,7 @@
         "INTK-0001-REQ-012"
       ],
       "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
-      "status": "draft",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "validation_results",
