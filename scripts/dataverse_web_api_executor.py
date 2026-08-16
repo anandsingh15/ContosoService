@@ -3718,6 +3718,8 @@ def effective_solution_component_rows(
 ) -> list[dict[str, Any]]:
     rows = solution_component_rows(client, object_id, solution_id=solution_id)
     if row["component_type"] not in {
+        "schema_column",
+        "schema_derived_column",
         "schema_relationship",
         "schema_key",
         "schema_table",

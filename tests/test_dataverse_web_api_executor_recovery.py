@@ -330,6 +330,44 @@ class MembershipAddVerificationTests(unittest.TestCase):
             client.request.call_args.args[0].path,
         )
 
+    def test_derived_column_effective_membership_includes_parent_table(self):
+        inherited = [
+            {
+                "componenttype": 1,
+                "rootcomponentbehavior": 0,
+                "_solutionid_value": "6e0dd563-bd3d-f011-b4cc-7c1e521687a1",
+            }
+        ]
+        row = {
+            "component_type": "schema_derived_column",
+            "payload": {"table": "aks_jobpart"},
+        }
+        client = mock.Mock()
+        client.request.return_value = executor.HttpResult(
+            200,
+            "",
+            "",
+            {"MetadataId": "96b5fd64-5d98-f111-b8db-6045bd01db70"},
+        )
+
+        with mock.patch.object(
+            executor,
+            "solution_component_rows",
+            side_effect=[[], inherited],
+        ):
+            rows = executor.effective_solution_component_rows(
+                row,
+                client,
+                "1032d5a1-9399-f111-b8db-6045bd01db70",
+                solution_id="6e0dd563-bd3d-f011-b4cc-7c1e521687a1",
+            )
+
+        self.assertEqual(rows, inherited)
+        self.assertIn(
+            "EntityDefinitions(LogicalName='aks_jobpart')",
+            client.request.call_args.args[0].path,
+        )
+
     def test_membership_lookup_filters_solution_after_exact_object_query(self):
         object_id = "d0031527-4399-f111-b8db-6045bd01d8e8"
         solution_id = "6E0DD563-BD3D-F011-B4CC-7C1E521687A1"
