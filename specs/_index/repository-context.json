@@ -1062,8 +1062,8 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb",
-  "conventions_hash": "50042d1b6a869b98b9eb12a1005944f607562d838756159860478af444214c16",
+  "context_hash": "c95e3a189999b2566c41aab8ee206e51e15c1308a2c36a4fb4aa0aa21bfce66f",
+  "conventions_hash": "de9cfd93e3251d7c8841a96e1e1878e01e00571b35aa68259c0e622565bc1952",
   "dataverse_web_api_capabilities": {
     "components": {
       "az_ai_*": {

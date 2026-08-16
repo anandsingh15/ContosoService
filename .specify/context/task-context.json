@@ -1,7 +1,7 @@
 {
-  "context_hash": "d72786ab974f19749be5d9a44cda9082dc4a2418a015c506361302eac050a08d",
-  "plan_context_hash": "3fed7d9246f9cad77efa9c937ff36a712e938a51e110b797a210274382a7d9bb",
-  "repository_context_hash": "98bdc05931b95ea9aa8fc8c9bb85a0b826a9e79e1d56d9fae1890a9e503f39bb",
+  "context_hash": "e0f28994d5b067141de1c7ee74b145ac5096a0b68f97b2995a91c7fffbcc26ad",
+  "plan_context_hash": "6d1322c8aae351ae30843b14e541762ae46f4ed6bb794dcffe6bde5b1a354461",
+  "repository_context_hash": "c95e3a189999b2566c41aab8ee206e51e15c1308a2c36a4fb4aa0aa21bfce66f",
   "schema_version": 1,
   "tasks": [
     {
@@ -1251,7 +1251,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -2523,7 +2523,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -3792,7 +3792,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -5085,7 +5085,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -6360,7 +6360,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7635,7 +7635,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -8943,7 +8943,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -10251,7 +10251,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -11556,7 +11556,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -12861,7 +12861,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -13923,7 +13923,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -14985,7 +14985,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -16047,7 +16047,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -17109,7 +17109,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -17862,7 +17862,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "8695902b8e19bfa97fef691fda7180b1e60f591f7cf1df8a9b50838c710283a9",
+      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -19156,7 +19156,7 @@
         "INTK-0001-REQ-003",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -20334,7 +20334,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -21424,7 +21424,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -22519,7 +22519,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -23614,7 +23614,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -24709,7 +24709,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -25474,7 +25474,7 @@
         "INTK-0001-REQ-001",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -26702,7 +26702,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -27890,7 +27890,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -28991,7 +28991,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -30227,7 +30227,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -31331,7 +31331,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "1f74e11793e931564cb56f6f8f7d6c8399ecc45a0fcb3ca2b2eed172ce1edb34",
+      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -32686,7 +32686,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -33968,7 +33968,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -35145,7 +35145,7 @@
       "satisfies": [
         "INTK-0001-REQ-009"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -36246,7 +36246,7 @@
         "INTK-0001-REQ-012",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -37544,7 +37544,7 @@
         "INTK-0001-REQ-013",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -38642,7 +38642,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -39737,7 +39737,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -40835,7 +40835,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -41651,7 +41651,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -42346,7 +42346,8 @@
           "component_projects": [],
           "component_source_sync": {
             "paths": [
-              "Entities/<table>/Entity.xml"
+              "Entities/<table>/Entity.xml",
+              "Entities/<table>/Formulas/<table>-FormulaDefinitions.yaml"
             ],
             "strategy": "parent_owned_xml"
           },
@@ -42740,7 +42741,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -43434,7 +43435,8 @@
           "component_projects": [],
           "component_source_sync": {
             "paths": [
-              "Entities/<table>/Entity.xml"
+              "Entities/<table>/Entity.xml",
+              "Entities/<table>/Formulas/<table>-FormulaDefinitions.yaml"
             ],
             "strategy": "parent_owned_xml"
           },
@@ -43828,7 +43830,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -44530,7 +44532,8 @@
           "component_projects": [],
           "component_source_sync": {
             "paths": [
-              "Entities/<table>/Entity.xml"
+              "Entities/<table>/Entity.xml",
+              "Entities/<table>/Formulas/<table>-FormulaDefinitions.yaml"
             ],
             "strategy": "parent_owned_xml"
           },
@@ -44927,7 +44930,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -45620,7 +45623,8 @@
           "component_projects": [],
           "component_source_sync": {
             "paths": [
-              "Entities/<table>/Entity.xml"
+              "Entities/<table>/Entity.xml",
+              "Entities/<table>/Formulas/<table>-FormulaDefinitions.yaml"
             ],
             "strategy": "parent_owned_xml"
           },
@@ -46012,7 +46016,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "e9633b0e5ac591825cdcd96de4fe6664c3e9802ed610aab5527236fc56cdf6cf",
+      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
       "status": "draft",
       "task_profile": {
         "evidence": [
