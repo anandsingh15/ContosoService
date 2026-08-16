@@ -2,9 +2,9 @@
 id: DES-03
 status: reviewed
 implements_feature: FEAT-03
-source_spec_hash: f347b90e50aadba90eeba8e19a52753ee2508a9055fba015977896c7797303c8
-repository_context_hash: cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35
-plan_hash: 205ee7a34b695064bf64cb991c158481d95e0e576424386afa78120afbb12196
+source_spec_hash: 6dc71217117ed1649efb2ede88ff764b2a639c518a9c15eb49e7b3e26b15f737
+repository_context_hash: cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a
+plan_hash: b7d8c55938fbc8a1a41ffa5161062b49cd047f5db605209f4aa547213e7fecb5
 ---
 
 # Design — FEAT-03 maintenance-jobs-parts (DES-03)
@@ -65,9 +65,9 @@ The app shell and role-based access remain owned by FEAT-06.
    plug-in, JavaScript, PCF, or Azure component is introduced.
 2. **data_residency — Dataverse-native.** Maintenance Job and Job Part remain in
    the existing authoring Dataverse environment. No data is copied externally.
-3. **alm_boundary — Segmented custom solutions.** Table extensions route to
-   `ContosoServiceCore`, forms and views route to `ContosoServiceApps`, and the
-   audit extension remains environment-bound. Publisher `AnandPOC` and prefix
+3. **alm_boundary — Segmented custom solutions.** Table extensions, forms, and
+  views route to `ContosoServiceCore`; only app definitions and site maps route
+  to `ContosoServiceApps`; the audit extension remains environment-bound. Publisher `AnandPOC` and prefix
    `aks` come from `.d365/authoring-targets.yml`; export and promotion remain
    external-pipeline concerns.
 4. **security — Existing user/team ownership, roles deferred to FEAT-06.** The
@@ -321,7 +321,9 @@ and [Rollup calculations](https://learn.microsoft.com/power-apps/maker/data-plat
 None. The cost, UX, and assignment choices were explicitly decided by Anand
 Singh on 2026-08-11 and are recorded above. FEAT-02 must provide the Vehicle
 columns referenced by the quick-view form; FEAT-01 already provides the backing
-Vehicle lookup and table relationships.
+Vehicle lookup and table relationships. Anand Singh confirmed on 2026-08-16 that
+table-level forms and views ship with Core while Apps contains only app-shell
+components such as model-driven app definitions and site maps.
 <!-- /FILL -->
 
 ## Requirement coverage
@@ -346,12 +348,12 @@ Vehicle lookup and table relationships.
 | --- | --- | --- | --- | --- | --- |
 | DES-03-CMP-001 | schema_table | dataverse-table | repository_and_dataverse_solution | local_interactive | core-solution-target |
 | DES-03-CMP-002 | schema_table | dataverse-table | repository_and_dataverse_solution | local_interactive | core-solution-target |
-| DES-03-CMP-003 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-03-CMP-004 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-03-CMP-005 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-03-CMP-006 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-03-CMP-007 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-03-CMP-008 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
+| DES-03-CMP-003 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-004 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-005 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-006 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-007 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-03-CMP-008 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
 | DES-03-CMP-009 | config_audit | dataverse-security | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring |
 <!-- COMPILER:END skills -->
 
@@ -360,5 +362,5 @@ Vehicle lookup and table relationships.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-03 | FEAT-03 | `f347b90e50aadba90eeba8e19a52753ee2508a9055fba015977896c7797303c8` | `cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35` |
+| DES-03 | FEAT-03 | `6dc71217117ed1649efb2ede88ff764b2a639c518a9c15eb49e7b3e26b15f737` | `cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a` |
 <!-- COMPILER:END provenance -->

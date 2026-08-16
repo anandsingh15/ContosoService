@@ -2,9 +2,9 @@
 id: DES-02
 status: reviewed
 implements_feature: FEAT-02
-source_spec_hash: 31566b894f84d9c6e00443d66e2b886b27f0eee66a5b1b1a3b13eb4ca0c342a6
-repository_context_hash: cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35
-plan_hash: c7daac198e50a951082f52b6a0178fe201581205f4240047bae12e20910a3467
+source_spec_hash: 8d88969ff9bfba41acc3f842831fa4d9f78519d0cc3c8d880de4ea666528ff39
+repository_context_hash: cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a
+plan_hash: b46c527eb3fbd54a66d503c2f8cc833c4811c63ce1f2c0c80a1b6d3833739ec1
 ---
 
 # Design — FEAT-02 vehicle-fleet-register (DES-02)
@@ -65,11 +65,17 @@ security roles, and privileges for personal saved views.
 2. **data_residency — Dataverse-native.** Vehicle data and related Maintenance
    Jobs remain in the registered Dataverse environment. No copy or external
    store is introduced.
-3. **alm_boundary — Segmented custom solutions.** The Vehicle table extension
-   routes to `ContosoServiceCore`, forms and views route to
-   `ContosoServiceApps`, and the audit extension remains environment-bound.
+3. **alm_boundary — Segmented custom solutions.** The Vehicle table extension,
+  forms, and views route to `ContosoServiceCore`; only app definitions and site
+  maps route to `ContosoServiceApps`; the audit extension remains environment-bound.
    Publisher `AnandPOC` and prefix `aks` come from the authoring-target manifest;
-   export and promotion remain external-pipeline concerns.
+  export and promotion remain external-pipeline concerns. For the one-time
+  correction approved by Anand Singh on 2026-08-16, the existing Core-routed
+  form/view work orders add or verify membership first; four dependent delta
+  components then remove only the exact unmanaged membership from
+  `ContosoServiceApps`. This exceptional split preserves the underlying rows,
+  immutable IDs, source files, and historical DEV evidence. HTTP `DELETE` is
+  prohibited.
 4. **security — Existing ownership; roles remain in FEAT-06.** Vehicle remains
    user/team-owned. DES-02 adds no security role or field-security profile.
    FEAT-06 owns coordinator/technician/reader privileges and the Saved View
@@ -154,24 +160,6 @@ components:
       - createdon
       - modifiedon
     satisfies: [INTK-0001-REQ-005]
-  - id: DES-02-CMP-004
-    component_type: uiux_form
-    name: Vehicle — Main
-    schema_name: aks_vehicle_main
-    table: aks_vehicle
-    form_type: Main
-    sections:
-      - name: Header
-        columns: [aks_status, aks_roadworthy, aks_depotid]
-      - name: Vehicle identity
-        columns: [aks_name, aks_registrationnumber, aks_vin]
-      - name: Maintenance history
-        subgrid: aks_vehicle_maintenancehistory
-        relationship: aks_vehicle_maintenancejob
-        records: Only Related Records
-        read_only: true
-    depends_on: [DES-02-CMP-001, DES-02-CMP-003]
-    satisfies: [INTK-0001-REQ-001, INTK-0001-REQ-004, INTK-0001-REQ-005]
   - id: DES-02-CMP-005
     component_type: uiux_view
     name: Active Vehicles
@@ -222,6 +210,92 @@ components:
       - aks_vehicle: [aks_status, aks_roadworthy]
     depends_on: [DES-02-CMP-001]
     satisfies: [INTK-0001-REQ-001, INTK-0001-REQ-004]
+  - id: DES-02-CMP-009
+    component_type: uiux_form
+    name: Vehicle — Main
+    schema_name: aks_vehicle_main
+    table: aks_vehicle
+    form_type: Main
+    sections:
+      - name: Header
+        columns: [aks_status, aks_roadworthy, aks_depotid]
+      - name: Vehicle identity
+        columns: [aks_name, aks_registrationnumber, aks_vin]
+      - name: Maintenance history
+        subgrid: aks_vehicle_maintenancehistory
+        relationship: aks_vehicle_maintenancejob
+        records: Only Related Records
+        read_only: true
+    depends_on: [DES-02-CMP-001, DES-02-CMP-003]
+    satisfies: [INTK-0001-REQ-001, INTK-0001-REQ-004, INTK-0001-REQ-005]
+  - id: DES-02-CMP-010
+    component_type: uiux_form
+    name: Vehicle — Quick Create membership removal
+    schema_name: aks_vehicle_quickcreate
+    table: aks_vehicle
+    form_type: quick_create
+    sections:
+      - name: Vehicle identifiers
+        columns: [aks_registrationnumber, aks_vin]
+    operation: remove_solution_component
+    immutable_id: 600a01e0-3499-f111-b8db-6045bd01db1c
+    membership_only: true
+    depends_on: [DES-02-CMP-002]
+    satisfies: [INTK-0001-REQ-001, INTK-0001-REQ-002, INTK-0001-REQ-003]
+  - id: DES-02-CMP-011
+    component_type: uiux_view
+    name: Vehicle — Maintenance History membership removal
+    schema_name: aks_vehicle_maintenancehistory
+    table: aks_maintenancejob
+    view_type: public
+    columns:
+      - aks_jobnumber (sort descending)
+      - aks_technicianid
+      - createdon
+      - modifiedon
+    operation: remove_solution_component
+    immutable_id: ad45c3e1-3c99-f111-b8db-6045bd01db70
+    membership_only: true
+    depends_on: [DES-02-CMP-003]
+    satisfies: [INTK-0001-REQ-005]
+  - id: DES-02-CMP-012
+    component_type: uiux_form
+    name: Vehicle — Main membership removal
+    schema_name: aks_vehicle_main
+    table: aks_vehicle
+    form_type: main
+    sections:
+      - name: Header
+        columns: [aks_status, aks_roadworthy, aks_depotid]
+      - name: Vehicle identity
+        columns: [aks_name, aks_registrationnumber, aks_vin]
+      - name: Maintenance history
+        subgrid: aks_vehicle_maintenancehistory
+        relationship: aks_vehicle_maintenancejob
+        records: Only Related Records
+        read_only: true
+    operation: remove_solution_component
+    immutable_id: d0031527-4399-f111-b8db-6045bd01d8e8
+    membership_only: true
+    depends_on: [DES-02-CMP-009]
+    satisfies: [INTK-0001-REQ-001, INTK-0001-REQ-004, INTK-0001-REQ-005]
+  - id: DES-02-CMP-013
+    component_type: uiux_view
+    name: Active Vehicles membership removal
+    schema_name: aks_activevehicles
+    table: aks_vehicle
+    view_type: public
+    columns:
+      - aks_registrationnumber (sort ascending)
+      - aks_vin
+      - aks_status
+      - aks_roadworthy
+      - aks_depotid
+    operation: remove_solution_component
+    immutable_id: 314cef73-4d99-f111-b8db-6045bd01db70
+    membership_only: true
+    depends_on: [DES-02-CMP-005]
+    satisfies: [INTK-0001-REQ-006]
 ```
 <!-- /FILL -->
 
@@ -233,7 +307,10 @@ state, and published-form/view verification rather than Application Insights.
 
 - **Events.** Dataverse auditing records Vehicle status and roadworthiness
   changes. Vehicle create/update outcomes and Maintenance Job relationship
-  changes provide the business trail for register and history behavior.
+  changes provide the business trail for register and history behavior. Each
+  one-time relocation records destination membership verification, source
+  membership removal, and final exclusive-Core verification in its Development
+  issue without copying customer content.
 - **Metrics.** Track duplicate-create rejection by VIN and registration,
   alternate-key state, failed Vehicle saves, published-form load/save failures,
   and view-result conformance for the three required lists. FEAT-02 carries no
@@ -260,7 +337,12 @@ Failed states in [Define alternate keys to reference rows](https://learn.microso
 None. Anand Singh confirmed the table/UX boundary and configuration-first
 architecture on 2026-08-11. Anand Singh selected the Depot-sorted public view
 without collapsible grouping on 2026-08-11 after the native lookup-grouping
-constraint and alternatives were presented.
+constraint and alternatives were presented. Anand Singh confirmed on 2026-08-16
+that table-level forms and views ship with Core while Apps contains only app-shell
+components such as model-driven app definitions and site maps. Anand Singh also
+approved the one-time eight-work-order exception on 2026-08-16: the four existing
+Core work orders precede four exact Apps membership removals, with no upstream
+Craft change and no deletion of the underlying Dataverse rows.
 <!-- /FILL -->
 
 ## Requirement coverage
@@ -268,12 +350,12 @@ constraint and alternatives were presented.
 <!-- COMPILER:BEGIN coverage -->
 | REQ | Components |
 | --- | --- |
-| INTK-0001-REQ-001 | DES-02-CMP-001, DES-02-CMP-002, DES-02-CMP-004, DES-02-CMP-008 |
-| INTK-0001-REQ-002 | DES-02-CMP-001, DES-02-CMP-002 |
-| INTK-0001-REQ-003 | DES-02-CMP-001, DES-02-CMP-002 |
-| INTK-0001-REQ-004 | DES-02-CMP-001, DES-02-CMP-004, DES-02-CMP-008 |
-| INTK-0001-REQ-005 | DES-02-CMP-003, DES-02-CMP-004 |
-| INTK-0001-REQ-006 | DES-02-CMP-005, DES-02-CMP-006, DES-02-CMP-007 |
+| INTK-0001-REQ-001 | DES-02-CMP-001, DES-02-CMP-002, DES-02-CMP-008, DES-02-CMP-009, DES-02-CMP-010, DES-02-CMP-012 |
+| INTK-0001-REQ-002 | DES-02-CMP-001, DES-02-CMP-002, DES-02-CMP-010 |
+| INTK-0001-REQ-003 | DES-02-CMP-001, DES-02-CMP-002, DES-02-CMP-010 |
+| INTK-0001-REQ-004 | DES-02-CMP-001, DES-02-CMP-008, DES-02-CMP-009, DES-02-CMP-012 |
+| INTK-0001-REQ-005 | DES-02-CMP-003, DES-02-CMP-009, DES-02-CMP-011, DES-02-CMP-012 |
+| INTK-0001-REQ-006 | DES-02-CMP-005, DES-02-CMP-006, DES-02-CMP-007, DES-02-CMP-013 |
 <!-- COMPILER:END coverage -->
 
 ## Build skills and routing
@@ -282,13 +364,17 @@ constraint and alternatives were presented.
 | Component | Type | Build skill | Implementation scope | Execution host | Authoring target |
 | --- | --- | --- | --- | --- | --- |
 | DES-02-CMP-001 | schema_table | dataverse-table | repository_and_dataverse_solution | local_interactive | core-solution-target |
-| DES-02-CMP-002 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-02-CMP-003 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-02-CMP-004 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-02-CMP-005 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-02-CMP-006 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
-| DES-02-CMP-007 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
+| DES-02-CMP-002 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-02-CMP-003 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-02-CMP-005 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-02-CMP-006 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-02-CMP-007 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
 | DES-02-CMP-008 | config_audit | dataverse-security | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring |
+| DES-02-CMP-009 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | core-solution-target |
+| DES-02-CMP-010 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
+| DES-02-CMP-011 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
+| DES-02-CMP-012 | uiux_form | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
+| DES-02-CMP-013 | uiux_view | model-driven-ui | repository_and_dataverse_solution | local_interactive | apps-solution-target |
 <!-- COMPILER:END skills -->
 
 ## Provenance
@@ -296,5 +382,5 @@ constraint and alternatives were presented.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-02 | FEAT-02 | `31566b894f84d9c6e00443d66e2b886b27f0eee66a5b1b1a3b13eb4ca0c342a6` | `cdddee4fea2d4971b55efed9a706edffb5baec4591010e1903afd382b48ddd35` |
+| DES-02 | FEAT-02 | `8d88969ff9bfba41acc3f842831fa4d9f78519d0cc3c8d880de4ea666528ff39` | `cc92e8fca9ecaedb7c4b5865800a3bc04cfdded28be95f7d0c1ff182b076277a` |
 <!-- COMPILER:END provenance -->

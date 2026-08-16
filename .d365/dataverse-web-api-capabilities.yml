@@ -1026,10 +1026,10 @@ components:
     operations: {create: copilot-studio-primary, update: copilot-studio-primary, delete: copilot-studio-primary, verify: copilot-studio-primary}
   uiux_form:
     implementation_scope: repository_and_dataverse_solution
-    operations: {create: form-create, update: form-update, delete: form-delete, verify: form-verify}
+    operations: {create: form-create, update: form-update, delete: form-delete, verify: form-verify, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}
   uiux_view:
     implementation_scope: repository_and_dataverse_solution
-    operations: {create: view-create, update: view-update, delete: view-delete, verify: view-verify}
+    operations: {create: view-create, update: view-update, delete: view-delete, verify: view-verify, add_solution_component: add-solution-component, remove_solution_component: remove-solution-component}
   uiux_dashboard:
     implementation_scope: repository_and_dataverse_solution
     operations: {create: dashboard-create, update: dashboard-update, delete: dashboard-delete, verify: dashboard-verify}
