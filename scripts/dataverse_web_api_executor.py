@@ -3525,6 +3525,13 @@ def membership_object_id(
 def resolve_component_object_id(
     row: dict[str, Any], client: DataverseClient
 ) -> str:
+    if row["payload"].get("membership_only") is True:
+        immutable_id = str(row["payload"].get("immutable_id") or "")
+        if not GUID_RE.fullmatch(immutable_id):
+            raise ExecutorError(
+                "membership-only component has no valid immutable ID"
+            )
+        return immutable_id
     if row["component_type"] == "schema_relationship":
         return resolve_metadata_id(row, client)
     result = client.request(verification_request(row))
@@ -3726,7 +3733,7 @@ def solution_action_request(
     body = {
         "SolutionComponent": {
             "@odata.type": "Microsoft.Dynamics.CRM.solutioncomponent",
-            "solutioncomponentid": membership_id,
+            "solutioncomponentid": object_id,
         },
         "ComponentType": component_type,
         "SolutionUniqueName": solution_name,
@@ -3963,6 +3970,35 @@ def metadata_verification_request(
     )
 
 
+def row_verification_request_by_id(
+    row: dict[str, Any], immutable_id: str
+) -> OperationRequest:
+    component_type = row["component_type"]
+    if component_type not in ROW_COMPONENT_TYPES:
+        raise ExecutorError(
+            "immutable-ID row verification requires a row component",
+            category="unsupported_operation",
+        )
+    if not GUID_RE.fullmatch(immutable_id):
+        raise ExecutorError(
+            "immutable row ID is not a canonical GUID",
+            category="validation_error",
+        )
+    entity_set = ROW_ENTITY_SETS[component_type]
+    id_field = ROW_ID_FIELDS[component_type]
+    path = f"{entity_set}({immutable_id})?$select={id_field}"
+    guard_get_only_guid_path("GET", path)
+    return OperationRequest(
+        "GET",
+        path,
+        None,
+        (),
+        (),
+        "none",
+        f"verify {component_type} by immutable row ID",
+    )
+
+
 def verify_result(
     row: dict[str, Any],
     client: DataverseClient,
@@ -3973,7 +4009,14 @@ def verify_result(
     request: OperationRequest | None = None,
 ) -> tuple[dict[str, str], str]:
     try:
-        if row["component_type"] in {"schema_relationship", "schema_table"} and GUID_RE.fullmatch(immutable_id):
+        if (
+            row["payload"].get("membership_only") is True
+            and row["component_type"] in ROW_COMPONENT_TYPES
+            and GUID_RE.fullmatch(immutable_id)
+        ):
+            verify_request = row_verification_request_by_id(row, immutable_id)
+            result = client.request(verify_request)
+        elif row["component_type"] in {"schema_relationship", "schema_table"} and GUID_RE.fullmatch(immutable_id):
             verify_request = metadata_verification_request(row, immutable_id)
             if row["component_type"] == "schema_table":
                 result = client.request_with_404_retries(verify_request)
@@ -4020,13 +4063,17 @@ def verify_result(
             "targeted verification returned no immutable ID",
             category="verification_mismatch",
         )
-    payload_matched = expected_payload_matches(
-        row,
-        request
-        or OperationRequest(
-            "GET", "", {}, (), (), "none", "verify compiler-owned payload"
-        ),
-        item,
+    payload_matched = (
+        True
+        if membership_removed and row["payload"].get("membership_only") is True
+        else expected_payload_matches(
+            row,
+            request
+            or OperationRequest(
+                "GET", "", {}, (), (), "none", "verify compiler-owned payload"
+            ),
+            item,
+        )
     )
     if not payload_matched:
         raise ExecutorError(
@@ -4300,9 +4347,16 @@ def _execute_single(
                 "verification-id recovery requires the verify operation",
                 category="unsupported_operation",
             )
-        if row["component_type"] not in {"schema_relationship", "schema_table"}:
+        membership_row_recovery = (
+            row["component_type"] in ROW_COMPONENT_TYPES
+            and payload.get("membership_only") is True
+        )
+        if (
+            row["component_type"] not in {"schema_relationship", "schema_table"}
+            and not membership_row_recovery
+        ):
             raise ExecutorError(
-                "verification-id recovery is limited to schema_relationship and bundled schema_table children",
+                "verification-id recovery is limited to schema metadata and membership-only row components",
                 category="unsupported_operation",
             )
         if not GUID_RE.fullmatch(verification_id):
@@ -4489,9 +4543,20 @@ def _execute_single(
                 request=recovered_request,
             )
         elif verification_id:
-            request = metadata_verification_request(row, verification_id)
+            request = (
+                row_verification_request_by_id(row, verification_id)
+                if payload.get("membership_only") is True
+                and row["component_type"] in ROW_COMPONENT_TYPES
+                else metadata_verification_request(row, verification_id)
+            )
             verification, immutable_id = verify_result(
-                row, client, verification_id, deleted=False, request=request
+                row,
+                client,
+                verification_id,
+                deleted=False,
+                membership_removed=payload.get("operation")
+                == "remove_solution_component",
+                request=request,
             )
             evidence = evidence_payload(
                 row, issue_number, operation, request,
