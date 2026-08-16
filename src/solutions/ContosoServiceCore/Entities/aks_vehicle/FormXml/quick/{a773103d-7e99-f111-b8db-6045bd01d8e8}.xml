@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{a773103d-7e99-f111-b8db-6045bd01d8e8}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab name="general" id="{8735E10A-FE67-5902-8001-765A6DFC37D2}">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="key_vehicle_details" id="{9BB7E887-6694-5153-9C4C-C89F18327C58}" showlabel="true" columns="1">
+                  <labels>
+                    <label description="Key vehicle details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{F082D24E-744F-5123-9D63-E6E7A180489B}">
+                        <labels>
+                          <label description="Aks Registrationnumber" languagecode="1033" />
+                        </labels>
+                        <control id="aks_registrationnumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_registrationnumber" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{BFDB9B79-99BA-5B29-B1CA-6E74EB4A9F58}">
+                        <labels>
+                          <label description="Aks Vin" languagecode="1033" />
+                        </labels>
+                        <control id="aks_vin" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_vin" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{16DCAF7F-96B1-5F31-8801-072BCD73A793}">
+                        <labels>
+                          <label description="Aks Status" languagecode="1033" />
+                        </labels>
+                        <control id="aks_status" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_status" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{FCD074E7-4C17-5F43-9F3F-5761E67B645B}">
+                        <labels>
+                          <label description="Aks Roadworthy" languagecode="1033" />
+                        </labels>
+                        <control id="aks_roadworthy" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_roadworthy" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{96251AED-D722-5630-BB3F-4133FBBA41EB}">
+                        <labels>
+                          <label description="Aks Depotid" languagecode="1033" />
+                        </labels>
+                        <control id="aks_depotid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="aks_depotid" disabled="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Vehicle — Job Context" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>
