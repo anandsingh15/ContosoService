@@ -3532,6 +3532,15 @@ def resolve_component_object_id(
                 "membership-only component has no valid immutable ID"
             )
         return immutable_id
+    if row["component_type"] in ROW_COMPONENT_TYPES:
+        result = client.request(row_lookup_request(row))
+        object_id = response_immutable_id(row, result.data)
+        if not object_id:
+            raise ExecutorError(
+                "canonical component identity has no resolvable immutable object ID",
+                category="not_found",
+            )
+        return object_id
     if row["component_type"] == "schema_relationship":
         return resolve_metadata_id(row, client)
     result = client.request(verification_request(row))
@@ -3605,16 +3614,13 @@ def solution_component_rows(
     *,
     solution_id: str = "",
 ) -> list[dict[str, Any]]:
-    filters = [f"objectid eq {object_id}"]
-    if solution_id:
-        filters.append(f"_solutionid_value eq {solution_id}")
     path = "solutioncomponents?" + urlencode(
         {
             "$select": (
                 "solutioncomponentid,objectid,componenttype,"
                 "rootcomponentbehavior,_solutionid_value"
             ),
-            "$filter": " and ".join(filters),
+            "$filter": f"objectid eq {object_id}",
         }
     )
     values = client.request(
@@ -3628,7 +3634,14 @@ def solution_component_rows(
             "read exact solution-component membership",
         )
     ).data.get("value") or []
-    return [item for item in values if isinstance(item, dict)]
+    rows = [item for item in values if isinstance(item, dict)]
+    if solution_id:
+        rows = [
+            item
+            for item in rows
+            if str(item.get("_solutionid_value") or "") == solution_id
+        ]
+    return rows
 
 
 def effective_solution_component_rows(
@@ -3643,6 +3656,8 @@ def effective_solution_component_rows(
         "schema_relationship",
         "schema_key",
         "schema_table",
+        "uiux_form",
+        "uiux_view",
     }:
         return rows
     table = canonical_table(row["payload"].get("table"))
@@ -3685,18 +3700,20 @@ def solution_action_request(
             component_type = 10
         else:
             object_id = resolve_component_object_id(row, client)
-            rows = solution_component_rows(client, object_id)
-            component_types = {
-                int(item["componenttype"])
-                for item in rows
-                if isinstance(item.get("componenttype"), int)
-            }
-            if len(component_types) != 1:
-                raise ExecutorError(
-                    "existing component type could not be resolved unambiguously",
-                    category="unsupported_operation",
-                )
-            component_type = component_types.pop()
+            component_type = ROW_SOLUTION_COMPONENT_TYPES.get(row["component_type"])
+            if component_type is None:
+                rows = solution_component_rows(client, object_id)
+                component_types = {
+                    int(item["componenttype"])
+                    for item in rows
+                    if isinstance(item.get("componenttype"), int)
+                }
+                if len(component_types) != 1:
+                    raise ExecutorError(
+                        "existing component type could not be resolved unambiguously",
+                        category="unsupported_operation",
+                    )
+                component_type = component_types.pop()
         body = {
             "ComponentId": object_id,
             "ComponentType": component_type,
@@ -4661,13 +4678,24 @@ def _execute_single(
                 write_completed = True
                 write_immutable_id = immutable_id
                 write_correlation_id = http_result.correlation_id
+            verification_source = request
+            if (
+                operation == "add_solution_component"
+                and row["component_type"] in {"uiux_form", "uiux_view"}
+            ):
+                verification_source = build_static_requests(
+                    row,
+                    "create",
+                    capability_for(row, "create"),
+                    form_subgrid_context=resolve_form_subgrid_context(row, client),
+                )[0]
             verification, immutable_id = verify_result(
                 row,
                 client,
                 immutable_id,
                 deleted=operation == "delete",
                 membership_removed=operation == "remove_solution_component",
-                request=request,
+                request=verification_source,
             )
             posted = {"result": "deferred"}
             if not is_bundled_recovery:

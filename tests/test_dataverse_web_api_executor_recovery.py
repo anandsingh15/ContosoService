@@ -180,6 +180,166 @@ class MembershipOnlyIdentityTests(unittest.TestCase):
         self.assertEqual(verification["membership"], "matched")
         payload_match.assert_not_called()
 
+    def test_existing_form_membership_resolution_uses_row_lookup(self):
+        immutable_id = "d0031527-4399-f111-b8db-6045bd01d8e8"
+        row = {
+            "component_type": "uiux_form",
+            "payload": {
+                "form_type": "Main",
+                "name": "Vehicle — Main",
+                "table": "aks_vehicle",
+            },
+        }
+        client = mock.Mock()
+        client.request.return_value = executor.HttpResult(
+            200,
+            "",
+            "",
+            {
+                "value": [
+                    {
+                        "formid": immutable_id,
+                        "name": "Vehicle — Main",
+                        "objecttypecode": "aks_vehicle",
+                        "type": 2,
+                    }
+                ]
+            },
+        )
+
+        resolved_id = executor.resolve_component_object_id(row, client)
+
+        self.assertEqual(resolved_id, immutable_id)
+        request = client.request.call_args.args[0]
+        self.assertEqual(request.method, "GET")
+        self.assertTrue(request.path.startswith("systemforms?"))
+
+
+class MembershipAddVerificationTests(unittest.TestCase):
+    def test_form_effective_membership_includes_parent_table(self):
+        inherited = [
+            {
+                "componenttype": 1,
+                "rootcomponentbehavior": 0,
+                "_solutionid_value": "6e0dd563-bd3d-f011-b4cc-7c1e521687a1",
+            }
+        ]
+        row = {
+            "component_type": "uiux_form",
+            "payload": {"table": "aks_vehicle"},
+        }
+        client = mock.Mock()
+        client.request.return_value = executor.HttpResult(
+            200,
+            "",
+            "",
+            {"MetadataId": "96b5fd64-5d98-f111-b8db-6045bd01db70"},
+        )
+
+        with mock.patch.object(
+            executor,
+            "solution_component_rows",
+            side_effect=[[], inherited],
+        ) as membership_rows:
+            rows = executor.effective_solution_component_rows(
+                row,
+                client,
+                "d0031527-4399-f111-b8db-6045bd01d8e8",
+                solution_id="6e0dd563-bd3d-f011-b4cc-7c1e521687a1",
+            )
+
+        self.assertEqual(rows, inherited)
+        self.assertEqual(membership_rows.call_count, 2)
+        self.assertIn(
+            "EntityDefinitions(LogicalName='aks_vehicle')",
+            client.request.call_args.args[0].path,
+        )
+
+    def test_membership_lookup_filters_solution_after_exact_object_query(self):
+        object_id = "d0031527-4399-f111-b8db-6045bd01d8e8"
+        solution_id = "6e0dd563-bd3d-f011-b4cc-7c1e521687a1"
+        client = mock.Mock()
+        client.request.return_value = executor.HttpResult(
+            200,
+            "",
+            "",
+            {
+                "value": [
+                    {
+                        "objectid": object_id,
+                        "componenttype": 60,
+                        "_solutionid_value": solution_id,
+                    },
+                    {
+                        "objectid": object_id,
+                        "componenttype": 60,
+                        "_solutionid_value": "8ae58873-4d20-f111-998a-7c1e521687a1",
+                    },
+                ]
+            },
+        )
+
+        rows = executor.solution_component_rows(
+            client,
+            object_id,
+            solution_id=solution_id,
+        )
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["_solutionid_value"], solution_id)
+        path = client.request.call_args.args[0].path
+        self.assertIn("objectid+eq+" + object_id, path)
+        self.assertNotIn("_solutionid_value+eq", path)
+
+    def test_form_add_uses_documented_type_without_existing_membership(self):
+        object_id = "d0031527-4399-f111-b8db-6045bd01d8e8"
+        row = {
+            "component_type": "uiux_form",
+            "authoring_target": {"solution_unique_name": "ContosoServiceCore"},
+        }
+        client = mock.Mock()
+
+        with (
+            mock.patch.object(executor, "resolve_solution_id"),
+            mock.patch.object(
+                executor,
+                "resolve_component_object_id",
+                return_value=object_id,
+            ),
+            mock.patch.object(executor, "solution_component_rows") as memberships,
+        ):
+            request, resolved_id = executor.solution_action_request(
+                row,
+                "add_solution_component",
+                client,
+            )
+
+        self.assertEqual(resolved_id, object_id)
+        self.assertEqual(request.body["ComponentType"], 60)
+        memberships.assert_not_called()
+
+    def test_dev_0033_create_shape_resolves_live_subgrid_id(self):
+        context = executor.P.read_context(executor.P.TASK_CONTEXT_PATH)
+        row = next(task for task in context["tasks"] if task["id"] == "DEV-0033")
+        view_id = "ad45c3e1-3c99-f111-b8db-6045bd01db70"
+        client = mock.Mock()
+
+        with mock.patch.object(
+            executor,
+            "resolve_record_id",
+            return_value=view_id,
+        ):
+            subgrid_context = executor.resolve_form_subgrid_context(row, client)
+            request = executor.build_static_requests(
+                row,
+                "create",
+                executor.capability_for(row, "create"),
+                form_subgrid_context=subgrid_context,
+            )[0]
+
+        self.assertIn(view_id.upper(), request.body["formxml"])
+        self.assertNotIn("{SAVEDQUERY_ID}", request.body["formxml"])
+
 
 class BundledRecoveryTests(unittest.TestCase):
     def test_bundled_child_inherits_parent_table_solution_membership(self):
