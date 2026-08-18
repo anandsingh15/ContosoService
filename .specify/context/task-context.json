@@ -1,7 +1,7 @@
 {
-  "context_hash": "e0f28994d5b067141de1c7ee74b145ac5096a0b68f97b2995a91c7fffbcc26ad",
-  "plan_context_hash": "6d1322c8aae351ae30843b14e541762ae46f4ed6bb794dcffe6bde5b1a354461",
-  "repository_context_hash": "c95e3a189999b2566c41aab8ee206e51e15c1308a2c36a4fb4aa0aa21bfce66f",
+  "context_hash": "50f7ba68c7c3a9138676e35c3973e544f25f8e793c398ded7ce188da7190c27e",
+  "plan_context_hash": "670477bb2e50d2e982dc0f82fc9e48c7f77efa9bde9e5c3751279a1369a1fc2b",
+  "repository_context_hash": "a23ca2cd9841d7cb864ef8dd0dd5c4bd383089b94929bfb34e0db3339310e492",
   "schema_version": 1,
   "tasks": [
     {
@@ -814,7 +814,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -1131,7 +1131,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -1251,7 +1251,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -2085,7 +2085,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -2402,7 +2402,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -2523,7 +2523,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -3355,7 +3355,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -3672,7 +3672,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -3792,7 +3792,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -4650,7 +4650,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -4987,7 +4987,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -5085,7 +5085,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -5931,7 +5931,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -6268,7 +6268,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -6360,7 +6360,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7206,7 +7206,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -7543,7 +7543,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -7635,7 +7635,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -8492,7 +8492,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -8811,7 +8811,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -8943,7 +8943,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -9800,7 +9800,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -10119,7 +10119,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -10251,7 +10251,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -11107,7 +11107,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -11426,7 +11426,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -11556,7 +11556,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -12412,7 +12412,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -12731,7 +12731,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -12861,7 +12861,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -13569,7 +13569,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -13841,7 +13841,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -13923,7 +13923,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -14631,7 +14631,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -14903,7 +14903,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -14985,7 +14985,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -15693,7 +15693,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -15965,7 +15965,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -16047,7 +16047,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -16755,7 +16755,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -17027,7 +17027,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -17109,7 +17109,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -17629,7 +17629,7 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -17768,7 +17768,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -17862,7 +17862,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -18719,7 +18719,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -19056,7 +19056,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -19156,7 +19156,7 @@
         "INTK-0001-REQ-003",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -19947,7 +19947,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -20245,7 +20245,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -20334,7 +20334,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -21060,7 +21060,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -21342,7 +21342,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -21424,7 +21424,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -22154,7 +22154,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -22436,7 +22436,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -22519,7 +22519,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -23249,7 +23249,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -23531,7 +23531,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -23614,7 +23614,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -24344,7 +24344,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -24626,7 +24626,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -24709,7 +24709,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -25236,7 +25236,7 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -25375,7 +25375,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -25474,7 +25474,7 @@
         "INTK-0001-REQ-001",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -26299,7 +26299,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -26597,7 +26597,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -26702,7 +26702,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -27500,7 +27500,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -27798,7 +27798,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -27890,7 +27890,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -28624,7 +28624,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -28906,7 +28906,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -28991,7 +28991,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -29821,7 +29821,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -30119,7 +30119,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -30227,7 +30227,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -30963,7 +30963,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -31245,7 +31245,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -31331,7 +31331,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -32230,7 +32230,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -32567,7 +32567,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -32686,7 +32686,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -33536,7 +33536,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -33873,7 +33873,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -33968,7 +33968,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -34759,7 +34759,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -35057,7 +35057,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -35145,7 +35145,7 @@
       "satisfies": [
         "INTK-0001-REQ-009"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -35878,7 +35878,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -36160,7 +36160,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -36246,7 +36246,7 @@
         "INTK-0001-REQ-012",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -37117,7 +37117,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -37415,7 +37415,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -37544,7 +37544,7 @@
         "INTK-0001-REQ-013",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -38276,7 +38276,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -38558,7 +38558,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -38642,7 +38642,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -39372,7 +39372,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -39654,7 +39654,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -39737,7 +39737,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -40469,7 +40469,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -40751,7 +40751,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -40835,7 +40835,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -41397,7 +41397,7 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -41536,7 +41536,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -41651,7 +41651,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -42367,7 +42367,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -42660,7 +42660,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -42741,7 +42741,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -43456,7 +43456,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -43749,7 +43749,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -43830,7 +43830,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -44553,7 +44553,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -44846,7 +44846,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -44930,7 +44930,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -45644,7 +45644,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -45937,7 +45937,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -46016,7 +46016,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -46037,6 +46037,3150 @@
         ]
       },
       "workspace": "specs/003-maintenance-jobs-parts"
+    },
+    {
+      "authentication_policy": "reuse_if_valid",
+      "authoring_target": {
+        "authentication_mode": "interactive_user",
+        "component_projects": [
+          {
+            "component_type": "code_plugin",
+            "path": "src/plugins/ContosoService.Plugins",
+            "project_type": "dotnet_class_library"
+          }
+        ],
+        "connection_alias": "dataverse-authoring",
+        "environment": "authoring-dataverse",
+        "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+        "environment_url": "https://org89912357.crm.dynamics.com",
+        "kind": "dataverse_solution",
+        "name": "plugin-customapi-solution-target",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "solution": "plugin-customapi-solution",
+        "solution_unique_name": "ContosoServicePluginAndCustomApi",
+        "unpack_path": "src/solutions/ContosoServicePluginAndCustomApi"
+      },
+      "build_skill": "dataverse-procode",
+      "component": "DES-04-CMP-001",
+      "component_type": "code_plugin",
+      "depends_on": [],
+      "developer_preflight": {
+        "authentication_policy": "reuse_if_valid",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+        "direct_action": {
+          "automatic_prerequisite_repair_allowed": false,
+          "canonical_identity": {
+            "field": "schema_name",
+            "value": "ContosoService.Plugins.MaintenanceJobCompletionPlugin"
+          },
+          "capabilities": {
+            "create": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "delete": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "update": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "verify": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            }
+          },
+          "capability_policy": {
+            "delete_semantics": {
+              "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+              "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+            },
+            "destructive_approval_required": true,
+            "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+            "portal_fallback_evidence_required": true
+          },
+          "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+          "environment_url": "https://org89912357.crm.dynamics.com",
+          "expected_payload": {
+            "assembly": "ContosoService.Plugins",
+            "class_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+            "name": "Maintenance Job completion enforcement",
+            "satisfies": [
+              "INTK-0001-REQ-022",
+              "INTK-0001-REQ-023",
+              "INTK-0001-REQ-024",
+              "INTK-0001-REQ-025",
+              "INTK-0001-REQ-026",
+              "INTK-0001-REQ-029",
+              "INTK-0001-REQ-045"
+            ],
+            "schema_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+            "steps": [
+              {
+                "behavior": [
+                  "reject aks_scheduleddate earlier than the current date",
+                  "reject initial aks_stage 74880 (Completed) because a new job cannot yet have a related aks_jobpart"
+                ],
+                "message": "Create",
+                "mode": "Synchronous",
+                "name": "Maintenance Job Create completion and schedule guard",
+                "rank": 10,
+                "run_as": "Calling User",
+                "stage": "PreOperation",
+                "table": "aks_maintenancejob"
+              },
+              {
+                "behavior": [
+                  "merge Target with PreImage to evaluate the effective row",
+                  "reject transition to 74880 (Completed) unless the related aks_vehicle is roadworthy, not 74876 (Retired), and at least one related aks_jobpart exists",
+                  "when entering Completed without aks_completeddate, set aks_completeddate from an injected UTC clock",
+                  "reject any transition from 74880 (Completed) to another stage"
+                ],
+                "filtering_attributes": [
+                  "aks_stage"
+                ],
+                "message": "Update",
+                "mode": "Synchronous",
+                "name": "Maintenance Job Update completion and final-state guard",
+                "pre_image": {
+                  "alias": "PreImage",
+                  "columns": [
+                    "aks_stage",
+                    "aks_completeddate",
+                    "aks_scheduleddate",
+                    "aks_vehicleid"
+                  ]
+                },
+                "rank": 10,
+                "run_as": "Calling User",
+                "stage": "PreOperation",
+                "table": "aks_maintenancejob"
+              }
+            ]
+          },
+          "fallback_target_allowed": false,
+          "implementation_scope": "repository_and_dataverse_solution",
+          "mode": "direct_scoped_action",
+          "portal_fallback_requires_issue_evidence": true,
+          "prohibited_pre_action_operations": [
+            "solution_export",
+            "solution_unpack",
+            "full_solution_inventory",
+            "publisher_inventory",
+            "component_absence_scan",
+            "cross_solution_membership_scan",
+            "full_permission_discovery"
+          ],
+          "resource_actions": [],
+          "route_rationale": "Plug-in implementation uses the supported build, SDK, registration, and solution toolchain rather than generic Web API component creation.",
+          "solution_unique_name": "ContosoServicePluginAndCustomApi",
+          "target_kind": "dataverse_solution"
+        },
+        "execution_host": "local_interactive",
+        "implementation_scope": "repository_and_dataverse_solution",
+        "phases": {
+          "authentication": [
+            {
+              "action": "command",
+              "behavior": "interactive",
+              "blocking": false,
+              "command": [
+                "pac",
+                "auth",
+                "create",
+                "--environment",
+                "https://org89912357.crm.dynamics.com"
+              ],
+              "description": "Launch PAC interactive authentication directly against the declared environment.",
+              "fresh_authentication": {
+                "force_supported": true,
+                "instructions": "Run the approved pac auth create command and complete a new browser sign-in for the declared environment."
+              },
+              "id": "dataverse-auth",
+              "instructions": "Finish browser sign-in, then resume and verify the connected URL and organization ID.",
+              "key": "power-platform-cli.dataverse-auth",
+              "phase": "authentication",
+              "purpose": "registration_and_solution_operations",
+              "rationale": "PAC is primary only for documented registration and solution/source operations.",
+              "resource": "power-platform-cli",
+              "role": "required",
+              "session_probe": {
+                "command": [
+                  "pac",
+                  "org",
+                  "who"
+                ],
+                "instructions": "Verify that the active PAC session resolves to the declared environment before reuse."
+              }
+            },
+            {
+              "action": "interactive_auth",
+              "behavior": "interactive",
+              "blocking": true,
+              "description": "Authenticate the current human directly to the declared Dataverse environment.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+              "fresh_authentication": {
+                "force_supported": false,
+                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
+              },
+              "id": "interactive-sign-in",
+              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
+              "key": "dataverse-mcp.interactive-sign-in",
+              "phase": "authentication",
+              "purpose": "schema_and_runtime_verification",
+              "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
+              "resource": "dataverse-mcp",
+              "role": "required",
+              "session_probe": {
+                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
+              }
+            }
+          ],
+          "availability_version": [
+            {
+              "action": "mcp_server",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify the exact MCP server key is registered and reachable.",
+              "expected_version": "service-managed",
+              "id": "server-registration",
+              "installation": {
+                "guidance": "Configure the official Microsoft Learn MCP endpoint in the active MCP client.",
+                "policy": "not_applicable"
+              },
+              "key": "microsoft-learn.server-registration",
+              "phase": "availability_version",
+              "purpose": "execution_pipeline_grounding",
+              "rationale": "Official plug-in documentation grounds registration and runtime behavior.",
+              "resource": "microsoft-learn",
+              "role": "required",
+              "server": "microsoft-learn"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": true,
+              "command": [
+                "dotnet",
+                "--version"
+              ],
+              "description": "Require the exact project-pinned .NET SDK version.",
+              "expected": "10.0.302",
+              "id": "dotnet-version",
+              "installation": {
+                "guidance": "Install the exact SDK pinned by global.json from the official .NET distribution.",
+                "policy": "manual"
+              },
+              "key": "dotnet-toolchain.dotnet-version",
+              "phase": "availability_version",
+              "purpose": "build_and_test",
+              "rationale": "The pinned .NET toolchain builds and tests the component.",
+              "resource": "dotnet-toolchain",
+              "role": "required"
+            },
+            {
+              "action": "package",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify the exact resolved NuGet package version in the consuming project.",
+              "ecosystem": "nuget",
+              "expected": "9.0.2.60",
+              "expected_version": "9.0.2.60",
+              "id": "package-version",
+              "installation": {
+                "guidance": "Add the exact Microsoft.CrmSdk.CoreAssemblies version to the project manifest and lock file.",
+                "policy": "manual"
+              },
+              "key": "dataverse-dotnet-sdk.package-version",
+              "package": "Microsoft.CrmSdk.CoreAssemblies",
+              "phase": "availability_version",
+              "purpose": "dataverse_code",
+              "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
+              "resource": "dataverse-dotnet-sdk",
+              "role": "required"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": true,
+              "command": [
+                "pac"
+              ],
+              "description": "Run bare pac because PAC 2.9.3 reports its version and exits successfully, while pac --version is rejected by its command parser; require the exact pinned version.",
+              "expected": "2.9.3",
+              "id": "pac-version",
+              "installation": {
+                "guidance": "Install the project-approved Microsoft.PowerApps.CLI.Tool 2.9.3 package or an equivalent official PAC distribution.",
+                "policy": "manual"
+              },
+              "key": "power-platform-cli.pac-version",
+              "phase": "availability_version",
+              "purpose": "registration_and_solution_operations",
+              "rationale": "PAC is primary only for documented registration and solution/source operations.",
+              "resource": "power-platform-cli",
+              "role": "required"
+            },
+            {
+              "action": "mcp_server",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify the configured server key and resolved GA endpoint.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+              "expected_version": "ga",
+              "id": "server-registration",
+              "installation": {
+                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
+                "policy": "not_applicable"
+              },
+              "key": "dataverse-mcp.server-registration",
+              "phase": "availability_version",
+              "purpose": "schema_and_runtime_verification",
+              "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
+              "resource": "dataverse-mcp",
+              "role": "required",
+              "server": "dataverse-authoring"
+            }
+          ],
+          "capability": [
+            {
+              "action": "mcp_tools",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Probe the server tool surface before implementation grounding.",
+              "expected_tools": [],
+              "expected_version": "service-managed",
+              "id": "documentation-search",
+              "key": "microsoft-learn.documentation-search",
+              "phase": "capability",
+              "purpose": "execution_pipeline_grounding",
+              "rationale": "Official plug-in documentation grounds registration and runtime behavior.",
+              "resource": "microsoft-learn",
+              "role": "required",
+              "server": "microsoft-learn"
+            },
+            {
+              "action": "mcp_tools",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+              "expected_tools": [
+                "search",
+                "describe",
+                "read_query"
+              ],
+              "expected_version": "ga",
+              "id": "required-tools",
+              "key": "dataverse-mcp.required-tools",
+              "phase": "capability",
+              "purpose": "schema_and_runtime_verification",
+              "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
+              "resource": "dataverse-mcp",
+              "role": "required",
+              "server": "dataverse-authoring"
+            }
+          ],
+          "ready_to_attempt": [
+            {
+              "action": "ready_to_attempt",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Permit the first scoped platform action only after host/tool, live Project and compiler integrity, resource/version, endpoint-session, and structural target checks pass.",
+              "key": "ready-to-attempt.required-safety",
+              "phase": "ready_to_attempt",
+              "purpose": "ready_to_attempt_gate",
+              "required_resources": [
+                "microsoft-learn",
+                "dotnet-toolchain",
+                "dataverse-dotnet-sdk",
+                "power-platform-cli",
+                "dataverse-mcp"
+              ],
+              "resource": "preflight",
+              "role": "required"
+            }
+          ],
+          "session_validation": [
+            {
+              "action": "session_validation",
+              "authentication_mode": "interactive_user",
+              "authentication_resources": [
+                "dataverse-mcp"
+              ],
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
+              "expected_endpoints": [
+                "https://org89912357.crm.dynamics.com/api/mcp"
+              ],
+              "key": "authentication.endpoint-session",
+              "phase": "session_validation",
+              "purpose": "authenticated_endpoint_session",
+              "resource": "preflight",
+              "role": "required"
+            }
+          ],
+          "target_configuration": [
+            {
+              "action": "target_configuration",
+              "authentication_mode": "interactive_user",
+              "behavior": "automatic",
+              "blocking": true,
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+              "component_identity": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+              "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
+              "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+              "environment_url": "https://org89912357.crm.dynamics.com",
+              "identity_field": "schema_name",
+              "implementation_scope": "repository_and_dataverse_solution",
+              "key": "target.compiler-configuration",
+              "phase": "target_configuration",
+              "publisher_name": "AnandPOC",
+              "publisher_prefix": "aks",
+              "purpose": "deterministic_target_configuration",
+              "resource": "authoring-target",
+              "role": "required",
+              "solution_unique_name": "ContosoServicePluginAndCustomApi",
+              "target_kind": "dataverse_solution"
+            }
+          ]
+        },
+        "post_action_verification": {
+          "automatic_repair_allowed": false,
+          "canonical_identity": {
+            "field": "schema_name",
+            "value": "ContosoService.Plugins.MaintenanceJobCompletionPlugin"
+          },
+          "declared_solution_unique_name": "ContosoServicePluginAndCustomApi",
+          "expected_payload": {
+            "assembly": "ContosoService.Plugins",
+            "class_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+            "name": "Maintenance Job completion enforcement",
+            "satisfies": [
+              "INTK-0001-REQ-022",
+              "INTK-0001-REQ-023",
+              "INTK-0001-REQ-024",
+              "INTK-0001-REQ-025",
+              "INTK-0001-REQ-026",
+              "INTK-0001-REQ-029",
+              "INTK-0001-REQ-045"
+            ],
+            "schema_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+            "steps": [
+              {
+                "behavior": [
+                  "reject aks_scheduleddate earlier than the current date",
+                  "reject initial aks_stage 74880 (Completed) because a new job cannot yet have a related aks_jobpart"
+                ],
+                "message": "Create",
+                "mode": "Synchronous",
+                "name": "Maintenance Job Create completion and schedule guard",
+                "rank": 10,
+                "run_as": "Calling User",
+                "stage": "PreOperation",
+                "table": "aks_maintenancejob"
+              },
+              {
+                "behavior": [
+                  "merge Target with PreImage to evaluate the effective row",
+                  "reject transition to 74880 (Completed) unless the related aks_vehicle is roadworthy, not 74876 (Retired), and at least one related aks_jobpart exists",
+                  "when entering Completed without aks_completeddate, set aks_completeddate from an injected UTC clock",
+                  "reject any transition from 74880 (Completed) to another stage"
+                ],
+                "filtering_attributes": [
+                  "aks_stage"
+                ],
+                "message": "Update",
+                "mode": "Synchronous",
+                "name": "Maintenance Job Update completion and final-state guard",
+                "pre_image": {
+                  "alias": "PreImage",
+                  "columns": [
+                    "aks_stage",
+                    "aks_completeddate",
+                    "aks_scheduleddate",
+                    "aks_vehicleid"
+                  ]
+                },
+                "rank": 10,
+                "run_as": "Calling User",
+                "stage": "PreOperation",
+                "table": "aks_maintenancejob"
+              }
+            ]
+          },
+          "full_solution_export_or_unpack_allowed": false,
+          "solution_membership_verification": true,
+          "targeted_read_only_verification": true,
+          "verification_resources": {
+            "create": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "delete": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "update": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "verify": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            }
+          },
+          "verify_absence_from_other_declared_custom_solutions": true
+        },
+        "post_verification_packaging": {
+          "commit": "local_no_push",
+          "component_projects": [
+            {
+              "component_type": "code_plugin",
+              "path": "src/plugins/ContosoService.Plugins",
+              "project_type": "dotnet_class_library"
+            }
+          ],
+          "component_source_sync": {
+            "paths": [
+              "PluginAssemblies/",
+              "SdkMessageProcessingSteps/"
+            ],
+            "strategy": "own_files"
+          },
+          "enabled": true,
+          "export_managed": false,
+          "is_discovery_preflight_or_verification": false,
+          "local_solution_pack": false,
+          "pre_export_build": [
+            {
+              "path": "src/plugins/ContosoService.Plugins",
+              "project_type": "dotnet_class_library",
+              "tool": "dotnet"
+            }
+          ],
+          "project_owning_component_only": true,
+          "rebuild_before_export": true,
+          "records_source_sync_evidence": true,
+          "reject_unrelated_drift": true,
+          "replay_platform_create": false,
+          "runs_after": "post_action_verification_matched",
+          "solution_unique_name": "ContosoServicePluginAndCustomApi",
+          "tool": "power-platform-cli",
+          "unpack_path": "src/solutions/ContosoServicePluginAndCustomApi",
+          "unpack_to_temp_workspace": true
+        },
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
+        "schema_version": 3
+      },
+      "development_resources": {
+        "capabilities": {
+          "implementation_scope": "repository_and_dataverse_solution",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+          "operations": {
+            "create": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "delete": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "update": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "verify": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            }
+          },
+          "policy": {
+            "delete_semantics": {
+              "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+              "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+            },
+            "destructive_approval_required": true,
+            "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+            "portal_fallback_evidence_required": true
+          }
+        },
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
+        "required": [
+          {
+            "authentication": "none",
+            "description": "Official Microsoft implementation grounding.",
+            "id": "microsoft-learn",
+            "kind": "mcp",
+            "purpose": "execution_pipeline_grounding",
+            "rationale": "Official plug-in documentation grounds registration and runtime behavior.",
+            "server": "microsoft-learn",
+            "supported_execution_hosts": [
+              "local_interactive",
+              "github_copilot_cloud"
+            ],
+            "version": "service-managed",
+            "version_policy": "service_managed"
+          },
+          {
+            "authentication": "none",
+            "description": "Project-supported .NET build and test toolchain.",
+            "ecosystem": "dotnet",
+            "id": "dotnet-toolchain",
+            "kind": "sdk",
+            "purpose": "build_and_test",
+            "rationale": "The pinned .NET toolchain builds and tests the component.",
+            "supported_execution_hosts": [
+              "local_interactive",
+              "github_copilot_cloud"
+            ],
+            "version": "10.0.302",
+            "version_policy": "project_pinned"
+          },
+          {
+            "authentication": "none",
+            "description": "Dataverse server plug-in SDK pinned in the project manifest.",
+            "ecosystem": "nuget",
+            "id": "dataverse-dotnet-sdk",
+            "kind": "sdk",
+            "package": "Microsoft.CrmSdk.CoreAssemblies",
+            "purpose": "dataverse_code",
+            "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
+            "supported_execution_hosts": [
+              "local_interactive",
+              "github_copilot_cloud"
+            ],
+            "version": "9.0.2.60",
+            "version_policy": "project_pinned"
+          },
+          {
+            "authentication": "interactive_user",
+            "command": "pac",
+            "description": "Power Platform CLI for solution source and supported authoring.",
+            "id": "power-platform-cli",
+            "kind": "cli",
+            "purpose": "registration_and_solution_operations",
+            "rationale": "PAC is primary only for documented registration and solution/source operations.",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "version": "2.9.3",
+            "version_policy": "project_pinned"
+          },
+          {
+            "authentication": "interactive_user",
+            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+            "id": "dataverse-mcp",
+            "kind": "mcp",
+            "purpose": "schema_and_runtime_verification",
+            "rationale": "MCP performs targeted discovery and verification without generic solution-aware writes.",
+            "release_channel": "ga",
+            "required_tools": [
+              "search",
+              "describe",
+              "read_query"
+            ],
+            "server": "dataverse-authoring",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "tools": [
+              "search_data",
+              "search",
+              "create_record",
+              "update_record",
+              "delete_record",
+              "create_table",
+              "update_table",
+              "delete_table",
+              "read_query",
+              "describe",
+              "upsert_skill",
+              "delete_skill",
+              "init_file_upload",
+              "commit_file_upload",
+              "file_download"
+            ],
+            "version": "ga",
+            "version_policy": "service_managed"
+          }
+        ],
+        "route_rationale": "Plug-in implementation uses the supported build, SDK, registration, and solution toolchain rather than generic Web API component creation."
+      },
+      "execution_host": "local_interactive",
+      "executor": "agent",
+      "feature": "FEAT-04",
+      "id": "DEV-0042",
+      "implementation_scope": "repository_and_dataverse_solution",
+      "owner": null,
+      "payload": {
+        "assembly": "ContosoService.Plugins",
+        "class_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+        "name": "Maintenance Job completion enforcement",
+        "satisfies": [
+          "INTK-0001-REQ-022",
+          "INTK-0001-REQ-023",
+          "INTK-0001-REQ-024",
+          "INTK-0001-REQ-025",
+          "INTK-0001-REQ-026",
+          "INTK-0001-REQ-029",
+          "INTK-0001-REQ-045"
+        ],
+        "schema_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+        "steps": [
+          {
+            "behavior": [
+              "reject aks_scheduleddate earlier than the current date",
+              "reject initial aks_stage 74880 (Completed) because a new job cannot yet have a related aks_jobpart"
+            ],
+            "message": "Create",
+            "mode": "Synchronous",
+            "name": "Maintenance Job Create completion and schedule guard",
+            "rank": 10,
+            "run_as": "Calling User",
+            "stage": "PreOperation",
+            "table": "aks_maintenancejob"
+          },
+          {
+            "behavior": [
+              "merge Target with PreImage to evaluate the effective row",
+              "reject transition to 74880 (Completed) unless the related aks_vehicle is roadworthy, not 74876 (Retired), and at least one related aks_jobpart exists",
+              "when entering Completed without aks_completeddate, set aks_completeddate from an injected UTC clock",
+              "reject any transition from 74880 (Completed) to another stage"
+            ],
+            "filtering_attributes": [
+              "aks_stage"
+            ],
+            "message": "Update",
+            "mode": "Synchronous",
+            "name": "Maintenance Job Update completion and final-state guard",
+            "pre_image": {
+              "alias": "PreImage",
+              "columns": [
+                "aks_stage",
+                "aks_completeddate",
+                "aks_scheduleddate",
+                "aks_vehicleid"
+              ]
+            },
+            "rank": 10,
+            "run_as": "Calling User",
+            "stage": "PreOperation",
+            "table": "aks_maintenancejob"
+          }
+        ]
+      },
+      "plan": "DES-04",
+      "satisfies": [
+        "INTK-0001-REQ-022",
+        "INTK-0001-REQ-023",
+        "INTK-0001-REQ-024",
+        "INTK-0001-REQ-025",
+        "INTK-0001-REQ-026",
+        "INTK-0001-REQ-029",
+        "INTK-0001-REQ-045"
+      ],
+      "source_plan_hash": "70bd78f891de2ce9bce64aaeb6665fba5685cf83b5ab88d8cf9154249f6f7553",
+      "status": "ready",
+      "task_profile": {
+        "evidence": [
+          "changed_paths",
+          "build_results",
+          "test_results"
+        ],
+        "executor_default": "agent",
+        "target_roots": [
+          "src/plugins",
+          "src/pcf",
+          "src/webresources"
+        ],
+        "validation_kinds": [
+          "payload_conformance",
+          "build",
+          "unit_test",
+          "registration_conformance"
+        ]
+      },
+      "workspace": "specs/004-job-completion-enforcement"
+    },
+    {
+      "authentication_policy": "reuse_if_valid",
+      "authoring_target": {
+        "authentication_mode": "interactive_user",
+        "component_projects": [
+          {
+            "component_type": "code_webres_*",
+            "path": "src/webresources",
+            "project_type": "web_resource_source"
+          }
+        ],
+        "connection_alias": "dataverse-authoring",
+        "environment": "authoring-dataverse",
+        "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+        "environment_url": "https://org89912357.crm.dynamics.com",
+        "kind": "dataverse_solution",
+        "name": "webresource-solution-target",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "solution": "webresource-solution",
+        "solution_unique_name": "ContosoServiceWebResource",
+        "unpack_path": "src/solutions/ContosoServiceWebResource"
+      },
+      "build_skill": "dataverse-procode",
+      "component": "DES-04-CMP-002",
+      "component_type": "code_webres_js",
+      "depends_on": [],
+      "developer_preflight": {
+        "authentication_policy": "reuse_if_valid",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+        "direct_action": {
+          "automatic_prerequisite_repair_allowed": false,
+          "canonical_identity": {
+            "field": "schema_name",
+            "value": "aks_/scripts/maintenance_job_form.js"
+          },
+          "capabilities": {
+            "create": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "delete": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "update": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "verify": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            }
+          },
+          "capability_policy": {
+            "delete_semantics": {
+              "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+              "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+            },
+            "destructive_approval_required": true,
+            "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+            "portal_fallback_evidence_required": true
+          },
+          "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+          "environment_url": "https://org89912357.crm.dynamics.com",
+          "expected_payload": {
+            "behavior": [
+              "use the supported Xrm WebApi to read aks_status and aks_roadworthy for the selected vehicle",
+              "show and clear stable form notifications for non-roadworthy or retired vehicles",
+              "prompt immediately when stage 74880 (Completed) has no completion date",
+              "flag a past scheduled date on a new job and synchronously cancel save until corrected"
+            ],
+            "handlers": [
+              {
+                "event": "OnLoad",
+                "function": "Contoso.MaintenanceJobForm.onLoad",
+                "pass_execution_context": true
+              },
+              {
+                "event": "aks_vehicleid.OnChange",
+                "function": "Contoso.MaintenanceJobForm.onVehicleChange",
+                "pass_execution_context": true
+              },
+              {
+                "event": "aks_stage.OnChange",
+                "function": "Contoso.MaintenanceJobForm.onStageChange",
+                "pass_execution_context": true
+              },
+              {
+                "event": "aks_scheduleddate.OnChange",
+                "function": "Contoso.MaintenanceJobForm.onScheduledDateChange",
+                "pass_execution_context": true
+              },
+              {
+                "event": "OnSave",
+                "function": "Contoso.MaintenanceJobForm.onSave",
+                "pass_execution_context": true
+              }
+            ],
+            "name": "aks_/scripts/maintenance_job_form.js",
+            "namespace": "Contoso.MaintenanceJobForm",
+            "satisfies": [
+              "INTK-0001-REQ-027",
+              "INTK-0001-REQ-028",
+              "INTK-0001-REQ-029",
+              "INTK-0001-REQ-045"
+            ],
+            "schema_name": "aks_/scripts/maintenance_job_form.js",
+            "source_path": "scripts/maintenance_job_form.js"
+          },
+          "fallback_target_allowed": false,
+          "implementation_scope": "repository_and_dataverse_solution",
+          "mode": "direct_scoped_action",
+          "portal_fallback_requires_issue_evidence": true,
+          "prohibited_pre_action_operations": [
+            "solution_export",
+            "solution_unpack",
+            "full_solution_inventory",
+            "publisher_inventory",
+            "component_absence_scan",
+            "cross_solution_membership_scan",
+            "full_permission_discovery"
+          ],
+          "resource_actions": [],
+          "route_rationale": "Although WebResource CRUD is documented, content construction and repository binding are not complete in the current payload contract.",
+          "solution_unique_name": "ContosoServiceWebResource",
+          "target_kind": "dataverse_solution"
+        },
+        "execution_host": "local_interactive",
+        "implementation_scope": "repository_and_dataverse_solution",
+        "phases": {
+          "authentication": [
+            {
+              "action": "command",
+              "behavior": "interactive",
+              "blocking": false,
+              "command": [
+                "pac",
+                "auth",
+                "create",
+                "--environment",
+                "https://org89912357.crm.dynamics.com"
+              ],
+              "description": "Launch PAC interactive authentication directly against the declared environment.",
+              "fresh_authentication": {
+                "force_supported": true,
+                "instructions": "Run the approved pac auth create command and complete a new browser sign-in for the declared environment."
+              },
+              "id": "dataverse-auth",
+              "instructions": "Finish browser sign-in, then resume and verify the connected URL and organization ID.",
+              "key": "power-platform-cli.dataverse-auth",
+              "phase": "authentication",
+              "purpose": "primary_solution_source_operations",
+              "rationale": "PAC remains primary for supported solution source and package operations.",
+              "resource": "power-platform-cli",
+              "role": "required",
+              "session_probe": {
+                "command": [
+                  "pac",
+                  "org",
+                  "who"
+                ],
+                "instructions": "Verify that the active PAC session resolves to the declared environment before reuse."
+              }
+            },
+            {
+              "action": "interactive_auth",
+              "behavior": "interactive",
+              "blocking": true,
+              "description": "Authenticate the current human directly to the declared Dataverse environment.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+              "fresh_authentication": {
+                "force_supported": false,
+                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
+              },
+              "id": "interactive-sign-in",
+              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
+              "key": "dataverse-mcp.interactive-sign-in",
+              "phase": "authentication",
+              "purpose": "targeted_runtime_verification",
+              "rationale": "MCP verifies exact metadata and runtime behavior only.",
+              "resource": "dataverse-mcp",
+              "role": "required",
+              "session_probe": {
+                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
+              }
+            }
+          ],
+          "availability_version": [
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": true,
+              "command": [
+                "node",
+                "--version"
+              ],
+              "description": "Require the exact project-pinned Node.js version.",
+              "expected": "24.14.1",
+              "id": "node-version",
+              "installation": {
+                "guidance": "Install the exact project-approved Node.js release and retain the repository version file and npm lockfile.",
+                "policy": "manual"
+              },
+              "key": "node-toolchain.node-version",
+              "phase": "availability_version",
+              "purpose": "build_and_test",
+              "rationale": "The registered Node toolchain builds and validates web resource content.",
+              "resource": "node-toolchain",
+              "role": "required"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": true,
+              "command": [
+                "npm",
+                "--version"
+              ],
+              "description": "Require the exact project-pinned npm version.",
+              "expected": "11.11.0",
+              "id": "npm-version",
+              "key": "node-toolchain.npm-version",
+              "phase": "availability_version",
+              "purpose": "build_and_test",
+              "rationale": "The registered Node toolchain builds and validates web resource content.",
+              "resource": "node-toolchain",
+              "role": "required"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": true,
+              "command": [
+                "pac"
+              ],
+              "description": "Run bare pac because PAC 2.9.3 reports its version and exits successfully, while pac --version is rejected by its command parser; require the exact pinned version.",
+              "expected": "2.9.3",
+              "id": "pac-version",
+              "installation": {
+                "guidance": "Install the project-approved Microsoft.PowerApps.CLI.Tool 2.9.3 package or an equivalent official PAC distribution.",
+                "policy": "manual"
+              },
+              "key": "power-platform-cli.pac-version",
+              "phase": "availability_version",
+              "purpose": "primary_solution_source_operations",
+              "rationale": "PAC remains primary for supported solution source and package operations.",
+              "resource": "power-platform-cli",
+              "role": "required"
+            },
+            {
+              "action": "mcp_server",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify the configured server key and resolved GA endpoint.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+              "expected_version": "ga",
+              "id": "server-registration",
+              "installation": {
+                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
+                "policy": "not_applicable"
+              },
+              "key": "dataverse-mcp.server-registration",
+              "phase": "availability_version",
+              "purpose": "targeted_runtime_verification",
+              "rationale": "MCP verifies exact metadata and runtime behavior only.",
+              "resource": "dataverse-mcp",
+              "role": "required",
+              "server": "dataverse-authoring"
+            }
+          ],
+          "capability": [
+            {
+              "action": "mcp_tools",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+              "expected_tools": [
+                "search",
+                "describe",
+                "read_query"
+              ],
+              "expected_version": "ga",
+              "id": "required-tools",
+              "key": "dataverse-mcp.required-tools",
+              "phase": "capability",
+              "purpose": "targeted_runtime_verification",
+              "rationale": "MCP verifies exact metadata and runtime behavior only.",
+              "resource": "dataverse-mcp",
+              "role": "required",
+              "server": "dataverse-authoring"
+            }
+          ],
+          "ready_to_attempt": [
+            {
+              "action": "ready_to_attempt",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Permit the first scoped platform action only after host/tool, live Project and compiler integrity, resource/version, endpoint-session, and structural target checks pass.",
+              "key": "ready-to-attempt.required-safety",
+              "phase": "ready_to_attempt",
+              "purpose": "ready_to_attempt_gate",
+              "required_resources": [
+                "node-toolchain",
+                "power-platform-cli",
+                "dataverse-mcp"
+              ],
+              "resource": "preflight",
+              "role": "required"
+            }
+          ],
+          "session_validation": [
+            {
+              "action": "session_validation",
+              "authentication_mode": "interactive_user",
+              "authentication_resources": [
+                "dataverse-mcp"
+              ],
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
+              "expected_endpoints": [
+                "https://org89912357.crm.dynamics.com/api/mcp"
+              ],
+              "key": "authentication.endpoint-session",
+              "phase": "session_validation",
+              "purpose": "authenticated_endpoint_session",
+              "resource": "preflight",
+              "role": "required"
+            }
+          ],
+          "target_configuration": [
+            {
+              "action": "target_configuration",
+              "authentication_mode": "interactive_user",
+              "behavior": "automatic",
+              "blocking": true,
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+              "component_identity": "aks_/scripts/maintenance_job_form.js",
+              "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
+              "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+              "environment_url": "https://org89912357.crm.dynamics.com",
+              "identity_field": "schema_name",
+              "implementation_scope": "repository_and_dataverse_solution",
+              "key": "target.compiler-configuration",
+              "phase": "target_configuration",
+              "publisher_name": "AnandPOC",
+              "publisher_prefix": "aks",
+              "purpose": "deterministic_target_configuration",
+              "resource": "authoring-target",
+              "role": "required",
+              "solution_unique_name": "ContosoServiceWebResource",
+              "target_kind": "dataverse_solution"
+            }
+          ]
+        },
+        "post_action_verification": {
+          "automatic_repair_allowed": false,
+          "canonical_identity": {
+            "field": "schema_name",
+            "value": "aks_/scripts/maintenance_job_form.js"
+          },
+          "declared_solution_unique_name": "ContosoServiceWebResource",
+          "expected_payload": {
+            "behavior": [
+              "use the supported Xrm WebApi to read aks_status and aks_roadworthy for the selected vehicle",
+              "show and clear stable form notifications for non-roadworthy or retired vehicles",
+              "prompt immediately when stage 74880 (Completed) has no completion date",
+              "flag a past scheduled date on a new job and synchronously cancel save until corrected"
+            ],
+            "handlers": [
+              {
+                "event": "OnLoad",
+                "function": "Contoso.MaintenanceJobForm.onLoad",
+                "pass_execution_context": true
+              },
+              {
+                "event": "aks_vehicleid.OnChange",
+                "function": "Contoso.MaintenanceJobForm.onVehicleChange",
+                "pass_execution_context": true
+              },
+              {
+                "event": "aks_stage.OnChange",
+                "function": "Contoso.MaintenanceJobForm.onStageChange",
+                "pass_execution_context": true
+              },
+              {
+                "event": "aks_scheduleddate.OnChange",
+                "function": "Contoso.MaintenanceJobForm.onScheduledDateChange",
+                "pass_execution_context": true
+              },
+              {
+                "event": "OnSave",
+                "function": "Contoso.MaintenanceJobForm.onSave",
+                "pass_execution_context": true
+              }
+            ],
+            "name": "aks_/scripts/maintenance_job_form.js",
+            "namespace": "Contoso.MaintenanceJobForm",
+            "satisfies": [
+              "INTK-0001-REQ-027",
+              "INTK-0001-REQ-028",
+              "INTK-0001-REQ-029",
+              "INTK-0001-REQ-045"
+            ],
+            "schema_name": "aks_/scripts/maintenance_job_form.js",
+            "source_path": "scripts/maintenance_job_form.js"
+          },
+          "full_solution_export_or_unpack_allowed": false,
+          "solution_membership_verification": true,
+          "targeted_read_only_verification": true,
+          "verification_resources": {
+            "create": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "delete": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "update": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "verify": {
+              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            }
+          },
+          "verify_absence_from_other_declared_custom_solutions": true
+        },
+        "post_verification_packaging": {
+          "commit": "local_no_push",
+          "component_projects": [
+            {
+              "component_type": "code_webres_*",
+              "path": "src/webresources",
+              "project_type": "web_resource_source"
+            }
+          ],
+          "component_source_sync": {
+            "paths": [
+              "WebResources/"
+            ],
+            "strategy": "own_files"
+          },
+          "enabled": true,
+          "export_managed": false,
+          "is_discovery_preflight_or_verification": false,
+          "local_solution_pack": false,
+          "pre_export_build": [],
+          "project_owning_component_only": true,
+          "rebuild_before_export": false,
+          "records_source_sync_evidence": true,
+          "reject_unrelated_drift": true,
+          "replay_platform_create": false,
+          "runs_after": "post_action_verification_matched",
+          "solution_unique_name": "ContosoServiceWebResource",
+          "tool": "power-platform-cli",
+          "unpack_path": "src/solutions/ContosoServiceWebResource",
+          "unpack_to_temp_workspace": true
+        },
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
+        "schema_version": 3
+      },
+      "development_resources": {
+        "capabilities": {
+          "implementation_scope": "repository_and_dataverse_solution",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+          "operations": {
+            "create": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "delete": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "update": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "verify": {
+              "executor": {
+                "builder": "unsupported",
+                "supported": false
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "official_references": [
+                "power_platform_cli"
+              ],
+              "operation": "any",
+              "primary_resource": "power-platform-cli",
+              "profile": "pac-primary",
+              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "unsupported_or_not_applicable",
+              "verification": {
+                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            }
+          },
+          "policy": {
+            "delete_semantics": {
+              "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+              "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+            },
+            "destructive_approval_required": true,
+            "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+            "portal_fallback_evidence_required": true
+          }
+        },
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
+        "required": [
+          {
+            "authentication": "none",
+            "description": "Project-pinned Node.js and npm toolchain.",
+            "ecosystem": "npm",
+            "id": "node-toolchain",
+            "kind": "sdk",
+            "package": "node",
+            "purpose": "build_and_test",
+            "rationale": "The registered Node toolchain builds and validates web resource content.",
+            "supported_execution_hosts": [
+              "local_interactive",
+              "github_copilot_cloud"
+            ],
+            "version": "24.14.1",
+            "version_policy": "project_pinned"
+          },
+          {
+            "authentication": "interactive_user",
+            "command": "pac",
+            "description": "Power Platform CLI for solution source and supported authoring.",
+            "id": "power-platform-cli",
+            "kind": "cli",
+            "purpose": "primary_solution_source_operations",
+            "rationale": "PAC remains primary for supported solution source and package operations.",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "version": "2.9.3",
+            "version_policy": "project_pinned"
+          },
+          {
+            "authentication": "interactive_user",
+            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+            "id": "dataverse-mcp",
+            "kind": "mcp",
+            "purpose": "targeted_runtime_verification",
+            "rationale": "MCP verifies exact metadata and runtime behavior only.",
+            "release_channel": "ga",
+            "required_tools": [
+              "search",
+              "describe",
+              "read_query"
+            ],
+            "server": "dataverse-authoring",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "tools": [
+              "search_data",
+              "search",
+              "create_record",
+              "update_record",
+              "delete_record",
+              "create_table",
+              "update_table",
+              "delete_table",
+              "read_query",
+              "describe",
+              "upsert_skill",
+              "delete_skill",
+              "init_file_upload",
+              "commit_file_upload",
+              "file_download"
+            ],
+            "version": "ga",
+            "version_policy": "service_managed"
+          }
+        ],
+        "route_rationale": "Although WebResource CRUD is documented, content construction and repository binding are not complete in the current payload contract."
+      },
+      "execution_host": "local_interactive",
+      "executor": "agent",
+      "feature": "FEAT-04",
+      "id": "DEV-0043",
+      "implementation_scope": "repository_and_dataverse_solution",
+      "owner": null,
+      "payload": {
+        "behavior": [
+          "use the supported Xrm WebApi to read aks_status and aks_roadworthy for the selected vehicle",
+          "show and clear stable form notifications for non-roadworthy or retired vehicles",
+          "prompt immediately when stage 74880 (Completed) has no completion date",
+          "flag a past scheduled date on a new job and synchronously cancel save until corrected"
+        ],
+        "handlers": [
+          {
+            "event": "OnLoad",
+            "function": "Contoso.MaintenanceJobForm.onLoad",
+            "pass_execution_context": true
+          },
+          {
+            "event": "aks_vehicleid.OnChange",
+            "function": "Contoso.MaintenanceJobForm.onVehicleChange",
+            "pass_execution_context": true
+          },
+          {
+            "event": "aks_stage.OnChange",
+            "function": "Contoso.MaintenanceJobForm.onStageChange",
+            "pass_execution_context": true
+          },
+          {
+            "event": "aks_scheduleddate.OnChange",
+            "function": "Contoso.MaintenanceJobForm.onScheduledDateChange",
+            "pass_execution_context": true
+          },
+          {
+            "event": "OnSave",
+            "function": "Contoso.MaintenanceJobForm.onSave",
+            "pass_execution_context": true
+          }
+        ],
+        "name": "aks_/scripts/maintenance_job_form.js",
+        "namespace": "Contoso.MaintenanceJobForm",
+        "satisfies": [
+          "INTK-0001-REQ-027",
+          "INTK-0001-REQ-028",
+          "INTK-0001-REQ-029",
+          "INTK-0001-REQ-045"
+        ],
+        "schema_name": "aks_/scripts/maintenance_job_form.js",
+        "source_path": "scripts/maintenance_job_form.js"
+      },
+      "plan": "DES-04",
+      "satisfies": [
+        "INTK-0001-REQ-027",
+        "INTK-0001-REQ-028",
+        "INTK-0001-REQ-029",
+        "INTK-0001-REQ-045"
+      ],
+      "source_plan_hash": "70bd78f891de2ce9bce64aaeb6665fba5685cf83b5ab88d8cf9154249f6f7553",
+      "status": "ready",
+      "task_profile": {
+        "evidence": [
+          "changed_paths",
+          "build_results",
+          "test_results"
+        ],
+        "executor_default": "agent",
+        "target_roots": [
+          "src/plugins",
+          "src/pcf",
+          "src/webresources"
+        ],
+        "validation_kinds": [
+          "payload_conformance",
+          "build",
+          "unit_test",
+          "registration_conformance"
+        ]
+      },
+      "workspace": "specs/004-job-completion-enforcement"
+    },
+    {
+      "authentication_policy": "reuse_if_valid",
+      "authoring_target": {
+        "authentication_mode": "interactive_user",
+        "connection_alias": "dataverse-authoring",
+        "environment": "authoring-dataverse",
+        "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+        "environment_url": "https://org89912357.crm.dynamics.com",
+        "kind": "dataverse_solution",
+        "name": "core-solution-target",
+        "publisher_name": "AnandPOC",
+        "publisher_prefix": "aks",
+        "solution": "core-solution",
+        "solution_unique_name": "ContosoServiceCore",
+        "unpack_path": "src/solutions/ContosoServiceCore"
+      },
+      "build_skill": "model-driven-ui",
+      "component": "DES-04-CMP-003",
+      "component_type": "uiux_form",
+      "depends_on": [
+        "DEV-0043"
+      ],
+      "developer_preflight": {
+        "authentication_policy": "reuse_if_valid",
+        "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+        "direct_action": {
+          "automatic_prerequisite_repair_allowed": false,
+          "canonical_identity": {
+            "field": "schema_name",
+            "value": "aks_maintenancejob_main"
+          },
+          "capabilities": {
+            "add_solution_component": {
+              "executor": {
+                "builder": "add_solution_component",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "unbound_action",
+                "method": "POST",
+                "path_template": "AddSolutionComponent"
+              },
+              "official_references": [
+                "add_solution_component",
+                "solution_component_types"
+              ],
+              "operation": "add_solution_component",
+              "primary_resource": "dataverse-web-api",
+              "profile": "add-solution-component",
+              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "solution_context": {
+                "mechanism": "action_parameter",
+                "name": "SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "create": {
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "POST",
+                "path_template": "systemforms"
+              },
+              "official_references": [
+                "optional_parameters",
+                "system_form"
+              ],
+              "operation": "create",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-create",
+              "rationale": "The executor generates deterministic FormXML from validated sections and supported control types, then writes the SystemForm row under the documented solution header.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Query the exact form by name, table, and type and verify compiler-generated FormXML.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "delete": {
+              "destructive_effect": "environment_delete",
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "DELETE",
+                "path_template": "systemforms({record_id})"
+              },
+              "official_references": [
+                "optional_parameters",
+                "system_form"
+              ],
+              "operation": "delete",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-delete",
+              "rationale": "HTTP DELETE destroys the SystemForm row and is never substituted for solution-membership removal.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Confirm only the exact form was removed.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "remove_solution_component": {
+              "destructive_effect": "solution_membership_only",
+              "executor": {
+                "builder": "remove_solution_component",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "unbound_action",
+                "method": "POST",
+                "path_template": "RemoveSolutionComponent"
+              },
+              "official_references": [
+                "remove_solution_component",
+                "solution_component_types"
+              ],
+              "operation": "remove_solution_component",
+              "primary_resource": "dataverse-web-api",
+              "profile": "remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "solution_context": {
+                "mechanism": "action_parameter",
+                "name": "SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "update": {
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "PATCH",
+                "path_template": "systemforms({record_id})"
+              },
+              "official_references": [
+                "optional_parameters",
+                "system_form"
+              ],
+              "operation": "update",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-update",
+              "rationale": "The executor generates deterministic FormXML from validated sections and supported control types, then writes the SystemForm row under the documented solution header.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Verify the exact form content after the patch by name, table, and type.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "verify": {
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "systemforms"
+              },
+              "official_references": [
+                "system_form"
+              ],
+              "operation": "verify",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-verify",
+              "rationale": "Targeted verification reads one canonical form identity rather than the form inventory.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Target-read the exact form by name, table, and type.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            }
+          },
+          "capability_policy": {
+            "delete_semantics": {
+              "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+              "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+            },
+            "destructive_approval_required": true,
+            "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+            "portal_fallback_evidence_required": true
+          },
+          "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+          "environment_url": "https://org89912357.crm.dynamics.com",
+          "expected_payload": {
+            "form_type": "main",
+            "name": "Maintenance Job - Main completion handlers",
+            "satisfies": [
+              "INTK-0001-REQ-027",
+              "INTK-0001-REQ-028",
+              "INTK-0001-REQ-029",
+              "INTK-0001-REQ-045"
+            ],
+            "schema_name": "aks_maintenancejob_main",
+            "sections": [
+              {
+                "change": "preserve all existing header, job details, vehicle context, labour and totals, and parts-used controls",
+                "fields": [
+                  "aks_jobnumber",
+                  "aks_stage",
+                  "aks_priority",
+                  "aks_vehicleid",
+                  "ownerid",
+                  "aks_technicianid",
+                  "aks_scheduleddate",
+                  "aks_completeddate",
+                  "aks_labourhours",
+                  "aks_hourlyrate",
+                  "aks_labourcost",
+                  "aks_totalpartscost",
+                  "aks_totalcost"
+                ],
+                "handlers": [
+                  {
+                    "OnLoad": "Contoso.MaintenanceJobForm.onLoad"
+                  },
+                  {
+                    "aks_vehicleid.OnChange": "Contoso.MaintenanceJobForm.onVehicleChange"
+                  },
+                  {
+                    "aks_stage.OnChange": "Contoso.MaintenanceJobForm.onStageChange"
+                  },
+                  {
+                    "aks_scheduleddate.OnChange": "Contoso.MaintenanceJobForm.onScheduledDateChange"
+                  },
+                  {
+                    "OnSave": "Contoso.MaintenanceJobForm.onSave"
+                  }
+                ],
+                "library": "aks_/scripts/maintenance_job_form.js",
+                "name": "existing_feat03_layout",
+                "pass_execution_context": true
+              }
+            ],
+            "table": "aks_maintenancejob"
+          },
+          "fallback_target_allowed": false,
+          "implementation_scope": "repository_and_dataverse_solution",
+          "mode": "direct_scoped_action",
+          "portal_fallback_requires_issue_evidence": true,
+          "prohibited_pre_action_operations": [
+            "solution_export",
+            "solution_unpack",
+            "full_solution_inventory",
+            "publisher_inventory",
+            "component_absence_scan",
+            "cross_solution_membership_scan",
+            "full_permission_discovery"
+          ],
+          "resource_actions": [
+            {
+              "action": "portal",
+              "behavior": "manual",
+              "blocking": false,
+              "description": "Perform only the DEV-approved visual authoring or review step.",
+              "endpoint": "https://make.powerapps.com",
+              "id": "maker-action",
+              "instructions": "Record non-secret evidence and return control to the implementation workflow.",
+              "key": "maker-portal.maker-action",
+              "phase": "manual",
+              "purpose": "unsupported_form_control_fallback",
+              "rationale": "Portal fallback requires sanitized issue evidence naming the unsupported FormXML control or platform rejection.",
+              "resource": "maker-portal",
+              "role": "fallback"
+            }
+          ],
+          "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor.",
+          "solution_unique_name": "ContosoServiceCore",
+          "target_kind": "dataverse_solution"
+        },
+        "execution_host": "local_interactive",
+        "implementation_scope": "repository_and_dataverse_solution",
+        "phases": {
+          "authentication": [
+            {
+              "action": "interactive_auth",
+              "behavior": "interactive",
+              "blocking": true,
+              "description": "Acquire delegated access for the current human with the configured public-client MSAL registration.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+              "fresh_authentication": {
+                "force_supported": false,
+                "instructions": "Start a new in-memory MSAL public-client session with account selection against the exact Dataverse scope."
+              },
+              "id": "interactive-sign-in",
+              "instructions": "Complete interactive OAuth for <environment-url>/user_impersonation; the token cache is memory-only and no token or authentication output is persisted.\n\nISSUE #22: Cross-Process MSAL Handoff - Consolidated Executor Flow\n===========================================================================\n\nAuthentication is now consolidated into the executor process to avoid cross-process MSAL cache failures.\n\nObservable Executor States (emitted to stderr as JSON):\n1. \"waiting-for-human\": Emitted before browser OAuth prompt. DEV remains ready.\n2. \"auth-succeeded\": Emitted after successful token acquisition. DEV can transition to in_progress.\n3. \"auth-failed\": Emitted if authentication failed. DEV must remain ready, no action invoked.\n4. \"request-invoked\": Emitted before sending HTTP request. DEV is in_progress, evidence will be required.\n\nWorkflow:\n1. Readiness gate: Validate DEV and environment are ready\n2. Launch executor: python scripts/dataverse_web_api_executor.py <DEV-ID> --operation create --issue-number <N>\n3. Monitor stderr: Parse JSON executor_state events\n4. On \"waiting-for-human\": Terminal automation should:\n   - Display \"waiting for browser authentication...\" to user\n   - Wait for next state or user interaction\n5. On \"auth-succeeded\": Workflow caller should:\n   - Transition DEV to in_progress (auth succeeded, request will be sent)\n   - Continue waiting for \"request-invoked\"\n6. On \"auth-failed\": Workflow caller should:\n   - Keep DEV in ready state (no action invoked, no evidence)\n   - Retry or escalate per policy\n7. On \"request-invoked\": Web API request is being sent:\n   - DEV is already in in_progress\n   - Sanitized evidence will be posted to issue\n   - If interrupted here, evidence is required\n8. Executor completes with success/failure and posts final evidence\n\nDO NOT:\n- Call executor with --authenticate-only separately (deprecated per issue #22)\n- Transition DEV to in_progress before executor sends request\n- Assume success if no evidence is posted to the issue\n",
+              "key": "dataverse-web-api.interactive-sign-in",
+              "phase": "authentication",
+              "purpose": "primary_form_authoring_and_verification",
+              "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+              "resource": "dataverse-web-api",
+              "role": "required",
+              "session_probe": {
+                "instructions": "Use only an in-process silent MSAL lookup to confirm the current user and exact Dataverse resource; never print token data."
+              }
+            },
+            {
+              "action": "command",
+              "behavior": "interactive",
+              "blocking": false,
+              "command": [
+                "pac",
+                "auth",
+                "create",
+                "--environment",
+                "https://org89912357.crm.dynamics.com"
+              ],
+              "description": "Launch PAC interactive authentication directly against the declared environment.",
+              "fresh_authentication": {
+                "force_supported": true,
+                "instructions": "Run the approved pac auth create command and complete a new browser sign-in for the declared environment."
+              },
+              "id": "dataverse-auth",
+              "instructions": "Finish browser sign-in, then resume and verify the connected URL and organization ID.",
+              "key": "power-platform-cli.dataverse-auth",
+              "phase": "authentication",
+              "purpose": "supported_solution_source_operations",
+              "rationale": "PAC is used only for supported targeted solution/source operations.",
+              "resource": "power-platform-cli",
+              "role": "preferred",
+              "session_probe": {
+                "command": [
+                  "pac",
+                  "org",
+                  "who"
+                ],
+                "instructions": "Verify that the active PAC session resolves to the declared environment before reuse."
+              }
+            },
+            {
+              "action": "portal",
+              "behavior": "interactive",
+              "blocking": false,
+              "description": "Sign in as the current human and select the declared environment.",
+              "endpoint": "https://make.powerapps.com",
+              "fresh_authentication": {
+                "force_supported": false,
+                "instructions": "Sign out only the current Maker portal account or open a new private browser session, sign in interactively, and select the declared environment before resuming."
+              },
+              "id": "maker-sign-in",
+              "instructions": "Complete browser sign-in and verify the environment selector before continuing.",
+              "key": "maker-portal.maker-sign-in",
+              "phase": "authentication",
+              "purpose": "unsupported_form_control_fallback",
+              "rationale": "Portal fallback requires sanitized issue evidence naming the unsupported FormXML control or platform rejection.",
+              "resource": "maker-portal",
+              "role": "fallback",
+              "session_probe": {
+                "instructions": "Confirm the current Maker portal user and environment selector before reusing the browser session."
+              }
+            }
+          ],
+          "availability_version": [
+            {
+              "action": "mcp_server",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify the exact MCP server key is registered and reachable.",
+              "expected_version": "service-managed",
+              "id": "server-registration",
+              "installation": {
+                "guidance": "Configure the official Microsoft Learn MCP endpoint in the active MCP client.",
+                "policy": "not_applicable"
+              },
+              "key": "microsoft-learn.server-registration",
+              "phase": "availability_version",
+              "purpose": "form_contract",
+              "rationale": "Official SystemForm documentation grounds the supported metadata surface and its limits.",
+              "resource": "microsoft-learn",
+              "role": "required",
+              "server": "microsoft-learn"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": true,
+              "command": [
+                "python",
+                "-c",
+                "import importlib.metadata; print(importlib.metadata.version('msal'))"
+              ],
+              "description": "Require the exact pinned MSAL Python package without exposing token-cache data.",
+              "expected": "1.37.0",
+              "id": "msal-version",
+              "installation": {
+                "guidance": "Install exactly msal==1.37.0 in the Python environment used by scripts/dataverse_web_api_executor.py.",
+                "policy": "manual"
+              },
+              "key": "msal-python.msal-version",
+              "phase": "availability_version",
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "resource": "msal-python",
+              "role": "required"
+            },
+            {
+              "action": "endpoint",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Validate the resolved HTTPS v9.2 endpoint and API contract.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+              "expected_version": "v9.2",
+              "id": "service-root",
+              "installation": {
+                "guidance": "No local install is required; use the declared Dataverse v9.2 service root.",
+                "policy": "not_applicable"
+              },
+              "key": "dataverse-web-api.service-root",
+              "oauth_public_client": {
+                "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                "provider": "msal_public_client",
+                "redirect_uri": "http://localhost",
+                "scope_suffix": "/user_impersonation",
+                "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                "token_cache": "memory_only"
+              },
+              "phase": "availability_version",
+              "purpose": "primary_form_authoring_and_verification",
+              "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+              "resource": "dataverse-web-api",
+              "role": "required"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": false,
+              "command": [
+                "pac"
+              ],
+              "description": "Run bare pac because PAC 2.9.3 reports its version and exits successfully, while pac --version is rejected by its command parser; require the exact pinned version.",
+              "expected": "2.9.3",
+              "id": "pac-version",
+              "installation": {
+                "guidance": "Install the project-approved Microsoft.PowerApps.CLI.Tool 2.9.3 package or an equivalent official PAC distribution.",
+                "policy": "manual"
+              },
+              "key": "power-platform-cli.pac-version",
+              "phase": "availability_version",
+              "purpose": "supported_solution_source_operations",
+              "rationale": "PAC is used only for supported targeted solution/source operations.",
+              "resource": "power-platform-cli",
+              "role": "preferred"
+            },
+            {
+              "action": "endpoint",
+              "behavior": "automatic",
+              "blocking": false,
+              "description": "Validate the official Maker portal HTTPS root.",
+              "endpoint": "https://make.powerapps.com",
+              "expected_version": "service-managed",
+              "id": "portal-root",
+              "installation": {
+                "guidance": "Use a supported browser; no local package is installed.",
+                "policy": "not_applicable"
+              },
+              "key": "maker-portal.portal-root",
+              "phase": "availability_version",
+              "purpose": "unsupported_form_control_fallback",
+              "rationale": "Portal fallback requires sanitized issue evidence naming the unsupported FormXML control or platform rejection.",
+              "resource": "maker-portal",
+              "role": "fallback"
+            }
+          ],
+          "capability": [
+            {
+              "action": "mcp_tools",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Probe the server tool surface before implementation grounding.",
+              "expected_tools": [],
+              "expected_version": "service-managed",
+              "id": "documentation-search",
+              "key": "microsoft-learn.documentation-search",
+              "phase": "capability",
+              "purpose": "form_contract",
+              "rationale": "Official SystemForm documentation grounds the supported metadata surface and its limits.",
+              "resource": "microsoft-learn",
+              "role": "required",
+              "server": "microsoft-learn"
+            },
+            {
+              "action": "endpoint",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Confirm the compiler-selected component operation is explicitly supported by the capability matrix.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+              "expected_version": "v9.2",
+              "id": "api-capability",
+              "key": "dataverse-web-api.api-capability",
+              "oauth_public_client": {
+                "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                "provider": "msal_public_client",
+                "redirect_uri": "http://localhost",
+                "scope_suffix": "/user_impersonation",
+                "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                "token_cache": "memory_only"
+              },
+              "phase": "capability",
+              "purpose": "primary_form_authoring_and_verification",
+              "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+              "resource": "dataverse-web-api",
+              "role": "required"
+            }
+          ],
+          "ready_to_attempt": [
+            {
+              "action": "ready_to_attempt",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Permit the first scoped platform action only after host/tool, live Project and compiler integrity, resource/version, endpoint-session, and structural target checks pass.",
+              "key": "ready-to-attempt.required-safety",
+              "phase": "ready_to_attempt",
+              "purpose": "ready_to_attempt_gate",
+              "required_resources": [
+                "microsoft-learn",
+                "msal-python",
+                "dataverse-web-api"
+              ],
+              "resource": "preflight",
+              "role": "required"
+            }
+          ],
+          "session_validation": [
+            {
+              "action": "session_validation",
+              "authentication_mode": "interactive_user",
+              "authentication_resources": [
+                "dataverse-web-api"
+              ],
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
+              "expected_endpoints": [
+                "https://org89912357.crm.dynamics.com/api/data/v9.2"
+              ],
+              "key": "authentication.endpoint-session",
+              "phase": "session_validation",
+              "purpose": "authenticated_endpoint_session",
+              "resource": "preflight",
+              "role": "required"
+            }
+          ],
+          "target_configuration": [
+            {
+              "action": "target_configuration",
+              "authentication_mode": "interactive_user",
+              "behavior": "automatic",
+              "blocking": true,
+              "capability_matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+              "component_identity": "aks_maintenancejob_main",
+              "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
+              "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+              "environment_url": "https://org89912357.crm.dynamics.com",
+              "identity_field": "schema_name",
+              "implementation_scope": "repository_and_dataverse_solution",
+              "key": "target.compiler-configuration",
+              "phase": "target_configuration",
+              "publisher_name": "AnandPOC",
+              "publisher_prefix": "aks",
+              "purpose": "deterministic_target_configuration",
+              "resource": "authoring-target",
+              "role": "required",
+              "solution_unique_name": "ContosoServiceCore",
+              "target_kind": "dataverse_solution"
+            }
+          ]
+        },
+        "post_action_verification": {
+          "automatic_repair_allowed": false,
+          "canonical_identity": {
+            "field": "schema_name",
+            "value": "aks_maintenancejob_main"
+          },
+          "declared_solution_unique_name": "ContosoServiceCore",
+          "expected_payload": {
+            "form_type": "main",
+            "name": "Maintenance Job - Main completion handlers",
+            "satisfies": [
+              "INTK-0001-REQ-027",
+              "INTK-0001-REQ-028",
+              "INTK-0001-REQ-029",
+              "INTK-0001-REQ-045"
+            ],
+            "schema_name": "aks_maintenancejob_main",
+            "sections": [
+              {
+                "change": "preserve all existing header, job details, vehicle context, labour and totals, and parts-used controls",
+                "fields": [
+                  "aks_jobnumber",
+                  "aks_stage",
+                  "aks_priority",
+                  "aks_vehicleid",
+                  "ownerid",
+                  "aks_technicianid",
+                  "aks_scheduleddate",
+                  "aks_completeddate",
+                  "aks_labourhours",
+                  "aks_hourlyrate",
+                  "aks_labourcost",
+                  "aks_totalpartscost",
+                  "aks_totalcost"
+                ],
+                "handlers": [
+                  {
+                    "OnLoad": "Contoso.MaintenanceJobForm.onLoad"
+                  },
+                  {
+                    "aks_vehicleid.OnChange": "Contoso.MaintenanceJobForm.onVehicleChange"
+                  },
+                  {
+                    "aks_stage.OnChange": "Contoso.MaintenanceJobForm.onStageChange"
+                  },
+                  {
+                    "aks_scheduleddate.OnChange": "Contoso.MaintenanceJobForm.onScheduledDateChange"
+                  },
+                  {
+                    "OnSave": "Contoso.MaintenanceJobForm.onSave"
+                  }
+                ],
+                "library": "aks_/scripts/maintenance_job_form.js",
+                "name": "existing_feat03_layout",
+                "pass_execution_context": true
+              }
+            ],
+            "table": "aks_maintenancejob"
+          },
+          "full_solution_export_or_unpack_allowed": false,
+          "solution_membership_verification": true,
+          "targeted_read_only_verification": true,
+          "verification_resources": {
+            "add_solution_component": {
+              "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "create": {
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "systemforms"
+              },
+              "rationale": "Query the exact form by name, table, and type and verify compiler-generated FormXML.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "delete": {
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "systemforms"
+              },
+              "rationale": "Confirm only the exact form was removed.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "remove_solution_component": {
+              "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "update": {
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "systemforms"
+              },
+              "rationale": "Verify the exact form content after the patch by name, table, and type.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            },
+            "verify": {
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "systemforms"
+              },
+              "rationale": "Target-read the exact form by name, table, and type.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "describe",
+                "read_query"
+              ]
+            }
+          },
+          "verify_absence_from_other_declared_custom_solutions": true
+        },
+        "post_verification_packaging": {
+          "commit": "local_no_push",
+          "component_projects": [],
+          "component_source_sync": {
+            "paths": [
+              "Entities/<table>/FormXml/"
+            ],
+            "strategy": "own_files"
+          },
+          "enabled": true,
+          "export_managed": false,
+          "is_discovery_preflight_or_verification": false,
+          "local_solution_pack": false,
+          "pre_export_build": [],
+          "project_owning_component_only": true,
+          "rebuild_before_export": false,
+          "records_source_sync_evidence": true,
+          "reject_unrelated_drift": true,
+          "replay_platform_create": false,
+          "runs_after": "post_action_verification_matched",
+          "solution_unique_name": "ContosoServiceCore",
+          "tool": "power-platform-cli",
+          "unpack_path": "src/solutions/ContosoServiceCore",
+          "unpack_to_temp_workspace": true
+        },
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
+        "schema_version": 3
+      },
+      "development_resources": {
+        "capabilities": {
+          "implementation_scope": "repository_and_dataverse_solution",
+          "matrix_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+          "operations": {
+            "add_solution_component": {
+              "executor": {
+                "builder": "add_solution_component",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "unbound_action",
+                "method": "POST",
+                "path_template": "AddSolutionComponent"
+              },
+              "official_references": [
+                "add_solution_component",
+                "solution_component_types"
+              ],
+              "operation": "add_solution_component",
+              "primary_resource": "dataverse-web-api",
+              "profile": "add-solution-component",
+              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "solution_context": {
+                "mechanism": "action_parameter",
+                "name": "SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "create": {
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "POST",
+                "path_template": "systemforms"
+              },
+              "official_references": [
+                "optional_parameters",
+                "system_form"
+              ],
+              "operation": "create",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-create",
+              "rationale": "The executor generates deterministic FormXML from validated sections and supported control types, then writes the SystemForm row under the documented solution header.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Query the exact form by name, table, and type and verify compiler-generated FormXML.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "delete": {
+              "destructive_effect": "environment_delete",
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "DELETE",
+                "path_template": "systemforms({record_id})"
+              },
+              "official_references": [
+                "optional_parameters",
+                "system_form"
+              ],
+              "operation": "delete",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-delete",
+              "rationale": "HTTP DELETE destroys the SystemForm row and is never substituted for solution-membership removal.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Confirm only the exact form was removed.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "remove_solution_component": {
+              "destructive_effect": "solution_membership_only",
+              "executor": {
+                "builder": "remove_solution_component",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "unbound_action",
+                "method": "POST",
+                "path_template": "RemoveSolutionComponent"
+              },
+              "official_references": [
+                "remove_solution_component",
+                "solution_component_types"
+              ],
+              "operation": "remove_solution_component",
+              "primary_resource": "dataverse-web-api",
+              "profile": "remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "solution_context": {
+                "mechanism": "action_parameter",
+                "name": "SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "update": {
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "PATCH",
+                "path_template": "systemforms({record_id})"
+              },
+              "official_references": [
+                "optional_parameters",
+                "system_form"
+              ],
+              "operation": "update",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-update",
+              "rationale": "The executor generates deterministic FormXML from validated sections and supported control types, then writes the SystemForm row under the documented solution header.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Verify the exact form content after the patch by name, table, and type.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            },
+            "verify": {
+              "executor": {
+                "builder": "uiux_form",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "not_applicable",
+                "issue_evidence_required": false,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "systemforms"
+              },
+              "official_references": [
+                "system_form"
+              ],
+              "operation": "verify",
+              "primary_resource": "dataverse-web-api",
+              "profile": "form-verify",
+              "rationale": "Targeted verification reads one canonical form identity rather than the form inventory.",
+              "solution_context": {
+                "mechanism": "not_applicable"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "systemforms"
+                },
+                "rationale": "Target-read the exact form by name, table, and type.",
+                "resource": "dataverse-mcp",
+                "tools": [
+                  "describe",
+                  "read_query"
+                ]
+              }
+            }
+          },
+          "policy": {
+            "delete_semantics": {
+              "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+              "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+            },
+            "destructive_approval_required": true,
+            "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+            "portal_fallback_evidence_required": true
+          }
+        },
+        "fallback": [
+          {
+            "authentication": "interactive_user",
+            "description": "Human maker authoring surface.",
+            "endpoint": "https://make.powerapps.com",
+            "id": "maker-portal",
+            "kind": "portal",
+            "purpose": "unsupported_form_control_fallback",
+            "rationale": "Portal fallback requires sanitized issue evidence naming the unsupported FormXML control or platform rejection.",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "version": "service-managed",
+            "version_policy": "service_managed"
+          }
+        ],
+        "preferred": [
+          {
+            "authentication": "interactive_user",
+            "command": "pac",
+            "description": "Power Platform CLI for solution source and supported authoring.",
+            "id": "power-platform-cli",
+            "kind": "cli",
+            "purpose": "supported_solution_source_operations",
+            "rationale": "PAC is used only for supported targeted solution/source operations.",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "version": "2.9.3",
+            "version_policy": "project_pinned"
+          }
+        ],
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
+        "required": [
+          {
+            "authentication": "none",
+            "description": "Official Microsoft implementation grounding.",
+            "id": "microsoft-learn",
+            "kind": "mcp",
+            "purpose": "form_contract",
+            "rationale": "Official SystemForm documentation grounds the supported metadata surface and its limits.",
+            "server": "microsoft-learn",
+            "supported_execution_hosts": [
+              "local_interactive",
+              "github_copilot_cloud"
+            ],
+            "version": "service-managed",
+            "version_policy": "service_managed"
+          },
+          {
+            "authentication": "none",
+            "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+            "ecosystem": "pip",
+            "id": "msal-python",
+            "kind": "sdk",
+            "package": "msal",
+            "purpose": "delegated_authentication",
+            "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "version": "1.37.0",
+            "version_policy": "project_pinned"
+          },
+          {
+            "authentication": "interactive_user",
+            "description": "Capability-gated Dataverse Web API authoring endpoint.",
+            "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+            "id": "dataverse-web-api",
+            "kind": "endpoint",
+            "oauth_public_client": {
+              "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+              "provider": "msal_public_client",
+              "redirect_uri": "http://localhost",
+              "scope_suffix": "/user_impersonation",
+              "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+              "token_cache": "memory_only"
+            },
+            "purpose": "primary_form_authoring_and_verification",
+            "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "version": "v9.2",
+            "version_policy": "api_contract"
+          }
+        ],
+        "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+      },
+      "execution_host": "local_interactive",
+      "executor": "hybrid",
+      "feature": "FEAT-04",
+      "id": "DEV-0044",
+      "implementation_scope": "repository_and_dataverse_solution",
+      "owner": null,
+      "payload": {
+        "form_type": "main",
+        "name": "Maintenance Job - Main completion handlers",
+        "satisfies": [
+          "INTK-0001-REQ-027",
+          "INTK-0001-REQ-028",
+          "INTK-0001-REQ-029",
+          "INTK-0001-REQ-045"
+        ],
+        "schema_name": "aks_maintenancejob_main",
+        "sections": [
+          {
+            "change": "preserve all existing header, job details, vehicle context, labour and totals, and parts-used controls",
+            "fields": [
+              "aks_jobnumber",
+              "aks_stage",
+              "aks_priority",
+              "aks_vehicleid",
+              "ownerid",
+              "aks_technicianid",
+              "aks_scheduleddate",
+              "aks_completeddate",
+              "aks_labourhours",
+              "aks_hourlyrate",
+              "aks_labourcost",
+              "aks_totalpartscost",
+              "aks_totalcost"
+            ],
+            "handlers": [
+              {
+                "OnLoad": "Contoso.MaintenanceJobForm.onLoad"
+              },
+              {
+                "aks_vehicleid.OnChange": "Contoso.MaintenanceJobForm.onVehicleChange"
+              },
+              {
+                "aks_stage.OnChange": "Contoso.MaintenanceJobForm.onStageChange"
+              },
+              {
+                "aks_scheduleddate.OnChange": "Contoso.MaintenanceJobForm.onScheduledDateChange"
+              },
+              {
+                "OnSave": "Contoso.MaintenanceJobForm.onSave"
+              }
+            ],
+            "library": "aks_/scripts/maintenance_job_form.js",
+            "name": "existing_feat03_layout",
+            "pass_execution_context": true
+          }
+        ],
+        "table": "aks_maintenancejob"
+      },
+      "plan": "DES-04",
+      "satisfies": [
+        "INTK-0001-REQ-027",
+        "INTK-0001-REQ-028",
+        "INTK-0001-REQ-029",
+        "INTK-0001-REQ-045"
+      ],
+      "source_plan_hash": "70bd78f891de2ce9bce64aaeb6665fba5685cf83b5ab88d8cf9154249f6f7553",
+      "status": "ready",
+      "task_profile": {
+        "evidence": [
+          "screenshots",
+          "reviewer_evidence"
+        ],
+        "executor_default": "hybrid",
+        "source_sync_evidence": [
+          "changed_solution_paths"
+        ],
+        "target_roots": [
+          "src/solutions"
+        ],
+        "validation_kinds": [
+          "payload_conformance",
+          "solution_schema",
+          "accessibility_review",
+          "runtime_verification"
+        ]
+      },
+      "workspace": "specs/004-job-completion-enforcement"
     }
   ]
 }

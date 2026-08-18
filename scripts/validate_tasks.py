@@ -48,6 +48,9 @@ def main() -> int:
         if not tasks_path.exists():
             errors.append(P.error(rel, "generated tasks.md is missing"))
             continue
+        # Compute per-workspace hash for this workspace's tasks
+        workspace_name = workspace.relative_to(P.ROOT).as_posix()
+        workspace_hash = P.workspace_artifact_hash(workspace_name, rows)
         try:
             tasks_front, _, _ = P.read_markdown(tasks_path)
             expected_front = {
@@ -55,7 +58,7 @@ def main() -> int:
                 "plan": plan.get("plan"),
                 "source_plan_hash": plan.get("plan_hash"),
                 "repository_context_hash": repo["context_hash"],
-                "task_context_hash": tasks["context_hash"],
+                "task_context_hash": workspace_hash,  # Use per-workspace hash
             }
             for key, value in expected_front.items():
                 if tasks_front.get(key) != value:
@@ -127,7 +130,7 @@ def main() -> int:
             "depends_on": row["depends_on"],
             "status": row["status"],
             "source_plan_hash": row["source_plan_hash"],
-            "task_context_hash": tasks["context_hash"],
+            "task_context_hash": P.workspace_artifact_hash(row["workspace"], rows),  # Use per-workspace hash
         }
         for key, value in comparisons.items():
             if front.get(key) != value:

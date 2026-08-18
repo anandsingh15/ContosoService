@@ -2532,6 +2532,29 @@ def context_hash(data: dict[str, Any]) -> str:
     return hash_json(material)
 
 
+def workspace_artifact_hash(workspace: str, rows: list[dict]) -> str:
+    """Compute a hash for workspace-specific artifacts (tasks.md and DEV files).
+
+    This hash is used only for tasks.md and DEV files within one workspace.
+    It includes only tasks from that workspace, so changes in other workspaces
+    do not affect this workspace's artifacts. This enables focused PRs that
+    change only one workspace without marking sibling workspaces as stale.
+
+    Volatile fields (status, owner) are excluded to allow status transitions
+    without restamping sibling artifacts.
+    """
+    workspace_tasks = []
+    for row in rows:
+        if row.get("workspace") == workspace:
+            filtered = {
+                key: value
+                for key, value in row.items()
+                if key not in VOLATILE_HASH_KEYS
+            }
+            workspace_tasks.append(filtered)
+    return hash_json({"workspace": workspace, "tasks": workspace_tasks})
+
+
 def read_context(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise PipelineError(f"required context not found: {path.relative_to(ROOT).as_posix()}")

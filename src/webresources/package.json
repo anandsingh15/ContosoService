@@ -1,0 +1,9 @@
+{
+  "name": "contoso-service-webresources",
+  "private": true,
+  "engines": {
+    "node": "24.14.1",
+    "npm": "11.11.0"
+  },
+  "packageManager": "npm@11.11.0"
+}

@@ -362,10 +362,12 @@ def main() -> int:
     for plan in plan_context.get("plans") or []:
         workspace = P.ROOT / plan["workspace"]
         plan_rows = by_workspace.get(plan["workspace"], [])
+        # Use per-workspace hash for artifacts within this workspace only
+        workspace_hash = P.workspace_artifact_hash(plan["workspace"], rows)
         tasks_path = workspace / "tasks.md"
         if P.write_text(
             tasks_path,
-            render_tasks(plan, plan_rows, repo["context_hash"], context["context_hash"]),
+            render_tasks(plan, plan_rows, repo["context_hash"], workspace_hash),
             args.check,
         ):
             drifted.append(tasks_path.relative_to(P.ROOT).as_posix())
@@ -374,7 +376,7 @@ def main() -> int:
             if record and record["front"].get("status") in P.TERMINAL_DEV_STATUSES:
                 continue
             path = record["path"] if record else workspace / "development" / f"{row['id']}.md"
-            if P.write_text(path, render_dev(row, context["context_hash"], record), args.check):
+            if P.write_text(path, render_dev(row, workspace_hash, record), args.check):
                 drifted.append(path.relative_to(P.ROOT).as_posix())
     if args.check and drifted:
         for rel in sorted(set(drifted)):

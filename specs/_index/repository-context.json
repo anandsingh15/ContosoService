@@ -1062,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "c95e3a189999b2566c41aab8ee206e51e15c1308a2c36a4fb4aa0aa21bfce66f",
+  "context_hash": "a23ca2cd9841d7cb864ef8dd0dd5c4bd383089b94929bfb34e0db3339310e492",
   "conventions_hash": "de9cfd93e3251d7c8841a96e1e1878e01e00571b35aa68259c0e622565bc1952",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -5056,14 +5056,14 @@
         "version_policy": "project_pinned"
       },
       "dataverse-dotnet-sdk": {
-        "authentication": "interactive_user",
-        "description": "Dataverse .NET SDK pinned in the project manifest.",
+        "authentication": "none",
+        "description": "Dataverse server plug-in SDK pinned in the project manifest.",
         "ecosystem": "nuget",
         "kind": "sdk",
-        "package": "Microsoft.PowerPlatform.Dataverse.Client",
+        "package": "Microsoft.CrmSdk.CoreAssemblies",
         "preflight": {
           "installation": {
-            "guidance": "Add the exact Microsoft.PowerPlatform.Dataverse.Client version to the project manifest and lock file.",
+            "guidance": "Add the exact Microsoft.CrmSdk.CoreAssemblies version to the project manifest and lock file.",
             "policy": "manual"
           },
           "steps": [
@@ -5074,28 +5074,14 @@
               "expected": "{resource.version}",
               "id": "package-version",
               "phase": "availability_version"
-            },
-            {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "description": "Use the SDK's supported interactive user authentication against the declared URL.",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "Close only the selected SDK connection, launch the SDK's interactive user flow again for the declared URL, and complete a new sign-in before resuming."
-              },
-              "id": "delegated-auth",
-              "instructions": "Complete interactive sign-in and do not persist connection strings or tokens.",
-              "phase": "authentication",
-              "session_probe": {
-                "instructions": "Use the consuming application to report the current non-secret Dataverse user and organization identity before reusing its delegated session."
-              }
             }
           ]
         },
         "supported_execution_hosts": [
-          "local_interactive"
+          "local_interactive",
+          "github_copilot_cloud"
         ],
-        "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+        "version": "9.0.2.60",
         "version_policy": "project_pinned"
       },
       "dataverse-mcp": {
@@ -5250,7 +5236,7 @@
           "local_interactive",
           "github_copilot_cloud"
         ],
-        "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+        "version": "10.0.302",
         "version_policy": "project_pinned"
       },
       "maker-portal": {
@@ -5392,6 +5378,18 @@
               "expected": "{resource.version}",
               "id": "node-version",
               "phase": "availability_version"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "command": [
+                "npm",
+                "--version"
+              ],
+              "description": "Require the exact project-pinned npm version.",
+              "expected": "11.11.0",
+              "id": "npm-version",
+              "phase": "availability_version"
             }
           ]
         },
@@ -5399,7 +5397,7 @@
           "local_interactive",
           "github_copilot_cloud"
         ],
-        "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+        "version": "24.14.1",
         "version_policy": "project_pinned"
       },
       "openapi-tooling": {
@@ -6792,7 +6790,7 @@
       ]
     }
   },
-  "development_resources_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+  "development_resources_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
   "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
   "schema_version": 1,
   "schemas": {
