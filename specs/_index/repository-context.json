@@ -1062,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "57f0a4f5dbc626d20911615aa95895c2f044a1ed7a421d64fb99ea2c40e931a8",
+  "context_hash": "ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe",
   "conventions_hash": "de9cfd93e3251d7c8841a96e1e1878e01e00571b35aa68259c0e622565bc1952",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -1186,10 +1186,11 @@
       "code_webres_*": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "pac-primary",
-          "delete": "pac-primary",
-          "update": "pac-primary",
-          "verify": "pac-primary"
+          "create": "web-resource-create",
+          "delete": "web-resource-delete",
+          "publish": "web-resource-publish",
+          "update": "web-resource-update",
+          "verify": "web-resource-verify"
         }
       },
       "config_ai_*": {
@@ -1682,6 +1683,10 @@
       "table_definitions": {
         "title": "Create and update table definitions using the Web API",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/create-update-entity-definitions-using-web-api"
+      },
+      "web_resource": {
+        "title": "Web Resource table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/webresource"
       },
       "workflow": {
         "title": "Process Workflow table reference",
@@ -4932,11 +4937,197 @@
             "read_query"
           ]
         }
+      },
+      "web-resource-create": {
+        "executor": {
+          "builder": "web_resource",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "webresourceset"
+        },
+        "official_references": [
+          "web_resource",
+          "optional_parameters"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Create the exact compiler-routed web resource from its repository source with explicit custom-solution context.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "webresourceset"
+          },
+          "rationale": "Resolve and verify the exact web-resource identity, type, content, and routed solution membership.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "web-resource-delete": {
+        "destructive_effect": "environment_delete",
+        "executor": {
+          "builder": "web_resource",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "DELETE",
+          "path_template": "webresourceset({record_id})"
+        },
+        "official_references": [
+          "web_resource"
+        ],
+        "operation": "delete",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Delete only the exact compiler-routed web-resource row after explicit destructive approval.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "webresourceset"
+          },
+          "rationale": "Verify that the exact web-resource identity is absent after approved deletion.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "web-resource-publish": {
+        "executor": {
+          "builder": "web_resource",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "unbound_action",
+          "method": "POST",
+          "path_template": "PublishXml"
+        },
+        "official_references": [
+          "web_resource",
+          "publish_xml",
+          "publish_request_schema"
+        ],
+        "operation": "publish",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Publish only the exact updated web resource by immutable ID through PublishXml.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "webresourceset"
+          },
+          "rationale": "Target-read the exact web resource after publishing only its immutable ID.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "web-resource-update": {
+        "executor": {
+          "builder": "web_resource",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "webresourceset({record_id})"
+        },
+        "official_references": [
+          "web_resource",
+          "optional_parameters"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Update only the exact compiler-routed web resource from its repository source under explicit custom-solution context.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "webresourceset"
+          },
+          "rationale": "Resolve and verify the exact updated web-resource identity, type, content, and routed solution membership.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "web-resource-verify": {
+        "executor": {
+          "builder": "web_resource",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "webresourceset"
+        },
+        "official_references": [
+          "web_resource"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Verify the exact web resource without broad solution or component discovery.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "webresourceset"
+          },
+          "rationale": "Target-read the exact canonical web-resource name and verify its payload and routed solution membership.",
+          "resource": "dataverse-web-api"
+        }
       }
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+  "dataverse_web_api_capabilities_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
   "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
   "design_sources": {
     "schema_version": 1,
@@ -6586,17 +6777,27 @@
         "match": {
           "component_type": "code_webres_*"
         },
-        "rationale": "Although WebResource CRUD is documented, content construction and repository binding are not complete in the current payload contract.",
+        "rationale": "Web resources use compiler-bound Web API CRUD from routed repository source, targeted publication, and PAC only for post-write solution source synchronization.",
         "resources": {
           "required": [
+            {
+              "purpose": "web_resource_contract_grounding",
+              "rationale": "Official Web Resource and PublishXml documentation grounds the payload, solution context, and publication contract.",
+              "resource": "microsoft-learn"
+            },
             {
               "purpose": "build_and_test",
               "rationale": "The registered Node toolchain builds and validates web resource content.",
               "resource": "node-toolchain"
             },
             {
-              "purpose": "primary_solution_source_operations",
-              "rationale": "PAC remains primary for supported solution source and package operations.",
+              "purpose": "solution_aware_web_resource_authoring",
+              "rationale": "The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "post_write_solution_source_sync",
+              "rationale": "PAC exports and unpacks the exact routed solution only after successful Web API verification.",
               "resource": "power-platform-cli"
             },
             {
@@ -6940,7 +7141,7 @@
       ]
     }
   },
-  "development_resources_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+  "development_resources_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
   "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
   "schema_version": 1,
   "schemas": {

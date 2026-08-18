@@ -151,6 +151,8 @@ ALLOWED_CAPABILITY_PATH_TEMPLATES = frozenset(
         "pluginassemblies",
         "pluginassemblies({record_id})",
         "plugintypes",
+        "webresourceset",
+        "webresourceset({record_id})",
         "PublishXml",
         "AddSolutionComponent",
         "RemoveSolutionComponent",

@@ -20,6 +20,86 @@ sys.modules[SPEC.name] = executor
 SPEC.loader.exec_module(executor)
 
 
+class WebResourceRequestTests(unittest.TestCase):
+    def setUp(self):
+        self.row = {
+            "component_type": "code_webres_js",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "payload": {
+                "name": "aks_/scripts/case_form.js",
+                "schema_name": "aks_/scripts/case_form.js",
+                "source_path": "scripts/case_form.js",
+            },
+            "authoring_target": {
+                "component_projects": [
+                    {
+                        "component_type": "code_webres_*",
+                        "path": "src/webresources",
+                        "project_type": "web_resource_source",
+                    }
+                ]
+            },
+        }
+
+    def test_builds_solution_aware_web_resource_create_request(self):
+        request = executor.build_static_requests(
+            self.row,
+            "create",
+            {"solution_context": {"mechanism": "MSCRM.SolutionUniqueName"}},
+        )[0]
+
+        expected_content = base64.b64encode(
+            (ROOT / "src/webresources/scripts/case_form.js").read_bytes()
+        ).decode("ascii")
+        self.assertEqual(request.method, "POST")
+        self.assertEqual(request.path, "webresourceset")
+        self.assertEqual(request.solution_context, "header")
+        self.assertEqual(request.body["name"], "aks_/scripts/case_form.js")
+        self.assertEqual(request.body["displayname"], "aks_/scripts/case_form.js")
+        self.assertEqual(request.body["webresourcetype"], 3)
+        self.assertEqual(request.body["content"], expected_content)
+
+    def test_builds_exact_web_resource_update_verify_and_publish_requests(self):
+        capability = {"solution_context": {"mechanism": "MSCRM.SolutionUniqueName"}}
+        record_id = "11111111-1111-1111-1111-111111111111"
+
+        update = executor.build_static_requests(
+            self.row, "update", capability, resolved_id=record_id
+        )[0]
+        verify = executor.build_static_requests(
+            self.row, "verify", {"solution_context": {"mechanism": "not_applicable"}}
+        )[0]
+        publish = executor.build_static_requests(
+            self.row, "publish", {"solution_context": {"mechanism": "not_applicable"}},
+            resolved_id=record_id,
+        )[0]
+
+        self.assertEqual(update.method, "PATCH")
+        self.assertEqual(update.path, f"webresourceset({record_id})")
+        self.assertIn("aks_%2Fscripts%2Fcase_form.js", verify.path)
+        self.assertEqual(publish.path, "PublishXml")
+        self.assertIn(record_id, publish.body["ParameterXml"])
+
+    def test_resolves_web_resource_by_exact_canonical_name(self):
+        request = executor.record_lookup_request(self.row)
+
+        self.assertEqual(request.method, "GET")
+        self.assertTrue(request.path.startswith("webresourceset?"))
+        self.assertIn("aks_%2Fscripts%2Fcase_form.js", request.path)
+
+    def test_web_resource_paths_are_runtime_whitelisted(self):
+        paths = (
+            ("POST", "webresourceset"),
+            ("PATCH", "webresourceset(11111111-1111-1111-1111-111111111111)"),
+            ("DELETE", "webresourceset(11111111-1111-1111-1111-111111111111)"),
+            ("GET", "webresourceset?$select=webresourceid,name"),
+        )
+
+        for method, path in paths:
+            with self.subTest(method=method, path=path):
+                executor.validate_runtime_request(method, path)
+
+
 class PluginRegistrationRequestTests(unittest.TestCase):
     def test_builds_solution_aware_plugin_assembly_create_request(self):
         row = {

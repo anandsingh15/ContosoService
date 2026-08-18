@@ -98,6 +98,9 @@ official_references:
   sdk_message_processing_step_image:
     title: SDK Message Processing Step Image table reference
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sdkmessageprocessingstepimage
+  web_resource:
+    title: Web Resource table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/webresource
   publish_xml:
     title: PublishXml action
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/publishxml
@@ -981,6 +984,62 @@ profiles:
     executor: {supported: false, builder: unsupported}
     rationale: PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.
     official_references: [power_platform_cli]
+  web-resource-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: webresourceset}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: webresourceset}, rationale: "Resolve and verify the exact web-resource identity, type, content, and routed solution membership."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: web_resource}
+    rationale: Create the exact compiler-routed web resource from its repository source with explicit custom-solution context.
+    official_references: [web_resource, optional_parameters]
+  web-resource-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "webresourceset({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: webresourceset}, rationale: "Resolve and verify the exact updated web-resource identity, type, content, and routed solution membership."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: web_resource}
+    rationale: Update only the exact compiler-routed web resource from its repository source under explicit custom-solution context.
+    official_references: [web_resource, optional_parameters]
+  web-resource-delete:
+    support: supported
+    operation: delete
+    destructive_effect: environment_delete
+    primary_resource: dataverse-web-api
+    http: {method: DELETE, endpoint_family: entity_set, path_template: "webresourceset({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: webresourceset}, rationale: "Verify that the exact web-resource identity is absent after approved deletion."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: web_resource}
+    rationale: Delete only the exact compiler-routed web-resource row after explicit destructive approval.
+    official_references: [web_resource]
+  web-resource-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: webresourceset}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: webresourceset}, rationale: "Target-read the exact canonical web-resource name and verify its payload and routed solution membership."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: web_resource}
+    rationale: Verify the exact web resource without broad solution or component discovery.
+    official_references: [web_resource]
+  web-resource-publish:
+    support: supported
+    operation: publish
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: unbound_action, path_template: PublishXml}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: webresourceset}, rationale: "Target-read the exact web resource after publishing only its immutable ID."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: web_resource}
+    rationale: Publish only the exact updated web resource by immutable ID through PublishXml.
+    official_references: [web_resource, publish_xml, publish_request_schema]
   plugin-registration-create:
     support: supported
     operation: create
@@ -1134,7 +1193,9 @@ components:
     implementation_scope: repository_and_dataverse_solution
     operations: {create: pac-primary, update: pac-primary, delete: pac-primary, verify: pac-primary}
   code_pcf: *pac_component
-  code_webres_*: *pac_component
+  code_webres_*:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: web-resource-create, update: web-resource-update, delete: web-resource-delete, verify: web-resource-verify, publish: web-resource-publish}
   mcs_*: *copilot_component
   sec_role:
     implementation_scope: repository_and_dataverse_solution

@@ -1,7 +1,7 @@
 {
-  "context_hash": "12d4bffbb3c4483bd46554ec7307c990b26a10e169b38823c4ccd640441d960e",
-  "plan_context_hash": "3bd6476467ea9a992a95339b5f2beb83de16c0ffa70e9a190704d6a2b9200e9e",
-  "repository_context_hash": "57f0a4f5dbc626d20911615aa95895c2f044a1ed7a421d64fb99ea2c40e931a8",
+  "context_hash": "c08afdc784afd15f150efd8360dc47c4fe767772f3d390d02cc29bad601835ba",
+  "plan_context_hash": "12264bb796ea597518fe80d774dd235864f741ca1fc4973d844c6bbb875cf41e",
+  "repository_context_hash": "ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe",
   "schema_version": 1,
   "tasks": [
     {
@@ -26,7 +26,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -666,7 +666,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehiclestatus",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -814,13 +814,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -1131,7 +1131,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -1251,7 +1251,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -1295,7 +1295,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -1936,7 +1936,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejobstage",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -2085,13 +2085,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -2402,7 +2402,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -2523,7 +2523,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -2567,7 +2567,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -3207,7 +3207,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejobpriority",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -3355,13 +3355,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -3672,7 +3672,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -3792,7 +3792,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -3836,7 +3836,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -4485,7 +4485,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -4650,13 +4650,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -4987,7 +4987,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -5085,7 +5085,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -5129,7 +5129,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -5772,7 +5772,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -5931,13 +5931,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -6268,7 +6268,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -6360,7 +6360,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -6404,7 +6404,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -7047,7 +7047,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -7206,13 +7206,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -7543,7 +7543,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -7635,7 +7635,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7681,7 +7681,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -8333,7 +8333,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_account_vehicle_depot",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -8492,13 +8492,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -8811,7 +8811,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -8943,7 +8943,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -8989,7 +8989,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -9641,7 +9641,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_contact_maintenancejob_technician",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -9800,13 +9800,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -10119,7 +10119,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -10251,7 +10251,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -10298,7 +10298,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -10949,7 +10949,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -11107,13 +11107,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -11426,7 +11426,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -11556,7 +11556,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -11603,7 +11603,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -12254,7 +12254,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejob_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -12412,13 +12412,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -12731,7 +12731,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -12861,7 +12861,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -12907,7 +12907,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -13435,7 +13435,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_registration_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -13569,13 +13569,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -13841,7 +13841,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -13923,7 +13923,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -13969,7 +13969,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -14497,7 +14497,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_vin_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -14631,13 +14631,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -14903,7 +14903,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -14985,7 +14985,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -15031,7 +15031,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -15559,7 +15559,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejob_number_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -15693,13 +15693,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -15965,7 +15965,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -16047,7 +16047,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -16093,7 +16093,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -16621,7 +16621,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_jobpart_number_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -16755,13 +16755,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -17027,7 +17027,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -17109,7 +17109,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -17152,7 +17152,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -17532,7 +17532,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -17629,13 +17629,13 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "create": {
               "executor": {
@@ -17768,7 +17768,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -17862,7 +17862,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "122e6d0452364d729d9604f5598474202337b38ff1a19aa3053609a6bd40f211",
+      "source_plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -17907,7 +17907,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -18555,7 +18555,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -18719,13 +18719,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -19056,7 +19056,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -19156,7 +19156,7 @@
         "INTK-0001-REQ-003",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -19202,7 +19202,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -19801,7 +19801,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_quickcreate",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -19947,13 +19947,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -20245,7 +20245,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -20334,7 +20334,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -20379,7 +20379,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -20919,7 +20919,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_maintenancehistory",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -21060,13 +21060,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -21342,7 +21342,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -21424,7 +21424,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -21471,7 +21471,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -22012,7 +22012,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_activevehicles",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -22154,13 +22154,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -22436,7 +22436,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -22519,7 +22519,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -22566,7 +22566,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -23107,7 +23107,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehiclesinmaintenance",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -23249,13 +23249,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -23531,7 +23531,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -23614,7 +23614,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -23661,7 +23661,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -24202,7 +24202,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehiclesbydepot",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -24344,13 +24344,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -24626,7 +24626,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -24709,7 +24709,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -24751,7 +24751,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -25135,7 +25135,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -25236,13 +25236,13 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "create": {
               "executor": {
@@ -25375,7 +25375,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -25474,7 +25474,7 @@
         "INTK-0001-REQ-001",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -25522,7 +25522,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -26137,7 +26137,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -26299,13 +26299,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -26597,7 +26597,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -26702,7 +26702,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -26749,7 +26749,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -27351,7 +27351,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_quickcreate",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -27500,13 +27500,13 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -27798,7 +27798,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -27890,7 +27890,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -27937,7 +27937,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -28480,7 +28480,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_maintenancehistory",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -28624,13 +28624,13 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -28906,7 +28906,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -28991,7 +28991,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -29038,7 +29038,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -29656,7 +29656,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -29821,13 +29821,13 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -30119,7 +30119,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -30227,7 +30227,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -30274,7 +30274,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -30818,7 +30818,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_activevehicles",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -30963,13 +30963,13 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -31245,7 +31245,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -31331,7 +31331,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "cee05c840b9a4c8e992fb64483707bbf02801ae5323678d9a67cb8d377e8e354",
+      "source_plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -31376,7 +31376,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -32045,7 +32045,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -32230,13 +32230,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -32567,7 +32567,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -32686,7 +32686,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -32730,7 +32730,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -33375,7 +33375,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -33536,13 +33536,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -33873,7 +33873,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -33968,7 +33968,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -34012,7 +34012,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -34612,7 +34612,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_vehicle_jobcontext_quickview",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -34759,13 +34759,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -35057,7 +35057,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -35145,7 +35145,7 @@
       "satisfies": [
         "INTK-0001-REQ-009"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -35193,7 +35193,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -35735,7 +35735,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_jobparts_inlineentry",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -35878,13 +35878,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -36160,7 +36160,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -36246,7 +36246,7 @@
         "INTK-0001-REQ-012",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -36300,7 +36300,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -36935,7 +36935,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejob_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -37117,13 +37117,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -37415,7 +37415,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -37544,7 +37544,7 @@
         "INTK-0001-REQ-013",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -37591,7 +37591,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -38133,7 +38133,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_activejobs",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -38276,13 +38276,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -38558,7 +38558,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -38642,7 +38642,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -38689,7 +38689,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -39230,7 +39230,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_jobsassignedtome",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -39372,13 +39372,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -39654,7 +39654,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -39737,7 +39737,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -39784,7 +39784,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -40326,7 +40326,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_highcriticaljobs",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -40469,13 +40469,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -40751,7 +40751,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -40835,7 +40835,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -40882,7 +40882,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -41281,7 +41281,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -41397,13 +41397,13 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "create": {
               "executor": {
@@ -41536,7 +41536,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -41651,7 +41651,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -41698,7 +41698,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -42247,7 +42247,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_linevalue",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -42367,13 +42367,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -42660,7 +42660,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -42741,7 +42741,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -42787,7 +42787,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -43336,7 +43336,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_labourcost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -43456,13 +43456,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -43749,7 +43749,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -43830,7 +43830,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -43876,7 +43876,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -44429,7 +44429,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_totalpartscost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -44553,13 +44553,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -44846,7 +44846,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -44930,7 +44930,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -44977,7 +44977,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -45525,7 +45525,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_totalcost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -45644,13 +45644,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -45937,7 +45937,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -46016,7 +46016,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "cde729989711cc95d5a7a4128dd66377f79273b4e1c3c5164e94b4506740fd0c",
+      "source_plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -46067,7 +46067,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -46618,7 +46618,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -46781,13 +46781,13 @@
           "unpack_path": "src/solutions/ContosoServicePluginAndCustomApi",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "create": {
               "executor": {
@@ -46959,7 +46959,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -47157,7 +47157,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "99321645dc69dd66e4f31285d51b47893ede1cf789526b2f1d22d64d4d336078",
+      "source_plan_hash": "f3576c7636637d30d5ae665dda1b6277c2ea498336db10bc86911d6885d4ec71",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -47209,7 +47209,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -47219,122 +47219,193 @@
           "capabilities": {
             "create": {
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
-              "official_references": [
-                "power_platform_cli"
-              ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
-              "solution_context": {
-                "mechanism": "not_applicable"
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "POST",
+                "path_template": "webresourceset"
               },
-              "support": "unsupported_or_not_applicable",
+              "official_references": [
+                "web_resource",
+                "optional_parameters"
+              ],
+              "operation": "create",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-create",
+              "rationale": "Create the exact compiler-routed web resource from its repository source with explicit custom-solution context.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Resolve and verify the exact web-resource identity, type, content, and routed solution membership.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
+              "destructive_effect": "environment_delete",
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "DELETE",
+                "path_template": "webresourceset({record_id})"
+              },
               "official_references": [
-                "power_platform_cli"
+                "web_resource"
               ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "operation": "delete",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-delete",
+              "rationale": "Delete only the exact compiler-routed web-resource row after explicit destructive approval.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Verify that the exact web-resource identity is absent after approved deletion.",
+                "resource": "dataverse-web-api"
+              }
+            },
+            "publish": {
+              "executor": {
+                "builder": "web_resource",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "unbound_action",
+                "method": "POST",
+                "path_template": "PublishXml"
+              },
+              "official_references": [
+                "web_resource",
+                "publish_xml",
+                "publish_request_schema"
+              ],
+              "operation": "publish",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-publish",
+              "rationale": "Publish only the exact updated web resource by immutable ID through PublishXml.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
-              "support": "unsupported_or_not_applicable",
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Target-read the exact web resource after publishing only its immutable ID.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
-              "official_references": [
-                "power_platform_cli"
-              ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
-              "solution_context": {
-                "mechanism": "not_applicable"
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "PATCH",
+                "path_template": "webresourceset({record_id})"
               },
-              "support": "unsupported_or_not_applicable",
+              "official_references": [
+                "web_resource",
+                "optional_parameters"
+              ],
+              "operation": "update",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-update",
+              "rationale": "Update only the exact compiler-routed web resource from its repository source under explicit custom-solution context.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Resolve and verify the exact updated web-resource identity, type, content, and routed solution membership.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "webresourceset"
+              },
               "official_references": [
-                "power_platform_cli"
+                "web_resource"
               ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "operation": "verify",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-verify",
+              "rationale": "Verify the exact web resource without broad solution or component discovery.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
-              "support": "unsupported_or_not_applicable",
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Target-read the exact canonical web-resource name and verify its payload and routed solution membership.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -47408,7 +47479,7 @@
             "full_permission_discovery"
           ],
           "resource_actions": [],
-          "route_rationale": "Although WebResource CRUD is documented, content construction and repository binding are not complete in the current payload contract.",
+          "route_rationale": "Web resources use compiler-bound Web API CRUD from routed repository source, targeted publication, and PAC only for post-write solution source synchronization.",
           "solution_unique_name": "ContosoServiceWebResource",
           "target_kind": "dataverse_solution"
         },
@@ -47416,6 +47487,28 @@
         "implementation_scope": "repository_and_dataverse_solution",
         "phases": {
           "authentication": [
+            {
+              "action": "interactive_auth",
+              "behavior": "interactive",
+              "blocking": true,
+              "description": "Acquire delegated access for the current human with the configured public-client MSAL registration.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+              "fresh_authentication": {
+                "force_supported": false,
+                "instructions": "Start a new in-memory MSAL public-client session with account selection against the exact Dataverse scope."
+              },
+              "id": "interactive-sign-in",
+              "instructions": "Complete interactive OAuth for <environment-url>/user_impersonation; the token cache is memory-only and no token or authentication output is persisted.\n\nISSUE #22: Cross-Process MSAL Handoff - Consolidated Executor Flow\n===========================================================================\n\nAuthentication is now consolidated into the executor process to avoid cross-process MSAL cache failures.\n\nObservable Executor States (emitted to stderr as JSON):\n1. \"waiting-for-human\": Emitted before browser OAuth prompt. DEV remains ready.\n2. \"auth-succeeded\": Emitted after successful token acquisition. DEV can transition to in_progress.\n3. \"auth-failed\": Emitted if authentication failed. DEV must remain ready, no action invoked.\n4. \"request-invoked\": Emitted before sending HTTP request. DEV is in_progress, evidence will be required.\n\nWorkflow:\n1. Readiness gate: Validate DEV and environment are ready\n2. Launch executor: python scripts/dataverse_web_api_executor.py <DEV-ID> --operation create --issue-number <N>\n3. Monitor stderr: Parse JSON executor_state events\n4. On \"waiting-for-human\": Terminal automation should:\n   - Display \"waiting for browser authentication...\" to user\n   - Wait for next state or user interaction\n5. On \"auth-succeeded\": Workflow caller should:\n   - Transition DEV to in_progress (auth succeeded, request will be sent)\n   - Continue waiting for \"request-invoked\"\n6. On \"auth-failed\": Workflow caller should:\n   - Keep DEV in ready state (no action invoked, no evidence)\n   - Retry or escalate per policy\n7. On \"request-invoked\": Web API request is being sent:\n   - DEV is already in in_progress\n   - Sanitized evidence will be posted to issue\n   - If interrupted here, evidence is required\n8. Executor completes with success/failure and posts final evidence\n\nDO NOT:\n- Call executor with --authenticate-only separately (deprecated per issue #22)\n- Transition DEV to in_progress before executor sends request\n- Assume success if no evidence is posted to the issue\n",
+              "key": "dataverse-web-api.interactive-sign-in",
+              "phase": "authentication",
+              "purpose": "solution_aware_web_resource_authoring",
+              "rationale": "The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.",
+              "resource": "dataverse-web-api",
+              "role": "required",
+              "session_probe": {
+                "instructions": "Use only an in-process silent MSAL lookup to confirm the current user and exact Dataverse resource; never print token data."
+              }
+            },
             {
               "action": "command",
               "behavior": "interactive",
@@ -47436,8 +47529,8 @@
               "instructions": "Finish browser sign-in, then resume and verify the connected URL and organization ID.",
               "key": "power-platform-cli.dataverse-auth",
               "phase": "authentication",
-              "purpose": "primary_solution_source_operations",
-              "rationale": "PAC remains primary for supported solution source and package operations.",
+              "purpose": "post_write_solution_source_sync",
+              "rationale": "PAC exports and unpacks the exact routed solution only after successful Web API verification.",
               "resource": "power-platform-cli",
               "role": "required",
               "session_probe": {
@@ -47448,31 +47541,28 @@
                 ],
                 "instructions": "Verify that the active PAC session resolves to the declared environment before reuse."
               }
-            },
-            {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "blocking": true,
-              "description": "Authenticate the current human directly to the declared Dataverse environment.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
-              },
-              "id": "interactive-sign-in",
-              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
-              "key": "dataverse-mcp.interactive-sign-in",
-              "phase": "authentication",
-              "purpose": "targeted_runtime_verification",
-              "rationale": "MCP verifies exact metadata and runtime behavior only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "session_probe": {
-                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
-              }
             }
           ],
           "availability_version": [
+            {
+              "action": "mcp_server",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Verify the exact MCP server key is registered and reachable.",
+              "expected_version": "service-managed",
+              "id": "server-registration",
+              "installation": {
+                "guidance": "Configure the official Microsoft Learn MCP endpoint in the active MCP client.",
+                "policy": "not_applicable"
+              },
+              "key": "microsoft-learn.server-registration",
+              "phase": "availability_version",
+              "purpose": "web_resource_contract_grounding",
+              "rationale": "Official Web Resource and PublishXml documentation grounds the payload, solution context, and publication contract.",
+              "resource": "microsoft-learn",
+              "role": "required",
+              "server": "microsoft-learn"
+            },
             {
               "action": "command",
               "behavior": "automatic",
@@ -47514,6 +47604,33 @@
               "role": "required"
             },
             {
+              "action": "endpoint",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Validate the resolved HTTPS v9.2 endpoint and API contract.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+              "expected_version": "v9.2",
+              "id": "service-root",
+              "installation": {
+                "guidance": "No local install is required; use the declared Dataverse v9.2 service root.",
+                "policy": "not_applicable"
+              },
+              "key": "dataverse-web-api.service-root",
+              "oauth_public_client": {
+                "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                "provider": "msal_public_client",
+                "redirect_uri": "http://localhost",
+                "scope_suffix": "/user_impersonation",
+                "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                "token_cache": "memory_only"
+              },
+              "phase": "availability_version",
+              "purpose": "solution_aware_web_resource_authoring",
+              "rationale": "The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.",
+              "resource": "dataverse-web-api",
+              "role": "required"
+            },
+            {
               "action": "command",
               "behavior": "automatic",
               "blocking": true,
@@ -47529,30 +47646,10 @@
               },
               "key": "power-platform-cli.pac-version",
               "phase": "availability_version",
-              "purpose": "primary_solution_source_operations",
-              "rationale": "PAC remains primary for supported solution source and package operations.",
+              "purpose": "post_write_solution_source_sync",
+              "rationale": "PAC exports and unpacks the exact routed solution only after successful Web API verification.",
               "resource": "power-platform-cli",
               "role": "required"
-            },
-            {
-              "action": "mcp_server",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify the configured server key and resolved GA endpoint.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_version": "ga",
-              "id": "server-registration",
-              "installation": {
-                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
-                "policy": "not_applicable"
-              },
-              "key": "dataverse-mcp.server-registration",
-              "phase": "availability_version",
-              "purpose": "targeted_runtime_verification",
-              "rationale": "MCP verifies exact metadata and runtime behavior only.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
             }
           ],
           "capability": [
@@ -47560,22 +47657,40 @@
               "action": "mcp_tools",
               "behavior": "automatic",
               "blocking": true,
-              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_tools": [
-                "search",
-                "describe",
-                "read_query"
-              ],
-              "expected_version": "ga",
-              "id": "required-tools",
-              "key": "dataverse-mcp.required-tools",
+              "description": "Probe the server tool surface before implementation grounding.",
+              "expected_tools": [],
+              "expected_version": "service-managed",
+              "id": "documentation-search",
+              "key": "microsoft-learn.documentation-search",
               "phase": "capability",
-              "purpose": "targeted_runtime_verification",
-              "rationale": "MCP verifies exact metadata and runtime behavior only.",
-              "resource": "dataverse-mcp",
+              "purpose": "web_resource_contract_grounding",
+              "rationale": "Official Web Resource and PublishXml documentation grounds the payload, solution context, and publication contract.",
+              "resource": "microsoft-learn",
               "role": "required",
-              "server": "dataverse-authoring"
+              "server": "microsoft-learn"
+            },
+            {
+              "action": "endpoint",
+              "behavior": "automatic",
+              "blocking": true,
+              "description": "Confirm the compiler-selected component operation is explicitly supported by the capability matrix.",
+              "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+              "expected_version": "v9.2",
+              "id": "api-capability",
+              "key": "dataverse-web-api.api-capability",
+              "oauth_public_client": {
+                "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                "provider": "msal_public_client",
+                "redirect_uri": "http://localhost",
+                "scope_suffix": "/user_impersonation",
+                "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                "token_cache": "memory_only"
+              },
+              "phase": "capability",
+              "purpose": "solution_aware_web_resource_authoring",
+              "rationale": "The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.",
+              "resource": "dataverse-web-api",
+              "role": "required"
             }
           ],
           "ready_to_attempt": [
@@ -47588,9 +47703,10 @@
               "phase": "ready_to_attempt",
               "purpose": "ready_to_attempt_gate",
               "required_resources": [
+                "microsoft-learn",
                 "node-toolchain",
-                "power-platform-cli",
-                "dataverse-mcp"
+                "dataverse-web-api",
+                "power-platform-cli"
               ],
               "resource": "preflight",
               "role": "required"
@@ -47601,13 +47717,13 @@
               "action": "session_validation",
               "authentication_mode": "interactive_user",
               "authentication_resources": [
-                "dataverse-mcp"
+                "dataverse-web-api"
               ],
               "behavior": "automatic",
               "blocking": true,
               "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
               "expected_endpoints": [
-                "https://org89912357.crm.dynamics.com/api/mcp"
+                "https://org89912357.crm.dynamics.com/api/data/v9.2"
               ],
               "key": "authentication.endpoint-session",
               "phase": "session_validation",
@@ -47622,7 +47738,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_/scripts/maintenance_job_form.js",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -47698,36 +47814,49 @@
           "targeted_read_only_verification": true,
           "verification_resources": {
             "create": {
-              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "webresourceset"
+              },
+              "rationale": "Resolve and verify the exact web-resource identity, type, content, and routed solution membership.",
+              "resource": "dataverse-web-api"
             },
             "delete": {
-              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "webresourceset"
+              },
+              "rationale": "Verify that the exact web-resource identity is absent after approved deletion.",
+              "resource": "dataverse-web-api"
+            },
+            "publish": {
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "webresourceset"
+              },
+              "rationale": "Target-read the exact web resource after publishing only its immutable ID.",
+              "resource": "dataverse-web-api"
             },
             "update": {
-              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "webresourceset"
+              },
+              "rationale": "Resolve and verify the exact updated web-resource identity, type, content, and routed solution membership.",
+              "resource": "dataverse-web-api"
             },
             "verify": {
-              "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "webresourceset"
+              },
+              "rationale": "Target-read the exact canonical web-resource name and verify its payload and routed solution membership.",
+              "resource": "dataverse-web-api"
             }
           },
           "verify_absence_from_other_declared_custom_solutions": true
@@ -47763,132 +47892,203 @@
           "unpack_path": "src/solutions/ContosoServiceWebResource",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "create": {
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
-              "official_references": [
-                "power_platform_cli"
-              ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
-              "solution_context": {
-                "mechanism": "not_applicable"
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "POST",
+                "path_template": "webresourceset"
               },
-              "support": "unsupported_or_not_applicable",
+              "official_references": [
+                "web_resource",
+                "optional_parameters"
+              ],
+              "operation": "create",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-create",
+              "rationale": "Create the exact compiler-routed web resource from its repository source with explicit custom-solution context.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Resolve and verify the exact web-resource identity, type, content, and routed solution membership.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
+              "destructive_effect": "environment_delete",
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "DELETE",
+                "path_template": "webresourceset({record_id})"
+              },
               "official_references": [
-                "power_platform_cli"
+                "web_resource"
               ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "operation": "delete",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-delete",
+              "rationale": "Delete only the exact compiler-routed web-resource row after explicit destructive approval.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
+              "verification": {
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Verify that the exact web-resource identity is absent after approved deletion.",
+                "resource": "dataverse-web-api"
+              }
+            },
+            "publish": {
+              "executor": {
+                "builder": "web_resource",
+                "supported": true
+              },
+              "fallback": {
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
+                "resource": "maker-portal"
+              },
+              "http": {
+                "endpoint_family": "unbound_action",
+                "method": "POST",
+                "path_template": "PublishXml"
+              },
+              "official_references": [
+                "web_resource",
+                "publish_xml",
+                "publish_request_schema"
+              ],
+              "operation": "publish",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-publish",
+              "rationale": "Publish only the exact updated web resource by immutable ID through PublishXml.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
-              "support": "unsupported_or_not_applicable",
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Target-read the exact web resource after publishing only its immutable ID.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
-              "official_references": [
-                "power_platform_cli"
-              ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
-              "solution_context": {
-                "mechanism": "not_applicable"
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "PATCH",
+                "path_template": "webresourceset({record_id})"
               },
-              "support": "unsupported_or_not_applicable",
+              "official_references": [
+                "web_resource",
+                "optional_parameters"
+              ],
+              "operation": "update",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-update",
+              "rationale": "Update only the exact compiler-routed web resource from its repository source under explicit custom-solution context.",
+              "solution_context": {
+                "mechanism": "MSCRM.SolutionUniqueName",
+                "name": "MSCRM.SolutionUniqueName",
+                "value_source": "authoring_target.solution_unique_name"
+              },
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Resolve and verify the exact updated web-resource identity, type, content, and routed solution membership.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
               "executor": {
-                "builder": "unsupported",
-                "supported": false
+                "builder": "web_resource",
+                "supported": true
               },
               "fallback": {
-                "allowed_when": "not_applicable",
-                "issue_evidence_required": false,
+                "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                "issue_evidence_required": true,
                 "resource": "maker-portal"
               },
+              "http": {
+                "endpoint_family": "entity_set",
+                "method": "GET",
+                "path_template": "webresourceset"
+              },
               "official_references": [
-                "power_platform_cli"
+                "web_resource"
               ],
-              "operation": "any",
-              "primary_resource": "power-platform-cli",
-              "profile": "pac-primary",
-              "rationale": "PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.",
+              "operation": "verify",
+              "primary_resource": "dataverse-web-api",
+              "profile": "web-resource-verify",
+              "rationale": "Verify the exact web resource without broad solution or component discovery.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
-              "support": "unsupported_or_not_applicable",
+              "support": "supported",
               "verification": {
-                "rationale": "Use targeted Dataverse verification after supported PAC source, package, or registration operations.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "http": {
+                  "endpoint_family": "entity_set",
+                  "method": "GET",
+                  "path_template": "webresourceset"
+                },
+                "rationale": "Target-read the exact canonical web-resource name and verify its payload and routed solution membership.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -47902,8 +48102,23 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
+          {
+            "authentication": "none",
+            "description": "Official Microsoft implementation grounding.",
+            "id": "microsoft-learn",
+            "kind": "mcp",
+            "purpose": "web_resource_contract_grounding",
+            "rationale": "Official Web Resource and PublishXml documentation grounds the payload, solution context, and publication contract.",
+            "server": "microsoft-learn",
+            "supported_execution_hosts": [
+              "local_interactive",
+              "github_copilot_cloud"
+            ],
+            "version": "service-managed",
+            "version_policy": "service_managed"
+          },
           {
             "authentication": "none",
             "description": "Project-pinned Node.js and npm toolchain.",
@@ -47922,58 +48137,42 @@
           },
           {
             "authentication": "interactive_user",
+            "description": "Capability-gated Dataverse Web API authoring endpoint.",
+            "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+            "id": "dataverse-web-api",
+            "kind": "endpoint",
+            "oauth_public_client": {
+              "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+              "provider": "msal_public_client",
+              "redirect_uri": "http://localhost",
+              "scope_suffix": "/user_impersonation",
+              "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+              "token_cache": "memory_only"
+            },
+            "purpose": "solution_aware_web_resource_authoring",
+            "rationale": "The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.",
+            "supported_execution_hosts": [
+              "local_interactive"
+            ],
+            "version": "v9.2",
+            "version_policy": "api_contract"
+          },
+          {
+            "authentication": "interactive_user",
             "command": "pac",
             "description": "Power Platform CLI for solution source and supported authoring.",
             "id": "power-platform-cli",
             "kind": "cli",
-            "purpose": "primary_solution_source_operations",
-            "rationale": "PAC remains primary for supported solution source and package operations.",
+            "purpose": "post_write_solution_source_sync",
+            "rationale": "PAC exports and unpacks the exact routed solution only after successful Web API verification.",
             "supported_execution_hosts": [
               "local_interactive"
             ],
             "version": "2.9.3",
             "version_policy": "project_pinned"
-          },
-          {
-            "authentication": "interactive_user",
-            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-            "id": "dataverse-mcp",
-            "kind": "mcp",
-            "purpose": "targeted_runtime_verification",
-            "rationale": "MCP verifies exact metadata and runtime behavior only.",
-            "release_channel": "ga",
-            "required_tools": [
-              "search",
-              "describe",
-              "read_query"
-            ],
-            "server": "dataverse-authoring",
-            "supported_execution_hosts": [
-              "local_interactive"
-            ],
-            "tools": [
-              "search_data",
-              "search",
-              "create_record",
-              "update_record",
-              "delete_record",
-              "create_table",
-              "update_table",
-              "delete_table",
-              "read_query",
-              "describe",
-              "upsert_skill",
-              "delete_skill",
-              "init_file_upload",
-              "commit_file_upload",
-              "file_download"
-            ],
-            "version": "ga",
-            "version_policy": "service_managed"
           }
         ],
-        "route_rationale": "Although WebResource CRUD is documented, content construction and repository binding are not complete in the current payload contract."
+        "route_rationale": "Web resources use compiler-bound Web API CRUD from routed repository source, targeted publication, and PAC only for post-write solution source synchronization."
       },
       "execution_host": "local_interactive",
       "executor": "agent",
@@ -48033,7 +48232,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "99321645dc69dd66e4f31285d51b47893ede1cf789526b2f1d22d64d4d336078",
+      "source_plan_hash": "f3576c7636637d30d5ae665dda1b6277c2ea498336db10bc86911d6885d4ec71",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -48080,7 +48279,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+        "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -48711,7 +48910,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+              "capability_matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
               "component_identity": "aks_maintenancejob_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -48889,13 +49088,13 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "schema_version": 3
       },
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
+          "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -49187,7 +49386,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
+        "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
         "required": [
           {
             "authentication": "none",
@@ -49309,7 +49508,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "99321645dc69dd66e4f31285d51b47893ede1cf789526b2f1d22d64d4d336078",
+      "source_plan_hash": "f3576c7636637d30d5ae665dda1b6277c2ea498336db10bc86911d6885d4ec71",
       "status": "ready",
       "task_profile": {
         "evidence": [
