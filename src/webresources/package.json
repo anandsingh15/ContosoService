@@ -1,6 +1,10 @@
 {
   "name": "contoso-service-webresources",
   "private": true,
+  "scripts": {
+    "check": "node --check scripts/maintenance_job_form.js",
+    "test": "node --test tests/*.test.js"
+  },
   "engines": {
     "node": "24.14.1",
     "npm": "11.11.0"

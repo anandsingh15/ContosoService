@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{30096c52-3b9b-f111-b8db-6045bd01db1c}</WebResourceId>
+  <Name>aks_/scripts/maintenance_job_form.js</Name>
+  <DisplayName>aks_/scripts/maintenance_job_form.js</DisplayName>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/aks_scriptsmaintenance_job_formjs30096C52-3B9B-F111-B8DB-6045BD01DB1C</FileName>
+</WebResource>
