@@ -148,6 +148,9 @@ ALLOWED_CAPABILITY_PATH_TEMPLATES = frozenset(
         "sitemaps({record_id})",
         "appmodules",
         "appmodules({record_id})",
+        "pluginassemblies",
+        "pluginassemblies({record_id})",
+        "plugintypes",
         "PublishXml",
         "AddSolutionComponent",
         "RemoveSolutionComponent",
@@ -2013,6 +2016,14 @@ def resolve_developer_preflight(
                     item["package"] = resolved_resource.get("package")
                     item["ecosystem"] = resolved_resource.get("ecosystem")
                     item["expected_version"] = resolved_resource.get("version")
+                    item["project_paths"] = sorted(
+                        {
+                            str(project["path"])
+                            for project in (authoring_target or {}).get(
+                                "component_projects", []
+                            )
+                        }
+                    )
                 elif action == "portal":
                     item["endpoint"] = resolved_resource.get("endpoint")
                 if step["phase"] == "manual":
@@ -2384,6 +2395,12 @@ def render_developer_preflight(snapshot: dict[str, Any]) -> str:
                 lines.append(
                     "  - Required tools: `"
                     + "`, `".join(step["expected_tools"])
+                    + "`"
+                )
+            if step.get("project_paths"):
+                lines.append(
+                    "  - Component projects: `"
+                    + "`, `".join(step["project_paths"])
                     + "`"
                 )
             if step.get("expected_endpoints"):

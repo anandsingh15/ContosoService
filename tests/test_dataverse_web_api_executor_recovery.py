@@ -1,7 +1,11 @@
 import importlib.util
+import base64
+import io
+import json
 import sys
 import unittest
 from pathlib import Path
+from urllib.error import HTTPError
 from unittest import mock
 
 
@@ -14,6 +18,282 @@ executor = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 sys.modules[SPEC.name] = executor
 SPEC.loader.exec_module(executor)
+
+
+class PluginRegistrationRequestTests(unittest.TestCase):
+    def test_builds_solution_aware_plugin_assembly_create_request(self):
+        row = {
+            "component_type": "code_plugin",
+            "payload": {
+                "assembly": "ContosoService.Plugins",
+                "class_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+                "schema_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+            },
+        }
+
+        request = executor.plugin_assembly_request(
+            row,
+            "create",
+            assembly_content=b"signed-assembly",
+        )
+
+        self.assertEqual(request.method, "POST")
+        self.assertEqual(request.path, "pluginassemblies")
+        self.assertEqual(request.solution_context, "header")
+        self.assertEqual(request.body["name"], "ContosoService.Plugins")
+        self.assertEqual(request.body["sourcetype"], 0)
+        self.assertEqual(request.body["isolationmode"], 2)
+        self.assertEqual(
+            request.body["content"],
+            base64.b64encode(b"signed-assembly").decode("ascii"),
+        )
+
+    def test_builds_declared_update_step_and_preimage(self):
+        step = {
+            "name": "Maintenance Job Update completion and final-state guard",
+            "message": "Update",
+            "table": "aks_maintenancejob",
+            "stage": "PreOperation",
+            "mode": "Synchronous",
+            "rank": 10,
+            "run_as": "Calling User",
+            "filtering_attributes": ["aks_stage"],
+            "pre_image": {
+                "alias": "PreImage",
+                "columns": [
+                    "aks_stage",
+                    "aks_completeddate",
+                    "aks_scheduleddate",
+                    "aks_vehicleid",
+                ],
+            },
+        }
+        plugin_type_id = "11111111-1111-1111-1111-111111111111"
+        message_id = "22222222-2222-2222-2222-222222222222"
+        filter_id = "33333333-3333-3333-3333-333333333333"
+        step_id = "44444444-4444-4444-4444-444444444444"
+
+        body = executor.plugin_step_body(
+            step,
+            plugin_type_id=plugin_type_id,
+            message_id=message_id,
+            message_filter_id=filter_id,
+        )
+        image = executor.plugin_image_request(step, step_id)
+
+        self.assertEqual(body["stage"], 20)
+        self.assertEqual(body["mode"], 0)
+        self.assertEqual(body["rank"], 10)
+        self.assertEqual(body["filteringattributes"], "aks_stage")
+        self.assertEqual(
+            body["eventhandler_plugintype@odata.bind"],
+            f"/plugintypes({plugin_type_id})",
+        )
+        self.assertNotIn("impersonatinguserid@odata.bind", body)
+        self.assertEqual(image.path, "sdkmessageprocessingstepimages")
+        self.assertEqual(image.body["imagetype"], 0)
+        self.assertEqual(image.body["entityalias"], "PreImage")
+        self.assertEqual(
+            image.body["attributes"],
+            "aks_completeddate,aks_scheduleddate,aks_stage,aks_vehicleid",
+        )
+
+    def test_builds_solution_aware_plugin_type_create_and_update_requests(self):
+        row = {
+            "payload": {
+                "name": "Maintenance Job completion enforcement",
+                "class_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+            }
+        }
+        assembly_id = "11111111-1111-1111-1111-111111111111"
+        type_id = "22222222-2222-2222-2222-222222222222"
+
+        create = executor.plugin_type_request(row, assembly_id)
+        update = executor.plugin_type_request(row, assembly_id, record_id=type_id)
+
+        self.assertEqual(create.method, "POST")
+        self.assertEqual(create.path, "plugintypes")
+        self.assertEqual(create.solution_context, "header")
+        self.assertEqual(
+            create.body["pluginassemblyid@odata.bind"],
+            f"/pluginassemblies({assembly_id})",
+        )
+        self.assertEqual(
+            create.body["typename"],
+            "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+        )
+        self.assertEqual(update.method, "PATCH")
+        self.assertEqual(update.path, f"plugintypes({type_id})")
+
+    def test_plugin_registration_paths_are_runtime_whitelisted(self):
+        paths = (
+            ("POST", "pluginassemblies"),
+            ("PATCH", "pluginassemblies(11111111-1111-1111-1111-111111111111)"),
+            ("GET", "plugintypes?$select=plugintypeid,typename"),
+            ("GET", "sdkmessages?$select=sdkmessageid,name"),
+            ("GET", "sdkmessagefilters?$select=sdkmessagefilterid,primaryobjecttypecode"),
+            ("POST", "sdkmessageprocessingsteps"),
+            ("PATCH", "sdkmessageprocessingsteps(11111111-1111-1111-1111-111111111111)"),
+            ("POST", "sdkmessageprocessingstepimages"),
+            ("PATCH", "sdkmessageprocessingstepimages(11111111-1111-1111-1111-111111111111)"),
+        )
+
+        for method, path in paths:
+            with self.subTest(method=method, path=path):
+                executor.validate_runtime_request(method, path)
+
+
+class PluginRegistrationExecutionTests(unittest.TestCase):
+    def setUp(self):
+        self.row = {
+            "id": "DEV-0042",
+            "component": "DES-04-CMP-002",
+            "component_type": "code_plugin",
+            "build_skill": "dataverse-procode",
+            "status": "in_progress",
+            "authentication_policy": "reuse_if_valid",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "task_context_hash": "1" * 64,
+            "source_plan_hash": "2" * 64,
+            "authoring_target": {
+                "environment_url": "https://org89912357.crm.dynamics.com",
+                "solution_unique_name": "ContosoServicePluginAndCustomApi",
+            },
+            "payload": {
+                "assembly": "ContosoService.Plugins",
+                "schema_name": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
+                "steps": [
+                    {"name": "Create step", "message": "Create"},
+                    {"name": "Update step", "message": "Update"},
+                ],
+            },
+        }
+        self.capability = {
+            "http": {
+                "method": "POST",
+                "endpoint_family": "entity_set",
+                "path_template": "pluginassemblies",
+            },
+            "solution_context": {"mechanism": "MSCRM.SolutionUniqueName"},
+        }
+
+    def test_client_counts_successful_write_after_response(self):
+        client = executor.DataverseClient(
+            "https://example.crm.dynamics.com/api/data/v9.2", "token", "Solution"
+        )
+        response = mock.MagicMock()
+        response.status = 204
+        response.read.return_value = b""
+        response.headers.get_content_type.return_value = "application/json"
+        response.headers.get.return_value = ""
+        response.__enter__.return_value = response
+
+        with mock.patch.object(executor, "urlopen", return_value=response):
+            client.request(executor.OperationRequest("POST", "pluginassemblies", {}, (), (), "header", "test"))
+
+        self.assertEqual(client.write_attempt_count, 1)
+        self.assertEqual(client.write_count, 1)
+
+    def test_client_does_not_count_rejected_write_as_completed(self):
+        client = executor.DataverseClient(
+            "https://example.crm.dynamics.com/api/data/v9.2", "token", "Solution"
+        )
+        failure = HTTPError(
+            "https://example.crm.dynamics.com/api/data/v9.2/pluginassemblies",
+            400,
+            "Bad Request",
+            {},
+            io.BytesIO(b'{"error":{"code":"InvalidPluginAssemblyContent"}}'),
+        )
+
+        with (
+            mock.patch.object(executor, "urlopen", side_effect=failure),
+            self.assertRaises(executor.ExecutorError),
+        ):
+            client.request(executor.OperationRequest("POST", "pluginassemblies", {}, (), (), "header", "test"))
+
+        self.assertEqual(client.write_attempt_count, 1)
+        self.assertEqual(client.write_count, 0)
+
+    def test_required_plugin_lookup_retries_empty_success_response(self):
+        client = mock.Mock()
+        client.request.side_effect = [
+            executor.HttpResult(200, "", "", {"value": []}),
+            executor.HttpResult(200, "", "", {"value": [{"plugintypeid": "type-id"}]}),
+        ]
+
+        with mock.patch.object(executor.time, "sleep") as sleep:
+            result = executor.exact_plugin_row(
+                client,
+                executor.OperationRequest("GET", "plugintypes", None, (), (), "none", "test"),
+                category="generated plug-in type",
+                required=True,
+                max_attempts=5,
+            )
+
+        self.assertEqual(result["plugintypeid"], "type-id")
+        self.assertEqual(client.request.call_count, 2)
+        sleep.assert_called_once_with(1)
+
+    def test_plugin_lookup_rejects_ambiguity_without_retry(self):
+        client = mock.Mock()
+        client.request.return_value = executor.HttpResult(
+            200,
+            "",
+            "",
+            {"value": [{"plugintypeid": "one"}, {"plugintypeid": "two"}]},
+        )
+
+        with self.assertRaises(executor.ExecutorError) as raised:
+            executor.exact_plugin_row(
+                client,
+                executor.OperationRequest("GET", "plugintypes", None, (), (), "none", "test"),
+                category="generated plug-in type",
+                required=True,
+                max_attempts=5,
+            )
+
+        self.assertEqual(raised.exception.category, "conflict_or_duplicate")
+        self.assertEqual(client.request.call_count, 1)
+
+    def test_plugin_failure_before_write_attempt_posts_no_evidence(self):
+        client = mock.Mock(write_attempt_count=0, write_count=0)
+        with (
+            mock.patch.object(executor, "validate_executor_preflight", return_value=(self.capability, "https://example.crm.dynamics.com/api/data/v9.2", "Solution")),
+            mock.patch.object(executor, "plugin_project_assembly_path", return_value=mock.Mock(read_bytes=mock.Mock(return_value=b"assembly-secret"))),
+            mock.patch.object(executor, "acquire_token", return_value="token"),
+            mock.patch.object(executor, "_transition_dev_to_in_progress"),
+            mock.patch.object(executor, "DataverseClient", return_value=client),
+            mock.patch.object(executor, "reconcile_plugin_registration", side_effect=executor.ExecutorError("dependency ambiguity")),
+            mock.patch.object(executor, "post_evidence") as post,
+            self.assertRaises(executor.ExecutorError) as raised,
+        ):
+            executor.execute(self.row, "create", 140, approval="", dry_run=False)
+
+        self.assertFalse(raised.exception.action_invoked)
+        post.assert_not_called()
+
+    def test_rejected_plugin_write_posts_one_sanitized_blocked_evidence(self):
+        client = mock.Mock(write_attempt_count=1, write_count=0)
+        posted = []
+        with (
+            mock.patch.object(executor, "validate_executor_preflight", return_value=(self.capability, "https://example.crm.dynamics.com/api/data/v9.2", "Solution")),
+            mock.patch.object(executor, "plugin_project_assembly_path", return_value=mock.Mock(read_bytes=mock.Mock(return_value=b"assembly-secret"))),
+            mock.patch.object(executor, "acquire_token", return_value="token"),
+            mock.patch.object(executor, "_transition_dev_to_in_progress"),
+            mock.patch.object(executor, "DataverseClient", return_value=client),
+            mock.patch.object(executor, "reconcile_plugin_registration", side_effect=executor.ExecutorError("Dataverse returned HTTP 400", category="validation_error", status=400)),
+            mock.patch.object(executor, "post_evidence", side_effect=lambda payload, _issue: posted.append(payload) or {"result": "posted"}),
+            self.assertRaises(executor.ExecutorError) as raised,
+        ):
+            executor.execute(self.row, "create", 140, approval="", dry_run=False)
+
+        self.assertTrue(raised.exception.action_invoked)
+        self.assertFalse(raised.exception.write_occurred)
+        self.assertTrue(raised.exception.evidence_posted)
+        self.assertEqual(len(posted), 1)
+        self.assertFalse(posted[0]["write_occurred"])
+        self.assertNotIn("assembly-secret", json.dumps(posted[0]))
 
 
 class FakeClient:
@@ -105,26 +385,26 @@ class ColumnDefinitionTests(unittest.TestCase):
             "aks_labourhours * Decimal(aks_hourlyrate)",
         )
 
-    def test_builds_rollup_column(self):
-        definition = executor.derived_column_definition(
-            {
-                "name": "aks_totalpartscost",
-                "table": "aks_maintenancejob",
-                "base_data_type": "decimal",
-                "derived_type": "rollup",
-                "formula": None,
-                "rollup_spec": {
-                    "related_entity": "aks_jobpart",
-                    "aggregate_function": "SUM",
-                    "aggregate_attribute": "aks_linevalue",
-                },
-                "required_level": "None",
-            }
-        )
+    def test_rejects_rollup_column_before_request(self):
+        with self.assertRaises(executor.ExecutorError) as raised:
+            executor.derived_column_definition(
+                {
+                    "name": "aks_totalpartscost",
+                    "table": "aks_maintenancejob",
+                    "base_data_type": "decimal",
+                    "derived_type": "rollup",
+                    "formula": None,
+                    "rollup_spec": {
+                        "related_entity": "aks_jobpart",
+                        "aggregate_function": "SUM",
+                        "aggregate_attribute": "aks_linevalue",
+                    },
+                    "required_level": "None",
+                }
+            )
 
-        self.assertEqual(definition["SourceType"], 2)
-        self.assertIn("<AggregateFunction>SUM</AggregateFunction>", definition["RollupStateData"])
-        self.assertIn("<AggregateAttribute>aks_linevalue</AggregateAttribute>", definition["RollupStateData"])
+        self.assertEqual(raised.exception.category, "unsupported_operation")
+        self.assertFalse(raised.exception.action_invoked)
 
 
 class MembershipOnlyIdentityTests(unittest.TestCase):
