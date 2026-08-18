@@ -1,7 +1,7 @@
 {
-  "context_hash": "9200274d9cf94a744cbd1db649ae371d4ba3a85c8d748a15bf55a6552d5a4eb2",
-  "plan_context_hash": "245126f5d6cf2bcbf080d993bca3f126d2c0eaa5fa49f7b2f50d00e83e2e9854",
-  "repository_context_hash": "c95e3a189999b2566c41aab8ee206e51e15c1308a2c36a4fb4aa0aa21bfce66f",
+  "context_hash": "50f7ba68c7c3a9138676e35c3973e544f25f8e793c398ded7ce188da7190c27e",
+  "plan_context_hash": "670477bb2e50d2e982dc0f82fc9e48c7f77efa9bde9e5c3751279a1369a1fc2b",
+  "repository_context_hash": "a23ca2cd9841d7cb864ef8dd0dd5c4bd383089b94929bfb34e0db3339310e492",
   "schema_version": 1,
   "tasks": [
     {
@@ -814,7 +814,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -1131,7 +1131,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -1251,7 +1251,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -2085,7 +2085,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -2402,7 +2402,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -2523,7 +2523,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -3355,7 +3355,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -3672,7 +3672,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -3792,7 +3792,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -4650,7 +4650,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -4987,7 +4987,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -5085,7 +5085,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -5931,7 +5931,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -6268,7 +6268,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -6360,7 +6360,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7206,7 +7206,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -7543,7 +7543,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -7635,7 +7635,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -8492,7 +8492,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -8811,7 +8811,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -8943,7 +8943,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -9800,7 +9800,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -10119,7 +10119,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -10251,7 +10251,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -11107,7 +11107,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -11426,7 +11426,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -11556,7 +11556,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -12412,7 +12412,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -12731,7 +12731,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -12861,7 +12861,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -13569,7 +13569,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -13841,7 +13841,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -13923,7 +13923,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -14631,7 +14631,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -14903,7 +14903,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -14985,7 +14985,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -15693,7 +15693,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -15965,7 +15965,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -16047,7 +16047,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -16755,7 +16755,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -17027,7 +17027,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -17109,7 +17109,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -17629,7 +17629,7 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -17768,7 +17768,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -17862,7 +17862,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
+      "source_plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -18719,7 +18719,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -19056,7 +19056,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -19156,7 +19156,7 @@
         "INTK-0001-REQ-003",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -19947,7 +19947,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -20245,7 +20245,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -20334,7 +20334,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -21060,7 +21060,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -21342,7 +21342,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -21424,7 +21424,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -22154,7 +22154,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -22436,7 +22436,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -22519,7 +22519,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -23249,7 +23249,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -23531,7 +23531,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -23614,7 +23614,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -24344,7 +24344,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -24626,7 +24626,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -24709,7 +24709,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -25236,7 +25236,7 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -25375,7 +25375,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -25474,7 +25474,7 @@
         "INTK-0001-REQ-001",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -26299,7 +26299,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -26597,7 +26597,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -26702,7 +26702,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -27500,7 +27500,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -27798,7 +27798,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -27890,7 +27890,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -28624,7 +28624,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -28906,7 +28906,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -28991,7 +28991,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -29821,7 +29821,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -30119,7 +30119,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -30227,7 +30227,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -30963,7 +30963,7 @@
           "unpack_path": "src/solutions/ContosoServiceApps",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -31245,7 +31245,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -31331,7 +31331,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
+      "source_plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -32230,7 +32230,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -32567,7 +32567,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -32686,7 +32686,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -33536,7 +33536,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -33873,7 +33873,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -33968,7 +33968,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -34759,7 +34759,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -35057,7 +35057,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -35145,7 +35145,7 @@
       "satisfies": [
         "INTK-0001-REQ-009"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -35878,7 +35878,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -36160,7 +36160,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -36246,7 +36246,7 @@
         "INTK-0001-REQ-012",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -37117,7 +37117,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -37415,7 +37415,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -37544,7 +37544,7 @@
         "INTK-0001-REQ-013",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -38276,7 +38276,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -38558,7 +38558,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -38642,7 +38642,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -39372,7 +39372,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -39654,7 +39654,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -39737,7 +39737,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -40469,7 +40469,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -40751,7 +40751,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -40835,7 +40835,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -41397,7 +41397,7 @@
           "unpack_path": null,
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -41536,7 +41536,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -41651,7 +41651,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -42367,7 +42367,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -42660,7 +42660,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -42741,7 +42741,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -43456,7 +43456,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -43749,7 +43749,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -43830,7 +43830,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -44553,7 +44553,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -44846,7 +44846,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -44930,7 +44930,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -45644,7 +45644,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -45937,7 +45937,7 @@
             "version_policy": "service_managed"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -46016,7 +46016,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
+      "source_plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -46287,27 +46287,6 @@
         "phases": {
           "authentication": [
             {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "blocking": true,
-              "description": "Use the SDK's supported interactive user authentication against the declared URL.",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "Close only the selected SDK connection, launch the SDK's interactive user flow again for the declared URL, and complete a new sign-in before resuming."
-              },
-              "id": "delegated-auth",
-              "instructions": "Complete interactive sign-in and do not persist connection strings or tokens.",
-              "key": "dataverse-dotnet-sdk.delegated-auth",
-              "phase": "authentication",
-              "purpose": "dataverse_code",
-              "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
-              "resource": "dataverse-dotnet-sdk",
-              "role": "required",
-              "session_probe": {
-                "instructions": "Use the consuming application to report the current non-secret Dataverse user and organization identity before reusing its delegated session."
-              }
-            },
-            {
               "action": "command",
               "behavior": "interactive",
               "blocking": false,
@@ -46392,7 +46371,7 @@
                 "--version"
               ],
               "description": "Require the exact project-pinned .NET SDK version.",
-              "expected": "CONFIGURE_BEFORE_IMPLEMENTATION",
+              "expected": "10.0.302",
               "id": "dotnet-version",
               "installation": {
                 "guidance": "Install the exact SDK pinned by global.json from the official .NET distribution.",
@@ -46411,15 +46390,15 @@
               "blocking": true,
               "description": "Verify the exact resolved NuGet package version in the consuming project.",
               "ecosystem": "nuget",
-              "expected": "CONFIGURE_BEFORE_IMPLEMENTATION",
-              "expected_version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+              "expected": "9.0.2.60",
+              "expected_version": "9.0.2.60",
               "id": "package-version",
               "installation": {
-                "guidance": "Add the exact Microsoft.PowerPlatform.Dataverse.Client version to the project manifest and lock file.",
+                "guidance": "Add the exact Microsoft.CrmSdk.CoreAssemblies version to the project manifest and lock file.",
                 "policy": "manual"
               },
               "key": "dataverse-dotnet-sdk.package-version",
-              "package": "Microsoft.PowerPlatform.Dataverse.Client",
+              "package": "Microsoft.CrmSdk.CoreAssemblies",
               "phase": "availability_version",
               "purpose": "dataverse_code",
               "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
@@ -46532,7 +46511,6 @@
               "action": "session_validation",
               "authentication_mode": "interactive_user",
               "authentication_resources": [
-                "dataverse-dotnet-sdk",
                 "dataverse-mcp"
               ],
               "behavior": "automatic",
@@ -46714,7 +46692,7 @@
           "unpack_path": "src/solutions/ContosoServicePluginAndCustomApi",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -46853,7 +46831,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -46882,22 +46860,23 @@
               "local_interactive",
               "github_copilot_cloud"
             ],
-            "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+            "version": "10.0.302",
             "version_policy": "project_pinned"
           },
           {
-            "authentication": "interactive_user",
-            "description": "Dataverse .NET SDK pinned in the project manifest.",
+            "authentication": "none",
+            "description": "Dataverse server plug-in SDK pinned in the project manifest.",
             "ecosystem": "nuget",
             "id": "dataverse-dotnet-sdk",
             "kind": "sdk",
-            "package": "Microsoft.PowerPlatform.Dataverse.Client",
+            "package": "Microsoft.CrmSdk.CoreAssemblies",
             "purpose": "dataverse_code",
             "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
             "supported_execution_hosts": [
-              "local_interactive"
+              "local_interactive",
+              "github_copilot_cloud"
             ],
-            "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+            "version": "9.0.2.60",
             "version_policy": "project_pinned"
           },
           {
@@ -47028,7 +47007,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "b58c608d5dc64317a068b36a98cd443356352f9ece3a566e8484c1af7aa8da08",
+      "source_plan_hash": "70bd78f891de2ce9bce64aaeb6665fba5685cf83b5ab88d8cf9154249f6f7553",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -47353,13 +47332,31 @@
                 "--version"
               ],
               "description": "Require the exact project-pinned Node.js version.",
-              "expected": "CONFIGURE_BEFORE_IMPLEMENTATION",
+              "expected": "24.14.1",
               "id": "node-version",
               "installation": {
                 "guidance": "Install the exact project-approved Node.js release and retain the repository version file and npm lockfile.",
                 "policy": "manual"
               },
               "key": "node-toolchain.node-version",
+              "phase": "availability_version",
+              "purpose": "build_and_test",
+              "rationale": "The registered Node toolchain builds and validates web resource content.",
+              "resource": "node-toolchain",
+              "role": "required"
+            },
+            {
+              "action": "command",
+              "behavior": "automatic",
+              "blocking": true,
+              "command": [
+                "npm",
+                "--version"
+              ],
+              "description": "Require the exact project-pinned npm version.",
+              "expected": "11.11.0",
+              "id": "npm-version",
+              "key": "node-toolchain.npm-version",
               "phase": "availability_version",
               "purpose": "build_and_test",
               "rationale": "The registered Node toolchain builds and validates web resource content.",
@@ -47616,7 +47613,7 @@
           "unpack_path": "src/solutions/ContosoServiceWebResource",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -47755,7 +47752,7 @@
             "portal_fallback_evidence_required": true
           }
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -47770,7 +47767,7 @@
               "local_interactive",
               "github_copilot_cloud"
             ],
-            "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+            "version": "24.14.1",
             "version_policy": "project_pinned"
           },
           {
@@ -47886,7 +47883,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "b58c608d5dc64317a068b36a98cd443356352f9ece3a566e8484c1af7aa8da08",
+      "source_plan_hash": "70bd78f891de2ce9bce64aaeb6665fba5685cf83b5ab88d8cf9154249f6f7553",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -48742,7 +48739,7 @@
           "unpack_path": "src/solutions/ContosoServiceCore",
           "unpack_to_temp_workspace": true
         },
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "schema_version": 3
       },
       "development_resources": {
@@ -49040,7 +49037,7 @@
             "version_policy": "project_pinned"
           }
         ],
-        "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+        "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
         "required": [
           {
             "authentication": "none",
@@ -49162,7 +49159,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "b58c608d5dc64317a068b36a98cd443356352f9ece3a566e8484c1af7aa8da08",
+      "source_plan_hash": "70bd78f891de2ce9bce64aaeb6665fba5685cf83b5ab88d8cf9154249f6f7553",
       "status": "ready",
       "task_profile": {
         "evidence": [

@@ -1,5 +1,5 @@
 {
-  "context_hash": "245126f5d6cf2bcbf080d993bca3f126d2c0eaa5fa49f7b2f50d00e83e2e9854",
+  "context_hash": "670477bb2e50d2e982dc0f82fc9e48c7f77efa9bde9e5c3751279a1369a1fc2b",
   "plans": [
     {
       "components": [
@@ -334,7 +334,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -794,7 +794,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -1255,7 +1255,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -1755,7 +1755,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -2208,7 +2208,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -2661,7 +2661,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -3093,7 +3093,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -3568,7 +3568,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -4044,7 +4044,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -4519,7 +4519,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -4938,7 +4938,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -5317,7 +5317,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -5696,7 +5696,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -6075,7 +6075,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -6318,7 +6318,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -6426,8 +6426,8 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "b39b133c285cfb6437c7a9bf641fe16020a94067b139d1c9b12d881725589f4c",
-      "source_spec_hash": "5f8704f3e7b66e93e193ada8251fa178d8dab97adc3c678e81622896d4a6831a",
+      "plan_hash": "03cdc4ed3f61c4f4296dd316b1b5a4dd74840e28d4dbe39b44a6a9ba5e237a30",
+      "source_spec_hash": "64fc63710aaa31ec08084109b84031e7ae7684a1a8e4b8be828671ddd492f115",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
     },
@@ -6797,7 +6797,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -7206,7 +7206,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -7606,7 +7606,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -7999,7 +7999,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -8392,7 +8392,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -8785,7 +8785,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -9023,7 +9023,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -9448,7 +9448,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -9877,7 +9877,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -10283,7 +10283,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -10688,7 +10688,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -11111,7 +11111,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -11204,8 +11204,8 @@
       ],
       "feature": "FEAT-02",
       "plan": "DES-02",
-      "plan_hash": "29a4f88c0ec7e8acbdf5c217bf848757d0740e97cf927a4fb705014fb8fee6f7",
-      "source_spec_hash": "88a34bf7ccf21a42e7bf905ac550516199c055ee683b0f417446e5f622202934",
+      "plan_hash": "a09cc3be547dcc283e79ed343a12057e987a8ff5d1b9158e0d6f93e6ce181791",
+      "source_spec_hash": "d41471b6f9e9fd305cc28d620553b5b78cc05ccce31a10d9981d2d8ece281a5f",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
     },
@@ -11601,7 +11601,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -12056,7 +12056,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -12457,7 +12457,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -12862,7 +12862,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -13273,7 +13273,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -13714,7 +13714,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -14107,7 +14107,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -14501,7 +14501,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -14744,7 +14744,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -15180,7 +15180,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -15580,7 +15580,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -15980,7 +15980,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -16385,7 +16385,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -16475,8 +16475,8 @@
       ],
       "feature": "FEAT-03",
       "plan": "DES-03",
-      "plan_hash": "c02fd0ff1b06d9209beaf1905e64adf1adaf39489764e4064d939cb937157829",
-      "source_spec_hash": "92d98edd5fb2946eb27fb4bca4fe0acdf9c261aac5452734d98605bc1f1f49fb",
+      "plan_hash": "2e7652b3fbb813f190a44dff3f56099d225c1814b2a687355742a2b592fdaddd",
+      "source_spec_hash": "7ad3138e478bfb40a4a9da47c16e88034cfe81f166e3b892144c2756fd638ccb",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
     },
@@ -16644,7 +16644,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -16673,22 +16673,23 @@
                   "local_interactive",
                   "github_copilot_cloud"
                 ],
-                "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+                "version": "10.0.302",
                 "version_policy": "project_pinned"
               },
               {
-                "authentication": "interactive_user",
-                "description": "Dataverse .NET SDK pinned in the project manifest.",
+                "authentication": "none",
+                "description": "Dataverse server plug-in SDK pinned in the project manifest.",
                 "ecosystem": "nuget",
                 "id": "dataverse-dotnet-sdk",
                 "kind": "sdk",
-                "package": "Microsoft.PowerPlatform.Dataverse.Client",
+                "package": "Microsoft.CrmSdk.CoreAssemblies",
                 "purpose": "dataverse_code",
                 "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
                 "supported_execution_hosts": [
-                  "local_interactive"
+                  "local_interactive",
+                  "github_copilot_cloud"
                 ],
-                "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+                "version": "9.0.2.60",
                 "version_policy": "project_pinned"
               },
               {
@@ -16988,7 +16989,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -17003,7 +17004,7 @@
                   "local_interactive",
                   "github_copilot_cloud"
                 ],
-                "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+                "version": "24.14.1",
                 "version_policy": "project_pinned"
               },
               {
@@ -17436,7 +17437,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "4ce744923ad17777075eb9f015798d8be830327a349aa6a6ecfd2b78d6d80aee",
+            "registry_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
             "required": [
               {
                 "authentication": "none",
@@ -17569,13 +17570,13 @@
       ],
       "feature": "FEAT-04",
       "plan": "DES-04",
-      "plan_hash": "b58c608d5dc64317a068b36a98cd443356352f9ece3a566e8484c1af7aa8da08",
-      "source_spec_hash": "06b93f1af140e588ddcec9956cd29b8bd17fa2495529d45ada3d9714d680a60c",
+      "plan_hash": "70bd78f891de2ce9bce64aaeb6665fba5685cf83b5ab88d8cf9154249f6f7553",
+      "source_spec_hash": "5590992b9df3dc7565336830aa2f142908e8eae8f70765a4f9a9409639a6b3ab",
       "status": "reviewed",
       "workspace": "specs/004-job-completion-enforcement"
     }
   ],
-  "repository_context_hash": "c95e3a189999b2566c41aab8ee206e51e15c1308a2c36a4fb4aa0aa21bfce66f",
+  "repository_context_hash": "a23ca2cd9841d7cb864ef8dd0dd5c4bd383089b94929bfb34e0db3339310e492",
   "schema_version": 1,
-  "spec_context_hash": "db17ec800c5f430947abc02b6cddc8b9ed0d794b0b14dcae34b1a6815cc9eae6"
+  "spec_context_hash": "d743f88b447abb4c21c02577c4bc737681acebc659202018d450b45ef35195fb"
 }
