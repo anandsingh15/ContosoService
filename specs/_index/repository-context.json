@@ -1062,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "a23ca2cd9841d7cb864ef8dd0dd5c4bd383089b94929bfb34e0db3339310e492",
+  "context_hash": "57f0a4f5dbc626d20911615aa95895c2f044a1ed7a421d64fb99ea2c40e931a8",
   "conventions_hash": "de9cfd93e3251d7c8841a96e1e1878e01e00571b35aa68259c0e622565bc1952",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -1177,10 +1177,10 @@
       "code_plugin": {
         "implementation_scope": "repository_and_dataverse_solution",
         "operations": {
-          "create": "pac-primary",
+          "create": "plugin-registration-create",
           "delete": "pac-primary",
-          "update": "pac-primary",
-          "verify": "pac-primary"
+          "update": "plugin-registration-update",
+          "verify": "plugin-registration-verify"
         }
       },
       "code_webres_*": {
@@ -1607,6 +1607,18 @@
         "title": "Associate a solution component with a solution",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/optional-parameters#associate-a-solution-component-with-a-solution"
       },
+      "plugin_assembly": {
+        "title": "Plug-in Assembly table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/pluginassembly"
+      },
+      "plugin_registration": {
+        "title": "Register a plug-in",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/register-plug-in"
+      },
+      "plugin_type": {
+        "title": "Plug-in Type table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/plugintype"
+      },
       "power_automate_flowagent": {
         "title": "Microsoft Power Automate plugin with FlowAgent MCP",
         "url": "https://github.com/microsoft/power-platform-skills/tree/main/plugins/power-automate"
@@ -1638,6 +1650,14 @@
       "saved_query": {
         "title": "Saved Query (view) table reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/savedquery"
+      },
+      "sdk_message_processing_step": {
+        "title": "SDK Message Processing Step table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sdkmessageprocessingstep"
+      },
+      "sdk_message_processing_step_image": {
+        "title": "SDK Message Processing Step Image table reference",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sdkmessageprocessingstepimage"
       },
       "security_role": {
         "title": "Security Role table reference",
@@ -4201,6 +4221,132 @@
           ]
         }
       },
+      "plugin-registration-create": {
+        "executor": {
+          "builder": "code_plugin_registration",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "POST",
+          "path_template": "pluginassemblies"
+        },
+        "official_references": [
+          "optional_parameters",
+          "plugin_registration",
+          "plugin_assembly",
+          "plugin_type",
+          "sdk_message_processing_step",
+          "sdk_message_processing_step_image",
+          "solution_component_types"
+        ],
+        "operation": "create",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Upload the exact signed assembly with explicit solution context, resolve its automatically registered plug-in type, then create the compiler-declared steps and images as one verified aggregate.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "plugintypes"
+          },
+          "rationale": "Resolve the exact generated plug-in type, steps, images, and routed solution memberships after the aggregate write.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "plugin-registration-update": {
+        "executor": {
+          "builder": "code_plugin_registration",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "PATCH",
+          "path_template": "pluginassemblies({record_id})"
+        },
+        "official_references": [
+          "optional_parameters",
+          "plugin_registration",
+          "plugin_assembly",
+          "plugin_type",
+          "sdk_message_processing_step",
+          "sdk_message_processing_step_image",
+          "solution_component_types"
+        ],
+        "operation": "update",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Update only the exact assembly and idempotently reconcile its compiler-declared steps and image under explicit solution context.",
+        "solution_context": {
+          "mechanism": "MSCRM.SolutionUniqueName",
+          "name": "MSCRM.SolutionUniqueName",
+          "value_source": "authoring_target.solution_unique_name"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "plugintypes"
+          },
+          "rationale": "Resolve and verify the exact plug-in registration graph and routed solution memberships after the aggregate update.",
+          "resource": "dataverse-web-api"
+        }
+      },
+      "plugin-registration-verify": {
+        "executor": {
+          "builder": "code_plugin_registration",
+          "supported": true
+        },
+        "fallback": {
+          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+          "issue_evidence_required": true,
+          "resource": "maker-portal"
+        },
+        "http": {
+          "endpoint_family": "entity_set",
+          "method": "GET",
+          "path_template": "plugintypes"
+        },
+        "official_references": [
+          "plugin_registration",
+          "plugin_assembly",
+          "plugin_type",
+          "sdk_message_processing_step",
+          "sdk_message_processing_step_image",
+          "solution_component_types"
+        ],
+        "operation": "verify",
+        "primary_resource": "dataverse-web-api",
+        "rationale": "Targeted exact-identity reads verify the complete registration graph without broad inventory or mutation.",
+        "solution_context": {
+          "mechanism": "not_applicable"
+        },
+        "support": "supported",
+        "verification": {
+          "http": {
+            "endpoint_family": "entity_set",
+            "method": "GET",
+            "path_template": "plugintypes"
+          },
+          "rationale": "Verify the exact generated plug-in type, declared steps and image, and routed solution memberships without writing.",
+          "resource": "dataverse-web-api"
+        }
+      },
       "power-bi-native": {
         "executor": {
           "builder": "unsupported",
@@ -4790,7 +4936,7 @@
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "a34664afbe5b3f5adab7a380f584b38400573a33435b85b351282f3f8f37a6e7",
+  "dataverse_web_api_capabilities_hash": "328246d6b95041fee5d94cb38cc6afc49ef86df4d6664c046d9f40edeee2e95c",
   "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
   "design_sources": {
     "schema_version": 1,
@@ -5057,13 +5203,13 @@
       },
       "dataverse-dotnet-sdk": {
         "authentication": "none",
-        "description": "Dataverse server plug-in SDK pinned in the project manifest.",
+        "description": "Dataverse .NET SDK pinned in the project manifest.",
         "ecosystem": "nuget",
         "kind": "sdk",
-        "package": "Microsoft.CrmSdk.CoreAssemblies",
+        "package": "Microsoft.PowerPlatform.Dataverse.Client",
         "preflight": {
           "installation": {
-            "guidance": "Add the exact Microsoft.CrmSdk.CoreAssemblies version to the project manifest and lock file.",
+            "guidance": "Add the exact Microsoft.PowerPlatform.Dataverse.Client version to the project manifest and lock file.",
             "policy": "manual"
           },
           "steps": [
@@ -5078,10 +5224,9 @@
           ]
         },
         "supported_execution_hosts": [
-          "local_interactive",
-          "github_copilot_cloud"
+          "local_interactive"
         ],
-        "version": "9.0.2.60",
+        "version": "1.1.32",
         "version_policy": "project_pinned"
       },
       "dataverse-mcp": {
@@ -6321,7 +6466,7 @@
         "match": {
           "component_type": "code_plugin"
         },
-        "rationale": "Plug-in implementation uses the supported build, SDK, registration, and solution toolchain rather than generic Web API component creation.",
+        "rationale": "Plug-in implementation uses the supported build toolchain and compiler-bound solution-aware Web API registration executor.",
         "resources": {
           "required": [
             {
@@ -6340,9 +6485,14 @@
               "resource": "dataverse-dotnet-sdk"
             },
             {
-              "purpose": "registration_and_solution_operations",
-              "rationale": "PAC is primary only for documented registration and solution/source operations.",
-              "resource": "power-platform-cli"
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "solution_aware_plugin_registration",
+              "rationale": "The compiler-bound executor registers the assembly, steps, and image with explicit solution context.",
+              "resource": "dataverse-web-api"
             },
             {
               "purpose": "schema_and_runtime_verification",
@@ -6365,8 +6515,8 @@
         "resources": {
           "required": [
             {
-              "purpose": "execution_pipeline_grounding",
-              "rationale": "Official plug-in documentation grounds registration and runtime behavior.",
+              "purpose": "custom_api_grounding",
+              "rationale": "Official custom API documentation grounds implementation and registration.",
               "resource": "microsoft-learn"
             },
             {
@@ -6376,12 +6526,12 @@
             },
             {
               "purpose": "dataverse_code",
-              "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
+              "rationale": "The registered Dataverse SDK supports custom API code integration.",
               "resource": "dataverse-dotnet-sdk"
             },
             {
               "purpose": "registration_and_solution_operations",
-              "rationale": "PAC is primary only for documented registration and solution/source operations.",
+              "rationale": "PAC remains the registered route for supported custom API solution operations.",
               "resource": "power-platform-cli"
             },
             {
@@ -6790,7 +6940,7 @@
       ]
     }
   },
-  "development_resources_hash": "08fdd3b965c9689d8d6d0d5cdf26404529b57fe0d70f08372da4147aa8447382",
+  "development_resources_hash": "fd684137977292bd700b8d30ec707fa704ccb6ed2d8f2bbb2805d4b7eedd2192",
   "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
   "schema_version": 1,
   "schemas": {

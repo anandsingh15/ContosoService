@@ -325,19 +325,18 @@ resources:
         description: Require the exact project-pinned .NET SDK version.
   dataverse-dotnet-sdk:
     kind: sdk
-    version: 9.0.2.60
+    version: 1.1.32
     version_policy: project_pinned
     authentication: none
     supported_execution_hosts:
     - local_interactive
-    - github_copilot_cloud
     ecosystem: nuget
-    package: Microsoft.CrmSdk.CoreAssemblies
-    description: Dataverse server plug-in SDK pinned in the project manifest.
+    package: Microsoft.PowerPlatform.Dataverse.Client
+    description: Dataverse .NET SDK pinned in the project manifest.
     preflight:
       installation:
         policy: manual
-        guidance: Add the exact Microsoft.CrmSdk.CoreAssemblies version to the project manifest and lock file.
+        guidance: Add the exact Microsoft.PowerPlatform.Dataverse.Client version to the project manifest and lock file.
       steps:
       - id: package-version
         phase: availability_version
@@ -1042,8 +1041,8 @@ routing:
       rationale: Portal fallback requires sanitized issue evidence for a platform-rejected column or principal association.
 - match:
     component_type: code_plugin
-  rationale: Plug-in implementation uses the supported build, SDK, registration, and solution toolchain rather than generic Web API component creation.
-  resources: &id001
+  rationale: Plug-in implementation uses the supported build toolchain and compiler-bound solution-aware Web API registration executor.
+  resources:
     required:
     - resource: microsoft-learn
       purpose: execution_pipeline_grounding
@@ -1054,9 +1053,12 @@ routing:
     - resource: dataverse-dotnet-sdk
       purpose: dataverse_code
       rationale: The registered Dataverse SDK supports code integration and registration contracts.
-    - resource: power-platform-cli
-      purpose: registration_and_solution_operations
-      rationale: PAC is primary only for documented registration and solution/source operations.
+    - resource: msal-python
+      purpose: delegated_authentication
+      rationale: The Web API executor uses the pinned in-memory MSAL public-client flow.
+    - resource: dataverse-web-api
+      purpose: solution_aware_plugin_registration
+      rationale: The compiler-bound executor registers the assembly, steps, and image with explicit solution context.
     - resource: dataverse-mcp
       purpose: schema_and_runtime_verification
       tools:
@@ -1067,7 +1069,24 @@ routing:
 - match:
     component_type: code_custom_api
   rationale: Custom API code and registration use the same documented .NET and PAC route as plug-ins.
-  resources: *id001
+  resources:
+    required:
+    - resource: microsoft-learn
+      purpose: custom_api_grounding
+      rationale: Official custom API documentation grounds implementation and registration.
+    - resource: dotnet-toolchain
+      purpose: build_and_test
+      rationale: The pinned .NET toolchain builds and tests the component.
+    - resource: dataverse-dotnet-sdk
+      purpose: dataverse_code
+      rationale: The registered Dataverse SDK supports custom API code integration.
+    - resource: power-platform-cli
+      purpose: registration_and_solution_operations
+      rationale: PAC remains the registered route for supported custom API solution operations.
+    - resource: dataverse-mcp
+      purpose: schema_and_runtime_verification
+      tools: [search, describe, read_query]
+      rationale: MCP performs targeted discovery and verification without generic solution-aware writes.
 - match:
     component_type: code_pcf
   rationale: PCF controls require the supported Node build and PAC solution toolchain, not generic Dataverse Web API creation.

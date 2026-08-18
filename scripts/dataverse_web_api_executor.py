@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import importlib.metadata
 import json
 import logging
@@ -114,6 +115,8 @@ ROW_SOLUTION_COMPONENT_TYPES = {
     "uiux_app": 200,
 }
 ROW_COMPONENT_TYPES = frozenset(ROW_ENTITY_SETS)
+PLUGIN_STAGE_VALUES = {"PreValidation": 10, "PreOperation": 20, "PostOperation": 40}
+PLUGIN_MODE_VALUES = {"Synchronous": 0, "Asynchronous": 1}
 # SavedQuery.querytype values for the supported view surfaces.
 VIEW_QUERYTYPES = {
     "public": 0,
@@ -298,6 +301,14 @@ SAFE_PATH_METHODS = (
     ),
     (re.compile(r"^solutions\?.*$"), {"GET"}),
     (re.compile(r"^solutioncomponents\?.*$"), {"GET"}),
+    (
+        re.compile(
+            r"^(?:pluginassemblies|plugintypes|sdkmessages|sdkmessagefilters|"
+            r"sdkmessageprocessingsteps|sdkmessageprocessingstepimages)"
+            r"(?:\([0-9a-fA-F-]{36}\))?(?:\?.*)?$"
+        ),
+        {"GET", "POST", "PATCH"},
+    ),
 )
 
 
@@ -328,6 +339,515 @@ def validate_runtime_request(method: str, path: str) -> None:
         raise ExecutorError(
             f"{method} request path is outside the executor whitelist"
         )
+
+
+def plugin_assembly_request(
+    row: dict[str, Any],
+    operation: str,
+    *,
+    assembly_content: bytes,
+    record_id: str = "",
+) -> OperationRequest:
+    payload = row.get("payload", {})
+    assembly_name = sanitize_text(payload.get("assembly"), 256)
+    if not assembly_name:
+        raise ExecutorError("code_plugin payload requires assembly")
+    if operation not in {"create", "update"}:
+        raise ExecutorError("plug-in assembly operation must be create or update")
+    if operation == "update" and not GUID_RE.fullmatch(record_id):
+        raise ExecutorError("plug-in assembly update requires an exact record ID")
+    body = {
+        "name": assembly_name,
+        "content": base64.b64encode(assembly_content).decode("ascii"),
+        "sourcetype": 0,
+        "isolationmode": 2,
+    }
+    path = "pluginassemblies" if operation == "create" else f"pluginassemblies({record_id})"
+    return OperationRequest(
+        "POST" if operation == "create" else "PATCH",
+        path,
+        body,
+        tuple(sorted(body)),
+        tuple(sorted(body)),
+        "header",
+        f"{operation} exact plug-in assembly",
+        expected_body={key: value for key, value in body.items() if key != "content"},
+    )
+
+
+def plugin_type_request(
+    row: dict[str, Any],
+    assembly_id: str,
+    *,
+    record_id: str = "",
+) -> OperationRequest:
+    if not GUID_RE.fullmatch(assembly_id):
+        raise ExecutorError("plug-in type registration requires an exact assembly ID")
+    if record_id and not GUID_RE.fullmatch(record_id):
+        raise ExecutorError("plug-in type update requires an exact record ID")
+    payload = row.get("payload") or {}
+    type_name = sanitize_text(payload.get("class_name"), 256)
+    friendly_name = sanitize_text(payload.get("name") or type_name, 256)
+    if not type_name or not friendly_name:
+        raise ExecutorError("code_plugin payload requires class_name and name")
+    body = {
+        "typename": type_name,
+        "name": type_name,
+        "friendlyname": friendly_name,
+        "pluginassemblyid@odata.bind": f"/pluginassemblies({assembly_id})",
+    }
+    return OperationRequest(
+        "PATCH" if record_id else "POST",
+        f"plugintypes({record_id})" if record_id else "plugintypes",
+        body,
+        tuple(sorted(body)),
+        tuple(sorted(body)),
+        "header",
+        "create or update exact plug-in type",
+        expected_body=body,
+    )
+
+
+def plugin_step_body(
+    step: dict[str, Any],
+    *,
+    plugin_type_id: str,
+    message_id: str,
+    message_filter_id: str,
+) -> dict[str, Any]:
+    for label, value in {
+        "plug-in type": plugin_type_id,
+        "SDK message": message_id,
+        "SDK message filter": message_filter_id,
+    }.items():
+        if not GUID_RE.fullmatch(value):
+            raise ExecutorError(f"{label} binding requires an exact record ID")
+    stage = PLUGIN_STAGE_VALUES.get(step.get("stage"))
+    mode = PLUGIN_MODE_VALUES.get(step.get("mode"))
+    if stage is None or mode is None:
+        raise ExecutorError("plug-in step stage or mode is unsupported")
+    if step.get("run_as") != "Calling User":
+        raise ExecutorError("only calling-user plug-in execution is supported")
+    body: dict[str, Any] = {
+        "name": sanitize_text(step.get("name"), 256),
+        "stage": stage,
+        "mode": mode,
+        "rank": int(step.get("rank", 1)),
+        "supporteddeployment": 0,
+        "eventhandler_plugintype@odata.bind": f"/plugintypes({plugin_type_id})",
+        "sdkmessageid@odata.bind": f"/sdkmessages({message_id})",
+        "sdkmessagefilterid@odata.bind": f"/sdkmessagefilters({message_filter_id})",
+    }
+    filtering_attributes = sorted(set(step.get("filtering_attributes", [])))
+    if filtering_attributes:
+        body["filteringattributes"] = ",".join(filtering_attributes)
+    return body
+
+
+def plugin_image_request(
+    step: dict[str, Any], step_id: str, *, record_id: str = ""
+) -> OperationRequest:
+    if not GUID_RE.fullmatch(step_id):
+        raise ExecutorError("plug-in image requires an exact step record ID")
+    image = step.get("pre_image")
+    if not isinstance(image, dict):
+        raise ExecutorError("plug-in image request requires a declared pre_image")
+    columns = sorted(set(image.get("columns", [])))
+    body = {
+        "name": sanitize_text(image.get("alias"), 256),
+        "entityalias": sanitize_text(image.get("alias"), 256),
+        "imagetype": 0,
+        "messagepropertyname": "Target",
+        "attributes": ",".join(columns),
+        "sdkmessageprocessingstepid@odata.bind": (
+            f"/sdkmessageprocessingsteps({step_id})"
+        ),
+    }
+    if record_id:
+        if not GUID_RE.fullmatch(record_id):
+            raise ExecutorError("plug-in image update requires an exact record ID")
+        method = "PATCH"
+        path = f"sdkmessageprocessingstepimages({record_id})"
+    else:
+        method = "POST"
+        path = "sdkmessageprocessingstepimages"
+    return OperationRequest(
+        method,
+        path,
+        body,
+        tuple(sorted(body)),
+        tuple(sorted(body)),
+        "header",
+        "create or update exact plug-in step pre-image",
+        expected_body=body,
+    )
+
+
+def plugin_query_request(
+    entity_set: str,
+    select: str,
+    filter_expr: str,
+    description: str,
+) -> OperationRequest:
+    path = entity_set + "?" + urlencode(
+        {"$select": select, "$filter": filter_expr}
+    )
+    return OperationRequest("GET", path, None, (), (), "none", description)
+
+
+def exact_plugin_row(
+    client: DataverseClient,
+    request: OperationRequest,
+    *,
+    category: str,
+    required: bool,
+    max_attempts: int = 1,
+) -> dict[str, Any]:
+    for attempt in range(max_attempts):
+        values = client.request(request).data.get("value") or []
+        rows = [value for value in values if isinstance(value, dict)]
+        if len(rows) > 1:
+            raise ExecutorError(
+                f"exact {category} identity resolved to {len(rows)} rows",
+                category="conflict_or_duplicate",
+            )
+        if rows:
+            return rows[0]
+        if required and attempt + 1 < max_attempts:
+            time.sleep(min(1 + attempt, 5))
+    if required:
+        raise ExecutorError(
+            f"exact {category} identity was not found",
+            category="not_found",
+        )
+    return {}
+
+
+def plugin_assembly_lookup(row: dict[str, Any]) -> OperationRequest:
+    name = sanitize_text((row.get("payload") or {}).get("assembly"), 256)
+    return plugin_query_request(
+        "pluginassemblies",
+        "pluginassemblyid,name",
+        f"name eq '{odata_string(name)}'",
+        "resolve exact plug-in assembly",
+    )
+
+
+def plugin_type_lookup(row: dict[str, Any], assembly_id: str) -> OperationRequest:
+    type_name = sanitize_text((row.get("payload") or {}).get("class_name"), 256)
+    return plugin_query_request(
+        "plugintypes",
+        "plugintypeid,typename,_pluginassemblyid_value",
+        (
+            f"typename eq '{odata_string(type_name)}' and "
+            f"_pluginassemblyid_value eq {assembly_id}"
+        ),
+        "resolve exact generated plug-in type",
+    )
+
+
+def plugin_message_lookup(message: str) -> OperationRequest:
+    return plugin_query_request(
+        "sdkmessages",
+        "sdkmessageid,name",
+        f"name eq '{odata_string(message)}'",
+        f"resolve exact {message} SDK message",
+    )
+
+
+def plugin_message_filter_lookup(
+    message_id: str, table: str
+) -> OperationRequest:
+    return plugin_query_request(
+        "sdkmessagefilters",
+        "sdkmessagefilterid,primaryobjecttypecode,_sdkmessageid_value",
+        (
+            f"_sdkmessageid_value eq {message_id} and "
+            f"primaryobjecttypecode eq '{odata_string(canonical_table(table))}'"
+        ),
+        "resolve exact SDK message/table filter",
+    )
+
+
+def plugin_step_lookup(step: dict[str, Any], plugin_type_id: str) -> OperationRequest:
+    name = sanitize_text(step.get("name"), 256)
+    return plugin_query_request(
+        "sdkmessageprocessingsteps",
+        (
+            "sdkmessageprocessingstepid,name,stage,mode,rank,"
+            "supporteddeployment,filteringattributes,_eventhandler_value,"
+            "_sdkmessageid_value,_sdkmessagefilterid_value"
+        ),
+        (
+            f"name eq '{odata_string(name)}' and "
+            f"_eventhandler_value eq {plugin_type_id}"
+        ),
+        "resolve exact declared plug-in step",
+    )
+
+
+def plugin_image_lookup(step_id: str, alias: str) -> OperationRequest:
+    return plugin_query_request(
+        "sdkmessageprocessingstepimages",
+        (
+            "sdkmessageprocessingstepimageid,name,entityalias,imagetype,"
+            "messagepropertyname,attributes,_sdkmessageprocessingstepid_value"
+        ),
+        (
+            f"_sdkmessageprocessingstepid_value eq {step_id} and "
+            f"entityalias eq '{odata_string(alias)}'"
+        ),
+        "resolve exact declared plug-in step image",
+    )
+
+
+def plugin_project_assembly_path(row: dict[str, Any]) -> Path:
+    projects = [
+        item
+        for item in (row.get("authoring_target") or {}).get("component_projects") or []
+        if item.get("component_type") == "code_plugin"
+        and item.get("project_type") == "dotnet_class_library"
+    ]
+    if len(projects) != 1:
+        raise ExecutorError("code_plugin does not resolve to one compiler-owned project")
+    project_path = (P.ROOT / str(projects[0].get("path") or "")).resolve()
+    try:
+        project_path.relative_to(P.ROOT.resolve())
+    except ValueError as exc:
+        raise ExecutorError("code_plugin project path escapes the repository") from exc
+    assembly_name = sanitize_text((row.get("payload") or {}).get("assembly"), 256)
+    candidates = list((project_path / "bin" / "Release").glob(f"*/{assembly_name}.dll"))
+    if len(candidates) != 1 or not candidates[0].is_file():
+        raise ExecutorError(
+            "code_plugin requires one existing Release assembly under its compiler-owned project",
+            category="configuration_prerequisite",
+        )
+    return candidates[0]
+
+
+def plugin_registration_summary_request(row: dict[str, Any]) -> OperationRequest:
+    return OperationRequest(
+        "POST",
+        "pluginassemblies",
+        None,
+        ("assembly", "plugin_type", "steps", "images"),
+        ("assembly", "plugin_type", "steps", "images"),
+        "header",
+        "register and verify compiler-declared plug-in aggregate",
+    )
+
+
+def plugin_component_membership_matches(
+    row: dict[str, Any],
+    client: DataverseClient,
+    components: list[tuple[str, int]],
+) -> None:
+    routed_solution_id = resolve_solution_id(row, client)
+    declared_ids = declared_solution_ids(client)
+    other_ids = {
+        value.lower()
+        for name, value in declared_ids.items()
+        if name != row["authoring_target"]["solution_unique_name"]
+    }
+    for component_id, component_type in components:
+        rows = solution_component_rows(client, component_id)
+        routed = [
+            item
+            for item in rows
+            if str(item.get("_solutionid_value") or "").lower()
+            == routed_solution_id.lower()
+            and item.get("componenttype") == component_type
+        ]
+        conflicts = [
+            item
+            for item in rows
+            if str(item.get("_solutionid_value") or "").lower() in other_ids
+        ]
+        if len(routed) != 1 or conflicts:
+            raise ExecutorError(
+                "plug-in component solution membership verification failed",
+                category="verification_mismatch",
+            )
+
+
+def reconcile_plugin_registration(
+    row: dict[str, Any],
+    client: DataverseClient,
+    operation: str,
+    assembly_content: bytes | None,
+) -> tuple[dict[str, str], str, str, bool]:
+    payload = row.get("payload") or {}
+    steps = payload.get("steps") or []
+    if len(steps) != 2 or {step.get("message") for step in steps} != {"Create", "Update"}:
+        raise ExecutorError("code_plugin requires the two compiler-declared Create and Update steps")
+
+    assembly = exact_plugin_row(
+        client, plugin_assembly_lookup(row), category="plug-in assembly", required=False
+    )
+    dependencies: dict[str, tuple[str, str]] = {}
+    for step in steps:
+        message = str(step.get("message") or "")
+        message_row = exact_plugin_row(
+            client, plugin_message_lookup(message), category=f"{message} SDK message", required=True
+        )
+        message_id = str(message_row.get("sdkmessageid") or "")
+        filter_row = exact_plugin_row(
+            client,
+            plugin_message_filter_lookup(message_id, str(step.get("table") or "")),
+            category=f"{message} SDK message filter",
+            required=True,
+        )
+        filter_id = str(filter_row.get("sdkmessagefilterid") or "")
+        if not GUID_RE.fullmatch(message_id) or not GUID_RE.fullmatch(filter_id):
+            raise ExecutorError("plug-in dependency has no immutable ID")
+        dependencies[message] = (message_id, filter_id)
+
+    write_occurred = False
+    correlation_id = ""
+    if operation != "verify":
+        if assembly_content is None:
+            raise ExecutorError("plug-in registration has no compiled assembly content")
+        assembly_id = str(assembly.get("pluginassemblyid") or "")
+        assembly_request = plugin_assembly_request(
+            row,
+            "update" if assembly_id else "create",
+            assembly_content=assembly_content,
+            record_id=assembly_id,
+        )
+        assembly_result = client.request(assembly_request)
+        write_occurred = True
+        correlation_id = assembly_result.correlation_id
+        assembly = exact_plugin_row(
+            client,
+            plugin_assembly_lookup(row),
+            category="plug-in assembly",
+            required=True,
+            max_attempts=5,
+        )
+    elif not assembly:
+        raise ExecutorError("exact plug-in assembly identity was not found", category="not_found")
+
+    assembly_id = str(assembly.get("pluginassemblyid") or "")
+    plugin_type = exact_plugin_row(
+        client,
+        plugin_type_lookup(row, assembly_id),
+        category="generated plug-in type",
+        required=operation == "verify",
+    )
+    if operation != "verify":
+        plugin_type_id = str(plugin_type.get("plugintypeid") or "")
+        type_result = client.request(
+            plugin_type_request(row, assembly_id, record_id=plugin_type_id)
+        )
+        correlation_id = type_result.correlation_id or correlation_id
+        write_occurred = True
+        plugin_type = exact_plugin_row(
+            client,
+            plugin_type_lookup(row, assembly_id),
+            category="generated plug-in type",
+            required=True,
+            max_attempts=5,
+        )
+    plugin_type_id = str(plugin_type.get("plugintypeid") or "")
+    if not GUID_RE.fullmatch(plugin_type_id):
+        raise ExecutorError("generated plug-in type has no immutable ID")
+
+    component_ids: list[tuple[str, int]] = [(assembly_id, 91)]
+    for step in steps:
+        message = str(step["message"])
+        message_id, filter_id = dependencies[message]
+        expected = plugin_step_body(
+            step,
+            plugin_type_id=plugin_type_id,
+            message_id=message_id,
+            message_filter_id=filter_id,
+        )
+        existing = exact_plugin_row(
+            client,
+            plugin_step_lookup(step, plugin_type_id),
+            category=f"{message} plug-in step",
+            required=operation == "verify",
+        )
+        step_id = str(existing.get("sdkmessageprocessingstepid") or "")
+        if operation != "verify":
+            step_request = OperationRequest(
+                "PATCH" if step_id else "POST",
+                f"sdkmessageprocessingsteps({step_id})" if step_id else "sdkmessageprocessingsteps",
+                expected,
+                tuple(sorted(expected)),
+                tuple(sorted(expected)),
+                "header",
+                f"create or update exact {message} plug-in step",
+                expected_body=expected,
+            )
+            step_result = client.request(step_request)
+            correlation_id = step_result.correlation_id or correlation_id
+            write_occurred = True
+            existing = exact_plugin_row(
+                client,
+                plugin_step_lookup(step, plugin_type_id),
+                category=f"{message} plug-in step",
+                required=True,
+                max_attempts=5,
+            )
+            step_id = str(existing.get("sdkmessageprocessingstepid") or "")
+        if not GUID_RE.fullmatch(step_id):
+            raise ExecutorError(f"{message} plug-in step has no immutable ID")
+        for key, value in expected.items():
+            actual_key = {
+                "eventhandler_plugintype@odata.bind": "_eventhandler_value",
+                "sdkmessageid@odata.bind": "_sdkmessageid_value",
+                "sdkmessagefilterid@odata.bind": "_sdkmessagefilterid_value",
+            }.get(key, key)
+            actual = existing.get(actual_key)
+            if "@odata.bind" in key:
+                actual = str(actual or "").lower()
+                value = str(value).split("(", 1)[1].rstrip(")").lower()
+            if (actual or "") != (value or ""):
+                raise ExecutorError(
+                    f"{message} plug-in step payload verification failed for {actual_key}",
+                    category="verification_mismatch",
+                )
+        component_ids.append((step_id, 92))
+
+        image = step.get("pre_image")
+        if image:
+            alias = sanitize_text(image.get("alias"), 256)
+            existing_image = exact_plugin_row(
+                client,
+                plugin_image_lookup(step_id, alias),
+                category=f"{message} plug-in image",
+                required=operation == "verify",
+            )
+            image_id = str(existing_image.get("sdkmessageprocessingstepimageid") or "")
+            if operation != "verify":
+                image_request = plugin_image_request(step, step_id, record_id=image_id)
+                image_result = client.request(image_request)
+                correlation_id = image_result.correlation_id or correlation_id
+                write_occurred = True
+                existing_image = exact_plugin_row(
+                    client,
+                    plugin_image_lookup(step_id, alias),
+                    category=f"{message} plug-in image",
+                    required=True,
+                    max_attempts=5,
+                )
+                image_id = str(existing_image.get("sdkmessageprocessingstepimageid") or "")
+            expected_image = plugin_image_request(step, step_id).expected_body or {}
+            for key in ("name", "entityalias", "imagetype", "messagepropertyname", "attributes"):
+                if (existing_image.get(key) or "") != (expected_image.get(key) or ""):
+                    raise ExecutorError(
+                        f"{message} plug-in image payload verification failed for {key}",
+                        category="verification_mismatch",
+                    )
+
+    plugin_component_membership_matches(row, client, component_ids)
+    return (
+        {"identity": "matched", "payload": "matched", "membership": "matched"},
+        plugin_type_id,
+        correlation_id,
+        write_occurred,
+    )
 
 
 def validate_capability_request(
@@ -627,7 +1147,7 @@ def canonical_child_schema_name(column: dict[str, Any]) -> str:
 
 
 def derived_column_definition(derived_col: dict[str, Any]) -> dict[str, Any]:
-    """Build a formula or rollup column definition for the metadata API."""
+    """Build a supported formula column definition for the metadata API."""
     violations = P.derived_column_contract_violations(derived_col)
     if violations:
         raise ExecutorError(f"derived column contract violations: {'; '.join(violations)}")
@@ -691,32 +1211,11 @@ def derived_column_definition(derived_col: dict[str, Any]) -> dict[str, Any]:
             "use a Power Fx formula column"
         )
     elif derived_type == "rollup":
-        rollup_spec = derived_col.get("rollup_spec") or {}
-        related_entity = str(rollup_spec.get("related_entity") or "").strip()
-        aggregate_function = str(
-            rollup_spec.get("aggregate_function") or ""
-        ).strip().upper()
-        aggregate_attribute = str(
-            rollup_spec.get("aggregate_attribute") or ""
-        ).strip()
-        if not related_entity or not aggregate_function or not aggregate_attribute:
-            raise ExecutorError(
-                "rollup-type derived column requires rollup_spec with related_entity, "
-                "aggregate_function, and aggregate_attribute"
-            )
-        if aggregate_function not in {"SUM", "AVG", "MIN", "MAX", "COUNT"}:
-            raise ExecutorError(
-                "aggregate_function must be SUM, AVG, MIN, MAX, or COUNT"
-            )
-        common["SourceType"] = 2
-        common["RollupStateData"] = (
-            "<RollupStateData>"
-            f'<Aggregation Name="{schema_name}">'
-            f"<AggregateFunction>{aggregate_function}</AggregateFunction>"
-            f"<AggregateAttribute>{aggregate_attribute}</AggregateAttribute>"
-            f"<RelatedEntityName>{related_entity}</RelatedEntityName>"
-            "</Aggregation>"
-            "</RollupStateData>"
+        raise ExecutorError(
+            "Rollup columns (SourceType=2) are not supported via Dataverse Web API; "
+            "HTTP 400 ODataClientPayloadError. Create the base column via schema_column, "
+            "configure it in Maker Portal, and export via Export-DvSolutionToSource.",
+            category="unsupported_operation",
         )
 
     return common
@@ -2348,10 +2847,14 @@ class DataverseClient:
         self.token = token
         self.solution_name = solution_name
         self.request_count = 0
+        self.write_attempt_count = 0
+        self.write_count = 0
 
     def request(self, operation: OperationRequest) -> HttpResult:
         validate_runtime_request(operation.method, operation.path)
         self.request_count += 1
+        if operation.method in WRITE_METHODS:
+            self.write_attempt_count += 1
         url = self.service_root + "/" + operation.path.lstrip("/")
         headers = {
             "Accept": "application/json",
@@ -2385,6 +2888,8 @@ class DataverseClient:
                         or response.headers.get("REQ_ID")
                         or ""
                     )
+                    if operation.method in WRITE_METHODS:
+                        self.write_count += 1
                     return HttpResult(
                         response.status,
                         entity_id,
@@ -2969,7 +3474,17 @@ def _preflight_single(
         approval=approval,
         check_oauth=True,
     )
-    if operation not in {"add_solution_component", "remove_solution_component"}:
+    if row.get("component_type") == "code_plugin":
+        payload = row.get("payload") or {}
+        steps = payload.get("steps") or []
+        if len(steps) != 2 or {step.get("message") for step in steps} != {"Create", "Update"}:
+            raise ExecutorError(
+                "code_plugin requires the two compiler-declared Create and Update steps"
+            )
+        plugin_registration_summary_request(row)
+        if operation != "verify":
+            plugin_project_assembly_path(row)
+    elif operation not in {"add_solution_component", "remove_solution_component"}:
         requests = build_static_requests(
             row,
             operation,
@@ -4352,6 +4867,131 @@ def post_evidence(payload: dict[str, Any], issue_number: int) -> dict[str, Any]:
     )
 
 
+def _execute_plugin_registration(
+        row: dict[str, Any],
+        operation: str,
+        issue_number: int,
+        *,
+        approval: str,
+        dry_run: bool,
+    ) -> list[dict[str, Any]]:
+        if operation not in {"create", "update", "verify"}:
+            capability_for(row, operation)
+            raise ExecutorError(
+                f"code_plugin.{operation} is not supported by the registration executor",
+                category="unsupported_operation",
+            )
+        capability, service_root, solution_name = validate_executor_preflight(
+            row, operation, approval=approval, check_oauth=not dry_run
+        )
+        summary_request = plugin_registration_summary_request(row)
+        if dry_run:
+            return [
+                {
+                    "method": capability["http"]["method"],
+                    "endpoint_family": capability["http"]["endpoint_family"],
+                    "path_template": capability["http"]["path_template"],
+                    "solution_context": capability["solution_context"]["mechanism"],
+                    "description": summary_request.description,
+                    "parameter_names": list(summary_request.parameter_names),
+                    "body_withheld": operation != "verify",
+                }
+            ]
+
+        assembly_content = None
+        if operation != "verify":
+            assembly_content = plugin_project_assembly_path(row).read_bytes()
+            if not assembly_content:
+                raise ExecutorError(
+                    "compiled plug-in assembly is empty",
+                    category="configuration_prerequisite",
+                )
+
+        client: DataverseClient | None = None
+        try:
+            token = acquire_token(
+                row,
+                row["authentication_policy"],
+                emit_waiting_status=True,
+                emit_auth_result=True,
+            )
+            _transition_dev_to_in_progress(row["id"])
+            client = DataverseClient(service_root, token, solution_name)
+            print(
+                json.dumps(
+                    {
+                        "executor_state": {
+                            "status": "request-invoked",
+                            "action": f"code_plugin.{operation}",
+                            "environment_url": row["authoring_target"]["environment_url"].rstrip("/"),
+                            "method": capability["http"]["method"],
+                            "endpoint_family": capability["http"]["endpoint_family"],
+                            "note": "Exact dependency reads and one aggregate plug-in registration are being executed",
+                        }
+                    },
+                    sort_keys=True,
+                ),
+                file=sys.stderr,
+            )
+            verification, immutable_id, correlation_id, write_occurred = (
+                reconcile_plugin_registration(
+                    row, client, operation, assembly_content
+                )
+            )
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                operation,
+                summary_request,
+                result="succeeded",
+                status="204" if write_occurred else "200",
+                error_code="no_error",
+                message="Plug-in assembly, generated type, declared steps, image, and solution memberships were verified as one aggregate.",
+                immutable_id=immutable_id,
+                correlation_id=correlation_id,
+                verification=verification,
+                write_occurred=write_occurred,
+            )
+            posted = post_evidence(evidence, issue_number)
+            return [
+                {
+                    "result": "succeeded",
+                    "status": 204 if write_occurred else 200,
+                    "operation": summary_request.description,
+                    "immutable_id": immutable_id,
+                    "evidence": posted.get("result"),
+                }
+            ]
+        except ExecutorError as exc:
+            action_invoked = bool(client and client.write_attempt_count)
+            write_occurred = bool(client and client.write_count)
+            exc.action_invoked = action_invoked
+            exc.write_occurred = write_occurred
+            if not action_invoked:
+                raise
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                operation,
+                summary_request,
+                result="blocked",
+                status=str(exc.status or "blocked"),
+                error_code=exc.category,
+                message=str(exc),
+                immutable_id="",
+                correlation_id=exc.correlation_id,
+                verification={
+                    "identity": "not-run",
+                    "payload": "not-run",
+                    "membership": "not-run",
+                },
+                write_occurred=write_occurred,
+            )
+            post_evidence(evidence, issue_number)
+            exc.evidence_posted = True
+            raise
+
+
 def validate_bundled_recovery_evidence(
     row: dict[str, Any], issue_number: int, immutable_id: str
 ) -> None:
@@ -4402,6 +5042,19 @@ def execute(
     (listing every relationship) authorizes the whole grouped task. A flat or
     non-relationship task executes exactly as before.
     """
+    if row.get("component_type") == "code_plugin":
+        if verification_id:
+            raise ExecutorError(
+                "verification-id recovery is not supported for plug-in registration",
+                category="unsupported_operation",
+            )
+        return _execute_plugin_registration(
+            row,
+            operation,
+            issue_number,
+            approval=approval,
+            dry_run=dry_run,
+        )
     relationships = (row.get("payload") or {}).get("relationships")
     grouped = (
         row.get("component_type") == "schema_relationship"

@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -55,6 +56,80 @@ def executable_command(command: list[str]) -> list[str]:
         return []
     executable = shutil.which(str(command[0]))
     return [executable or str(command[0]), *[str(token) for token in command[1:]]]
+
+
+def package_version_result(
+    step: dict[str, Any], root: Path = P.ROOT
+) -> tuple[str, str]:
+    package = str(step.get("package") or "")
+    expected = str(step.get("expected_version") or "")
+    project_paths = step.get("project_paths") or []
+    if not package or not expected or not project_paths:
+        return "blocked", "package preflight is missing package, version, or project paths"
+
+    root = root.resolve()
+    checked = 0
+    for relative in project_paths:
+        project_root = (root / str(relative)).resolve()
+        try:
+            project_root.relative_to(root)
+        except ValueError:
+            return "blocked", "component project path escapes the repository root"
+        project_files = (
+            [project_root]
+            if project_root.suffix.lower() == ".csproj"
+            else sorted(project_root.glob("*.csproj"))
+        )
+        if len(project_files) != 1:
+            return "blocked", "component project path must resolve to exactly one .csproj"
+        project_file = project_files[0]
+        try:
+            project = ET.parse(project_file)
+        except (OSError, ET.ParseError):
+            return "blocked", "component project manifest is missing or invalid"
+        references = [
+            element
+            for element in project.iter()
+            if element.tag.rsplit("}", 1)[-1] == "PackageReference"
+            and (element.get("Include") or element.get("Update")) == package
+        ]
+        if len(references) != 1:
+            return "blocked", f"component project must contain one exact {package} reference"
+        reference = references[0]
+        version = reference.get("Version")
+        if version is None:
+            version_node = next(
+                (
+                    child
+                    for child in reference
+                    if child.tag.rsplit("}", 1)[-1] == "Version"
+                ),
+                None,
+            )
+            version = version_node.text if version_node is not None else None
+        if str(version or "").strip() != expected:
+            return "blocked", f"{package} project reference does not match {expected}"
+
+        lock_path = project_file.parent / "packages.lock.json"
+        try:
+            lock = json.loads(lock_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return "blocked", "NuGet packages.lock.json is missing or invalid"
+        dependencies = lock.get("dependencies")
+        if not isinstance(dependencies, dict) or not dependencies:
+            return "blocked", "NuGet lock file has no target-framework dependencies"
+        locked = [
+            framework.get(package)
+            for framework in dependencies.values()
+            if isinstance(framework, dict) and package in framework
+        ]
+        if not locked or any(
+            not isinstance(item, dict) or str(item.get("resolved") or "") != expected
+            for item in locked
+        ):
+            return "blocked", f"{package} lock entry does not resolve exactly to {expected}"
+        checked += 1
+    return "ready", f"verified {package} {expected} in {checked} project manifest and lock file"
 
 
 def load_simulation(path: Path | None) -> dict[str, Any]:
@@ -869,10 +944,7 @@ def automatic_result(
     if action == "package":
         if dry_run:
             return "ready", "exact package version is resolved; dry-run did not inspect a project manifest"
-        return (
-            "waiting-for-human",
-            "verify the exact package in the DEV target project manifest and lockfile",
-        )
+        return package_version_result(step)
     if action == "repository_scope":
         return "ready", "repository-only scope is explicit"
     if action == "session_validation":

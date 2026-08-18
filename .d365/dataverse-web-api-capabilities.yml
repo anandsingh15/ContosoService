@@ -83,6 +83,21 @@ official_references:
   solution_component_types:
     title: Solution Component table reference
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/solutioncomponent#componenttype
+  plugin_registration:
+    title: Register a plug-in
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/register-plug-in
+  plugin_assembly:
+    title: Plug-in Assembly table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/pluginassembly
+  plugin_type:
+    title: Plug-in Type table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/plugintype
+  sdk_message_processing_step:
+    title: SDK Message Processing Step table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sdkmessageprocessingstep
+  sdk_message_processing_step_image:
+    title: SDK Message Processing Step Image table reference
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sdkmessageprocessingstepimage
   publish_xml:
     title: PublishXml action
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/publishxml
@@ -966,6 +981,39 @@ profiles:
     executor: {supported: false, builder: unsupported}
     rationale: PAC remains primary only for its documented source, package, registration, and solution operations; generic component creation is not claimed.
     official_references: [power_platform_cli]
+  plugin-registration-create:
+    support: supported
+    operation: create
+    primary_resource: dataverse-web-api
+    http: {method: POST, endpoint_family: entity_set, path_template: pluginassemblies}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: plugintypes}, rationale: "Resolve the exact generated plug-in type, steps, images, and routed solution memberships after the aggregate write."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: code_plugin_registration}
+    rationale: Upload the exact signed assembly with explicit solution context, resolve its automatically registered plug-in type, then create the compiler-declared steps and images as one verified aggregate.
+    official_references: [optional_parameters, plugin_registration, plugin_assembly, plugin_type, sdk_message_processing_step, sdk_message_processing_step_image, solution_component_types]
+  plugin-registration-update:
+    support: supported
+    operation: update
+    primary_resource: dataverse-web-api
+    http: {method: PATCH, endpoint_family: entity_set, path_template: "pluginassemblies({record_id})"}
+    solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: plugintypes}, rationale: "Resolve and verify the exact plug-in registration graph and routed solution memberships after the aggregate update."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: code_plugin_registration}
+    rationale: Update only the exact assembly and idempotently reconcile its compiler-declared steps and image under explicit solution context.
+    official_references: [optional_parameters, plugin_registration, plugin_assembly, plugin_type, sdk_message_processing_step, sdk_message_processing_step_image, solution_component_types]
+  plugin-registration-verify:
+    support: supported
+    operation: verify
+    primary_resource: dataverse-web-api
+    http: {method: GET, endpoint_family: entity_set, path_template: plugintypes}
+    solution_context: {mechanism: not_applicable}
+    verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: entity_set, path_template: plugintypes}, rationale: "Verify the exact generated plug-in type, declared steps and image, and routed solution memberships without writing."}
+    fallback: {resource: maker-portal, allowed_when: documented_operation_unsupported_or_primary_unavailable, issue_evidence_required: true}
+    executor: {supported: true, builder: code_plugin_registration}
+    rationale: Targeted exact-identity reads verify the complete registration graph without broad inventory or mutation.
+    official_references: [plugin_registration, plugin_assembly, plugin_type, sdk_message_processing_step, sdk_message_processing_step_image, solution_component_types]
   mcp-environment-primary:
     support: unsupported_or_not_applicable
     operation: any
@@ -1079,10 +1127,12 @@ components:
   flow_cloud:
     implementation_scope: repository_and_dataverse_solution
     operations: {create: flowagent-primary, update: flowagent-primary, delete: flowagent-primary, verify: flowagent-primary}
-  code_plugin: &pac_component
+  code_plugin:
+    implementation_scope: repository_and_dataverse_solution
+    operations: {create: plugin-registration-create, update: plugin-registration-update, delete: pac-primary, verify: plugin-registration-verify}
+  code_custom_api: &pac_component
     implementation_scope: repository_and_dataverse_solution
     operations: {create: pac-primary, update: pac-primary, delete: pac-primary, verify: pac-primary}
-  code_custom_api: *pac_component
   code_pcf: *pac_component
   code_webres_*: *pac_component
   mcs_*: *copilot_component
