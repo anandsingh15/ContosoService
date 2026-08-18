@@ -137,6 +137,21 @@ FORM_CONTROL_CLASS_IDS = {
     "lookup": "{270BD3DB-D9AF-4782-9025-509E298DEC0A}",
 }
 FORM_SUBGRID_CLASS_ID = "{E7A81278-8635-4D9E-8D4D-59480B391C5B}"
+WEB_RESOURCE_TYPE_VALUES = {
+    "html": 1,
+    "css": 2,
+    "js": 3,
+    "xml": 4,
+    "png": 5,
+    "jpg": 6,
+    "jpeg": 6,
+    "gif": 7,
+    "xap": 8,
+    "xsl": 9,
+    "ico": 10,
+    "svg": 11,
+    "resx": 12,
+}
 # Conservative FetchXML condition operators the executor will emit.
 VIEW_FILTER_OPERATORS = frozenset(
     {
@@ -297,6 +312,10 @@ SAFE_PATH_METHODS = (
     ),
     (
         re.compile(r"^appmodules(?:\([0-9a-fA-F-]{36}\))?(?:\?.*)?$"),
+        {"GET", "POST", "PATCH", "DELETE"},
+    ),
+    (
+        re.compile(r"^webresourceset(?:\([0-9a-fA-F-]{36}\))?(?:\?.*)?$"),
         {"GET", "POST", "PATCH", "DELETE"},
     ),
     (re.compile(r"^solutions\?.*$"), {"GET"}),
@@ -907,9 +926,56 @@ def canonical_identity(row: dict[str, Any]) -> tuple[str, str]:
         else "record_name"
     )
     value = str((row.get("payload") or {}).get(field) or "").strip()
-    if not value or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_.-]{1,99}", value):
+    if str(row.get("component_type") or "").startswith("code_webres_"):
+        valid = bool(
+            re.fullmatch(r"[A-Za-z][A-Za-z0-9_.\-/]{1,199}", value)
+            and ".." not in value
+            and "//" not in value
+            and not value.endswith("/")
+        )
+    else:
+        valid = bool(re.fullmatch(r"[A-Za-z][A-Za-z0-9_.-]{1,99}", value))
+    if not value or not valid:
         raise ExecutorError(f"compiler-owned {field} is missing or invalid")
     return field, value
+
+
+def web_resource_content(row: dict[str, Any]) -> bytes:
+    payload = row.get("payload") or {}
+    source_path = str(payload.get("source_path") or "").strip().replace("\\", "/")
+    if (
+        not source_path
+        or source_path.startswith("/")
+        or ".." in source_path.split("/")
+    ):
+        raise ExecutorError("code_webres source_path is missing or unsafe")
+    projects = [
+        item
+        for item in (row.get("authoring_target") or {}).get("component_projects") or []
+        if item.get("component_type") == "code_webres_*"
+        and item.get("project_type") == "web_resource_source"
+    ]
+    if len(projects) != 1:
+        raise ExecutorError("code_webres does not resolve to one compiler-owned source project")
+    project_root = (P.ROOT / str(projects[0].get("path") or "")).resolve()
+    source = (project_root / source_path).resolve()
+    try:
+        source.relative_to(project_root)
+        project_root.relative_to(P.ROOT.resolve())
+    except ValueError:
+        raise ExecutorError("code_webres source path escapes the repository") from None
+    if not source.is_file():
+        raise ExecutorError("code_webres source file does not exist")
+    return source.read_bytes()
+
+
+def web_resource_type(row: dict[str, Any]) -> int:
+    component_type = str(row.get("component_type") or "")
+    subtype = component_type.removeprefix("code_webres_").lower()
+    value = WEB_RESOURCE_TYPE_VALUES.get(subtype)
+    if value is None:
+        raise ExecutorError(f"unsupported web-resource subtype '{subtype}'")
+    return value
 
 
 def option_values(
@@ -2356,6 +2422,77 @@ def build_static_requests(
             form_subgrid_context=form_subgrid_context,
         )
     _, identity = canonical_identity(row)
+    if component_type.startswith("code_webres_"):
+        if operation in {"create", "update"}:
+            body = {
+                "name": identity,
+                "displayname": str(payload.get("name") or identity),
+                "webresourcetype": web_resource_type(row),
+                "content": base64.b64encode(web_resource_content(row)).decode("ascii"),
+            }
+            return [
+                OperationRequest(
+                    "POST" if operation == "create" else "PATCH",
+                    "webresourceset"
+                    if operation == "create"
+                    else f"webresourceset({resolved_id})",
+                    body,
+                    tuple(body),
+                    tuple(body),
+                    context,
+                    f"{operation} exact web resource",
+                    expected_body=body,
+                )
+            ]
+        if operation == "delete":
+            return [
+                OperationRequest(
+                    "DELETE",
+                    f"webresourceset({resolved_id})",
+                    None,
+                    (),
+                    (),
+                    context,
+                    "delete exact web resource",
+                )
+            ]
+        if operation == "verify":
+            query = urlencode(
+                {
+                    "$select": "webresourceid,name,displayname,webresourcetype,content",
+                    "$filter": f"name eq '{odata_string(identity)}'",
+                }
+            )
+            return [
+                OperationRequest(
+                    "GET",
+                    f"webresourceset?{query}",
+                    None,
+                    (),
+                    (),
+                    "none",
+                    "verify exact web resource",
+                )
+            ]
+        if operation == "publish":
+            if not GUID_RE.fullmatch(resolved_id):
+                raise ExecutorError("web-resource publish requires an exact record ID")
+            parameter_xml = (
+                "<importexportxml><webresources><webresource>"
+                + resolved_id
+                + "</webresource></webresources></importexportxml>"
+            )
+            return [
+                OperationRequest(
+                    "POST",
+                    "PublishXml",
+                    {"ParameterXml": parameter_xml},
+                    ("ParameterXml",),
+                    ("published_customizations",),
+                    "none",
+                    "publish only the exact web resource",
+                )
+            ]
     if component_type == "schema_table":
         if operation == "create":
             return [
@@ -3612,6 +3749,22 @@ def record_lookup_request(row: dict[str, Any]) -> OperationRequest | None:
     if row["component_type"] in ROW_COMPONENT_TYPES:
         return row_lookup_request(row)
     _, identity = canonical_identity(row)
+    if str(row.get("component_type") or "").startswith("code_webres_"):
+        query = urlencode(
+            {
+                "$select": "webresourceid,name",
+                "$filter": f"name eq '{odata_string(identity)}'",
+            }
+        )
+        return OperationRequest(
+            "GET",
+            "webresourceset?" + query,
+            None,
+            (),
+            (),
+            "none",
+            "resolve exact web-resource ID",
+        )
     if row["component_type"] == "config_env_variable":
         query = urlencode(
             {
@@ -3995,6 +4148,8 @@ def resolve_record_id(row: dict[str, Any], client: DataverseClient) -> str:
     key = (
         ROW_ID_FIELDS[row["component_type"]]
         if row["component_type"] in ROW_COMPONENT_TYPES
+        else "webresourceid"
+        if str(row["component_type"]).startswith("code_webres_")
         else "environmentvariabledefinitionid"
         if row["component_type"] == "config_env_variable"
         else "connectionreferenceid"
@@ -4071,7 +4226,11 @@ def response_item(row: dict[str, Any], data: dict[str, Any]) -> dict[str, Any]:
         "config_env_variable": "schemaname",
         "integ_connection_ref": "connectionreferencelogicalname",
     }
-    field = identity_fields.get(row["component_type"])
+    field = (
+        "name"
+        if str(row["component_type"]).startswith("code_webres_")
+        else identity_fields.get(row["component_type"])
+    )
     if not field:
         return values[0] if len(values) == 1 else {}
     matches = [
@@ -4089,7 +4248,12 @@ def response_immutable_id(row: dict[str, Any], data: dict[str, Any]) -> str:
         "integ_connection_ref": "connectionreferenceid",
         **ROW_ID_FIELDS,
     }
-    value = str(item.get(keys.get(row["component_type"], "MetadataId")) or "")
+    key = (
+        "webresourceid"
+        if str(row["component_type"]).startswith("code_webres_")
+        else keys.get(row["component_type"], "MetadataId")
+    )
+    value = str(item.get(key) or "")
     return value if GUID_RE.fullmatch(value) else ""
 
 
@@ -4411,6 +4575,12 @@ def expected_payload_matches(
         return False
     body = request.expected_body or request.body or {}
     component_type = row["component_type"]
+    if component_type.startswith("code_webres_"):
+        return all(
+            str(item.get(key) or "") == str(value)
+            for key, value in body.items()
+            if key in {"name", "displayname", "webresourcetype", "content"}
+        )
     if component_type == "uiux_form":
         if str(item.get("name") or "").lower() != row_component_name(row).lower():
             return False
@@ -5353,7 +5523,7 @@ def _execute_single(
             return [{"result": "succeeded", "status": 200, "operation": request.description, "immutable_id": immutable_id, "evidence": posted.get("result")}]
         resolved_id = ""
         metadata_id = ""
-        if operation in {"update", "delete"}:
+        if operation in {"update", "delete", "publish"}:
             resolved_id = resolve_record_id(row, client)
             if row["component_type"] == "schema_relationship":
                 metadata_id = resolve_metadata_id(row, client)

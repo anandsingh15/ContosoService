@@ -1110,15 +1110,21 @@ routing:
       rationale: MCP is used for targeted reads only.
 - match:
     component_type: code_webres_*
-  rationale: Although WebResource CRUD is documented, content construction and repository binding are not complete in the current payload contract.
+  rationale: Web resources use compiler-bound Web API CRUD from routed repository source, targeted publication, and PAC only for post-write solution source synchronization.
   resources:
     required:
+    - resource: microsoft-learn
+      purpose: web_resource_contract_grounding
+      rationale: Official Web Resource and PublishXml documentation grounds the payload, solution context, and publication contract.
     - resource: node-toolchain
       purpose: build_and_test
       rationale: The registered Node toolchain builds and validates web resource content.
+    - resource: dataverse-web-api
+      purpose: solution_aware_web_resource_authoring
+      rationale: The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.
     - resource: power-platform-cli
-      purpose: primary_solution_source_operations
-      rationale: PAC remains primary for supported solution source and package operations.
+      purpose: post_write_solution_source_sync
+      rationale: PAC exports and unpacks the exact routed solution only after successful Web API verification.
     - resource: dataverse-mcp
       purpose: targeted_runtime_verification
       tools:
