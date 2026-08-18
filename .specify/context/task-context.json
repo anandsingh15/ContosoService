@@ -47158,7 +47158,7 @@
         "INTK-0001-REQ-045"
       ],
       "source_plan_hash": "99321645dc69dd66e4f31285d51b47893ede1cf789526b2f1d22d64d4d336078",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "changed_paths",

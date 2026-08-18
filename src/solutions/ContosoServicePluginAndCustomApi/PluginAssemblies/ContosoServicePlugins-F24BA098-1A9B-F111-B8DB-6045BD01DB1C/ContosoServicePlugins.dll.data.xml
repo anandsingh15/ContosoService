@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PluginAssembly FullName="ContosoService.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d4f929efc97e9d53" PluginAssemblyId="f24ba098-1a9b-f111-b8db-6045bd01db1c" CustomizationLevel="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IsolationMode>2</IsolationMode>
+  <SourceType>0</SourceType>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <FileName>/PluginAssemblies/ContosoServicePlugins-F24BA098-1A9B-F111-B8DB-6045BD01DB1C/ContosoServicePlugins.dll</FileName>
+  <PluginTypes>
+    <PluginType AssemblyQualifiedName="ContosoService.Plugins.MaintenanceJobCompletionPlugin, ContosoService.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d4f929efc97e9d53" PluginTypeId="c39ed95b-1d9b-f111-b8db-6045bd01d8e8" Name="ContosoService.Plugins.MaintenanceJobCompletionPlugin">
+      <FriendlyName>Maintenance Job completion enforcement</FriendlyName>
+    </PluginType>
+  </PluginTypes>
+</PluginAssembly>
