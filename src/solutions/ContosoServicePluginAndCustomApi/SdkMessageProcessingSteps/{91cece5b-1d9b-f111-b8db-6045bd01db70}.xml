@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SdkMessageProcessingStep Name="Maintenance Job Create completion and schedule guard" SdkMessageProcessingStepId="{91cece5b-1d9b-f111-b8db-6045bd01db70}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>9ebdbb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
+  <PluginTypeName>ContosoService.Plugins.MaintenanceJobCompletionPlugin, ContosoService.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d4f929efc97e9d53</PluginTypeName>
+  <PluginTypeId>c39ed95b-1d9b-f111-b8db-6045bd01d8e8</PluginTypeId>
+  <PrimaryEntity>aks_maintenancejob</PrimaryEntity>
+  <AsyncAutoDelete>0</AsyncAutoDelete>
+  <FilteringAttributes></FilteringAttributes>
+  <InvocationSource>1</InvocationSource>
+  <Mode>0</Mode>
+  <Rank>10</Rank>
+  <EventHandlerTypeCode>4602</EventHandlerTypeCode>
+  <Stage>20</Stage>
+  <IsCustomizable>1</IsCustomizable>
+  <IsHidden>0</IsHidden>
+  <SupportedDeployment>0</SupportedDeployment>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <SdkMessageProcessingStepImages />
+</SdkMessageProcessingStep>
