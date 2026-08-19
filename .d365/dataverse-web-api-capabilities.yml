@@ -256,7 +256,7 @@ profiles:
     verification: {resource: dataverse-web-api, http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}, rationale: Verify the exact derived column by table and logical name through the compiler-bound executor.}
     fallback: *portal_fallback
     executor: {supported: true, builder: schema_derived_column}
-    rationale: &derived_rationale The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.
+    rationale: &derived_rationale Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.
     official_references: [optional_parameters, column_definitions, publish_xml]
   derived-column-update:
     support: supported
