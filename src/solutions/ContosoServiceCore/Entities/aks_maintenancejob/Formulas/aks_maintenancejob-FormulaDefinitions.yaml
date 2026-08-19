@@ -1,0 +1,1 @@
+aks_labourcost: =aks_labourhours * Decimal(aks_hourlyrate)
