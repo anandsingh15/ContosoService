@@ -1,5 +1,5 @@
 {
-  "context_hash": "12264bb796ea597518fe80d774dd235864f741ca1fc4973d844c6bbb875cf41e",
+  "context_hash": "f330d04c0638cdd2589c22626260d28d2e83932ad7bbb987c5fad5c35d5e7384",
   "plans": [
     {
       "components": [
@@ -17705,6 +17705,3839 @@
       "source_spec_hash": "2ee45ddbb5398807ec196752f757303dab82f3f3cc0700131ac2d0949febdb44",
       "status": "reviewed",
       "workspace": "specs/004-job-completion-enforcement"
+    },
+    {
+      "components": [
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "core-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "core-solution",
+            "solution_unique_name": "ContosoServiceCore",
+            "unpack_path": "src/solutions/ContosoServiceCore"
+          },
+          "build_skill": "dataverse-table",
+          "columns": [
+            {
+              "auditing": "enabled",
+              "data_type": "DateTime",
+              "date_time_behavior": "DateOnly",
+              "name": "aks_lastservicedate",
+              "required_level": "optional"
+            }
+          ],
+          "component_type": "schema_table",
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "http"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-create",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Target-read the exact logical name and verify routed-solution membership.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "DELETE",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-delete",
+                  "rationale": "HTTP DELETE destroys the table in the environment; it is never substituted for RemoveSolutionComponent.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Confirm the exact table no longer exists; do not infer another identity.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "publish": {
+                  "executor": {
+                    "builder": "publish_xml",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "PublishXml"
+                  },
+                  "official_references": [
+                    "publish_xml",
+                    "publish_request_schema"
+                  ],
+                  "operation": "publish",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-publish",
+                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Re-read only the published canonical metadata.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "column_definitions",
+                    "publish_xml"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-update",
+                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Verify only the exact existing table and child columns added by the compiler-owned extension payload.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "GET",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "table_definitions"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-verify",
+                  "rationale": "Web API or MCP targeted reads verify the result without solution export or unpack.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Read the canonical table identity and exact expected fields only.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_targeted_source_operations",
+                "rationale": "PAC is used only when the build skill explicitly requires supported source or package operations after the scoped write.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "metadata_contract",
+                "rationale": "Official Microsoft documentation defines the allowed metadata request contract.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses the pinned public-client MSAL dependency with an in-memory token cache.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_authoring_and_verification",
+                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              }
+            ],
+            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-001",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Vehicle service-date extension",
+          "operation": "extend",
+          "ownership": "user_team",
+          "primary_name": "aks_name",
+          "satisfies": [
+            "INTK-0001-REQ-030"
+          ],
+          "schema_name": "aks_vehicle",
+          "table": "aks_vehicle",
+          "task_profile": {
+            "evidence": [
+              "validation_results",
+              "import_verification"
+            ],
+            "executor_default": "agent",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "import_smoke"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "core-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "core-solution",
+            "solution_unique_name": "ContosoServiceCore",
+            "unpack_path": "src/solutions/ContosoServiceCore"
+          },
+          "build_skill": "dataverse-table",
+          "columns": [
+            {
+              "auditing": "enabled",
+              "data_type": "Boolean",
+              "default": false,
+              "name": "aks_completionfollowupcompleted",
+              "required_level": "optional"
+            },
+            {
+              "auditing": "enabled",
+              "data_type": "Boolean",
+              "default": false,
+              "name": "aks_urgentalertcreated",
+              "required_level": "optional"
+            }
+          ],
+          "component_type": "schema_table",
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "http"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-create",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Target-read the exact logical name and verify routed-solution membership.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "DELETE",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-delete",
+                  "rationale": "HTTP DELETE destroys the table in the environment; it is never substituted for RemoveSolutionComponent.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Confirm the exact table no longer exists; do not infer another identity.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "publish": {
+                  "executor": {
+                    "builder": "publish_xml",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "PublishXml"
+                  },
+                  "official_references": [
+                    "publish_xml",
+                    "publish_request_schema"
+                  ],
+                  "operation": "publish",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-publish",
+                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Re-read only the published canonical metadata.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "column_definitions",
+                    "publish_xml"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-update",
+                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Verify only the exact existing table and child columns added by the compiler-owned extension payload.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "GET",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "table_definitions"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-verify",
+                  "rationale": "Web API or MCP targeted reads verify the result without solution export or unpack.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Read the canonical table identity and exact expected fields only.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_targeted_source_operations",
+                "rationale": "PAC is used only when the build skill explicitly requires supported source or package operations after the scoped write.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "metadata_contract",
+                "rationale": "Official Microsoft documentation defines the allowed metadata request contract.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses the pinned public-client MSAL dependency with an in-memory token cache.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_authoring_and_verification",
+                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              }
+            ],
+            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-002",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Maintenance Job follow-up state extension",
+          "operation": "extend",
+          "ownership": "user_team",
+          "primary_name": "aks_name",
+          "satisfies": [
+            "INTK-0001-REQ-042",
+            "INTK-0001-REQ-043"
+          ],
+          "schema_name": "aks_maintenancejob",
+          "table": "aks_maintenancejob",
+          "task_profile": {
+            "evidence": [
+              "validation_results",
+              "import_verification"
+            ],
+            "executor_default": "agent",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "import_smoke"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "core-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "core-solution",
+            "solution_unique_name": "ContosoServiceCore",
+            "unpack_path": "src/solutions/ContosoServiceCore"
+          },
+          "build_skill": "dataverse-table",
+          "columns": [
+            {
+              "auditing": "enabled",
+              "data_type": "Text",
+              "max_length": 200,
+              "name": "aks_followupkey",
+              "required_level": "optional"
+            },
+            {
+              "allowed_values": [
+                "confirmation",
+                "urgent_alert",
+                "automation_failure"
+              ],
+              "auditing": "enabled",
+              "data_type": "Text",
+              "max_length": 32,
+              "name": "aks_followupkind",
+              "required_level": "optional"
+            }
+          ],
+          "component_type": "schema_table",
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "http"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-create",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Target-read the exact logical name and verify routed-solution membership.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "DELETE",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-delete",
+                  "rationale": "HTTP DELETE destroys the table in the environment; it is never substituted for RemoveSolutionComponent.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Confirm the exact table no longer exists; do not infer another identity.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "publish": {
+                  "executor": {
+                    "builder": "publish_xml",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "PublishXml"
+                  },
+                  "official_references": [
+                    "publish_xml",
+                    "publish_request_schema"
+                  ],
+                  "operation": "publish",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-publish",
+                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Re-read only the published canonical metadata.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "table_definitions",
+                    "column_definitions",
+                    "publish_xml"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-update",
+                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Verify only the exact existing table and child columns added by the compiler-owned extension payload.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "schema_table",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "GET",
+                    "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "table_definitions"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-table-verify",
+                  "rationale": "Web API or MCP targeted reads verify the result without solution export or unpack.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{identity}')"
+                    },
+                    "rationale": "Read the canonical table identity and exact expected fields only.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_targeted_source_operations",
+                "rationale": "PAC is used only when the build skill explicitly requires supported source or package operations after the scoped write.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "metadata_contract",
+                "rationale": "Official Microsoft documentation defines the allowed metadata request contract.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses the pinned public-client MSAL dependency with an in-memory token cache.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_authoring_and_verification",
+                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              }
+            ],
+            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-003",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Task follow-up metadata extension",
+          "operation": "extend",
+          "ownership": "user_team",
+          "primary_name": "subject",
+          "satisfies": [
+            "INTK-0001-REQ-032",
+            "INTK-0001-REQ-033",
+            "INTK-0001-REQ-034",
+            "INTK-0001-REQ-042",
+            "INTK-0001-REQ-044"
+          ],
+          "schema_name": "task",
+          "table": "task",
+          "task_profile": {
+            "evidence": [
+              "validation_results",
+              "import_verification"
+            ],
+            "executor_default": "agent",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "import_smoke"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "core-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "core-solution",
+            "solution_unique_name": "ContosoServiceCore",
+            "unpack_path": "src/solutions/ContosoServiceCore"
+          },
+          "build_skill": "dataverse-table",
+          "cascade_configuration": {
+            "Assign": "Cascade",
+            "Delete": "Restrict",
+            "Merge": "NoCascade",
+            "Reparent": "Cascade",
+            "Share": "Cascade",
+            "Unshare": "Cascade"
+          },
+          "component_type": "schema_relationship",
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "schema_relationship",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "RelationshipDefinitions"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "relationship_definitions"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-relationship-create",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "RelationshipDefinitions(SchemaName='{identity}')"
+                    },
+                    "rationale": "Verify the exact relationship schema name.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "schema_relationship",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "DELETE",
+                    "path_template": "RelationshipDefinitions(MetadataId='{metadata_id}')"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "relationship_definitions"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-relationship-delete",
+                  "rationale": "HTTP DELETE destroys the relationship in the environment and never removes only solution membership.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "RelationshipDefinitions(SchemaName='{identity}')"
+                    },
+                    "rationale": "Confirm the exact relationship no longer exists.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "publish": {
+                  "executor": {
+                    "builder": "publish_xml",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "PublishXml"
+                  },
+                  "official_references": [
+                    "publish_xml",
+                    "publish_request_schema"
+                  ],
+                  "operation": "publish",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-publish",
+                  "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Re-read only the published canonical metadata.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "schema_relationship",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "RelationshipDefinitions(MetadataId='{metadata_id}')"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "relationship_definitions",
+                    "publish_xml"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-relationship-update",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "RelationshipDefinitions(SchemaName='{identity}')"
+                    },
+                    "rationale": "Retrieve and replace the one exact relationship definition.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "schema_relationship",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "GET",
+                    "path_template": "RelationshipDefinitions(SchemaName='{identity}')"
+                  },
+                  "official_references": [
+                    "relationship_definitions"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-relationship-verify",
+                  "rationale": "Targeted verification avoids broad metadata discovery.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "RelationshipDefinitions(SchemaName='{identity}')"
+                    },
+                    "rationale": "Target-read the exact relationship.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal fallback must cite the exact failed or unsupported capability in issue evidence.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "metadata_contract",
+                "rationale": "Official metadata documentation is required for every selected schema operation.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "Public-client MSAL is pinned and tokens remain in memory only.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "Supported metadata operations use the documented solution header or action parameter.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-004",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "lookup_column": "aks_maintenancejobid",
+          "name": "aks_maintenancejob_task",
+          "referenced_attribute": "aks_maintenancejobid",
+          "related_table": "task",
+          "relationship_type": "one_to_many",
+          "required_level": "optional",
+          "satisfies": [
+            "INTK-0001-REQ-032",
+            "INTK-0001-REQ-033",
+            "INTK-0001-REQ-034",
+            "INTK-0001-REQ-044"
+          ],
+          "schema_name": "aks_maintenancejob_task",
+          "table": "aks_maintenancejob",
+          "task_profile": {
+            "evidence": [
+              "validation_results",
+              "import_verification"
+            ],
+            "executor_default": "agent",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "import_smoke"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "core-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "core-solution",
+            "solution_unique_name": "ContosoServiceCore",
+            "unpack_path": "src/solutions/ContosoServiceCore"
+          },
+          "build_skill": "dataverse-table",
+          "component_type": "schema_key",
+          "depends_on": [
+            "DES-05-CMP-003"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "schema_key",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "POST",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Keys"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "alternate_keys",
+                    "alternate_key_web_api_sample",
+                    "entity_key_metadata"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-key-create",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{table}')/Keys"
+                    },
+                    "rationale": "Verify the exact key schema name, columns, and index status.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "schema_key",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "DELETE",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Keys(LogicalName='{identity}')"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "alternate_keys",
+                    "entity_key_metadata"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-key-delete",
+                  "rationale": "HTTP DELETE destroys the alternate key and never removes only solution membership.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{table}')/Keys"
+                    },
+                    "rationale": "Confirm the exact key no longer exists.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "alternate_keys"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "maker-portal",
+                  "profile": "metadata-key-update-unsupported",
+                  "rationale": "Microsoft documents create and delete semantics for alternate keys; update is not treated as an in-place reliable operation and delete/create is never substituted automatically.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the replacement key only after an explicitly approved delete and create sequence.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "schema_key",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "metadata",
+                    "method": "GET",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Keys"
+                  },
+                  "official_references": [
+                    "alternate_keys"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "metadata-key-verify",
+                  "rationale": "Targeted verification checks asynchronous key activation without broad discovery.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "metadata",
+                      "method": "GET",
+                      "path_template": "EntityDefinitions(LogicalName='{table}')/Keys"
+                    },
+                    "rationale": "Target-read only the containing table's key collection and match the canonical key name.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal fallback is allowed only with issue evidence for the specific API failure or unsupported payload.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "metadata_contract_grounding",
+                "rationale": "Official alternate-key documentation grounds the compiler-approved request and verification contract.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor requires the pinned in-memory public-client authentication library.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_authoring_and_verification",
+                "rationale": "The executor performs the solution-aware write and all exact targeted verification without an MCP dependency.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              }
+            ],
+            "route_rationale": "Alternate-key create and exact post-action identity, payload, index-status, and solution-membership verification are fully owned by the compiler-bound Web API executor."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-005",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "key_columns": [
+            "aks_followupkey"
+          ],
+          "name": "aks_task_followup_key",
+          "satisfies": [
+            "INTK-0001-REQ-042"
+          ],
+          "schema_name": "aks_task_followup_key",
+          "table": "task",
+          "task_profile": {
+            "evidence": [
+              "validation_results",
+              "import_verification"
+            ],
+            "executor_default": "agent",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "import_smoke"
+            ]
+          }
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "core-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "core-solution",
+            "solution_unique_name": "ContosoServiceCore",
+            "unpack_path": "src/solutions/ContosoServiceCore"
+          },
+          "build_skill": "model-driven-ui",
+          "columns": [
+            "subject",
+            "aks_followupkind",
+            "aks_maintenancejobid",
+            "ownerid",
+            "prioritycode",
+            "scheduledend",
+            "statuscode"
+          ],
+          "component_type": "uiux_view",
+          "depends_on": [
+            "DES-05-CMP-003",
+            "DES-05-CMP-004"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "uiux_view",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "POST",
+                    "path_template": "savedqueries"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "saved_query"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "view-create",
+                  "rationale": "The executor generates FetchXML and LayoutXML from the structured view payload and writes the SavedQuery row under the documented solution header; MCP stays verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "savedqueries"
+                    },
+                    "rationale": "Query the exact view by name, returned type, and query type to confirm the compiler-generated FetchXML and LayoutXML.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "uiux_view",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "DELETE",
+                    "path_template": "savedqueries({record_id})"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "saved_query"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "view-delete",
+                  "rationale": "HTTP DELETE destroys the SavedQuery row in the environment; it is never substituted for RemoveSolutionComponent.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "savedqueries"
+                    },
+                    "rationale": "Confirm only the exact view was removed.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "uiux_view",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "PATCH",
+                    "path_template": "savedqueries({record_id})"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "saved_query"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "view-update",
+                  "rationale": "The executor generates FetchXML and LayoutXML from the structured view payload and writes the SavedQuery row under the documented solution header; MCP stays verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "savedqueries"
+                    },
+                    "rationale": "Verify the exact view content after the patch by name and returned type.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "uiux_view",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "GET",
+                    "path_template": "savedqueries"
+                  },
+                  "official_references": [
+                    "saved_query"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "view-verify",
+                  "rationale": "Targeted verification reads only the exact saved query, not the full view inventory.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "savedqueries"
+                    },
+                    "rationale": "Target-read the exact view by name and returned type.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "unsupported_view_fallback",
+                "rationale": "Portal fallback requires sanitized evidence for an unsupported SavedQuery payload.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "view_contract",
+                "rationale": "Official SavedQuery documentation grounds query types and writable fields.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_view_authoring_and_verification",
+                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              }
+            ],
+            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+          },
+          "execution_host": "local_interactive",
+          "filters": [
+            {
+              "column": "aks_followupkey",
+              "operator": "not-null"
+            },
+            {
+              "column": "statecode",
+              "operator": "eq",
+              "value": 0
+            }
+          ],
+          "id": "DES-05-CMP-006",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Open Maintenance Follow-up Tasks",
+          "satisfies": [
+            "INTK-0001-REQ-032",
+            "INTK-0001-REQ-033",
+            "INTK-0001-REQ-034",
+            "INTK-0001-REQ-044"
+          ],
+          "schema_name": "aks_openmaintenancefollowuptasks",
+          "sorts": [
+            {
+              "column": "prioritycode",
+              "descending": true
+            },
+            {
+              "column": "createdon",
+              "descending": false
+            }
+          ],
+          "table": "task",
+          "task_profile": {
+            "evidence": [
+              "screenshots",
+              "reviewer_evidence"
+            ],
+            "executor_default": "hybrid",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "solution_schema",
+              "accessibility_review",
+              "runtime_verification"
+            ]
+          },
+          "view_type": "public"
+        },
+        {
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "automation-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "automation-solution",
+            "solution_unique_name": "ContosoServiceAutomation",
+            "unpack_path": "src/solutions/ContosoServiceAutomation"
+          },
+          "build_skill": "integration-wiring",
+          "component_type": "integ_connection_ref",
+          "connector": "shared_commondataserviceforapps",
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "add_solution_component": {
+                  "executor": {
+                    "builder": "add_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "AddSolutionComponent"
+                  },
+                  "official_references": [
+                    "add_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "add_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "add-solution-component",
+                  "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "create": {
+                  "executor": {
+                    "builder": "integ_connection_ref",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "POST",
+                    "path_template": "connectionreferences"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "connection_reference"
+                  ],
+                  "operation": "create",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "connection-reference-create",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "connectionreferences"
+                    },
+                    "rationale": "Query the exact connection-reference logical name without inspecting connection secrets.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "delete": {
+                  "destructive_effect": "environment_delete",
+                  "executor": {
+                    "builder": "integ_connection_ref",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "DELETE",
+                    "path_template": "connectionreferences({record_id})"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "connection_reference"
+                  ],
+                  "operation": "delete",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "connection-reference-delete",
+                  "rationale": "HTTP DELETE destroys the connection-reference row and can break consumers; it is not membership removal.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "connectionreferences"
+                    },
+                    "rationale": "Confirm only the exact logical name was removed.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "remove_solution_component": {
+                  "destructive_effect": "solution_membership_only",
+                  "executor": {
+                    "builder": "remove_solution_component",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "unbound_action",
+                    "method": "POST",
+                    "path_template": "RemoveSolutionComponent"
+                  },
+                  "official_references": [
+                    "remove_solution_component",
+                    "solution_component_types"
+                  ],
+                  "operation": "remove_solution_component",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "remove-solution-component",
+                  "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+                  "solution_context": {
+                    "mechanism": "action_parameter",
+                    "name": "SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "integ_connection_ref",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "PATCH",
+                    "path_template": "connectionreferences({record_id})"
+                  },
+                  "official_references": [
+                    "optional_parameters",
+                    "connection_reference"
+                  ],
+                  "operation": "update",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "connection-reference-update",
+                  "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+                  "solution_context": {
+                    "mechanism": "MSCRM.SolutionUniqueName",
+                    "name": "MSCRM.SolutionUniqueName",
+                    "value_source": "authoring_target.solution_unique_name"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "connectionreferences"
+                    },
+                    "rationale": "Verify logical name, connector identity, and non-secret metadata only.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "integ_connection_ref",
+                    "supported": true
+                  },
+                  "fallback": {
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "maker-portal"
+                  },
+                  "http": {
+                    "endpoint_family": "entity_set",
+                    "method": "GET",
+                    "path_template": "connectionreferences"
+                  },
+                  "official_references": [
+                    "connection_reference"
+                  ],
+                  "operation": "verify",
+                  "primary_resource": "dataverse-web-api",
+                  "profile": "connection-reference-verify",
+                  "rationale": "Targeted verification does not inspect or bind a concrete connection.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "supported",
+                  "verification": {
+                    "http": {
+                      "endpoint_family": "entity_set",
+                      "method": "GET",
+                      "path_template": "connectionreferences"
+                    },
+                    "rationale": "Target-read the exact logical name and non-secret connector metadata.",
+                    "resource": "dataverse-mcp",
+                    "tools": [
+                      "describe",
+                      "read_query"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "interactive_binding_or_api_failure",
+                "rationale": "Portal is allowed for connection binding or with issue evidence for the specific API failure.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_and_settings_operations",
+                "rationale": "PAC handles only supported solution/source and deployment-settings work.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "connection_reference_contract",
+                "rationale": "Official table references define supported messages and writable fields.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "Supported row operations use compiler-owned paths and the explicit solution header.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_reference_verification",
+                "rationale": "Generic MCP writes do not guarantee compiler-validated custom-solution context and are verification-only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Connection Reference row CRUD is documented and supports explicit solution context through MSCRM.SolutionUniqueName."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-007",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Dataverse - Automated follow-up",
+          "satisfies": [
+            "INTK-0001-REQ-030",
+            "INTK-0001-REQ-031",
+            "INTK-0001-REQ-032",
+            "INTK-0001-REQ-033",
+            "INTK-0001-REQ-042",
+            "INTK-0001-REQ-043",
+            "INTK-0001-REQ-044"
+          ],
+          "schema_name": "aks_DataverseAutomatedFollowUp",
+          "task_profile": {
+            "evidence": [
+              "changed_paths",
+              "contract_validation",
+              "connection_verification"
+            ],
+            "executor_default": "hybrid",
+            "target_roots": [
+              "src/solutions",
+              "config"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "api_contract",
+              "connection_reference",
+              "security_review"
+            ]
+          }
+        },
+        {
+          "actions": [
+            "exit succeeded when aks_completionfollowupcompleted is true",
+            "derive immutable follow-up keys from aks_maintenancejobid and event kind",
+            "read the related aks_vehicle and any existing task by aks_followupkey",
+            "reconcile an existing confirmation task and marker as idempotent success",
+            "when vehicle aks_status is 74874, perform one changeset that updates aks_lastservicedate and aks_status to 74873, creates the owner-assigned confirmation task, and sets aks_completionfollowupcompleted true",
+            "when vehicle aks_status is not 74874, perform one changeset that updates only aks_lastservicedate, creates the owner-assigned confirmation task, and sets aks_completionfollowupcompleted true",
+            "retry transient Dataverse actions with exponential backoff",
+            "on failure or timeout, upsert one owner-assigned automation_failure task by failure key with sanitized flow-run correlation and terminate Failed"
+          ],
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "automation-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "automation-solution",
+            "solution_unique_name": "ContosoServiceAutomation",
+            "unpack_path": "src/solutions/ContosoServiceAutomation"
+          },
+          "build_skill": "power-automate-flow",
+          "component_type": "flow_cloud",
+          "depends_on": [
+            "DES-05-CMP-001",
+            "DES-05-CMP-002",
+            "DES-05-CMP-003",
+            "DES-05-CMP-004",
+            "DES-05-CMP-005",
+            "DES-05-CMP-007"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "approved_visual_fallback",
+                "rationale": "Portal fallback is allowed only when FlowAgent is unavailable or rejects an unsupported operation and sanitized issue evidence records the blocker.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_operations",
+                "rationale": "PAC is used only for documented solution/source operations and not generic flow creation.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "flow_grounding",
+                "rationale": "Official Power Automate and Workflow references ground the supported route.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Microsoft Power Automate plugin FlowAgent MCP for cloud-flow authoring, validation, publishing, execution, and diagnosis.",
+                "id": "power-automate-flowagent",
+                "kind": "mcp",
+                "purpose": "primary_flow_authoring",
+                "rationale": "The Microsoft FlowAgent MCP owns validated flow definitions and lifecycle operations without fabricated clientdata.",
+                "required_tools": [
+                  "resolve_environment",
+                  "set_current_env",
+                  "get_current_env",
+                  "list_connections",
+                  "pick_or_create_connection",
+                  "get_connector",
+                  "get_operation_details",
+                  "resolve_entity",
+                  "resolve_refs",
+                  "resolve_params",
+                  "validate_flow",
+                  "preflight_flow",
+                  "create_flow",
+                  "update_flow",
+                  "edit_flow",
+                  "delete_flow",
+                  "get_flow",
+                  "publish_flow",
+                  "run_flow",
+                  "smoke_test",
+                  "get_run_history",
+                  "diagnose_run"
+                ],
+                "server": "flowagent",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "resolve_environment",
+                  "set_current_env",
+                  "get_current_env",
+                  "list_connections",
+                  "pick_or_create_connection",
+                  "get_connector",
+                  "get_operation_details",
+                  "resolve_entity",
+                  "resolve_refs",
+                  "resolve_params",
+                  "validate_flow",
+                  "preflight_flow",
+                  "create_flow",
+                  "update_flow",
+                  "edit_flow",
+                  "delete_flow",
+                  "get_flow",
+                  "publish_flow",
+                  "run_flow",
+                  "smoke_test",
+                  "get_run_history",
+                  "diagnose_run"
+                ],
+                "version": "3.0.1",
+                "version_policy": "exact"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "schema_and_runtime_verification",
+                "rationale": "MCP provides targeted discovery and verification only, not solution-aware writes.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Microsoft FlowAgent owns complete cloud-flow definition construction, connector discovery, validation, solution preflight, creation, publishing, execution, and diagnosis."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-008",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Process Maintenance Job Completion Follow-up",
+          "satisfies": [
+            "INTK-0001-REQ-030",
+            "INTK-0001-REQ-031",
+            "INTK-0001-REQ-032",
+            "INTK-0001-REQ-034",
+            "INTK-0001-REQ-042",
+            "INTK-0001-REQ-043",
+            "INTK-0001-REQ-044"
+          ],
+          "schema_name": "aks_ProcessMaintenanceJobCompletionFollowUp",
+          "task_profile": {
+            "evidence": [
+              "validation_results",
+              "run_history"
+            ],
+            "executor_default": "hybrid",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "flow_definition",
+              "connection_reference",
+              "runtime_verification"
+            ]
+          },
+          "trigger": {
+            "concurrency": 1,
+            "connection_reference": "aks_DataverseAutomatedFollowUp",
+            "connector": "shared_commondataserviceforapps",
+            "event": "row_updated",
+            "filter_rows": "aks_stage eq 74880",
+            "scope": "organization",
+            "select_columns": [
+              "aks_stage"
+            ],
+            "table": "aks_maintenancejob"
+          }
+        },
+        {
+          "actions": [
+            "exit succeeded when aks_urgentalertcreated is true",
+            "derive immutable urgent-alert and failure keys from aks_maintenancejobid",
+            "read any existing task by aks_followupkey and reconcile its marker as idempotent success",
+            "perform one changeset that creates a High-priority owner-assigned urgent_alert task carrying vehicle and scheduled-date context and sets aks_urgentalertcreated true",
+            "retry transient Dataverse actions with exponential backoff",
+            "on failure or timeout, upsert one owner-assigned automation_failure task by failure key with sanitized flow-run correlation and terminate Failed"
+          ],
+          "authoring_target": {
+            "authentication_mode": "interactive_user",
+            "connection_alias": "dataverse-authoring",
+            "environment": "authoring-dataverse",
+            "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
+            "environment_url": "https://org89912357.crm.dynamics.com",
+            "kind": "dataverse_solution",
+            "name": "automation-solution-target",
+            "publisher_name": "AnandPOC",
+            "publisher_prefix": "aks",
+            "solution": "automation-solution",
+            "solution_unique_name": "ContosoServiceAutomation",
+            "unpack_path": "src/solutions/ContosoServiceAutomation"
+          },
+          "build_skill": "power-automate-flow",
+          "component_type": "flow_cloud",
+          "depends_on": [
+            "DES-05-CMP-002",
+            "DES-05-CMP-003",
+            "DES-05-CMP-004",
+            "DES-05-CMP-005",
+            "DES-05-CMP-007"
+          ],
+          "development_resources": {
+            "capabilities": {
+              "implementation_scope": "repository_and_dataverse_solution",
+              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "operations": {
+                "create": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                },
+                "delete": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                },
+                "update": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                },
+                "verify": {
+                  "executor": {
+                    "builder": "unsupported",
+                    "supported": false
+                  },
+                  "fallback": {
+                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
+                    "issue_evidence_required": true,
+                    "resource": "maker-portal"
+                  },
+                  "official_references": [
+                    "workflow",
+                    "power_automate_flowagent"
+                  ],
+                  "operation": "any",
+                  "primary_resource": "power-automate-flowagent",
+                  "profile": "flowagent-primary",
+                  "rationale": "Cloud-flow authoring belongs to the Microsoft FlowAgent product resource, not the Dataverse HTTP executor; FlowAgent constructs and validates complete definitions without fabricated workflow clientdata.",
+                  "solution_context": {
+                    "mechanism": "not_applicable"
+                  },
+                  "support": "unsupported_or_not_applicable",
+                  "verification": {
+                    "rationale": "Verify the exact flow definition, publication state, and targeted runtime outcome through FlowAgent.",
+                    "resource": "power-automate-flowagent",
+                    "tools": [
+                      "get_flow",
+                      "get_run_history",
+                      "diagnose_run"
+                    ]
+                  }
+                }
+              },
+              "policy": {
+                "delete_semantics": {
+                  "delete": "HTTP DELETE removes the metadata component or row from the environment; it is destructive and is never a substitute for removing solution membership.",
+                  "remove_solution_component": "RemoveSolutionComponent removes only the component's membership from the named unmanaged solution; it does not delete the component from the environment."
+                },
+                "destructive_approval_required": true,
+                "mcp_solution_authoring_rationale": "Generic Dataverse MCP writes do not provide a compiler-validated explicit custom-solution context equivalent to the operation's documented Web API solution mechanism; Dataverse MCP is discovery and targeted post-action verification only for solution-aware authoring.",
+                "portal_fallback_evidence_required": true
+              }
+            },
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "approved_visual_fallback",
+                "rationale": "Portal fallback is allowed only when FlowAgent is unavailable or rejects an unsupported operation and sanitized issue evidence records the blocker.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "preferred": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "supported_solution_operations",
+                "rationale": "PAC is used only for documented solution/source operations and not generic flow creation.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
+            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "required": [
+              {
+                "authentication": "none",
+                "description": "Official Microsoft implementation grounding.",
+                "id": "microsoft-learn",
+                "kind": "mcp",
+                "purpose": "flow_grounding",
+                "rationale": "Official Power Automate and Workflow references ground the supported route.",
+                "server": "microsoft-learn",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Microsoft Power Automate plugin FlowAgent MCP for cloud-flow authoring, validation, publishing, execution, and diagnosis.",
+                "id": "power-automate-flowagent",
+                "kind": "mcp",
+                "purpose": "primary_flow_authoring",
+                "rationale": "The Microsoft FlowAgent MCP owns validated flow definitions and lifecycle operations without fabricated clientdata.",
+                "required_tools": [
+                  "resolve_environment",
+                  "set_current_env",
+                  "get_current_env",
+                  "list_connections",
+                  "pick_or_create_connection",
+                  "get_connector",
+                  "get_operation_details",
+                  "resolve_entity",
+                  "resolve_refs",
+                  "resolve_params",
+                  "validate_flow",
+                  "preflight_flow",
+                  "create_flow",
+                  "update_flow",
+                  "edit_flow",
+                  "delete_flow",
+                  "get_flow",
+                  "publish_flow",
+                  "run_flow",
+                  "smoke_test",
+                  "get_run_history",
+                  "diagnose_run"
+                ],
+                "server": "flowagent",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "resolve_environment",
+                  "set_current_env",
+                  "get_current_env",
+                  "list_connections",
+                  "pick_or_create_connection",
+                  "get_connector",
+                  "get_operation_details",
+                  "resolve_entity",
+                  "resolve_refs",
+                  "resolve_params",
+                  "validate_flow",
+                  "preflight_flow",
+                  "create_flow",
+                  "update_flow",
+                  "edit_flow",
+                  "delete_flow",
+                  "get_flow",
+                  "publish_flow",
+                  "run_flow",
+                  "smoke_test",
+                  "get_run_history",
+                  "diagnose_run"
+                ],
+                "version": "3.0.1",
+                "version_policy": "exact"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "schema_and_runtime_verification",
+                "rationale": "MCP provides targeted discovery and verification only, not solution-aware writes.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
+              }
+            ],
+            "route_rationale": "Microsoft FlowAgent owns complete cloud-flow definition construction, connector discovery, validation, solution preflight, creation, publishing, execution, and diagnosis."
+          },
+          "execution_host": "local_interactive",
+          "id": "DES-05-CMP-009",
+          "implementation_scope": "repository_and_dataverse_solution",
+          "name": "Create Urgent Maintenance Job Alert",
+          "satisfies": [
+            "INTK-0001-REQ-033",
+            "INTK-0001-REQ-034",
+            "INTK-0001-REQ-042",
+            "INTK-0001-REQ-044"
+          ],
+          "schema_name": "aks_CreateUrgentMaintenanceJobAlert",
+          "task_profile": {
+            "evidence": [
+              "validation_results",
+              "run_history"
+            ],
+            "executor_default": "hybrid",
+            "source_sync_evidence": [
+              "changed_solution_paths"
+            ],
+            "target_roots": [
+              "src/solutions"
+            ],
+            "validation_kinds": [
+              "payload_conformance",
+              "flow_definition",
+              "connection_reference",
+              "runtime_verification"
+            ]
+          },
+          "trigger": {
+            "concurrency": 1,
+            "connection_reference": "aks_DataverseAutomatedFollowUp",
+            "connector": "shared_commondataserviceforapps",
+            "event": "row_added",
+            "filter_rows": "aks_priority eq 74884 or aks_priority eq 74885",
+            "scope": "organization",
+            "table": "aks_maintenancejob"
+          }
+        }
+      ],
+      "feature": "FEAT-05",
+      "plan": "DES-05",
+      "plan_hash": "3f94f74d4e476ae7495fbd98350367c97975fdc8a167e849ddd65b130d77f98c",
+      "source_spec_hash": "f440eb5f381f844a006ed36a40758ea6a18d775f4c81a49a6b9c6c7e2a78c47a",
+      "status": "reviewed",
+      "workspace": "specs/005-automated-followup-orchestration"
     }
   ],
   "repository_context_hash": "ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe",
