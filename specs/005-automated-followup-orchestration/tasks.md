@@ -13,7 +13,7 @@ Generated from the current plan.md. Historical DEV artifacts are retained but om
 | DEV | Component | Type | Scope | Execution host | Authoring target | Authentication policy | Required resources | Executor | Depends on | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [DEV-0045](development/DEV-0045.md) | DES-05-CMP-001 | schema_table | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | ready |
-| [DEV-0046](development/DEV-0046.md) | DES-05-CMP-002 | schema_table | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | in_review |
+| [DEV-0046](development/DEV-0046.md) | DES-05-CMP-002 | schema_table | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | completed |
 | [DEV-0047](development/DEV-0047.md) | DES-05-CMP-003 | schema_table | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | — | ready |
 | [DEV-0048](development/DEV-0048.md) | DES-05-CMP-004 | schema_relationship | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, dataverse-mcp | agent | — | ready |
 | [DEV-0049](development/DEV-0049.md) | DES-05-CMP-005 | schema_key | repository_and_dataverse_solution | local_interactive | core-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api | agent | DEV-0047 | ready |
