@@ -1,9 +1,9 @@
 ---
 feature: FEAT-01
 plan: DES-01
-source_plan_hash: ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb
+source_plan_hash: ef3379a9a4e57ff96d3de14eec1e6fe3f67d5197e6cd28fb707ed81a2eec833e
 repository_context_hash: 60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04
-task_context_hash: 50140ab0b8594a7d7545858e92477d0b06d40d605d074eeea22130296ac17eec
+task_context_hash: 420d7e83ff7cd7cc6d00b89c5bf4b97c08a2adbf5e68aeb160c32dd9cfb52156
 status: draft
 ---
 # Development work index

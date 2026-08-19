@@ -2,9 +2,9 @@
 id: DES-04
 status: reviewed
 implements_feature: FEAT-04
-source_spec_hash: 2ee45ddbb5398807ec196752f757303dab82f3f3cc0700131ac2d0949febdb44
+source_spec_hash: ab36278428487d81177ef3e1a7dc1afa2a45c4d341908edba28631a036bdfc73
 repository_context_hash: 60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04
-plan_hash: 26e19bc960e76e07c8a62e9dcb2d23ab895a01d0a6aaed905e3a621451adc5b6
+plan_hash: 62e471e4fbf768c0b0a549655a2b0d85842242100304473b7285f156b38c82d8
 ---
 
 # Design - FEAT-04 job-completion-enforcement (DES-04)
@@ -269,5 +269,5 @@ this is an execution prerequisite, not an unresolved architecture decision.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-04 | FEAT-04 | `2ee45ddbb5398807ec196752f757303dab82f3f3cc0700131ac2d0949febdb44` | `60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04` |
+| DES-04 | FEAT-04 | `ab36278428487d81177ef3e1a7dc1afa2a45c4d341908edba28631a036bdfc73` | `60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04` |
 <!-- COMPILER:END provenance -->

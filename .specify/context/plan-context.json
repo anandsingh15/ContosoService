@@ -1,5 +1,5 @@
 {
-  "context_hash": "be502b038ddf4d96ba962a37edbfba9a8311ec87e347eb00c9b00886f641338d",
+  "context_hash": "00dd2c41f7cc3563a3a788aaeed9fd855ebdb594359a480d443ff13ce7304c22",
   "plans": [
     {
       "components": [
@@ -6426,8 +6426,8 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
-      "source_spec_hash": "11ab23277bcbf2ae2eb6a06d1a2a2fd8ef45a8eecd081495473cdda94c011a06",
+      "plan_hash": "ef3379a9a4e57ff96d3de14eec1e6fe3f67d5197e6cd28fb707ed81a2eec833e",
+      "source_spec_hash": "4e1f11c4626c930faee5cee074b710856595a8b7d3878ba555732f0528d7924a",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
     },
@@ -11204,8 +11204,8 @@
       ],
       "feature": "FEAT-02",
       "plan": "DES-02",
-      "plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
-      "source_spec_hash": "bbfa968b7baa98c1cc1ebefe271ff6a87e3ac23a823b4dc31162b198ede82c1c",
+      "plan_hash": "799ed6b44632aa72c36adce1d9e1c8ef81d1ee22b2fda60262a4774777c9e738",
+      "source_spec_hash": "687a51468163b78d0afe83335953b7bcf8c42a0cf9623a87399bd6bc204234dc",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
     },
@@ -16475,8 +16475,8 @@
       ],
       "feature": "FEAT-03",
       "plan": "DES-03",
-      "plan_hash": "f2fd4dabc5a2e6b798321766ca102cadcd255481afca0fdf76db1ed3912034ec",
-      "source_spec_hash": "89b2842b386af6a52ae9fbaf6592d17048e344f60d21fc74f08e6e2766cf7057",
+      "plan_hash": "be1b9bdb4af34451c0aafeeeda47cd2762783999ae07d22f7946559d33d47a78",
+      "source_spec_hash": "c7f824b7e69e6315e4623a22158133efc6a5e7999d0a5162dd308f1eadf24f66",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
     },
@@ -17701,8 +17701,8 @@
       ],
       "feature": "FEAT-04",
       "plan": "DES-04",
-      "plan_hash": "26e19bc960e76e07c8a62e9dcb2d23ab895a01d0a6aaed905e3a621451adc5b6",
-      "source_spec_hash": "2ee45ddbb5398807ec196752f757303dab82f3f3cc0700131ac2d0949febdb44",
+      "plan_hash": "62e471e4fbf768c0b0a549655a2b0d85842242100304473b7285f156b38c82d8",
+      "source_spec_hash": "ab36278428487d81177ef3e1a7dc1afa2a45c4d341908edba28631a036bdfc73",
       "status": "reviewed",
       "workspace": "specs/004-job-completion-enforcement"
     },
@@ -21534,8 +21534,8 @@
       ],
       "feature": "FEAT-05",
       "plan": "DES-05",
-      "plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
-      "source_spec_hash": "f440eb5f381f844a006ed36a40758ea6a18d775f4c81a49a6b9c6c7e2a78c47a",
+      "plan_hash": "831e1b92673653c3291cbcadda5a140b1f1c8f606735e727ae53b3677503b444",
+      "source_spec_hash": "1aed8e823449ca0a2169e03ebde27bcb386fae579bbd0a3f6e0158d2f3e2c691",
       "status": "reviewed",
       "workspace": "specs/005-automated-followup-orchestration"
     },
@@ -25213,13 +25213,13 @@
       ],
       "feature": "FEAT-06",
       "plan": "DES-06",
-      "plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
-      "source_spec_hash": "42821d6f48143c9d2fc1854128f671df14e31e5be8c387dcfb8e2fb5e903069a",
+      "plan_hash": "ee3c57077fb494fa6cb63d24d631c25d472d8bc66f4587a6a5cfb3c9862bdef3",
+      "source_spec_hash": "623bdc57184981e3900d11cc32a9a724e34bd7b1b8abbaf3f5267a882a0c8052",
       "status": "reviewed",
       "workspace": "specs/006-access-roles-app-shell"
     }
   ],
   "repository_context_hash": "60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04",
   "schema_version": 1,
-  "spec_context_hash": "188e432d57cf4b413a2ef3e00392d2c27824574b606ffcb309b939a8d7701cc4"
+  "spec_context_hash": "d7a5f7e2bcbd56336d86ab444912bbf328d7b0da565db6e807c28c342a5196f9"
 }
