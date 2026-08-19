@@ -1,5 +1,5 @@
 {
-  "context_hash": "ff56f031a608bb85bc2b61bd8efdfcc779b90693e78380bd77f59b901706f48b",
+  "context_hash": "f90b86e01172974eca803cd0dab597495b74341391bb1d2b2de35f819436fe72",
   "plans": [
     {
       "components": [
@@ -24274,7 +24274,8 @@
             "business_unit": "org89912357",
             "business_unit_id": "39b3aab1-defe-f011-8406-000d3a306f55",
             "membership": "exactly the active systemuser referenced by contact.aks_systemuserid",
-            "record_name_template": "aks_technician_{contactid}",
+            "record_name_prefix": "aks_technician_",
+            "record_name_suffix_source": "contactid_lowercase_d_guid",
             "roles": []
           },
           "satisfies": [
@@ -25053,7 +25054,7 @@
       ],
       "feature": "FEAT-06",
       "plan": "DES-06",
-      "plan_hash": "28171908157deb1c3f1a268db1deb3505738e4a41766dd69f9fa11c14d70c92b",
+      "plan_hash": "eb6ca3b9e606c34cec965b4730809be6b631396a82e7aee64c9d31353250e6cf",
       "source_spec_hash": "42821d6f48143c9d2fc1854128f671df14e31e5be8c387dcfb8e2fb5e903069a",
       "status": "reviewed",
       "workspace": "specs/006-access-roles-app-shell"

@@ -4,7 +4,7 @@ status: reviewed
 implements_feature: FEAT-06
 source_spec_hash: 42821d6f48143c9d2fc1854128f671df14e31e5be8c387dcfb8e2fb5e903069a
 repository_context_hash: ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe
-plan_hash: 28171908157deb1c3f1a268db1deb3505738e4a41766dd69f9fa11c14d70c92b
+plan_hash: eb6ca3b9e606c34cec965b4730809be6b631396a82e7aee64c9d31353250e6cf
 ---
 
 # Design - FEAT-06 access-roles-app-shell (DES-06)
@@ -262,7 +262,8 @@ components:
     assembly: ContosoService.Plugins
     class_name: ContosoService.Plugins.TechnicianOwnershipAlignmentPlugin
     owner_team:
-      record_name_template: aks_technician_{contactid}
+      record_name_prefix: aks_technician_
+      record_name_suffix_source: contactid_lowercase_d_guid
       business_unit: org89912357
       business_unit_id: 39b3aab1-defe-f011-8406-000d3a306f55
       membership: exactly the active systemuser referenced by contact.aks_systemuserid
@@ -379,6 +380,9 @@ adds no Azure telemetry sink.
   manual Dataverse administrator membership and no Microsoft Entra group binding;
   accept the resulting deviation from REQ-038 automatic identity-group
   joiner/leaver handling - decided by Anand Singh 2026-08-19.
+- [x] Encode the per-technician owner-team name as literal prefix
+  `aks_technician_` plus the Contact ID in lowercase D GUID format, without a
+  brace placeholder in the compiler payload - decided by Anand Singh 2026-08-19.
 <!-- /FILL -->
 
 ## Requirement coverage
