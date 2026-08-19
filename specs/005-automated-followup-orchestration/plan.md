@@ -3,8 +3,8 @@ id: DES-05
 status: reviewed
 implements_feature: FEAT-05
 source_spec_hash: f440eb5f381f844a006ed36a40758ea6a18d775f4c81a49a6b9c6c7e2a78c47a
-repository_context_hash: ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe
-plan_hash: 3f94f74d4e476ae7495fbd98350367c97975fdc8a167e849ddd65b130d77f98c
+repository_context_hash: 60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04
+plan_hash: 0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe
 ---
 
 # Design - FEAT-05 automated-followup-orchestration (DES-05)
@@ -351,5 +351,5 @@ component identities or behaviors.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-05 | FEAT-05 | `f440eb5f381f844a006ed36a40758ea6a18d775f4c81a49a6b9c6c7e2a78c47a` | `ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe` |
+| DES-05 | FEAT-05 | `f440eb5f381f844a006ed36a40758ea6a18d775f4c81a49a6b9c6c7e2a78c47a` | `60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04` |
 <!-- COMPILER:END provenance -->

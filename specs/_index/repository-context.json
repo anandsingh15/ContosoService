@@ -1062,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe",
+  "context_hash": "60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04",
   "conventions_hash": "de9cfd93e3251d7c8841a96e1e1878e01e00571b35aa68259c0e622565bc1952",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -2515,7 +2515,7 @@
         ],
         "operation": "create",
         "primary_resource": "dataverse-web-api",
-        "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+        "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
@@ -2658,7 +2658,7 @@
         ],
         "operation": "update",
         "primary_resource": "dataverse-web-api",
-        "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+        "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
@@ -5127,7 +5127,7 @@
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+  "dataverse_web_api_capabilities_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
   "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
   "design_sources": {
     "schema_version": 1,
@@ -6855,8 +6855,15 @@
         "match": {
           "component_type": "sec_role"
         },
-        "rationale": "Role CRUD exists, but safe base-role copy, BU identity, and privilege resolution are not compiler-reliable from the current payload.",
+        "rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification.",
         "resources": {
+          "fallback": [
+            {
+              "purpose": "documented_api_failure_fallback",
+              "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+              "resource": "maker-portal"
+            }
+          ],
           "required": [
             {
               "purpose": "security_model_grounding",
@@ -6864,9 +6871,19 @@
               "resource": "microsoft-learn"
             },
             {
-              "purpose": "primary_least_privilege_authoring",
-              "rationale": "Portal is primary because the capability matrix rejects unreliable direct role construction.",
-              "resource": "maker-portal"
+              "purpose": "delegated_authentication",
+              "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "primary_solution_aware_authoring",
+              "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "post_write_solution_source_sync",
+              "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
+              "resource": "power-platform-cli"
             },
             {
               "purpose": "targeted_role_verification",
@@ -7141,7 +7158,7 @@
       ]
     }
   },
-  "development_resources_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+  "development_resources_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
   "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
   "schema_version": 1,
   "schemas": {

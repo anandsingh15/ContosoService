@@ -1,5 +1,5 @@
 {
-  "context_hash": "f90b86e01172974eca803cd0dab597495b74341391bb1d2b2de35f819436fe72",
+  "context_hash": "be502b038ddf4d96ba962a37edbfba9a8311ec87e347eb00c9b00886f641338d",
   "plans": [
     {
       "components": [
@@ -23,7 +23,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -334,7 +334,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -483,7 +483,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -794,7 +794,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -944,7 +944,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1255,7 +1255,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -1424,7 +1424,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1755,7 +1755,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -1877,7 +1877,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2208,7 +2208,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -2330,7 +2330,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2661,7 +2661,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -2780,7 +2780,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3093,7 +3093,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -3255,7 +3255,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3568,7 +3568,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -3731,7 +3731,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4044,7 +4044,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -4206,7 +4206,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4519,7 +4519,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -4672,7 +4672,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4938,7 +4938,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -5051,7 +5051,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5317,7 +5317,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -5430,7 +5430,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5696,7 +5696,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -5809,7 +5809,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6075,7 +6075,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -6185,7 +6185,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -6318,7 +6318,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -6426,7 +6426,7 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "9b1c5da3d875e24c219b9d25b10bda818d8416512f4c9aa2d28f1e60c817872d",
+      "plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
       "source_spec_hash": "11ab23277bcbf2ae2eb6a06d1a2a2fd8ef45a8eecd081495473cdda94c011a06",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
@@ -6466,7 +6466,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6797,7 +6797,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -6914,7 +6914,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7206,7 +7206,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -7330,7 +7330,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7606,7 +7606,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -7723,7 +7723,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7999,7 +7999,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -8116,7 +8116,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8392,7 +8392,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -8509,7 +8509,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8785,7 +8785,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -8890,7 +8890,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -9023,7 +9023,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -9156,7 +9156,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -9448,7 +9448,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -9585,7 +9585,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -9877,7 +9877,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -10007,7 +10007,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10283,7 +10283,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -10396,7 +10396,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10688,7 +10688,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -10835,7 +10835,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11111,7 +11111,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -11204,7 +11204,7 @@
       ],
       "feature": "FEAT-02",
       "plan": "DES-02",
-      "plan_hash": "dd7097b7aaa6422277d2ecb89d5041c9a795ec0b26d17c3f6ab7c65c51321a21",
+      "plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
       "source_spec_hash": "bbfa968b7baa98c1cc1ebefe271ff6a87e3ac23a823b4dc31162b198ede82c1c",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
@@ -11270,7 +11270,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11601,7 +11601,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -11725,7 +11725,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12056,7 +12056,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -12165,7 +12165,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12457,7 +12457,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -12586,7 +12586,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12862,7 +12862,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -12981,7 +12981,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13273,7 +13273,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -13438,7 +13438,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13714,7 +13714,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -13831,7 +13831,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14107,7 +14107,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -14225,7 +14225,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14501,7 +14501,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -14611,7 +14611,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -14744,7 +14744,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -14893,7 +14893,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14952,7 +14952,7 @@
                   "operation": "create",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-create",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -15099,7 +15099,7 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-update",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -15180,7 +15180,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -15293,7 +15293,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15352,7 +15352,7 @@
                   "operation": "create",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-create",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -15499,7 +15499,7 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-update",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -15580,7 +15580,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -15693,7 +15693,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15752,7 +15752,7 @@
                   "operation": "create",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-create",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -15899,7 +15899,7 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-update",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -15980,7 +15980,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -16098,7 +16098,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -16157,7 +16157,7 @@
                   "operation": "create",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-create",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -16304,7 +16304,7 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "derived-column-update",
-                  "rationale": "The executor generates computed/calculated/rollup column definitions from validated formula/rollup payloads and writes them via the metadata Attributes endpoint under MSCRM.SolutionUniqueName.",
+                  "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -16385,7 +16385,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -16475,7 +16475,7 @@
       ],
       "feature": "FEAT-03",
       "plan": "DES-03",
-      "plan_hash": "e918af6462de7c55ebd2d4c293ff009f6adcff0f90fc7f1abad44dfcaf7c0302",
+      "plan_hash": "f2fd4dabc5a2e6b798321766ca102cadcd255481afca0fdf76db1ed3912034ec",
       "source_spec_hash": "89b2842b386af6a52ae9fbaf6592d17048e344f60d21fc74f08e6e2766cf7057",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
@@ -16511,7 +16511,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -16683,7 +16683,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -16917,7 +16917,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -17121,7 +17121,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -17276,7 +17276,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -17568,7 +17568,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -17701,7 +17701,7 @@
       ],
       "feature": "FEAT-04",
       "plan": "DES-04",
-      "plan_hash": "f3576c7636637d30d5ae665dda1b6277c2ea498336db10bc86911d6885d4ec71",
+      "plan_hash": "26e19bc960e76e07c8a62e9dcb2d23ab895a01d0a6aaed905e3a621451adc5b6",
       "source_spec_hash": "2ee45ddbb5398807ec196752f757303dab82f3f3cc0700131ac2d0949febdb44",
       "status": "reviewed",
       "workspace": "specs/004-job-completion-enforcement"
@@ -17737,7 +17737,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -18068,7 +18068,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -18192,7 +18192,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -18523,7 +18523,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -18653,7 +18653,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -18984,7 +18984,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -19104,7 +19104,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -19417,7 +19417,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -19571,7 +19571,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -19837,7 +19837,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -19958,7 +19958,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -20234,7 +20234,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -20366,7 +20366,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -20658,7 +20658,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -20824,7 +20824,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -20997,7 +20997,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -21198,7 +21198,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -21371,7 +21371,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -21534,7 +21534,7 @@
       ],
       "feature": "FEAT-05",
       "plan": "DES-05",
-      "plan_hash": "3f94f74d4e476ae7495fbd98350367c97975fdc8a167e849ddd65b130d77f98c",
+      "plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
       "source_spec_hash": "f440eb5f381f844a006ed36a40758ea6a18d775f4c81a49a6b9c6c7e2a78c47a",
       "status": "reviewed",
       "workspace": "specs/005-automated-followup-orchestration"
@@ -21566,7 +21566,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -21750,7 +21750,23 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -21768,18 +21784,55 @@
                 "version_policy": "service_managed"
               },
               {
-                "authentication": "interactive_user",
-                "description": "Human maker authoring surface.",
-                "endpoint": "https://make.powerapps.com",
-                "id": "maker-portal",
-                "kind": "portal",
-                "purpose": "primary_least_privilege_authoring",
-                "rationale": "Portal is primary because the capability matrix rejects unreliable direct role construction.",
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
-                "version": "service-managed",
-                "version_policy": "service_managed"
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "post_write_solution_source_sync",
+                "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
               },
               {
                 "authentication": "interactive_user",
@@ -21820,7 +21873,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Role CRUD exists, but safe base-role copy, BU identity, and privilege resolution are not compiler-reliable from the current payload."
+            "route_rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-001",
@@ -21990,7 +22043,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -22174,7 +22227,23 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -22192,18 +22261,55 @@
                 "version_policy": "service_managed"
               },
               {
-                "authentication": "interactive_user",
-                "description": "Human maker authoring surface.",
-                "endpoint": "https://make.powerapps.com",
-                "id": "maker-portal",
-                "kind": "portal",
-                "purpose": "primary_least_privilege_authoring",
-                "rationale": "Portal is primary because the capability matrix rejects unreliable direct role construction.",
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
-                "version": "service-managed",
-                "version_policy": "service_managed"
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "post_write_solution_source_sync",
+                "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
               },
               {
                 "authentication": "interactive_user",
@@ -22244,7 +22350,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Role CRUD exists, but safe base-role copy, BU identity, and privilege resolution are not compiler-reliable from the current payload."
+            "route_rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-002",
@@ -22358,7 +22464,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -22542,7 +22648,23 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "fallback": [
+              {
+                "authentication": "interactive_user",
+                "description": "Human maker authoring surface.",
+                "endpoint": "https://make.powerapps.com",
+                "id": "maker-portal",
+                "kind": "portal",
+                "purpose": "documented_api_failure_fallback",
+                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "service-managed",
+                "version_policy": "service_managed"
+              }
+            ],
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -22560,18 +22682,55 @@
                 "version_policy": "service_managed"
               },
               {
-                "authentication": "interactive_user",
-                "description": "Human maker authoring surface.",
-                "endpoint": "https://make.powerapps.com",
-                "id": "maker-portal",
-                "kind": "portal",
-                "purpose": "primary_least_privilege_authoring",
-                "rationale": "Portal is primary because the capability matrix rejects unreliable direct role construction.",
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
-                "version": "service-managed",
-                "version_policy": "service_managed"
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "post_write_solution_source_sync",
+                "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
               },
               {
                 "authentication": "interactive_user",
@@ -22612,7 +22771,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Role CRUD exists, but safe base-role copy, BU identity, and privilege resolution are not compiler-reliable from the current payload."
+            "route_rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-003",
@@ -22685,7 +22844,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -22838,7 +22997,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -22952,7 +23111,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -23105,7 +23264,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -23219,7 +23378,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -23372,7 +23531,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -23495,7 +23654,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -23808,7 +23967,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -23969,7 +24128,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -24141,7 +24300,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -24372,7 +24531,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -24570,7 +24729,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -24753,7 +24912,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "9e7701158e417efe11a753227d2e18d74264bf824d35749e8c352d060c6bb8b9",
+              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
               "operations": {
                 "create": {
                   "executor": {
@@ -24951,7 +25110,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "956cd73b0c26532d133ac7cd93f524d1c353dfea73db955037f04b82c21b8347",
+            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
             "required": [
               {
                 "authentication": "none",
@@ -25054,13 +25213,13 @@
       ],
       "feature": "FEAT-06",
       "plan": "DES-06",
-      "plan_hash": "eb6ca3b9e606c34cec965b4730809be6b631396a82e7aee64c9d31353250e6cf",
+      "plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
       "source_spec_hash": "42821d6f48143c9d2fc1854128f671df14e31e5be8c387dcfb8e2fb5e903069a",
       "status": "reviewed",
       "workspace": "specs/006-access-roles-app-shell"
     }
   ],
-  "repository_context_hash": "ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe",
+  "repository_context_hash": "60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04",
   "schema_version": 1,
   "spec_context_hash": "188e432d57cf4b413a2ef3e00392d2c27824574b606ffcb309b939a8d7701cc4"
 }

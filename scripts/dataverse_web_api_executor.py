@@ -3376,14 +3376,16 @@ def _restore_dev_to_ready(dev_id: str) -> None:
 
 def load_row(dev_id: str) -> tuple[dict[str, Any], Path]:
     context = P.read_context(P.TASK_CONTEXT_PATH)
-    rows = [row for row in context.get("tasks") or [] if row.get("id") == dev_id]
+    task_rows = context.get("tasks") or []
+    rows = [row for row in task_rows if row.get("id") == dev_id]
     if len(rows) != 1:
         raise ExecutorError(f"{dev_id} does not resolve to one current task")
     row = dict(rows[0])
-    row["task_context_hash"] = context["context_hash"]
+    task_context_hash = P.workspace_artifact_hash(row["workspace"], task_rows)
+    row["task_context_hash"] = task_context_hash
     path = P.ROOT / row["workspace"] / "development" / f"{dev_id}.md"
     front, _, _ = P.read_markdown(path)
-    if front.get("task_context_hash") != context.get("context_hash"):
+    if front.get("task_context_hash") != task_context_hash:
         raise ExecutorError("DEV task_context_hash is stale")
     if front.get("source_plan_hash") != row.get("source_plan_hash"):
         raise ExecutorError("DEV source_plan_hash is stale")

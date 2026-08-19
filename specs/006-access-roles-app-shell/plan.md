@@ -3,8 +3,8 @@ id: DES-06
 status: reviewed
 implements_feature: FEAT-06
 source_spec_hash: 42821d6f48143c9d2fc1854128f671df14e31e5be8c387dcfb8e2fb5e903069a
-repository_context_hash: ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe
-plan_hash: eb6ca3b9e606c34cec965b4730809be6b631396a82e7aee64c9d31353250e6cf
+repository_context_hash: 60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04
+plan_hash: 88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3
 ---
 
 # Design - FEAT-06 access-roles-app-shell (DES-06)
@@ -419,5 +419,5 @@ adds no Azure telemetry sink.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-06 | FEAT-06 | `42821d6f48143c9d2fc1854128f671df14e31e5be8c387dcfb8e2fb5e903069a` | `ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe` |
+| DES-06 | FEAT-06 | `42821d6f48143c9d2fc1854128f671df14e31e5be8c387dcfb8e2fb5e903069a` | `60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04` |
 <!-- COMPILER:END provenance -->
