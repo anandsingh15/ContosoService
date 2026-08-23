@@ -870,9 +870,16 @@ def reconcile_plugin_registration(
 
 
 def validate_capability_request(
-    capability: dict[str, Any], request: OperationRequest
+    capability: dict[str, Any],
+    request: OperationRequest,
+    *,
+    http_contract: str = "http",
 ) -> None:
-    declared = capability["http"]
+    declared = capability.get(http_contract)
+    if not isinstance(declared, dict):
+        raise ExecutorError(
+            f"compiler-owned capability has no {http_contract} contract"
+        )
     if request.method != declared["method"]:
         raise ExecutorError(
             "constructed HTTP method does not match the compiler-owned capability"
@@ -1047,6 +1054,14 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
             "ManagedPropertyLogicalName": "canmodifyrequirementlevelsettings",
         },
     }
+    auditing = str(column.get("auditing") or "").strip().lower()
+    if auditing:
+        if auditing not in {"enabled", "disabled"}:
+            raise ExecutorError(f"unsupported auditing setting '{auditing}'")
+        common["IsAuditEnabled"] = {
+            "Value": auditing == "enabled",
+            "CanBeChanged": True,
+        }
     matched = P.match_column_data_type(data_type)
     if matched is None:
         choice_name = str(column.get("choice") or "").strip()
@@ -1083,13 +1098,20 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
             }
         )
     elif kind == "text":
+        max_length = int(
+            column.get("max_length")
+            if column.get("max_length") is not None
+            else groups.group(1) or 100
+        )
+        if not 1 <= max_length <= 4000:
+            raise ExecutorError("Text max_length must be between 1 and 4000")
         common.update(
             {
                 "@odata.type": "Microsoft.Dynamics.CRM.StringAttributeMetadata",
                 "AttributeType": "String",
                 "AttributeTypeName": {"Value": "StringType"},
                 "FormatName": {"Value": "Text"},
-                "MaxLength": int(groups.group(1) or 100),
+                "MaxLength": max_length,
             }
         )
     elif kind == "integer":
@@ -1153,6 +1175,25 @@ def column_definition(column: dict[str, Any]) -> dict[str, Any]:
             }
         )
     return common
+
+
+def table_extension_column_request(
+    table: str,
+    column: dict[str, Any],
+    solution_context: str,
+    description: str = "create exact child column for table extension",
+) -> OperationRequest:
+    body = column_definition(column)
+    fields = tuple(key for key in body if key != "@odata.type")
+    return OperationRequest(
+        "POST",
+        f"EntityDefinitions(LogicalName='{odata_string(table)}')/Attributes",
+        body,
+        fields,
+        fields,
+        solution_context,
+        description,
+    )
 
 
 def global_choice_metadata_request(
@@ -2512,15 +2553,7 @@ def build_static_requests(
                 name.lower() for name in (skip_child_schema_names or set())
             }
             return [
-                OperationRequest(
-                    "POST",
-                    f"EntityDefinitions(LogicalName='{odata_string(table)}')/Attributes",
-                    column_definition(column),
-                    ("SchemaName", "AttributeType", "RequiredLevel"),
-                    ("SchemaName", "AttributeType", "RequiredLevel"),
-                    context,
-                    "create exact child column for table extension",
-                )
+                table_extension_column_request(table, column, context)
                 for column in payload.get("columns") or []
                 if isinstance(column, dict)
                 and canonical_child_schema_name(column) not in skip_children
@@ -2927,6 +2960,7 @@ def merge_metadata_update(
     if request.method != "PUT" or row["component_type"] not in {
         "schema_column",
         "schema_relationship",
+        "schema_table",
     }:
         return request
     if row["component_type"] == "schema_relationship":
@@ -2966,7 +3000,67 @@ def merge_metadata_update(
         request.solution_context,
         request.description,
         merge_labels=True,
+        expected_body=request.expected_body or request.body,
     )
+
+
+def bundled_table_recovery_requests(
+    row: dict[str, Any],
+    client: DataverseClient,
+    capability: dict[str, Any],
+) -> list[OperationRequest]:
+    payload = row.get("payload") or {}
+    table = canonical_table(payload.get("table"))
+    requests: list[OperationRequest] = []
+    for column in payload.get("columns") or []:
+        if not isinstance(column, dict):
+            continue
+        expected = column_definition(column)
+        identity = canonical_child_schema_name(column)
+        item_path = (
+            f"EntityDefinitions(LogicalName='{odata_string(table)}')/"
+            f"Attributes(LogicalName='{odata_string(identity)}')"
+        )
+        read_request = OperationRequest(
+            "GET",
+            item_path,
+            None,
+            (),
+            (),
+            "none",
+            "target-read exact bundled child for recovery",
+        )
+        try:
+            client.request_with_404_retries(read_request)
+        except ExecutorError as exc:
+            if exc.status != 404:
+                raise
+            request = table_extension_column_request(
+                table,
+                column,
+                "header",
+                "create missing exact bundled child during recovery",
+            )
+            validate_capability_request(capability, request)
+        else:
+            request = OperationRequest(
+                "PUT",
+                item_path,
+                expected,
+                tuple(expected),
+                tuple(expected),
+                "header",
+                "retrieve, merge, and replace exact bundled child during recovery",
+                merge_labels=True,
+                expected_body=expected,
+            )
+            validate_capability_request(
+                capability, request, http_contract="recovery_http"
+            )
+        requests.append(request)
+    if not requests:
+        raise ExecutorError("bundled recovery resolved to no child columns")
+    return requests
 
 
 class DataverseClient:
@@ -4549,7 +4643,7 @@ def verification_request(
     if (
         request
         and row["component_type"] == "schema_table"
-        and request.path.endswith("/Attributes")
+        and "/Attributes" in request.path
         and isinstance(request.body, dict)
     ):
         table = canonical_table(row["payload"].get("table"))
@@ -4606,6 +4700,20 @@ def expected_payload_matches(
         actual_schema = str(item.get("SchemaName") or item.get("LogicalName") or "")
         if actual_schema.lower() != expected_schema.lower():
             return False
+    if component_type == "schema_table" and "/Attributes" in request.path:
+        if body.get("AttributeType") != item.get("AttributeType"):
+            return False
+        if body.get("MaxLength") != item.get("MaxLength"):
+            return False
+        for property_name in ("RequiredLevel", "IsAuditEnabled"):
+            expected_property = body.get(property_name)
+            if expected_property is None:
+                continue
+            actual_property = item.get(property_name)
+            if not isinstance(actual_property, dict):
+                return False
+            if actual_property.get("Value") != expected_property.get("Value"):
+                return False
     if component_type == "schema_key" and body.get("KeyAttributes"):
         if sorted(item.get("KeyAttributes") or []) != sorted(body["KeyAttributes"]):
             return False
@@ -5455,7 +5563,7 @@ def _execute_single(
         _transition_dev_to_in_progress(row["id"])
 
         client = DataverseClient(service_root, token, solution_name)
-        recovered_request: OperationRequest | None = None
+        recovery_requests: list[OperationRequest] | None = None
         recovered_schema_name = ""
         if is_bundled_recovery:
             request = metadata_verification_request(row, verification_id)
@@ -5475,28 +5583,8 @@ def _execute_single(
                     "recovered child does not match exactly one declared payload column",
                     category="verification_mismatch",
                 )
-            recovered_request = OperationRequest(
-                "POST",
-                f"EntityDefinitions(LogicalName='{odata_string(canonical_table(payload.get('table')))}')/Attributes",
-                column_definition(matching_columns[0]),
-                ("SchemaName", "AttributeType", "RequiredLevel"),
-                ("SchemaName", "AttributeType", "RequiredLevel"),
-                "header",
-                "create exact child column for table extension",
-            )
-            choice_request = global_choice_metadata_request(recovered_request)
-            if choice_request is not None:
-                choice_result = client.request(choice_request)
-                recovered_request = bind_global_choice_metadata_id(
-                    recovered_request, choice_result.data
-                )
-            verification, immutable_id = verify_result(
-                row,
-                client,
-                verification_id,
-                deleted=False,
-                membership_removed=False,
-                request=recovered_request,
+            recovery_requests = bundled_table_recovery_requests(
+                row, client, capability
             )
         elif verification_id:
             request = (
@@ -5548,7 +5636,9 @@ def _execute_single(
             else None
         )
         action_object_id = ""
-        if operation in {"add_solution_component", "remove_solution_component"}:
+        if is_bundled_recovery:
+            requests = recovery_requests or []
+        elif operation in {"add_solution_component", "remove_solution_component"}:
             action_request, action_object_id = solution_action_request(
                 row, operation, client
             )
@@ -5573,7 +5663,15 @@ def _execute_single(
             raise ExecutorError("compiler-owned operation resolved to no requests")
         outputs = []
         for raw_request in requests:
-            validate_capability_request(capability, raw_request)
+            validate_capability_request(
+                capability,
+                raw_request,
+                http_contract=(
+                    "recovery_http"
+                    if is_bundled_recovery and raw_request.method == "PUT"
+                    else "http"
+                ),
+            )
             choice_metadata_request = global_choice_metadata_request(raw_request)
             if choice_metadata_request is not None:
                 request = choice_metadata_request
@@ -5661,16 +5759,11 @@ def _execute_single(
                 }
             )
         if is_bundled_recovery:
-            if recovered_request is None:
-                raise ExecutorError("bundled recovery has no reconciled child request")
-            final_verification, _ = verify_result(
-                row,
-                client,
-                verification_id,
-                deleted=False,
-                membership_removed=False,
-                request=recovered_request,
-            )
+            final_verification = {
+                "identity": "matched",
+                "payload": "matched",
+                "membership": "matched",
+            }
             child_names = tuple(
                 canonical_child_schema_name(column)
                 for column in payload.get("columns") or []
@@ -5693,7 +5786,7 @@ def _execute_single(
                 result="succeeded",
                 status="204",
                 error_code="no_error",
-                message="Recovered existing child and verified every declared bundled child after creating only the remaining column.",
+                message="Target-read and reconciled every declared bundled child using POST only when absent and GET-merge-PUT only when present.",
                 immutable_id=write_immutable_id,
                 correlation_id=write_correlation_id,
                 verification=final_verification,
