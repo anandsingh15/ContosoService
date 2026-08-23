@@ -79,6 +79,20 @@
           </displaynames>
         </attribute>
       </attributes>
+      <EntityKeys>
+        <EntityKey>
+          <Name>aks_task_followup_key</Name>
+          <LogicalName>aks_task_followup_key</LogicalName>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <IsCustomizable>0</IsCustomizable>
+          <EntityKeyAttributes>
+            <AttributeName>aks_followupkey</AttributeName>
+          </EntityKeyAttributes>
+          <displaynames>
+            <displayname description="aks_task_followup_key" languagecode="1033" />
+          </displaynames>
+        </EntityKey>
+      </EntityKeys>
       <EntitySetName>tasks</EntitySetName>
       <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>1</IsBusinessProcessEnabled>
