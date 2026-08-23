@@ -100,6 +100,37 @@ class WebResourceRequestTests(unittest.TestCase):
                 executor.validate_runtime_request(method, path)
 
 
+class ConnectionReferenceRequestTests(unittest.TestCase):
+    def test_builds_standard_connector_request_from_logical_id(self):
+        row = {
+            "component_type": "integ_connection_ref",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "payload": {
+                "connector": "shared_commondataserviceforapps",
+                "name": "Dataverse - Automated follow-up",
+                "schema_name": "aks_DataverseAutomatedFollowUp",
+            },
+        }
+
+        request = executor.build_static_requests(
+            row,
+            "create",
+            {"solution_context": {"mechanism": "MSCRM.SolutionUniqueName"}},
+        )[0]
+
+        self.assertEqual(request.method, "POST")
+        self.assertEqual(request.path, "connectionreferences")
+        self.assertEqual(request.solution_context, "header")
+        self.assertEqual(
+            request.body,
+            {
+                "connectionreferencelogicalname": "aks_DataverseAutomatedFollowUp",
+                "connectionreferencedisplayname": "Dataverse - Automated follow-up",
+                "connectorid": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+            },
+        )
+
+
 class PluginRegistrationRequestTests(unittest.TestCase):
     def test_builds_solution_aware_plugin_assembly_create_request(self):
         row = {

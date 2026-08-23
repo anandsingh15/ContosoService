@@ -78,6 +78,8 @@ TYPE_VALUES = P.ENV_VARIABLE_TYPES
 CONNECTOR_IDS = {
     "microsoft dataverse": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
     "microsoft dataverse (legacy)": "/providers/Microsoft.PowerApps/apis/shared_commondataservice",
+    "shared_commondataserviceforapps": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+    "shared_commondataservice": "/providers/Microsoft.PowerApps/apis/shared_commondataservice",
 }
 # Named entity-row components: authored as Dataverse rows keyed on a display
 # name (plus a parent table for views and forms) rather than a compiler-owned
