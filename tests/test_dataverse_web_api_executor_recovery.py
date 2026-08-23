@@ -925,6 +925,109 @@ class MembershipAddVerificationTests(unittest.TestCase):
 
 
 class BundledRecoveryTests(unittest.TestCase):
+    def test_metadata_put_verification_retries_stale_payload(self):
+        metadata_id = "3d58a33a-0e9f-f111-b8dc-6045bd01db70"
+        row = {
+            "component_type": "schema_table",
+            "implementation_scope": "repository_only",
+            "payload": {"table": "task"},
+        }
+        expected = {
+            "SchemaName": "aks_followupkey",
+            "AttributeType": "String",
+            "MaxLength": 200,
+            "RequiredLevel": {"Value": "None"},
+            "IsAuditEnabled": {"Value": True},
+        }
+        request = executor.OperationRequest(
+            "PUT",
+            "EntityDefinitions(LogicalName='task')/Attributes(LogicalName='aks_followupkey')",
+            expected,
+            tuple(expected),
+            tuple(expected),
+            "header",
+            "recover exact child",
+            expected_body=expected,
+        )
+        client = mock.Mock()
+        client.request_with_404_retries.side_effect = [
+            executor.HttpResult(
+                200,
+                "",
+                "",
+                {
+                    "MetadataId": metadata_id,
+                    "SchemaName": "aks_followupkey",
+                    "AttributeType": "String",
+                    "MaxLength": 100,
+                    "RequiredLevel": {"Value": "None"},
+                    "IsAuditEnabled": {"Value": True},
+                },
+            ),
+            executor.HttpResult(
+                200,
+                "",
+                "",
+                {"@odata.type": "Microsoft.Dynamics.CRM.StringAttributeMetadata", **expected, "MetadataId": metadata_id},
+            ),
+        ]
+
+        with mock.patch.object(executor.time, "sleep") as sleep:
+            verification, resolved_id = executor.verify_result(
+                row,
+                client,
+                metadata_id,
+                deleted=False,
+                request=request,
+            )
+
+        self.assertEqual(verification["payload"], "matched")
+        self.assertEqual(resolved_id, metadata_id)
+        self.assertEqual(client.request_with_404_retries.call_count, 2)
+        sleep.assert_called_once_with(1)
+
+    def test_evidence_omits_odata_annotation_from_changed_fields(self):
+        row = {
+            "id": "DEV-0047",
+            "component": "DES-05-CMP-003",
+            "component_type": "schema_table",
+            "build_skill": "dataverse-table",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "task_context_hash": "1" * 64,
+            "source_plan_hash": "2" * 64,
+            "payload": {"schema_name": "task", "table": "task"},
+            "authoring_target": {
+                "environment_url": "https://org89912357.crm.dynamics.com",
+                "solution_unique_name": "ContosoServiceCore",
+            },
+        }
+        request = executor.OperationRequest(
+            "PUT",
+            "metadata",
+            {},
+            ("@odata.type", "MaxLength"),
+            ("@odata.type", "MaxLength"),
+            "header",
+            "recover exact child",
+        )
+
+        payload = executor.evidence_payload(
+            row,
+            161,
+            "update",
+            request,
+            result="blocked",
+            status="verification mismatch",
+            error_code="verification_mismatch",
+            message="payload mismatch",
+            immutable_id="3d58a33a-0e9f-f111-b8dc-6045bd01db70",
+            correlation_id="",
+            verification={"identity": "matched", "payload": "mismatch", "membership": "not-run"},
+            write_occurred=True,
+        )
+
+        self.assertEqual(payload["response"]["changed_fields"], ["MaxLength"])
+
     def test_bundled_child_inherits_parent_table_solution_membership(self):
         row = {
             "component_type": "schema_table",
