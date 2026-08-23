@@ -1,6 +1,6 @@
 {
-  "context_hash": "7316759713d6f791d6fc905e21b8d3b15e4d633fe2eef9cf57a43dc29e654ef4",
-  "plan_context_hash": "9c9ba45af454c48cee958c8d32ab0732773eba6971e7a82a3f5549313aae8566",
+  "context_hash": "600753161426749f03dd30e24c2df405367787ab92b5d1fbbe434dce7f51deda",
+  "plan_context_hash": "0b62469ceafe4ef5e06fef990b67a17233468e91163fc12d1984c54a69a1ad84",
   "repository_context_hash": "55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10",
   "schema_version": 1,
   "tasks": [
@@ -50839,7 +50839,7 @@
       "satisfies": [
         "INTK-0001-REQ-030"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -52134,7 +52134,7 @@
         "INTK-0001-REQ-042",
         "INTK-0001-REQ-043"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -53456,7 +53456,7 @@
         "INTK-0001-REQ-042",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -53806,12 +53806,12 @@
           "environment_url": "https://org89912357.crm.dynamics.com",
           "expected_payload": {
             "cascade_configuration": {
-              "Assign": "Cascade",
+              "Assign": "NoCascade",
               "Delete": "Restrict",
               "Merge": "NoCascade",
-              "Reparent": "Cascade",
-              "Share": "Cascade",
-              "Unshare": "Cascade"
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
             },
             "lookup_column": "aks_maintenancejobid",
             "name": "aks_maintenancejob_task",
@@ -54180,12 +54180,12 @@
           "declared_solution_unique_name": "ContosoServiceCore",
           "expected_payload": {
             "cascade_configuration": {
-              "Assign": "Cascade",
+              "Assign": "NoCascade",
               "Delete": "Restrict",
               "Merge": "NoCascade",
-              "Reparent": "Cascade",
-              "Share": "Cascade",
-              "Unshare": "Cascade"
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
             },
             "lookup_column": "aks_maintenancejobid",
             "name": "aks_maintenancejob_task",
@@ -54733,12 +54733,12 @@
       "owner": null,
       "payload": {
         "cascade_configuration": {
-          "Assign": "Cascade",
+          "Assign": "NoCascade",
           "Delete": "Restrict",
           "Merge": "NoCascade",
-          "Reparent": "Cascade",
-          "Share": "Cascade",
-          "Unshare": "Cascade"
+          "Reparent": "NoCascade",
+          "Share": "NoCascade",
+          "Unshare": "NoCascade"
         },
         "lookup_column": "aks_maintenancejobid",
         "name": "aks_maintenancejob_task",
@@ -54762,8 +54762,8 @@
         "INTK-0001-REQ-034",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
-      "status": "ready",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "validation_results",
@@ -55816,7 +55816,7 @@
       "satisfies": [
         "INTK-0001-REQ-042"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -56992,7 +56992,7 @@
         "INTK-0001-REQ-034",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -58259,7 +58259,7 @@
         "INTK-0001-REQ-043",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -59332,7 +59332,7 @@
         "INTK-0001-REQ-043",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -60378,7 +60378,7 @@
         "INTK-0001-REQ-042",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [

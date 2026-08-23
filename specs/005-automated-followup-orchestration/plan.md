@@ -4,7 +4,7 @@ status: reviewed
 implements_feature: FEAT-05
 source_spec_hash: 3980d16e7e25de7aeb6af0702a99ed3c1141d54466362bba91872812c27d25bf
 repository_context_hash: 55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10
-plan_hash: 2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e
+plan_hash: cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636
 ---
 
 # Design - FEAT-05 automated-followup-orchestration (DES-05)
@@ -192,12 +192,12 @@ components:
     referenced_attribute: aks_maintenancejobid
     required_level: optional
     cascade_configuration:
-      Assign: Cascade
+      Assign: NoCascade
       Delete: Restrict
       Merge: NoCascade
-      Reparent: Cascade
-      Share: Cascade
-      Unshare: Cascade
+      Reparent: NoCascade
+      Share: NoCascade
+      Unshare: NoCascade
     satisfies: [INTK-0001-REQ-032, INTK-0001-REQ-033, INTK-0001-REQ-034, INTK-0001-REQ-044]
   - id: DES-05-CMP-005
     component_type: schema_key
@@ -312,7 +312,9 @@ Job lookup on standard Task, marker-plus-key idempotency with atomic changesets,
 Maintenance Job owner assignment for all generated Tasks, and Date Only storage for
 Vehicle last service date. FEAT-06 remains responsible for security-role privileges and
 placing the reusable Task view in the final app shell; it does not reopen these FEAT-05
-component identities or behaviors.
+component identities or behaviors. On 2026-08-23, Anand Singh selected referential
+cascades with restricted delete for `aks_maintenancejob_task` after Dataverse rejected
+the parental cascade set because Task already has a parental relationship.
 <!-- /FILL -->
 
 ## Requirement coverage
