@@ -58260,7 +58260,7 @@
         "INTK-0001-REQ-044"
       ],
       "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "changed_paths",
