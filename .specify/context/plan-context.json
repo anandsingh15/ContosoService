@@ -1,5 +1,5 @@
 {
-  "context_hash": "9c9ba45af454c48cee958c8d32ab0732773eba6971e7a82a3f5549313aae8566",
+  "context_hash": "0b62469ceafe4ef5e06fef990b67a17233468e91163fc12d1984c54a69a1ad84",
   "plans": [
     {
       "components": [
@@ -19138,12 +19138,12 @@
           },
           "build_skill": "dataverse-table",
           "cascade_configuration": {
-            "Assign": "Cascade",
+            "Assign": "NoCascade",
             "Delete": "Restrict",
             "Merge": "NoCascade",
-            "Reparent": "Cascade",
-            "Share": "Cascade",
-            "Unshare": "Cascade"
+            "Reparent": "NoCascade",
+            "Share": "NoCascade",
+            "Unshare": "NoCascade"
           },
           "component_type": "schema_relationship",
           "development_resources": {
@@ -21579,7 +21579,7 @@
       ],
       "feature": "FEAT-05",
       "plan": "DES-05",
-      "plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "source_spec_hash": "3980d16e7e25de7aeb6af0702a99ed3c1141d54466362bba91872812c27d25bf",
       "status": "reviewed",
       "workspace": "specs/005-automated-followup-orchestration"
