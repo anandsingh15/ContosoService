@@ -1,5 +1,5 @@
 {
-  "context_hash": "00dd2c41f7cc3563a3a788aaeed9fd855ebdb594359a480d443ff13ce7304c22",
+  "context_hash": "9c9ba45af454c48cee958c8d32ab0732773eba6971e7a82a3f5549313aae8566",
   "plans": [
     {
       "components": [
@@ -23,7 +23,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -483,7 +483,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -944,7 +944,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1424,7 +1424,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1651,7 +1651,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -1877,7 +1882,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2104,7 +2109,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -2330,7 +2340,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2557,7 +2567,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -2780,7 +2795,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3255,7 +3270,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3731,7 +3746,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4206,7 +4221,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4672,7 +4687,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5051,7 +5066,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5430,7 +5445,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5809,7 +5824,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6185,7 +6200,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -6426,8 +6441,8 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "ef3379a9a4e57ff96d3de14eec1e6fe3f67d5197e6cd28fb707ed81a2eec833e",
-      "source_spec_hash": "4e1f11c4626c930faee5cee074b710856595a8b7d3878ba555732f0528d7924a",
+      "plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
+      "source_spec_hash": "fa80db64e8fd5989310db3d3ebc1b1b4f326f9232aaa6a98fd68a40a35a817ff",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
     },
@@ -6466,7 +6481,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6693,7 +6708,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -6914,7 +6934,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7330,7 +7350,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7723,7 +7743,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8116,7 +8136,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8509,7 +8529,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8890,7 +8910,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -9156,7 +9176,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -9585,7 +9605,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10007,7 +10027,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10396,7 +10416,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10835,7 +10855,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11204,8 +11224,8 @@
       ],
       "feature": "FEAT-02",
       "plan": "DES-02",
-      "plan_hash": "799ed6b44632aa72c36adce1d9e1c8ef81d1ee22b2fda60262a4774777c9e738",
-      "source_spec_hash": "687a51468163b78d0afe83335953b7bcf8c42a0cf9623a87399bd6bc204234dc",
+      "plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
+      "source_spec_hash": "24e7af3c0c86b269d377ad7f01ea64bc05490d472443c81697df9366b18a0cb7",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
     },
@@ -11270,7 +11290,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11497,7 +11517,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -11725,7 +11750,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11952,7 +11977,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -12165,7 +12195,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12586,7 +12616,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12981,7 +13011,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13438,7 +13468,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13831,7 +13861,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14225,7 +14255,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14611,7 +14641,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -14893,7 +14923,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15293,7 +15323,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15693,7 +15723,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -16098,7 +16128,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -16475,8 +16505,8 @@
       ],
       "feature": "FEAT-03",
       "plan": "DES-03",
-      "plan_hash": "be1b9bdb4af34451c0aafeeeda47cd2762783999ae07d22f7946559d33d47a78",
-      "source_spec_hash": "c7f824b7e69e6315e4623a22158133efc6a5e7999d0a5162dd308f1eadf24f66",
+      "plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
+      "source_spec_hash": "5685339b5cf5c270ecd4e0caad82a5f0178a85e7531775ee9d4df111f7b3669b",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
     },
@@ -16511,7 +16541,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -16917,7 +16947,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -17276,7 +17306,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -17701,8 +17731,8 @@
       ],
       "feature": "FEAT-04",
       "plan": "DES-04",
-      "plan_hash": "62e471e4fbf768c0b0a549655a2b0d85842242100304473b7285f156b38c82d8",
-      "source_spec_hash": "ab36278428487d81177ef3e1a7dc1afa2a45c4d341908edba28631a036bdfc73",
+      "plan_hash": "1e8da2d1488fef7df6629fb0cdf2f81733298b0b7a368a52afc1fd1e367fae6d",
+      "source_spec_hash": "2a5764f93f1e2ca509c9e9ef4f17c5443ff50e16bbc08d3a014d0597b482d8c1",
       "status": "reviewed",
       "workspace": "specs/004-job-completion-enforcement"
     },
@@ -17737,7 +17767,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -17964,7 +17994,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -18192,7 +18227,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -18419,7 +18454,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -18653,7 +18693,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -18880,7 +18920,12 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "metadata-table-update",
-                  "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+                  "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+                  "recovery_http": {
+                    "endpoint_family": "metadata",
+                    "method": "PUT",
+                    "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+                  },
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -19104,7 +19149,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -19571,7 +19616,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -19958,7 +20003,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -20366,7 +20411,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -20824,7 +20869,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -21198,7 +21243,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -21534,8 +21579,8 @@
       ],
       "feature": "FEAT-05",
       "plan": "DES-05",
-      "plan_hash": "831e1b92673653c3291cbcadda5a140b1f1c8f606735e727ae53b3677503b444",
-      "source_spec_hash": "1aed8e823449ca0a2169e03ebde27bcb386fae579bbd0a3f6e0158d2f3e2c691",
+      "plan_hash": "2960c134d2fc31fe71a2e1c78c04a721e1c436f2becbdcef80eeba5025db293e",
+      "source_spec_hash": "3980d16e7e25de7aeb6af0702a99ed3c1141d54466362bba91872812c27d25bf",
       "status": "reviewed",
       "workspace": "specs/005-automated-followup-orchestration"
     },
@@ -21566,7 +21611,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -22043,7 +22088,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -22464,7 +22509,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -22844,7 +22889,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -23111,7 +23156,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -23378,7 +23423,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -23654,7 +23699,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -24128,7 +24173,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -24531,7 +24576,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -24912,7 +24957,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "operations": {
                 "create": {
                   "executor": {
@@ -25213,13 +25258,13 @@
       ],
       "feature": "FEAT-06",
       "plan": "DES-06",
-      "plan_hash": "ee3c57077fb494fa6cb63d24d631c25d472d8bc66f4587a6a5cfb3c9862bdef3",
-      "source_spec_hash": "623bdc57184981e3900d11cc32a9a724e34bd7b1b8abbaf3f5267a882a0c8052",
+      "plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
+      "source_spec_hash": "640cabe6eb06458a9a040a708d88264a389b6ee1db060a33aaf776fe9fc72170",
       "status": "reviewed",
       "workspace": "specs/006-access-roles-app-shell"
     }
   ],
-  "repository_context_hash": "60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04",
+  "repository_context_hash": "55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10",
   "schema_version": 1,
-  "spec_context_hash": "d7a5f7e2bcbd56336d86ab444912bbf328d7b0da565db6e807c28c342a5196f9"
+  "spec_context_hash": "ef807ca545b93cc571c2f5215f570a061414fa7ab87e4388f583b8935b36937b"
 }

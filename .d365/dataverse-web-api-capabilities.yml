@@ -173,11 +173,12 @@ profiles:
     operation: update
     primary_resource: dataverse-web-api
     http: {method: POST, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes"}
+    recovery_http: {method: PUT, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{identity}')"}, rationale: Verify only the exact existing table and child columns added by the compiler-owned extension payload.}
     fallback: *portal_fallback
     executor: {supported: true, builder: schema_table}
-    rationale: A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.
+    rationale: A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.
     official_references: [optional_parameters, table_definitions, column_definitions, publish_xml]
   metadata-table-delete:
     support: supported

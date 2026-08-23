@@ -382,26 +382,38 @@ class FakeClient:
         self.posts = []
 
     def request_with_404_retries(self, request):
-        self.request_count += 1
-        return executor.HttpResult(
-            200,
-            "",
-            "",
-            {
-                "MetadataId": "f74397ba-d298-f111-b8db-6045bd01db70",
-                "SchemaName": "aks_status",
-                "AttributeType": "Picklist",
-            },
-        )
-
-    def request(self, request):
-        self.request_count += 1
-        if request.method == "GET":
+        if "Attributes(f74397ba-d298-f111-b8db-6045bd01db70)" in request.path:
+            self.request_count += 1
             return executor.HttpResult(
                 200,
                 "",
                 "",
-                {"MetadataId": "998e2b9d-8f95-f111-8075-6045bd01d8e8"},
+                {
+                    "MetadataId": "f74397ba-d298-f111-b8db-6045bd01db70",
+                    "SchemaName": "aks_status",
+                    "AttributeType": "Picklist",
+                },
+            )
+        return self.request(request)
+
+    def request(self, request):
+        self.request_count += 1
+        if request.method == "GET":
+            if "LogicalName='aks_roadworthy'" in request.path:
+                raise executor.ExecutorError(
+                    "not found", category="not_found", status=404
+                )
+            schema_name = "aks_status" if "Attributes(" in request.path else ""
+            return executor.HttpResult(
+                200,
+                "",
+                "",
+                {
+                    "MetadataId": "998e2b9d-8f95-f111-8075-6045bd01d8e8",
+                    "SchemaName": schema_name,
+                    "AttributeType": "Picklist",
+                    "RequiredLevel": {"Value": "ApplicationRequired"},
+                },
             )
         self.posts.append(request)
         return executor.HttpResult(
@@ -413,6 +425,77 @@ class FakeClient:
 
 
 class ColumnDefinitionTests(unittest.TestCase):
+    def test_plain_text_honors_explicit_length_and_auditing(self):
+        definition = executor.column_definition(
+            {
+                "name": "aks_followupkind",
+                "data_type": "Text",
+                "max_length": 32,
+                "auditing": "enabled",
+                "required_level": "None",
+            }
+        )
+
+        self.assertEqual(definition["MaxLength"], 32)
+        self.assertEqual(
+            definition["IsAuditEnabled"],
+            {"Value": True, "CanBeChanged": True},
+        )
+
+    def test_bundled_put_verifies_exact_child_payload(self):
+        row = {
+            "component_type": "schema_table",
+            "payload": {"table": "task", "schema_name": "task"},
+        }
+        expected = executor.column_definition(
+            {
+                "name": "aks_followupkind",
+                "data_type": "Text",
+                "max_length": 32,
+                "auditing": "enabled",
+                "required_level": "None",
+            }
+        )
+        request = executor.OperationRequest(
+            "PUT",
+            "EntityDefinitions(LogicalName='task')/Attributes(LogicalName='aks_followupkind')",
+            expected,
+            tuple(expected),
+            tuple(expected),
+            "header",
+            "recover exact child",
+            expected_body=expected,
+        )
+
+        verification = executor.verification_request(row, request)
+        self.assertIn("Attributes(LogicalName='aks_followupkind')", verification.path)
+        self.assertTrue(
+            executor.expected_payload_matches(
+                row,
+                request,
+                {
+                    "SchemaName": "aks_followupkind",
+                    "AttributeType": "String",
+                    "MaxLength": 32,
+                    "RequiredLevel": {"Value": "None"},
+                    "IsAuditEnabled": {"Value": True},
+                },
+            )
+        )
+        self.assertFalse(
+            executor.expected_payload_matches(
+                row,
+                request,
+                {
+                    "SchemaName": "aks_followupkind",
+                    "AttributeType": "String",
+                    "MaxLength": 100,
+                    "RequiredLevel": {"Value": "None"},
+                    "IsAuditEnabled": {"Value": True},
+                },
+            )
+        )
+
     def test_builds_dev_0016_base_column_types(self):
         datetime = executor.column_definition(
             {
@@ -947,6 +1030,7 @@ class BundledRecoveryTests(unittest.TestCase):
     def test_execute_skips_status_and_posts_only_roadworthy(self):
         capability = {
             "http": {"method": "POST", "endpoint_family": "metadata", "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes"},
+            "recovery_http": {"method": "PUT", "endpoint_family": "metadata", "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"},
             "solution_context": {"mechanism": "MSCRM.SolutionUniqueName"},
         }
         row = {
@@ -999,7 +1083,11 @@ class BundledRecoveryTests(unittest.TestCase):
             )
 
         self.assertEqual(preflight.call_args.args[1], "update")
-        self.assertEqual([request.body["SchemaName"] for request in client.posts], ["aks_roadworthy"])
+        self.assertEqual(
+            [(request.expected_body or request.body)["SchemaName"] for request in client.posts],
+            ["aks_status", "aks_roadworthy"],
+        )
+        self.assertEqual([request.method for request in client.posts], ["PUT", "POST"])
         self.assertEqual(len(posted), 1)
         self.assertEqual(posted[0]["request"]["operation"], "complete bundled schema_table extension recovery")
         self.assertEqual(posted[0]["operation"]["api_operation"], "complete bundled schema_table extension recovery")

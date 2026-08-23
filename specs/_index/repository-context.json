@@ -1062,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04",
+  "context_hash": "55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10",
   "conventions_hash": "de9cfd93e3251d7c8841a96e1e1878e01e00571b35aa68259c0e622565bc1952",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -4137,7 +4137,12 @@
         ],
         "operation": "update",
         "primary_resource": "dataverse-web-api",
-        "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+        "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+        "recovery_http": {
+          "endpoint_family": "metadata",
+          "method": "PUT",
+          "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+        },
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
@@ -5127,8 +5132,8 @@
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
-  "dataverse_web_api_capabilities_schema_hash": "fa1e7079bce9e92bdd66463bea48f7454557f419c190d476ba4e9bfab4949690",
+  "dataverse_web_api_capabilities_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+  "dataverse_web_api_capabilities_schema_hash": "22997993e2971a3369c6b26bf73d039a135b291d37358d6af635aacb91d46cde",
   "design_sources": {
     "schema_version": 1,
     "sources": [
