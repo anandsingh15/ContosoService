@@ -4954,6 +4954,19 @@ def verify_result(
             item,
         )
     )
+    if (
+        not payload_matched
+        and row["component_type"] == "schema_table"
+        and request is not None
+        and request.method == "PUT"
+    ):
+        for attempt in range(4):
+            time.sleep(min(1 + attempt, 5))
+            result = client.request_with_404_retries(verify_request)
+            item = response_item(row, result.data)
+            if expected_payload_matches(row, request, item):
+                payload_matched = True
+                break
     if not payload_matched:
         raise ExecutorError(
             "targeted verification found a payload mismatch",
@@ -5082,6 +5095,11 @@ def evidence_payload(
     now = datetime.now(timezone.utc)
     attempt = now.strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:8]
     field, identity = canonical_identity(row)
+    evidence_fields = [
+        name
+        for name in request.changed_fields
+        if re.fullmatch(r"[A-Za-z][A-Za-z0-9_.-]{0,63}", name)
+    ]
     return {
         "schema_version": 1,
         "attempt_id": attempt,
@@ -5124,9 +5142,9 @@ def evidence_payload(
             "error_code": error_code,
             "message": sanitize_text(message),
             "immutable_id": immutable_id,
-            "changed_fields": list(request.changed_fields) if write_occurred else [],
+            "changed_fields": evidence_fields if write_occurred else [],
             "verified_fields": (
-                list(request.changed_fields) if result == "succeeded" else []
+                evidence_fields if result == "succeeded" else []
             ),
             "correlation_id": correlation_id,
             "details_withheld": True,
