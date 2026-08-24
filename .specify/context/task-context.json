@@ -61973,7 +61973,7 @@
         "INTK-0001-REQ-039"
       ],
       "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "privilege_matrix",
@@ -63237,7 +63237,7 @@
         "INTK-0001-REQ-039"
       ],
       "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "privilege_matrix",
