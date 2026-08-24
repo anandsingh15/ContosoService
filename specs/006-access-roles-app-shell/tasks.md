@@ -1,9 +1,9 @@
 ---
 feature: FEAT-06
 plan: DES-06
-source_plan_hash: eb6ca3b9e606c34cec965b4730809be6b631396a82e7aee64c9d31353250e6cf
-repository_context_hash: ae33ece0c20d793460f5f5f9817c5cec233d4800e78ecb012c6fe7a7d9f813fe
-task_context_hash: f56c2236b5e81d6dcb779901054a6b197b5318451b15212dc179dbdc24af1114
+source_plan_hash: 88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3
+repository_context_hash: 60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04
+task_context_hash: de42985d9aaeb42f72e67af27e7c2572bbb7480834761703b6004c6377230882
 status: draft
 ---
 # Development work index
@@ -12,9 +12,9 @@ Generated from the current plan.md. Historical DEV artifacts are retained but om
 
 | DEV | Component | Type | Scope | Execution host | Authoring target | Authentication policy | Required resources | Executor | Depends on | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [DEV-0054](development/DEV-0054.md) | DES-06-CMP-001 | sec_role | repository_and_dataverse_solution | local_interactive | security-solution-target | reuse_if_valid | microsoft-learn, maker-portal, dataverse-mcp | agent | — | ready |
-| [DEV-0055](development/DEV-0055.md) | DES-06-CMP-002 | sec_role | repository_and_dataverse_solution | local_interactive | security-solution-target | reuse_if_valid | microsoft-learn, maker-portal, dataverse-mcp | agent | — | ready |
-| [DEV-0056](development/DEV-0056.md) | DES-06-CMP-003 | sec_role | repository_and_dataverse_solution | local_interactive | security-solution-target | reuse_if_valid | microsoft-learn, maker-portal, dataverse-mcp | agent | — | ready |
+| [DEV-0054](development/DEV-0054.md) | DES-06-CMP-001 | sec_role | repository_and_dataverse_solution | local_interactive | security-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, power-platform-cli, dataverse-mcp | agent | — | in_review |
+| [DEV-0055](development/DEV-0055.md) | DES-06-CMP-002 | sec_role | repository_and_dataverse_solution | local_interactive | security-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, power-platform-cli, dataverse-mcp | agent | — | in_progress |
+| [DEV-0056](development/DEV-0056.md) | DES-06-CMP-003 | sec_role | repository_and_dataverse_solution | local_interactive | security-solution-target | reuse_if_valid | microsoft-learn, msal-python, dataverse-web-api, power-platform-cli, dataverse-mcp | agent | — | in_progress |
 | [DEV-0057](development/DEV-0057.md) | DES-06-CMP-004 | sec_team | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring | reuse_if_valid | microsoft-learn, dataverse-mcp | agent | DEV-0054 | ready |
 | [DEV-0058](development/DEV-0058.md) | DES-06-CMP-005 | sec_team | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring | reuse_if_valid | microsoft-learn, dataverse-mcp | agent | DEV-0055 | ready |
 | [DEV-0059](development/DEV-0059.md) | DES-06-CMP-006 | sec_team | repository_and_dataverse_environment | local_interactive | dataverse-environment-authoring | reuse_if_valid | microsoft-learn, dataverse-mcp | agent | DEV-0056 | ready |
