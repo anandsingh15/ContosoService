@@ -100,6 +100,37 @@ class WebResourceRequestTests(unittest.TestCase):
                 executor.validate_runtime_request(method, path)
 
 
+class ConnectionReferenceRequestTests(unittest.TestCase):
+    def test_builds_standard_connector_request_from_logical_id(self):
+        row = {
+            "component_type": "integ_connection_ref",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "payload": {
+                "connector": "shared_commondataserviceforapps",
+                "name": "Dataverse - Automated follow-up",
+                "schema_name": "aks_DataverseAutomatedFollowUp",
+            },
+        }
+
+        request = executor.build_static_requests(
+            row,
+            "create",
+            {"solution_context": {"mechanism": "MSCRM.SolutionUniqueName"}},
+        )[0]
+
+        self.assertEqual(request.method, "POST")
+        self.assertEqual(request.path, "connectionreferences")
+        self.assertEqual(request.solution_context, "header")
+        self.assertEqual(
+            request.body,
+            {
+                "connectionreferencelogicalname": "aks_DataverseAutomatedFollowUp",
+                "connectionreferencedisplayname": "Dataverse - Automated follow-up",
+                "connectorid": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+            },
+        )
+
+
 class PluginRegistrationRequestTests(unittest.TestCase):
     def test_builds_solution_aware_plugin_assembly_create_request(self):
         row = {
@@ -382,26 +413,38 @@ class FakeClient:
         self.posts = []
 
     def request_with_404_retries(self, request):
-        self.request_count += 1
-        return executor.HttpResult(
-            200,
-            "",
-            "",
-            {
-                "MetadataId": "f74397ba-d298-f111-b8db-6045bd01db70",
-                "SchemaName": "aks_status",
-                "AttributeType": "Picklist",
-            },
-        )
-
-    def request(self, request):
-        self.request_count += 1
-        if request.method == "GET":
+        if "Attributes(f74397ba-d298-f111-b8db-6045bd01db70)" in request.path:
+            self.request_count += 1
             return executor.HttpResult(
                 200,
                 "",
                 "",
-                {"MetadataId": "998e2b9d-8f95-f111-8075-6045bd01d8e8"},
+                {
+                    "MetadataId": "f74397ba-d298-f111-b8db-6045bd01db70",
+                    "SchemaName": "aks_status",
+                    "AttributeType": "Picklist",
+                },
+            )
+        return self.request(request)
+
+    def request(self, request):
+        self.request_count += 1
+        if request.method == "GET":
+            if "LogicalName='aks_roadworthy'" in request.path:
+                raise executor.ExecutorError(
+                    "not found", category="not_found", status=404
+                )
+            schema_name = "aks_status" if "Attributes(" in request.path else ""
+            return executor.HttpResult(
+                200,
+                "",
+                "",
+                {
+                    "MetadataId": "998e2b9d-8f95-f111-8075-6045bd01d8e8",
+                    "SchemaName": schema_name,
+                    "AttributeType": "Picklist",
+                    "RequiredLevel": {"Value": "ApplicationRequired"},
+                },
             )
         self.posts.append(request)
         return executor.HttpResult(
@@ -413,6 +456,77 @@ class FakeClient:
 
 
 class ColumnDefinitionTests(unittest.TestCase):
+    def test_plain_text_honors_explicit_length_and_auditing(self):
+        definition = executor.column_definition(
+            {
+                "name": "aks_followupkind",
+                "data_type": "Text",
+                "max_length": 32,
+                "auditing": "enabled",
+                "required_level": "None",
+            }
+        )
+
+        self.assertEqual(definition["MaxLength"], 32)
+        self.assertEqual(
+            definition["IsAuditEnabled"],
+            {"Value": True, "CanBeChanged": True},
+        )
+
+    def test_bundled_put_verifies_exact_child_payload(self):
+        row = {
+            "component_type": "schema_table",
+            "payload": {"table": "task", "schema_name": "task"},
+        }
+        expected = executor.column_definition(
+            {
+                "name": "aks_followupkind",
+                "data_type": "Text",
+                "max_length": 32,
+                "auditing": "enabled",
+                "required_level": "None",
+            }
+        )
+        request = executor.OperationRequest(
+            "PUT",
+            "EntityDefinitions(LogicalName='task')/Attributes(LogicalName='aks_followupkind')",
+            expected,
+            tuple(expected),
+            tuple(expected),
+            "header",
+            "recover exact child",
+            expected_body=expected,
+        )
+
+        verification = executor.verification_request(row, request)
+        self.assertIn("Attributes(LogicalName='aks_followupkind')", verification.path)
+        self.assertTrue(
+            executor.expected_payload_matches(
+                row,
+                request,
+                {
+                    "SchemaName": "aks_followupkind",
+                    "AttributeType": "String",
+                    "MaxLength": 32,
+                    "RequiredLevel": {"Value": "None"},
+                    "IsAuditEnabled": {"Value": True},
+                },
+            )
+        )
+        self.assertFalse(
+            executor.expected_payload_matches(
+                row,
+                request,
+                {
+                    "SchemaName": "aks_followupkind",
+                    "AttributeType": "String",
+                    "MaxLength": 100,
+                    "RequiredLevel": {"Value": "None"},
+                    "IsAuditEnabled": {"Value": True},
+                },
+            )
+        )
+
     def test_builds_dev_0016_base_column_types(self):
         datetime = executor.column_definition(
             {
@@ -842,6 +956,109 @@ class MembershipAddVerificationTests(unittest.TestCase):
 
 
 class BundledRecoveryTests(unittest.TestCase):
+    def test_metadata_put_verification_retries_stale_payload(self):
+        metadata_id = "3d58a33a-0e9f-f111-b8dc-6045bd01db70"
+        row = {
+            "component_type": "schema_table",
+            "implementation_scope": "repository_only",
+            "payload": {"table": "task"},
+        }
+        expected = {
+            "SchemaName": "aks_followupkey",
+            "AttributeType": "String",
+            "MaxLength": 200,
+            "RequiredLevel": {"Value": "None"},
+            "IsAuditEnabled": {"Value": True},
+        }
+        request = executor.OperationRequest(
+            "PUT",
+            "EntityDefinitions(LogicalName='task')/Attributes(LogicalName='aks_followupkey')",
+            expected,
+            tuple(expected),
+            tuple(expected),
+            "header",
+            "recover exact child",
+            expected_body=expected,
+        )
+        client = mock.Mock()
+        client.request_with_404_retries.side_effect = [
+            executor.HttpResult(
+                200,
+                "",
+                "",
+                {
+                    "MetadataId": metadata_id,
+                    "SchemaName": "aks_followupkey",
+                    "AttributeType": "String",
+                    "MaxLength": 100,
+                    "RequiredLevel": {"Value": "None"},
+                    "IsAuditEnabled": {"Value": True},
+                },
+            ),
+            executor.HttpResult(
+                200,
+                "",
+                "",
+                {"@odata.type": "Microsoft.Dynamics.CRM.StringAttributeMetadata", **expected, "MetadataId": metadata_id},
+            ),
+        ]
+
+        with mock.patch.object(executor.time, "sleep") as sleep:
+            verification, resolved_id = executor.verify_result(
+                row,
+                client,
+                metadata_id,
+                deleted=False,
+                request=request,
+            )
+
+        self.assertEqual(verification["payload"], "matched")
+        self.assertEqual(resolved_id, metadata_id)
+        self.assertEqual(client.request_with_404_retries.call_count, 2)
+        sleep.assert_called_once_with(1)
+
+    def test_evidence_omits_odata_annotation_from_changed_fields(self):
+        row = {
+            "id": "DEV-0047",
+            "component": "DES-05-CMP-003",
+            "component_type": "schema_table",
+            "build_skill": "dataverse-table",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "task_context_hash": "1" * 64,
+            "source_plan_hash": "2" * 64,
+            "payload": {"schema_name": "task", "table": "task"},
+            "authoring_target": {
+                "environment_url": "https://org89912357.crm.dynamics.com",
+                "solution_unique_name": "ContosoServiceCore",
+            },
+        }
+        request = executor.OperationRequest(
+            "PUT",
+            "metadata",
+            {},
+            ("@odata.type", "MaxLength"),
+            ("@odata.type", "MaxLength"),
+            "header",
+            "recover exact child",
+        )
+
+        payload = executor.evidence_payload(
+            row,
+            161,
+            "update",
+            request,
+            result="blocked",
+            status="verification mismatch",
+            error_code="verification_mismatch",
+            message="payload mismatch",
+            immutable_id="3d58a33a-0e9f-f111-b8dc-6045bd01db70",
+            correlation_id="",
+            verification={"identity": "matched", "payload": "mismatch", "membership": "not-run"},
+            write_occurred=True,
+        )
+
+        self.assertEqual(payload["response"]["changed_fields"], ["MaxLength"])
+
     def test_bundled_child_inherits_parent_table_solution_membership(self):
         row = {
             "component_type": "schema_table",
@@ -947,6 +1164,7 @@ class BundledRecoveryTests(unittest.TestCase):
     def test_execute_skips_status_and_posts_only_roadworthy(self):
         capability = {
             "http": {"method": "POST", "endpoint_family": "metadata", "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes"},
+            "recovery_http": {"method": "PUT", "endpoint_family": "metadata", "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"},
             "solution_context": {"mechanism": "MSCRM.SolutionUniqueName"},
         }
         row = {
@@ -999,7 +1217,11 @@ class BundledRecoveryTests(unittest.TestCase):
             )
 
         self.assertEqual(preflight.call_args.args[1], "update")
-        self.assertEqual([request.body["SchemaName"] for request in client.posts], ["aks_roadworthy"])
+        self.assertEqual(
+            [(request.expected_body or request.body)["SchemaName"] for request in client.posts],
+            ["aks_status", "aks_roadworthy"],
+        )
+        self.assertEqual([request.method for request in client.posts], ["PUT", "POST"])
         self.assertEqual(len(posted), 1)
         self.assertEqual(posted[0]["request"]["operation"], "complete bundled schema_table extension recovery")
         self.assertEqual(posted[0]["operation"]["api_operation"], "complete bundled schema_table extension recovery")

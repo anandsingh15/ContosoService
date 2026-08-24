@@ -1,7 +1,7 @@
 {
-  "context_hash": "d5b796959ba1db1d56b4d9ea49fab3f9964827f29e60b407317da1a8802fbce4",
-  "plan_context_hash": "f354a05d50f64a52ab96a4682976a0beaafa7350879474b9a4b7fbda85b06ca6",
-  "repository_context_hash": "60a495cc06b3571a703577b4100554c52d5d4745fd0a69587ab4f6209b98bc04",
+  "context_hash": "600753161426749f03dd30e24c2df405367787ab92b5d1fbbe434dce7f51deda",
+  "plan_context_hash": "0b62469ceafe4ef5e06fef990b67a17233468e91163fc12d1984c54a69a1ad84",
+  "repository_context_hash": "55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10",
   "schema_version": 1,
   "tasks": [
     {
@@ -26,7 +26,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -666,7 +666,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehiclestatus",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -820,7 +820,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -1251,7 +1251,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -1295,7 +1295,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -1936,7 +1936,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejobstage",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -2091,7 +2091,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -2523,7 +2523,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -2567,7 +2567,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -3207,7 +3207,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejobpriority",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -3361,7 +3361,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -3792,7 +3792,7 @@
         "INTK-0001-REQ-016",
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -3836,7 +3836,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -4069,7 +4069,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -4485,7 +4490,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -4656,7 +4661,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -4883,7 +4888,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -5085,7 +5095,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -5129,7 +5139,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -5362,7 +5372,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -5772,7 +5787,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -5937,7 +5952,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -6164,7 +6179,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -6360,7 +6380,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -6404,7 +6424,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -6637,7 +6657,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -7047,7 +7072,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -7212,7 +7237,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -7439,7 +7464,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -7635,7 +7665,7 @@
       "satisfies": [
         "INTK-0001-REQ-017"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -7681,7 +7711,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -8333,7 +8363,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_account_vehicle_depot",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -8498,7 +8528,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -8943,7 +8973,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -8989,7 +9019,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -9641,7 +9671,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_contact_maintenancejob_technician",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -9806,7 +9836,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -10251,7 +10281,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-020"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -10298,7 +10328,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -10949,7 +10979,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -11113,7 +11143,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -11556,7 +11586,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -11603,7 +11633,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -12254,7 +12284,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -12418,7 +12448,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -12861,7 +12891,7 @@
         "INTK-0001-REQ-018",
         "INTK-0001-REQ-019"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -12907,7 +12937,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -13435,7 +13465,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_registration_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -13575,7 +13605,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -13923,7 +13953,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -13969,7 +13999,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -14497,7 +14527,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_vin_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -14637,7 +14667,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -14985,7 +15015,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -15031,7 +15061,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -15559,7 +15589,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob_number_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -15699,7 +15729,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -16047,7 +16077,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -16093,7 +16123,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -16621,7 +16651,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_jobpart_number_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -16761,7 +16791,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -17109,7 +17139,7 @@
         "INTK-0001-REQ-040",
         "INTK-0001-REQ-041"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -17152,7 +17182,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -17532,7 +17562,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -17635,7 +17665,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -17862,7 +17892,7 @@
       "satisfies": [
         "INTK-0001-REQ-046"
       ],
-      "source_plan_hash": "ffe1fd50e90e56fcb1cd557b34fbce52bea8a9a5ba7d8893ef58d684745cf4eb",
+      "source_plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -17907,7 +17937,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -18140,7 +18170,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -18555,7 +18590,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -18725,7 +18760,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -18952,7 +18987,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -19156,7 +19196,7 @@
         "INTK-0001-REQ-003",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -19202,7 +19242,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -19801,7 +19841,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_quickcreate",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -19953,7 +19993,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -20334,7 +20374,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -20379,7 +20419,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -20919,7 +20959,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_maintenancehistory",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -21066,7 +21106,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -21424,7 +21464,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -21471,7 +21511,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -22012,7 +22052,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_activevehicles",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -22160,7 +22200,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -22519,7 +22559,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "in_progress",
       "task_profile": {
         "evidence": [
@@ -22566,7 +22606,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -23107,7 +23147,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehiclesinmaintenance",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -23255,7 +23295,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -23614,7 +23654,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -23661,7 +23701,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -24202,7 +24242,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehiclesbydepot",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -24350,7 +24390,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -24709,7 +24749,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -24751,7 +24791,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -25135,7 +25175,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -25242,7 +25282,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -25474,7 +25514,7 @@
         "INTK-0001-REQ-001",
         "INTK-0001-REQ-004"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -25522,7 +25562,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -26137,7 +26177,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -26305,7 +26345,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -26702,7 +26742,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -26749,7 +26789,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -27351,7 +27391,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_quickcreate",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -27506,7 +27546,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -27890,7 +27930,7 @@
         "INTK-0001-REQ-002",
         "INTK-0001-REQ-003"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -27937,7 +27977,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -28480,7 +28520,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_maintenancehistory",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -28630,7 +28670,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -28991,7 +29031,7 @@
       "satisfies": [
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -29038,7 +29078,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -29656,7 +29696,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -29827,7 +29867,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -30227,7 +30267,7 @@
         "INTK-0001-REQ-004",
         "INTK-0001-REQ-005"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -30274,7 +30314,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -30818,7 +30858,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_activevehicles",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -30969,7 +31009,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -31331,7 +31371,7 @@
       "satisfies": [
         "INTK-0001-REQ-006"
       ],
-      "source_plan_hash": "476888ee78ca67b2d93fc093a5c2da5a382fbc60149922d3ee677bb45d67412f",
+      "source_plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -31376,7 +31416,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -31609,7 +31649,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -32045,7 +32090,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -32236,7 +32281,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -32463,7 +32508,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -32686,7 +32736,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -32730,7 +32780,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -32963,7 +33013,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -33375,7 +33430,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_jobpart",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -33542,7 +33597,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -33769,7 +33824,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -33968,7 +34028,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -34012,7 +34072,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -34612,7 +34672,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle_jobcontext_quickview",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -34765,7 +34825,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -35145,7 +35205,7 @@
       "satisfies": [
         "INTK-0001-REQ-009"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -35193,7 +35253,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -35735,7 +35795,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_jobparts_inlineentry",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -35884,7 +35944,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -36246,7 +36306,7 @@
         "INTK-0001-REQ-012",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -36300,7 +36360,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -36935,7 +36995,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -37123,7 +37183,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -37544,7 +37604,7 @@
         "INTK-0001-REQ-013",
         "INTK-0001-REQ-014"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -37591,7 +37651,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -38133,7 +38193,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_activejobs",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -38282,7 +38342,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -38642,7 +38702,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -38689,7 +38749,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -39230,7 +39290,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_jobsassignedtome",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -39378,7 +39438,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -39737,7 +39797,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -39784,7 +39844,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -40326,7 +40386,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_highcriticaljobs",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -40475,7 +40535,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -40835,7 +40895,7 @@
       "satisfies": [
         "INTK-0001-REQ-010"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -40882,7 +40942,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -41281,7 +41341,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "Contoso Service core-table auditing",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -41403,7 +41463,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -41651,7 +41711,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -41698,7 +41758,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -42247,7 +42307,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_linevalue",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -42373,7 +42433,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -42741,7 +42801,7 @@
         "INTK-0001-REQ-011",
         "INTK-0001-REQ-012"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "completed",
       "task_profile": {
         "evidence": [
@@ -42787,7 +42847,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -43336,7 +43396,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_labourcost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -43462,7 +43522,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -43830,7 +43890,7 @@
         "INTK-0001-REQ-007",
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -43876,7 +43936,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -43943,8 +44003,8 @@
               ],
               "operation": "create",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-create",
-              "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+              "profile": "derived-column-create",
+              "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -44106,8 +44166,8 @@
               ],
               "operation": "update",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-update",
-              "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+              "profile": "derived-column-update",
+              "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -44514,7 +44574,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_totalpartscost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -44664,7 +44724,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -44725,8 +44785,8 @@
               ],
               "operation": "create",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-create",
-              "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+              "profile": "derived-column-create",
+              "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -44888,8 +44948,8 @@
               ],
               "operation": "update",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-update",
-              "rationale": "Generic MCP writes do not guarantee the documented explicit custom-solution header; Web API is compiler-bound and MCP is verification-only.",
+              "profile": "derived-column-update",
+              "rationale": "Formula columns (SourceType=3, Power Fx) are supported via Web API with FormulaDefinition property. Calculated columns (SourceType=1, XAML) and Rollup columns (SourceType=2) are NOT settable via Web API; Dataverse rejects hand-authored RollupStateData and XAML. Formula columns use derived_type=formula with a Power Fx definition. Calculated and rollup columns require a base schema_column followed by exclusive Maker Portal configuration, Export-DvSolutionToSource, and committed solution XML. See the registered dataverse-table schema_derived_column guidance.",
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -45092,8 +45152,8 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
-      "status": "in_progress",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "validation_results",
@@ -45139,7 +45199,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -45687,7 +45747,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_totalcost",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -45812,7 +45872,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -46178,7 +46238,7 @@
       "satisfies": [
         "INTK-0001-REQ-013"
       ],
-      "source_plan_hash": "f02b3cf76d834af3416b22b51cd5655dd7d010c5497c4dacbaad0f6910d7cea0",
+      "source_plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
       "status": "draft",
       "task_profile": {
         "evidence": [
@@ -46229,7 +46289,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -46780,7 +46840,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "ContosoService.Plugins.MaintenanceJobCompletionPlugin",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -46949,7 +47009,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -47319,7 +47379,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "26e19bc960e76e07c8a62e9dcb2d23ab895a01d0a6aaed905e3a621451adc5b6",
+      "source_plan_hash": "1e8da2d1488fef7df6629fb0cdf2f81733298b0b7a368a52afc1fd1e367fae6d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -47371,7 +47431,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -47900,7 +47960,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_/scripts/maintenance_job_form.js",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -48060,7 +48120,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -48394,7 +48454,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "26e19bc960e76e07c8a62e9dcb2d23ab895a01d0a6aaed905e3a621451adc5b6",
+      "source_plan_hash": "1e8da2d1488fef7df6629fb0cdf2f81733298b0b7a368a52afc1fd1e367fae6d",
       "status": "in_review",
       "task_profile": {
         "evidence": [
@@ -48441,7 +48501,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -49072,7 +49132,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob_main",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -49256,7 +49316,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -49670,7 +49730,7 @@
         "INTK-0001-REQ-029",
         "INTK-0001-REQ-045"
       ],
-      "source_plan_hash": "26e19bc960e76e07c8a62e9dcb2d23ab895a01d0a6aaed905e3a621451adc5b6",
+      "source_plan_hash": "1e8da2d1488fef7df6629fb0cdf2f81733298b0b7a368a52afc1fd1e367fae6d",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -49715,7 +49775,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -49948,7 +50008,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -50353,7 +50418,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_vehicle",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -50513,7 +50578,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -50740,7 +50805,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -50931,7 +51001,7 @@
       "satisfies": [
         "INTK-0001-REQ-030"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -50975,7 +51045,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -51208,7 +51278,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -51621,7 +51696,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -51789,7 +51864,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -52016,7 +52091,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -52216,8 +52296,8 @@
         "INTK-0001-REQ-042",
         "INTK-0001-REQ-043"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
-      "status": "in_progress",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "validation_results",
@@ -52260,7 +52340,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -52493,7 +52573,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -52914,7 +52999,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "task",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -53090,7 +53175,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -53317,7 +53402,12 @@
               "operation": "update",
               "primary_resource": "dataverse-web-api",
               "profile": "metadata-table-update",
-              "rationale": "A schema_table update is a compiler-owned extension of an existing table; every declared child column uses the documented solution header and MCP remains verification-only.",
+              "rationale": "A schema_table update creates missing child columns with POST; evidence-gated recovery target-reads declared children and uses GET-merge-PUT only for exact existing child identities. Every write uses the documented solution header and MCP remains verification-only.",
+              "recovery_http": {
+                "endpoint_family": "metadata",
+                "method": "PUT",
+                "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
+              },
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -53528,8 +53618,8 @@
         "INTK-0001-REQ-042",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
-      "status": "ready",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "validation_results",
@@ -53572,7 +53662,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -53878,12 +53968,12 @@
           "environment_url": "https://org89912357.crm.dynamics.com",
           "expected_payload": {
             "cascade_configuration": {
-              "Assign": "Cascade",
+              "Assign": "NoCascade",
               "Delete": "Restrict",
               "Merge": "NoCascade",
-              "Reparent": "Cascade",
-              "Share": "Cascade",
-              "Unshare": "Cascade"
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
             },
             "lookup_column": "aks_maintenancejobid",
             "name": "aks_maintenancejob_task",
@@ -54224,7 +54314,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_maintenancejob_task",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -54252,12 +54342,12 @@
           "declared_solution_unique_name": "ContosoServiceCore",
           "expected_payload": {
             "cascade_configuration": {
-              "Assign": "Cascade",
+              "Assign": "NoCascade",
               "Delete": "Restrict",
               "Merge": "NoCascade",
-              "Reparent": "Cascade",
-              "Share": "Cascade",
-              "Unshare": "Cascade"
+              "Reparent": "NoCascade",
+              "Share": "NoCascade",
+              "Unshare": "NoCascade"
             },
             "lookup_column": "aks_maintenancejobid",
             "name": "aks_maintenancejob_task",
@@ -54389,7 +54479,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -54805,12 +54895,12 @@
       "owner": null,
       "payload": {
         "cascade_configuration": {
-          "Assign": "Cascade",
+          "Assign": "NoCascade",
           "Delete": "Restrict",
           "Merge": "NoCascade",
-          "Reparent": "Cascade",
-          "Share": "Cascade",
-          "Unshare": "Cascade"
+          "Reparent": "NoCascade",
+          "Share": "NoCascade",
+          "Unshare": "NoCascade"
         },
         "lookup_column": "aks_maintenancejobid",
         "name": "aks_maintenancejob_task",
@@ -54834,8 +54924,8 @@
         "INTK-0001-REQ-034",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
-      "status": "ready",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "validation_results",
@@ -54880,7 +54970,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -55406,7 +55496,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_task_followup_key",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -55544,7 +55634,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -55888,8 +55978,8 @@
       "satisfies": [
         "INTK-0001-REQ-042"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
-      "status": "ready",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "validation_results",
@@ -55935,7 +56025,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -56502,7 +56592,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_openmaintenancefollowuptasks",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -56676,7 +56766,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -57064,7 +57154,7 @@
         "INTK-0001-REQ-034",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -57109,7 +57199,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -57768,7 +57858,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_DataverseAutomatedFollowUp",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -57914,7 +58004,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -58331,8 +58421,8 @@
         "INTK-0001-REQ-043",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
-      "status": "ready",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "changed_paths",
@@ -58382,7 +58472,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -58925,7 +59015,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_ProcessMaintenanceJobCompletionFollowUp",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -59060,7 +59150,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -59404,7 +59494,7 @@
         "INTK-0001-REQ-043",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -59455,7 +59545,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -59990,7 +60080,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_CreateUrgentMaintenanceJobAlert",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -60117,7 +60207,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -60450,7 +60540,7 @@
         "INTK-0001-REQ-042",
         "INTK-0001-REQ-044"
       ],
-      "source_plan_hash": "0fea55af3d489b30b0a79b420f106bd1bb9824654a20ec02719992afb2b3f5fe",
+      "source_plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -60495,7 +60585,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -61192,7 +61282,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_ContosoServiceCoordinator",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -61435,7 +61525,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -61882,8 +61972,8 @@
         "INTK-0001-REQ-035",
         "INTK-0001-REQ-039"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
-      "status": "in_progress",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "privilege_matrix",
@@ -61927,7 +62017,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -62568,7 +62658,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_ContosoServiceTechnician",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -62755,7 +62845,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -63146,8 +63236,8 @@
         "INTK-0001-REQ-036",
         "INTK-0001-REQ-039"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
-      "status": "in_review",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "privilege_matrix",
@@ -63191,7 +63281,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -63796,7 +63886,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_ContosoServiceReader",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -63947,7 +64037,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -64302,8 +64392,8 @@
         "INTK-0001-REQ-037",
         "INTK-0001-REQ-039"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
-      "status": "in_progress",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
+      "status": "ready",
       "task_profile": {
         "evidence": [
           "privilege_matrix",
@@ -64344,7 +64434,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -64730,7 +64820,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "Contoso Service Coordinators - org89912357",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -64836,7 +64926,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -65075,7 +65165,7 @@
         "INTK-0001-REQ-035",
         "INTK-0001-REQ-038"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -65117,7 +65207,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -65503,7 +65593,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "Contoso Service Technicians - org89912357",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -65609,7 +65699,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -65848,7 +65938,7 @@
         "INTK-0001-REQ-036",
         "INTK-0001-REQ-038"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -65890,7 +65980,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -66276,7 +66366,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "Contoso Service Readers - org89912357",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -66382,7 +66472,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_environment",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -66621,7 +66711,7 @@
         "INTK-0001-REQ-037",
         "INTK-0001-REQ-038"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -66666,7 +66756,7 @@
       "depends_on": [],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -67317,7 +67407,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_contact_systemuser_technician",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -67481,7 +67571,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "add_solution_component": {
               "executor": {
@@ -67923,7 +68013,7 @@
         "INTK-0001-REQ-036",
         "INTK-0001-REQ-038"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -67976,7 +68066,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -68531,7 +68621,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "ContosoService.Plugins.TechnicianOwnershipAlignmentPlugin",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -68704,7 +68794,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -69073,7 +69163,7 @@
         "INTK-0001-REQ-036",
         "INTK-0001-REQ-038"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -69122,7 +69212,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -69618,7 +69708,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_ContosoService",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -69759,7 +69849,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -70064,7 +70154,7 @@
       "satisfies": [
         "INTK-0001-REQ-039"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
       "status": "ready",
       "task_profile": {
         "evidence": [
@@ -70111,7 +70201,7 @@
       ],
       "developer_preflight": {
         "authentication_policy": "reuse_if_valid",
-        "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+        "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
         "direct_action": {
           "automatic_prerequisite_repair_allowed": false,
           "canonical_identity": {
@@ -70632,7 +70722,7 @@
               "authentication_mode": "interactive_user",
               "behavior": "automatic",
               "blocking": true,
-              "capability_matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+              "capability_matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
               "component_identity": "aks_ContosoServiceSiteMap",
               "description": "Require concrete compiler-owned environment, routed target, canonical identity, and interactive authentication configuration. Do not live-enumerate or preverify their existence.",
               "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
@@ -70799,7 +70889,7 @@
       "development_resources": {
         "capabilities": {
           "implementation_scope": "repository_and_dataverse_solution",
-          "matrix_hash": "25d15cbd6c419ac2b18716b80652a3edf72f33a054e87aea711a547dbf70cca3",
+          "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
           "operations": {
             "create": {
               "executor": {
@@ -71129,7 +71219,7 @@
       "satisfies": [
         "INTK-0001-REQ-039"
       ],
-      "source_plan_hash": "88637a1e4216b236e2320ee1437395232c96a6c977b51c58656d49787f3991d3",
+      "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
       "status": "ready",
       "task_profile": {
         "evidence": [
