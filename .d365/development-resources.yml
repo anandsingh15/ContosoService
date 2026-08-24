@@ -1157,15 +1157,21 @@ routing:
       rationale: PAC is allowed only for documented solution operations.
 - match:
     component_type: sec_role
-  rationale: Role CRUD exists, but safe base-role copy, BU identity, and privilege resolution are not compiler-reliable from the current payload.
+  rationale: Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification.
   resources:
     required:
     - resource: microsoft-learn
       purpose: security_model_grounding
       rationale: Official security-role documentation defines supported messages and privilege semantics.
-    - resource: maker-portal
-      purpose: primary_least_privilege_authoring
-      rationale: Portal is primary because the capability matrix rejects unreliable direct role construction.
+    - resource: msal-python
+      purpose: delegated_authentication
+      rationale: The executor uses pinned public-client MSAL with an in-memory token cache.
+    - resource: dataverse-web-api
+      purpose: primary_solution_aware_authoring
+      rationale: The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.
+    - resource: power-platform-cli
+      purpose: post_write_solution_source_sync
+      rationale: PAC exports and unpacks the routed solution only after successful Web API verification.
     - resource: dataverse-mcp
       purpose: targeted_role_verification
       tools:
@@ -1173,6 +1179,10 @@ routing:
       - describe
       - read_query
       rationale: MCP verifies exact effective privileges only and is not used for generic solution-aware writes.
+    fallback:
+    - resource: maker-portal
+      purpose: documented_api_failure_fallback
+      rationale: Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.
 - match:
     component_type: sec_business_unit
   rationale: Business units are environment-bound records and do not use custom-solution routing.
