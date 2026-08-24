@@ -43930,7 +43930,7 @@
       },
       "build_skill": "dataverse-table",
       "component": "DES-03-CMP-012",
-      "component_type": "schema_column",
+      "component_type": "schema_derived_column",
       "depends_on": [
         "DEV-0038"
       ],
@@ -43965,8 +43965,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -43974,17 +43974,13 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -43999,7 +43995,8 @@
               },
               "official_references": [
                 "optional_parameters",
-                "column_definitions"
+                "column_definitions",
+                "publish_xml"
               ],
               "operation": "create",
               "primary_resource": "dataverse-web-api",
@@ -44017,18 +44014,14 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact table and column logical names.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
               "destructive_effect": "environment_delete",
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -44042,13 +44035,13 @@
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
               "official_references": [
-                "optional_parameters",
-                "column_definitions"
+                "column_definitions",
+                "publish_xml"
               ],
               "operation": "delete",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-delete",
-              "rationale": "HTTP DELETE destroys the column in the environment and never means solution-membership removal.",
+              "profile": "derived-column-delete",
+              "rationale": "HTTP DELETE destroys the derived column in the environment and never means solution-membership removal.",
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -44061,12 +44054,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the canonical column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -44090,19 +44079,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -44127,8 +44112,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -44136,17 +44121,13 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -44180,17 +44161,13 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, replace, publish, and verify the exact column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -44204,11 +44181,12 @@
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
               "official_references": [
-                "column_definitions"
+                "column_definitions",
+                "publish_xml"
               ],
               "operation": "verify",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-verify",
+              "profile": "derived-column-verify",
               "rationale": "Targeted verification avoids broad table or solution inventory.",
               "solution_context": {
                 "mechanism": "not_applicable"
@@ -44220,12 +44198,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -44241,9 +44215,16 @@
           "environment_id": "89a7081d-6701-f111-8c79-6045bd005919",
           "environment_url": "https://org89912357.crm.dynamics.com",
           "expected_payload": {
-            "data_type": "decimal",
-            "name": "Maintenance Job total parts cost base column",
+            "base_data_type": "decimal",
+            "derived_type": "rollup",
+            "formula": null,
+            "name": "Maintenance Job total parts cost rollup",
             "required_level": "None",
+            "rollup_spec": {
+              "aggregate_attribute": "aks_linevalue",
+              "aggregate_function": "SUM",
+              "related_entity": "aks_jobpart"
+            },
             "satisfies": [
               "INTK-0001-REQ-013"
             ],
@@ -44275,12 +44256,12 @@
               "key": "maker-portal.maker-action",
               "phase": "manual",
               "purpose": "documented_api_failure_fallback",
-              "rationale": "Portal fallback is allowed only with issue evidence for the specific API failure or unsupported payload.",
+              "rationale": "Portal fallback must cite the exact failed or unsupported capability in issue evidence.",
               "resource": "maker-portal",
               "role": "fallback"
             }
           ],
-          "route_rationale": "Column create, update, delete, publish, and verification are capability-gated metadata operations with explicit solution context.",
+          "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix.",
           "solution_unique_name": "ContosoServiceCore",
           "target_kind": "dataverse_solution"
         },
@@ -44303,33 +44284,11 @@
               "key": "dataverse-web-api.interactive-sign-in",
               "phase": "authentication",
               "purpose": "primary_solution_aware_authoring",
-              "rationale": "The documented solution header binds the exact column operation to the routed custom solution.",
+              "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api",
               "role": "required",
               "session_probe": {
                 "instructions": "Use only an in-process silent MSAL lookup to confirm the current user and exact Dataverse resource; never print token data."
-              }
-            },
-            {
-              "action": "interactive_auth",
-              "behavior": "interactive",
-              "blocking": true,
-              "description": "Authenticate the current human directly to the declared Dataverse environment.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "fresh_authentication": {
-                "force_supported": false,
-                "instructions": "In the active MCP host, disconnect or sign out only the dataverse-authoring connection, reconnect the declared /api/mcp endpoint, and complete browser or device sign-in before resuming."
-              },
-              "id": "interactive-sign-in",
-              "instructions": "Complete the MCP browser or device sign-in and return only non-secret identity results.",
-              "key": "dataverse-mcp.interactive-sign-in",
-              "phase": "authentication",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "MCP generic writes are not primary because they do not guarantee compiler-validated explicit custom-solution context.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "session_probe": {
-                "instructions": "In the active MCP host, inspect the dataverse-authoring connection and confirm the signed-in user and declared environment without reconnecting."
               }
             },
             {
@@ -44347,7 +44306,7 @@
               "key": "maker-portal.maker-sign-in",
               "phase": "authentication",
               "purpose": "documented_api_failure_fallback",
-              "rationale": "Portal fallback is allowed only with issue evidence for the specific API failure or unsupported payload.",
+              "rationale": "Portal fallback must cite the exact failed or unsupported capability in issue evidence.",
               "resource": "maker-portal",
               "role": "fallback",
               "session_probe": {
@@ -44370,7 +44329,7 @@
               "key": "microsoft-learn.server-registration",
               "phase": "availability_version",
               "purpose": "metadata_contract",
-              "rationale": "Official Microsoft documentation defines supported column metadata payloads and methods.",
+              "rationale": "Official metadata documentation is required for every selected schema operation.",
               "resource": "microsoft-learn",
               "role": "required",
               "server": "microsoft-learn"
@@ -44394,7 +44353,7 @@
               "key": "msal-python.msal-version",
               "phase": "availability_version",
               "purpose": "delegated_authentication",
-              "rationale": "The executor requires the pinned in-memory public-client authentication library.",
+              "rationale": "Public-client MSAL is pinned and tokens remain in memory only.",
               "resource": "msal-python",
               "role": "required"
             },
@@ -44421,29 +44380,9 @@
               },
               "phase": "availability_version",
               "purpose": "primary_solution_aware_authoring",
-              "rationale": "The documented solution header binds the exact column operation to the routed custom solution.",
+              "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api",
               "role": "required"
-            },
-            {
-              "action": "mcp_server",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify the configured server key and resolved GA endpoint.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_version": "ga",
-              "id": "server-registration",
-              "installation": {
-                "guidance": "Enable Dataverse MCP in the declared environment and register its GA endpoint in the active MCP client.",
-                "policy": "not_applicable"
-              },
-              "key": "dataverse-mcp.server-registration",
-              "phase": "availability_version",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "MCP generic writes are not primary because they do not guarantee compiler-validated explicit custom-solution context.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
             },
             {
               "action": "endpoint",
@@ -44460,7 +44399,7 @@
               "key": "maker-portal.portal-root",
               "phase": "availability_version",
               "purpose": "documented_api_failure_fallback",
-              "rationale": "Portal fallback is allowed only with issue evidence for the specific API failure or unsupported payload.",
+              "rationale": "Portal fallback must cite the exact failed or unsupported capability in issue evidence.",
               "resource": "maker-portal",
               "role": "fallback"
             }
@@ -44477,7 +44416,7 @@
               "key": "microsoft-learn.documentation-search",
               "phase": "capability",
               "purpose": "metadata_contract",
-              "rationale": "Official Microsoft documentation defines supported column metadata payloads and methods.",
+              "rationale": "Official metadata documentation is required for every selected schema operation.",
               "resource": "microsoft-learn",
               "role": "required",
               "server": "microsoft-learn"
@@ -44501,30 +44440,9 @@
               },
               "phase": "capability",
               "purpose": "primary_solution_aware_authoring",
-              "rationale": "The documented solution header binds the exact column operation to the routed custom solution.",
+              "rationale": "Supported metadata operations use the documented solution header or action parameter.",
               "resource": "dataverse-web-api",
               "role": "required"
-            },
-            {
-              "action": "mcp_tools",
-              "behavior": "automatic",
-              "blocking": true,
-              "description": "Verify every task-routed Dataverse MCP tool is exposed.",
-              "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-              "expected_tools": [
-                "search",
-                "describe",
-                "read_query"
-              ],
-              "expected_version": "ga",
-              "id": "required-tools",
-              "key": "dataverse-mcp.required-tools",
-              "phase": "capability",
-              "purpose": "discovery_and_targeted_verification",
-              "rationale": "MCP generic writes are not primary because they do not guarantee compiler-validated explicit custom-solution context.",
-              "resource": "dataverse-mcp",
-              "role": "required",
-              "server": "dataverse-authoring"
             }
           ],
           "ready_to_attempt": [
@@ -44539,8 +44457,7 @@
               "required_resources": [
                 "microsoft-learn",
                 "msal-python",
-                "dataverse-web-api",
-                "dataverse-mcp"
+                "dataverse-web-api"
               ],
               "resource": "preflight",
               "role": "required"
@@ -44551,15 +44468,13 @@
               "action": "session_validation",
               "authentication_mode": "interactive_user",
               "authentication_resources": [
-                "dataverse-mcp",
                 "dataverse-web-api"
               ],
               "behavior": "automatic",
               "blocking": true,
               "description": "Confirm an authenticated, callable session exists for an exact compiler-routed endpoint without broad environment, solution, publisher, component, membership, or permission discovery.",
               "expected_endpoints": [
-                "https://org89912357.crm.dynamics.com/api/data/v9.2",
-                "https://org89912357.crm.dynamics.com/api/mcp"
+                "https://org89912357.crm.dynamics.com/api/data/v9.2"
               ],
               "key": "authentication.endpoint-session",
               "phase": "session_validation",
@@ -44601,9 +44516,16 @@
           },
           "declared_solution_unique_name": "ContosoServiceCore",
           "expected_payload": {
-            "data_type": "decimal",
-            "name": "Maintenance Job total parts cost base column",
+            "base_data_type": "decimal",
+            "derived_type": "rollup",
+            "formula": null,
+            "name": "Maintenance Job total parts cost rollup",
             "required_level": "None",
+            "rollup_spec": {
+              "aggregate_attribute": "aks_linevalue",
+              "aggregate_function": "SUM",
+              "related_entity": "aks_jobpart"
+            },
             "satisfies": [
               "INTK-0001-REQ-013"
             ],
@@ -44615,12 +44537,8 @@
           "targeted_read_only_verification": true,
           "verification_resources": {
             "add_solution_component": {
-              "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+              "resource": "dataverse-web-api"
             },
             "create": {
               "http": {
@@ -44628,12 +44546,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Verify the exact table and column logical names.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "delete": {
               "http": {
@@ -44641,28 +44555,16 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Confirm only the canonical column was removed.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+              "resource": "dataverse-web-api"
             },
             "publish": {
-              "rationale": "Re-read only the published canonical metadata.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "remove_solution_component": {
-              "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+              "resource": "dataverse-web-api"
             },
             "update": {
               "http": {
@@ -44670,12 +44572,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Retrieve, merge, replace, publish, and verify the exact column definition.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             },
             "verify": {
               "http": {
@@ -44683,12 +44581,8 @@
                 "method": "GET",
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
-              "rationale": "Target-read the exact column.",
-              "resource": "dataverse-mcp",
-              "tools": [
-                "describe",
-                "read_query"
-              ]
+              "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+              "resource": "dataverse-web-api"
             }
           },
           "verify_absence_from_other_declared_custom_solutions": true
@@ -44698,7 +44592,8 @@
           "component_projects": [],
           "component_source_sync": {
             "paths": [
-              "Entities/<table>/Entity.xml"
+              "Entities/<table>/Entity.xml",
+              "Entities/<table>/Formulas/<table>-FormulaDefinitions.yaml"
             ],
             "strategy": "parent_owned_xml"
           },
@@ -44747,8 +44642,8 @@
               ],
               "operation": "add_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "add-solution-component",
-              "rationale": "Use only for an already-existing component; creation with MSCRM.SolutionUniqueName remains the preferred documented mechanism.",
+              "profile": "derived-column-add-solution-component",
+              "rationale": "Use only for an already-existing derived column; creation with MSCRM.SolutionUniqueName remains preferred.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -44756,17 +44651,13 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the exact object ID is a member of only the routed custom solution among declared custom solutions.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the exact derived-column object ID belongs only to the routed custom solution among declared custom solutions.",
+                "resource": "dataverse-web-api"
               }
             },
             "create": {
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -44781,7 +44672,8 @@
               },
               "official_references": [
                 "optional_parameters",
-                "column_definitions"
+                "column_definitions",
+                "publish_xml"
               ],
               "operation": "create",
               "primary_resource": "dataverse-web-api",
@@ -44799,18 +44691,14 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Verify the exact table and column logical names.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify the exact derived column by table and logical name through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "delete": {
               "destructive_effect": "environment_delete",
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -44824,13 +44712,13 @@
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
               "official_references": [
-                "optional_parameters",
-                "column_definitions"
+                "column_definitions",
+                "publish_xml"
               ],
               "operation": "delete",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-delete",
-              "rationale": "HTTP DELETE destroys the column in the environment and never means solution-membership removal.",
+              "profile": "derived-column-delete",
+              "rationale": "HTTP DELETE destroys the derived column in the environment and never means solution-membership removal.",
               "solution_context": {
                 "mechanism": "MSCRM.SolutionUniqueName",
                 "name": "MSCRM.SolutionUniqueName",
@@ -44843,12 +44731,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Confirm only the canonical column was removed.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Confirm through the compiler-bound executor that only the exact derived column was removed.",
+                "resource": "dataverse-web-api"
               }
             },
             "publish": {
@@ -44872,19 +44756,15 @@
               ],
               "operation": "publish",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-publish",
-              "rationale": "PublishXml targets named entities or choices; PublishAllXml is prohibited.",
+              "profile": "derived-column-publish",
+              "rationale": "PublishXml targets the derived column's containing entity; PublishAllXml is prohibited.",
               "solution_context": {
                 "mechanism": "not_applicable"
               },
               "support": "supported",
               "verification": {
-                "rationale": "Re-read only the published canonical metadata.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Re-read only the published derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "remove_solution_component": {
@@ -44909,8 +44789,8 @@
               ],
               "operation": "remove_solution_component",
               "primary_resource": "dataverse-web-api",
-              "profile": "remove-solution-component",
-              "rationale": "RemoveSolutionComponent changes membership only and must never be substituted for HTTP DELETE.",
+              "profile": "derived-column-remove-solution-component",
+              "rationale": "RemoveSolutionComponent changes only the derived column's solution membership and never substitutes for HTTP DELETE.",
               "solution_context": {
                 "mechanism": "action_parameter",
                 "name": "SolutionUniqueName",
@@ -44918,17 +44798,13 @@
               },
               "support": "supported",
               "verification": {
-                "rationale": "Verify the component still exists but is no longer a member of the routed solution.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Verify through the compiler-bound executor that the derived column still exists but no longer belongs to the routed solution.",
+                "resource": "dataverse-web-api"
               }
             },
             "update": {
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -44962,17 +44838,13 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Retrieve, merge, replace, publish, and verify the exact column definition.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Retrieve, merge, and verify the exact derived column definition through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             },
             "verify": {
               "executor": {
-                "builder": "schema_column",
+                "builder": "schema_derived_column",
                 "supported": true
               },
               "fallback": {
@@ -44986,11 +44858,12 @@
                 "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
               },
               "official_references": [
-                "column_definitions"
+                "column_definitions",
+                "publish_xml"
               ],
               "operation": "verify",
               "primary_resource": "dataverse-web-api",
-              "profile": "metadata-column-verify",
+              "profile": "derived-column-verify",
               "rationale": "Targeted verification avoids broad table or solution inventory.",
               "solution_context": {
                 "mechanism": "not_applicable"
@@ -45002,12 +44875,8 @@
                   "method": "GET",
                   "path_template": "EntityDefinitions(LogicalName='{table}')/Attributes(LogicalName='{identity}')"
                 },
-                "rationale": "Target-read the exact column.",
-                "resource": "dataverse-mcp",
-                "tools": [
-                  "describe",
-                  "read_query"
-                ]
+                "rationale": "Target-read the exact derived column through the compiler-bound executor.",
+                "resource": "dataverse-web-api"
               }
             }
           },
@@ -45029,7 +44898,7 @@
             "id": "maker-portal",
             "kind": "portal",
             "purpose": "documented_api_failure_fallback",
-            "rationale": "Portal fallback is allowed only with issue evidence for the specific API failure or unsupported payload.",
+            "rationale": "Portal fallback must cite the exact failed or unsupported capability in issue evidence.",
             "supported_execution_hosts": [
               "local_interactive"
             ],
@@ -45045,7 +44914,7 @@
             "id": "microsoft-learn",
             "kind": "mcp",
             "purpose": "metadata_contract",
-            "rationale": "Official Microsoft documentation defines supported column metadata payloads and methods.",
+            "rationale": "Official metadata documentation is required for every selected schema operation.",
             "server": "microsoft-learn",
             "supported_execution_hosts": [
               "local_interactive",
@@ -45062,7 +44931,7 @@
             "kind": "sdk",
             "package": "msal",
             "purpose": "delegated_authentication",
-            "rationale": "The executor requires the pinned in-memory public-client authentication library.",
+            "rationale": "Public-client MSAL is pinned and tokens remain in memory only.",
             "supported_execution_hosts": [
               "local_interactive"
             ],
@@ -45084,64 +44953,33 @@
               "token_cache": "memory_only"
             },
             "purpose": "primary_solution_aware_authoring",
-            "rationale": "The documented solution header binds the exact column operation to the routed custom solution.",
+            "rationale": "Supported metadata operations use the documented solution header or action parameter.",
             "supported_execution_hosts": [
               "local_interactive"
             ],
             "version": "v9.2",
             "version_policy": "api_contract"
-          },
-          {
-            "authentication": "interactive_user",
-            "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
-            "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
-            "id": "dataverse-mcp",
-            "kind": "mcp",
-            "purpose": "discovery_and_targeted_verification",
-            "rationale": "MCP generic writes are not primary because they do not guarantee compiler-validated explicit custom-solution context.",
-            "release_channel": "ga",
-            "required_tools": [
-              "search",
-              "describe",
-              "read_query"
-            ],
-            "server": "dataverse-authoring",
-            "supported_execution_hosts": [
-              "local_interactive"
-            ],
-            "tools": [
-              "search_data",
-              "search",
-              "create_record",
-              "update_record",
-              "delete_record",
-              "create_table",
-              "update_table",
-              "delete_table",
-              "read_query",
-              "describe",
-              "upsert_skill",
-              "delete_skill",
-              "init_file_upload",
-              "commit_file_upload",
-              "file_download"
-            ],
-            "version": "ga",
-            "version_policy": "service_managed"
           }
         ],
-        "route_rationale": "Column create, update, delete, publish, and verification are capability-gated metadata operations with explicit solution context."
+        "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
       },
       "execution_host": "local_interactive",
-      "executor": "hybrid",
+      "executor": "agent",
       "feature": "FEAT-03",
       "id": "DEV-0040",
       "implementation_scope": "repository_and_dataverse_solution",
       "owner": null,
       "payload": {
-        "data_type": "decimal",
-        "name": "Maintenance Job total parts cost base column",
+        "base_data_type": "decimal",
+        "derived_type": "rollup",
+        "formula": null,
+        "name": "Maintenance Job total parts cost rollup",
         "required_level": "None",
+        "rollup_spec": {
+          "aggregate_attribute": "aks_linevalue",
+          "aggregate_function": "SUM",
+          "related_entity": "aks_jobpart"
+        },
         "satisfies": [
           "INTK-0001-REQ-013"
         ],
@@ -63237,7 +63075,7 @@
         "INTK-0001-REQ-039"
       ],
       "source_plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
-      "status": "ready",
+      "status": "in_review",
       "task_profile": {
         "evidence": [
           "privilege_matrix",
