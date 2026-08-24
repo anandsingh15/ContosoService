@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Role id="{5632f88a-a79b-f111-b8db-6045bd01d8e8}" name="Contoso Service Coordinator" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IsCustomizable>1</IsCustomizable>
+  <IsAutoAssigned>0</IsAutoAssigned>
+  <RolePrivileges>
+    <RolePrivilege name="prvAppendaks_jobpart" level="Local" />
+    <RolePrivilege name="prvAppendaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvAppendaks_vehicle" level="Local" />
+    <RolePrivilege name="prvAppendToAccount" level="Local" />
+    <RolePrivilege name="prvAppendToaks_jobpart" level="Local" />
+    <RolePrivilege name="prvAppendToaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvAppendToaks_vehicle" level="Local" />
+    <RolePrivilege name="prvAppendToContact" level="Local" />
+    <RolePrivilege name="prvAssignaks_jobpart" level="Local" />
+    <RolePrivilege name="prvAssignaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvAssignaks_vehicle" level="Local" />
+    <RolePrivilege name="prvCreateaks_jobpart" level="Local" />
+    <RolePrivilege name="prvCreateaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvCreateaks_vehicle" level="Local" />
+    <RolePrivilege name="prvCreateSharePointData" level="Global" />
+    <RolePrivilege name="prvDeleteaks_jobpart" level="Local" />
+    <RolePrivilege name="prvDeleteaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvDeleteaks_vehicle" level="Local" />
+    <RolePrivilege name="prvReadAccount" level="Local" />
+    <RolePrivilege name="prvReadaks_jobpart" level="Local" />
+    <RolePrivilege name="prvReadaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvReadaks_vehicle" level="Local" />
+    <RolePrivilege name="prvReadContact" level="Local" />
+    <RolePrivilege name="prvReadPluginAssembly" level="Global" />
+    <RolePrivilege name="prvReadPluginType" level="Global" />
+    <RolePrivilege name="prvReadSdkMessage" level="Global" />
+    <RolePrivilege name="prvReadSdkMessageProcessingStep" level="Global" />
+    <RolePrivilege name="prvReadSdkMessageProcessingStepImage" level="Global" />
+    <RolePrivilege name="prvReadSharePointData" level="Global" />
+    <RolePrivilege name="prvReadSharePointDocument" level="Global" />
+    <RolePrivilege name="prvShareaks_jobpart" level="Local" />
+    <RolePrivilege name="prvShareaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvShareaks_vehicle" level="Local" />
+    <RolePrivilege name="prvWriteaks_jobpart" level="Local" />
+    <RolePrivilege name="prvWriteaks_maintenancejob" level="Local" />
+    <RolePrivilege name="prvWriteaks_vehicle" level="Local" />
+    <RolePrivilege name="prvWriteSharePointData" level="Global" />
+  </RolePrivileges>
+</Role>
