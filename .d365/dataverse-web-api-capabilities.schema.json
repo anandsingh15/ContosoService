@@ -192,6 +192,7 @@
         },
         "primary_resource": { "type": "string", "minLength": 1 },
         "http": { "$ref": "#/$defs/http" },
+        "recovery_http": { "$ref": "#/$defs/http" },
         "solution_context": { "$ref": "#/$defs/solutionContext" },
         "verification": { "$ref": "#/$defs/verification" },
         "fallback": { "$ref": "#/$defs/fallback" },

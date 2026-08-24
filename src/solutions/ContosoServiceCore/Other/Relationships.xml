@@ -3,6 +3,7 @@
   <EntityRelationship Name="aks_account_vehicle_depot" />
   <EntityRelationship Name="aks_contact_maintenancejob_technician" />
   <EntityRelationship Name="aks_maintenancejob_jobpart" />
+  <EntityRelationship Name="aks_maintenancejob_task" />
   <EntityRelationship Name="aks_vehicle_maintenancejob" />
   <EntityRelationship Name="business_unit_aks_jobpart" />
   <EntityRelationship Name="business_unit_aks_maintenancejob" />
