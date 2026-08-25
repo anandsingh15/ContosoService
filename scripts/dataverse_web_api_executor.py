@@ -5917,8 +5917,7 @@ def verify_result(
 ) -> tuple[dict[str, str], str]:
     try:
         if (
-            row["payload"].get("membership_only") is True
-            and row["component_type"] in ROW_COMPONENT_TYPES
+            row["component_type"] in ROW_COMPONENT_TYPES
             and GUID_RE.fullmatch(immutable_id)
         ):
             verify_request = row_verification_request_by_id(row, immutable_id)
