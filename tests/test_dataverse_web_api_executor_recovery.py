@@ -135,6 +135,53 @@ class AppModuleRequestTests(unittest.TestCase):
             self.assertIn("ContosoService", request.path)
             self.assertNotIn("aks_ContosoService", request.path)
 
+    def test_app_create_and_update_explicitly_target_unified_interface(self):
+        row = {
+            "component_type": "uiux_app",
+            "authoring_target": {"publisher_prefix": "aks"},
+            "payload": {
+                "name": "Contoso Service",
+                "schema_name": "aks_ContosoService",
+            },
+        }
+
+        create_request = executor.build_static_requests(
+            row, "create", self.app_capability
+        )[0]
+        update_request = executor.build_static_requests(
+            row,
+            "update",
+            self.app_update_capability,
+            resolved_id=self.APP_ID,
+        )[0]
+
+        for request in (create_request, update_request):
+            self.assertEqual(request.body["clienttype"], 4)
+            self.assertIn("clienttype", request.changed_fields)
+
+    def test_app_immutable_verification_requires_unified_interface(self):
+        row = {
+            "component_type": "uiux_app",
+            "payload": {
+                "name": "Contoso Service",
+                "schema_name": "aks_ContosoService",
+            },
+        }
+
+        request = executor.row_verification_request_by_id(row, self.APP_ID)
+
+        self.assertIn("clienttype", request.path)
+        self.assertTrue(
+            executor.expected_payload_matches(
+                row, request, {"name": "Contoso Service", "clienttype": 4}
+            )
+        )
+        self.assertFalse(
+            executor.expected_payload_matches(
+                row, request, {"name": "Contoso Service", "clienttype": 2}
+            )
+        )
+
     def test_cleanup_removes_only_exact_approved_malformed_memberships(self):
         expected_ids = [
             "10000000-0000-0000-0000-000000000001",
@@ -349,6 +396,7 @@ class AppModuleRequestTests(unittest.TestCase):
             request.body,
             {
                 "name": "Contoso Service",
+                "clienttype": 4,
                 "uniquename": "ContosoService",
                 "webresourceid": "953b9fac-1e5e-e611-80d6-00155ded156f",
             },
