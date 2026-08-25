@@ -116,6 +116,25 @@ class AppModuleRequestTests(unittest.TestCase):
         self.assertEqual(payload["operation"], "resolve")
         self.assertEqual(payload["components"][0]["logicalName"], "account")
 
+    def test_app_verification_uses_platform_unique_name_without_publisher_prefix(self):
+        row = {
+            "component_type": "uiux_app",
+            "authoring_target": {"publisher_prefix": "aks"},
+            "payload": {
+                "name": "Contoso Service",
+                "schema_name": "aks_ContosoService",
+            },
+        }
+
+        static_request = executor.build_static_requests(
+            row, "verify", self.app_capability
+        )[0]
+        lookup_request = executor.row_lookup_request(row)
+
+        for request in (static_request, lookup_request):
+            self.assertIn("ContosoService", request.path)
+            self.assertNotIn("aks_ContosoService", request.path)
+
     def test_cleanup_removes_only_exact_approved_malformed_memberships(self):
         expected_ids = [
             "10000000-0000-0000-0000-000000000001",
