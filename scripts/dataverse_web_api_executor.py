@@ -8,6 +8,7 @@ import importlib.metadata
 import json
 import logging
 import re
+import subprocess
 import sys
 import time
 import uuid
@@ -139,6 +140,7 @@ FORM_CONTROL_CLASS_IDS = {
     "lookup": "{270BD3DB-D9AF-4782-9025-509E298DEC0A}",
 }
 FORM_SUBGRID_CLASS_ID = "{E7A81278-8635-4D9E-8D4D-59480B391C5B}"
+DEFAULT_APPMODULE_ICON_ID = "953b9fac-1e5e-e611-80d6-00155ded156f"
 WEB_RESOURCE_TYPE_VALUES = {
     "html": 1,
     "css": 2,
@@ -249,8 +251,16 @@ SAFE_PATH_METHODS = (
         {"GET", "DELETE"},
     ),
     (
-        re.compile(r"^(?:UpdateOptionValue|PublishXml|AddSolutionComponent|RemoveSolutionComponent)$"),
+        re.compile(
+            r"^(?:UpdateOptionValue|PublishXml|AddSolutionComponent|RemoveSolutionComponent|AddAppComponents|RemoveAppComponents)$"
+        ),
         {"POST"},
+    ),
+    (
+        re.compile(
+            r"^(?:RetrieveAppComponents|ValidateApp)\(AppModuleId=[0-9a-fA-F-]{36}\)$"
+        ),
+        {"GET"},
     ),
     (
         re.compile(
@@ -294,6 +304,7 @@ SAFE_PATH_METHODS = (
     ),
     (re.compile(r"^privileges\?.*$"), {"GET"}),
     (re.compile(r"^businessunits\?.*$"), {"GET"}),
+    (re.compile(r"^dependencies\?.*$"), {"GET"}),
     (
         re.compile(
             r"^EntityDefinitions\(LogicalName='[A-Za-z][A-Za-z0-9_]*'\)\?.*$"
@@ -315,6 +326,20 @@ SAFE_PATH_METHODS = (
     (
         re.compile(r"^appmodules(?:\([0-9a-fA-F-]{36}\))?(?:\?.*)?$"),
         {"GET", "POST", "PATCH", "DELETE"},
+    ),
+    (re.compile(r"^appmodulecomponents\?.*$"), {"GET"}),
+    (
+        re.compile(
+            r"^appmodules/Microsoft\.Dynamics\.CRM\."
+            r"RetrieveUnpublishedMultiple\(\)(?:\?.*)?$"
+        ),
+        {"GET"},
+    ),
+    (
+        re.compile(
+            r"^appmodules\([0-9a-fA-F-]{36}\)/appmoduleroles_association/\$ref$"
+        ),
+        {"POST"},
     ),
     (
         re.compile(r"^webresourceset(?:\([0-9a-fA-F-]{36}\))?(?:\?.*)?$"),
@@ -542,6 +567,878 @@ def exact_plugin_row(
             category="not_found",
         )
     return {}
+
+
+def exact_collection_row(
+    data: dict[str, Any],
+    *,
+    category: str,
+) -> dict[str, Any]:
+    values = data.get("value") or []
+    rows = [value for value in values if isinstance(value, dict)]
+    if len(rows) != 1:
+        raise ExecutorError(
+            f"exact {category} identity resolved to {len(rows)} rows",
+            category="not_found" if not rows else "conflict_or_duplicate",
+        )
+    return rows[0]
+
+
+def invoke_capability_suboperation(
+    client: DataverseClient,
+    capability: dict[str, Any],
+    name: str,
+    request: OperationRequest,
+) -> HttpResult:
+    validate_capability_suboperation(capability, name, request)
+    return client.request(request)
+
+
+def app_lookup_request(schema_name: str) -> OperationRequest:
+    query = urlencode(
+        {
+            "$select": "appmoduleid,name,uniquename",
+            "$filter": f"uniquename eq '{odata_string(schema_name)}'",
+        }
+    )
+    return OperationRequest(
+        "GET", "appmodules?" + query, None, (), (), "none", "resolve exact model-driven app"
+    )
+
+
+def resolve_app_id(
+    client: DataverseClient, capability: dict[str, Any], schema_name: str
+) -> str:
+    result = invoke_capability_suboperation(
+        client, capability, "resolve_app", app_lookup_request(schema_name)
+    )
+    try:
+        app = exact_collection_row(result.data, category="model-driven app")
+    except ExecutorError as exc:
+        if exc.category != "not_found":
+            raise
+        query = urlencode(
+            {
+                "$select": "appmoduleid,name,uniquename",
+                "$filter": f"uniquename eq '{odata_string(schema_name)}'",
+            }
+        )
+        app = exact_collection_row(
+            invoke_capability_suboperation(
+                client,
+                capability,
+                "resolve_unpublished_app",
+                OperationRequest(
+                    "GET",
+                    "appmodules/Microsoft.Dynamics.CRM."
+                    f"RetrieveUnpublishedMultiple()?{query}",
+                    None,
+                    (),
+                    (),
+                    "none",
+                    "resolve exact unpublished model-driven app",
+                ),
+            ).data,
+            category="unpublished model-driven app",
+        )
+    app_id = str(app.get("appmoduleid") or "")
+    if not GUID_RE.fullmatch(app_id):
+        raise ExecutorError("resolved model-driven app has no immutable ID")
+    if str(app.get("uniquename") or "").lower() != schema_name.lower():
+        raise ExecutorError("resolved model-driven app identity is not canonical")
+    return app_id
+
+
+def resolve_app_table_components(
+    row: dict[str, Any], client: DataverseClient, capability: dict[str, Any]
+) -> list[dict[str, str]]:
+    tables = (row.get("payload") or {}).get("tables")
+    if not isinstance(tables, list) or not tables:
+        raise ExecutorError("model-driven app payload requires tables")
+    canonical_tables = [canonical_table(table) for table in tables]
+    component_ids = resolve_sdk_table_component_ids(row, canonical_tables)
+    components: list[dict[str, str]] = []
+    for table in canonical_tables:
+        result = invoke_capability_suboperation(
+            client,
+            capability,
+            "resolve_table_metadata",
+            OperationRequest(
+                "GET",
+                f"EntityDefinitions(LogicalName='{odata_string(table)}')?"
+                + urlencode({"$select": "MetadataId,LogicalName,EntitySetName"}),
+                None,
+                (),
+                (),
+                "none",
+                "resolve exact app table metadata",
+            )
+        )
+        metadata_id = str(result.data.get("MetadataId") or "")
+        logical_name = str(result.data.get("LogicalName") or "").lower()
+        entity_set_name = str(result.data.get("EntitySetName") or "")
+        if (
+            not GUID_RE.fullmatch(metadata_id)
+            or logical_name != table
+            or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", entity_set_name)
+        ):
+            raise ExecutorError(
+                f"app table '{table}' has no exact metadata identity",
+                category="not_found",
+            )
+        components.append(
+            {
+                "@odata.type": "Microsoft.Dynamics.CRM.entity",
+                "entityid": component_ids[table],
+            }
+        )
+    return components
+
+
+def resolve_sdk_table_component_ids(
+    row: dict[str, Any], tables: list[str]
+) -> dict[str, str]:
+    oauth = validate_oauth_public_client(row)
+    project = (
+        P.ROOT
+        / "scripts"
+        / "dataverse_app_sdk_executor"
+        / "DataverseAppSdkExecutor.csproj"
+    )
+    if not project.is_file():
+        raise ExecutorError(
+            "Dataverse SDK app executor project is unavailable",
+            category="configuration_prerequisite",
+        )
+    payload = {
+        "operation": "resolve",
+        "environmentUrl": row["authoring_target"]["environment_url"],
+        "clientId": oauth["client_id"],
+        "tenantId": oauth["tenant_id"],
+        "redirectUri": oauth["redirect_uri"],
+        "appId": "00000000-0000-0000-0000-000000000000",
+        "components": [
+            {
+                "logicalName": table,
+                "id": "00000000-0000-0000-0000-000000000000",
+            }
+            for table in tables
+        ],
+    }
+    result = subprocess.run(
+        [
+            "dotnet",
+            "run",
+            "--project",
+            str(project),
+            "--configuration",
+            "Release",
+            "--no-build",
+            "--no-restore",
+        ],
+        input=json.dumps(payload),
+        capture_output=True,
+        text=True,
+        cwd=str(P.ROOT),
+    )
+    if result.returncode != 0:
+        raise ExecutorError(
+            "Dataverse SDK table component resolution failed",
+            category="sdk_operation_error",
+        )
+    try:
+        output = json.loads(result.stdout)
+    except json.JSONDecodeError as exc:
+        raise ExecutorError(
+            "Dataverse SDK app executor returned invalid output",
+            category="sdk_operation_error",
+        ) from exc
+    resolved = {
+        str(component.get("logicalName") or "").lower(): str(
+            component.get("id") or ""
+        ).lower()
+        for component in output.get("components") or []
+        if isinstance(component, dict)
+    }
+    if (
+        output.get("result") != "succeeded"
+        or set(resolved) != set(tables)
+        or any(not GUID_RE.fullmatch(component_id) for component_id in resolved.values())
+        or len(set(resolved.values())) != len(tables)
+    ):
+        raise ExecutorError(
+            "Dataverse SDK table component identities are incomplete",
+            category="verification_mismatch",
+        )
+    return resolved
+
+
+def resolve_app_roles(
+    row: dict[str, Any], client: DataverseClient, capability: dict[str, Any]
+) -> list[tuple[str, str]]:
+    roles = (row.get("payload") or {}).get("roles")
+    if not isinstance(roles, list) or not roles:
+        raise ExecutorError("model-driven app payload requires roles")
+    role_names = declared_app_role_names(row, roles)
+    business_unit_result = invoke_capability_suboperation(
+        client,
+        capability,
+        "resolve_root_business_unit",
+        OperationRequest(
+            "GET",
+            "businessunits?"
+            + urlencode(
+                {
+                    "$select": "businessunitid",
+                    "$filter": "_parentbusinessunitid_value eq null",
+                }
+            ),
+            None,
+            (),
+            (),
+            "none",
+            "resolve root business unit for exact app security roles",
+        ),
+    )
+    business_unit = exact_collection_row(
+        business_unit_result.data, category="root business unit"
+    )
+    business_unit_id = str(business_unit.get("businessunitid") or "")
+    if not GUID_RE.fullmatch(business_unit_id):
+        raise ExecutorError("resolved root business unit has no immutable ID")
+    resolved: list[tuple[str, str]] = []
+    for declared_role in roles:
+        role_schema_name = str(declared_role or "").strip()
+        if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", role_schema_name):
+            raise ExecutorError("model-driven app role identity is not canonical")
+        role_name = role_names[role_schema_name]
+        request = OperationRequest(
+            "GET",
+            "roles?"
+            + urlencode(
+                {
+                    "$select": "roleid,name",
+                    "$filter": (
+                        f"name eq '{odata_string(role_name)}' and "
+                        f"_businessunitid_value eq {business_unit_id}"
+                    ),
+                }
+            ),
+            None,
+            (),
+            (),
+            "none",
+            "resolve exact app security role",
+        )
+        result = invoke_capability_suboperation(
+            client,
+            capability,
+            "resolve_security_roles",
+            request,
+        )
+        role = exact_collection_row(
+            result.data,
+            category=f"security role '{role_name}'",
+        )
+        role_id = str(role.get("roleid") or "")
+        if not GUID_RE.fullmatch(role_id) or str(role.get("name") or "") != role_name:
+            raise ExecutorError("resolved app security role has no exact immutable ID")
+        resolved.append((role_schema_name, role_id))
+    return resolved
+
+
+def declared_app_role_names(
+    row: dict[str, Any], declared_roles: list[Any]
+) -> dict[str, str]:
+    expected = {str(value or "").strip() for value in declared_roles}
+    dependency_ids = {
+        str(value or "").strip() for value in row.get("depends_on") or []
+    }
+    resolved: dict[str, str] = {}
+    try:
+        for path in P.development_files():
+            if path.stem not in dependency_ids:
+                continue
+            front, body, _ = P.read_markdown(path)
+            if front.get("component_type") != "sec_role":
+                continue
+            content = P.compiler_zone(body, "component-payload")
+            if content is None:
+                continue
+            role_payload = P.parse_yaml_fence(content, "security role payload")
+            schema_name = str(role_payload.get("schema_name") or "").strip()
+            name = str(role_payload.get("name") or "").strip()
+            if schema_name in expected and name:
+                if schema_name in resolved:
+                    raise ExecutorError(
+                        f"app role reference '{schema_name}' resolves more than once"
+                    )
+                resolved[schema_name] = name
+    except P.PipelineError as exc:
+        raise ExecutorError(str(exc)) from exc
+    missing = sorted(expected - set(resolved))
+    if missing:
+        raise ExecutorError(
+            "app role references do not resolve through declared sec_role dependencies: "
+            + ", ".join(missing)
+        )
+    return resolved
+
+
+def app_dependency_row(row: dict[str, Any]) -> dict[str, Any]:
+    app_schema_name = str((row.get("payload") or {}).get("app") or "").strip()
+    dependencies = set(row.get("depends_on") or [])
+    context = P.read_context(P.TASK_CONTEXT_PATH)
+    matches = [
+        task
+        for task in context.get("tasks") or []
+        if task.get("id") in dependencies
+        and task.get("component_type") == "uiux_app"
+        and str((task.get("payload") or {}).get("schema_name") or "")
+        == app_schema_name
+    ]
+    if len(matches) != 1:
+        raise ExecutorError(
+            f"sitemap app dependency '{app_schema_name}' resolved to {len(matches)} compiler-owned uiux_app tasks"
+        )
+    app_row = matches[0]
+    for field in ("environment_id", "environment_url", "solution_unique_name"):
+        if (app_row.get("authoring_target") or {}).get(field) != (
+            row.get("authoring_target") or {}
+        ).get(field):
+            raise ExecutorError(
+                f"sitemap app dependency '{app_schema_name}' has a different {field}"
+            )
+    return app_row
+
+
+def associate_app_roles(
+    app_row: dict[str, Any],
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+) -> None:
+    roles = resolve_app_roles(app_row, client, capability)
+    for _, role_id in roles:
+        invoke_capability_suboperation(
+            client,
+            capability,
+            "associate_security_roles",
+            OperationRequest(
+                "POST",
+                f"appmodules({app_id})/appmoduleroles_association/$ref",
+                {"@odata.id": f"{client.service_root}/roles({role_id})"},
+                ("@odata.id",),
+                ("roles",),
+                "none",
+                "associate exact security role to published model-driven app",
+            ),
+        )
+    role_result = invoke_capability_suboperation(
+        client,
+        capability,
+        "verify_role_associations",
+        OperationRequest(
+            "GET",
+            f"appmodules({app_id})?"
+            + urlencode(
+                {
+                    "$select": "appmoduleid,name,uniquename",
+                    "$expand": "appmoduleroles_association($select=roleid,name)",
+                }
+            ),
+            None,
+            (),
+            (),
+            "none",
+            "verify exact published model-driven app role associations",
+        ),
+    )
+    actual_role_ids = {
+        str(role.get("roleid") or "").lower()
+        for role in role_result.data.get("appmoduleroles_association") or []
+        if isinstance(role, dict)
+    }
+    expected_role_ids = {role_id.lower() for _, role_id in roles}
+    if not expected_role_ids.issubset(actual_role_ids):
+        raise ExecutorError(
+            "model-driven app role association verification failed",
+            category="verification_mismatch",
+        )
+
+
+def retrieve_app_components(
+    client: DataverseClient, capability: dict[str, Any], app_id: str
+) -> list[dict[str, Any]]:
+    result = invoke_capability_suboperation(
+        client,
+        capability,
+        "retrieve_app_components",
+        OperationRequest(
+            "GET",
+            f"RetrieveAppComponents(AppModuleId={app_id})",
+            None,
+            (),
+            (),
+            "none",
+            "verify exact model-driven app components",
+        )
+    )
+    return [item for item in result.data.get("value") or [] if isinstance(item, dict)]
+
+
+def invoke_sdk_app_components(
+    row: dict[str, Any],
+    app_id: str,
+    components: list[tuple[str, str]],
+    *,
+    operation: str = "add",
+) -> None:
+    if operation not in {"add", "remove"} or not GUID_RE.fullmatch(app_id) or not components:
+        raise ExecutorError("Dataverse SDK app component request is invalid")
+    for logical_name, component_id in components:
+        if not re.fullmatch(r"[a-z][a-z0-9_]*", logical_name) or not GUID_RE.fullmatch(
+            component_id
+        ):
+            raise ExecutorError("Dataverse SDK component identity is invalid")
+    oauth = validate_oauth_public_client(row)
+    project = (
+        P.ROOT
+        / "scripts"
+        / "dataverse_app_sdk_executor"
+        / "DataverseAppSdkExecutor.csproj"
+    )
+    if not project.is_file():
+        raise ExecutorError(
+            "Dataverse SDK app executor project is unavailable",
+            category="configuration_prerequisite",
+        )
+    payload = {
+        "operation": operation,
+        "environmentUrl": row["authoring_target"]["environment_url"],
+        "clientId": oauth["client_id"],
+        "tenantId": oauth["tenant_id"],
+        "redirectUri": oauth["redirect_uri"],
+        "appId": app_id,
+        "components": [
+            {"logicalName": logical_name, "id": component_id}
+            for logical_name, component_id in components
+        ],
+    }
+    print(
+        json.dumps(
+            {
+                "executor_state": {
+                    "status": "request-invoked",
+                    "action": (
+                        "dataverse-sdk.AddAppComponents"
+                        if operation == "add"
+                        else "dataverse-sdk.RemoveAppComponents"
+                    ),
+                    "environment_url": row["authoring_target"]["environment_url"],
+                    "note": "Typed SDK app component request is being sent; evidence will be posted",
+                }
+            },
+            sort_keys=True,
+        ),
+        file=sys.stderr,
+    )
+    result = subprocess.run(
+        [
+            "dotnet",
+            "run",
+            "--project",
+            str(project),
+            "--configuration",
+            "Release",
+            "--no-build",
+            "--no-restore",
+        ],
+        input=json.dumps(payload),
+        capture_output=True,
+        text=True,
+        cwd=str(P.ROOT),
+    )
+    if result.returncode != 0:
+        exception_type = "unknown"
+        for line in reversed(result.stderr.splitlines()):
+            try:
+                failure = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            candidate = str(failure.get("exceptionType") or "")
+            candidate = re.sub(r"`[0-9]+$", "", candidate)
+            if re.fullmatch(r"[A-Za-z][A-Za-z0-9_.]*", candidate):
+                exception_type = candidate
+                break
+        raise ExecutorError(
+            f"Dataverse SDK app component operation failed ({exception_type})",
+            category="sdk_operation_error",
+            write_occurred=True,
+            action_invoked=True,
+        )
+    try:
+        output = json.loads(result.stdout)
+    except json.JSONDecodeError as exc:
+        raise ExecutorError(
+            "Dataverse SDK app executor returned invalid output",
+            category="sdk_operation_error",
+            write_occurred=True,
+            action_invoked=True,
+        ) from exc
+    if output.get("result") != "succeeded" or output.get("componentCount") != len(
+        components
+    ):
+        raise ExecutorError(
+            "Dataverse SDK app executor did not confirm the scoped request",
+            category="sdk_operation_error",
+            write_occurred=True,
+            action_invoked=True,
+        )
+
+
+def app_dependency_component_ids(
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+    component_type: int,
+    suboperation: str,
+) -> set[str]:
+    query = urlencode(
+        {
+            "$select": "requiredcomponentobjectid,requiredcomponenttype",
+            "$filter": (
+                f"dependentcomponentobjectid eq {app_id} and "
+                f"dependentcomponenttype eq 80 and requiredcomponenttype eq {component_type}"
+            ),
+        }
+    )
+    request = OperationRequest(
+        "GET",
+        f"dependencies?{query}",
+        None,
+        (),
+        (),
+        "none",
+        "verify exact unpublished model-driven app component dependencies",
+    )
+    result = invoke_capability_suboperation(client, capability, suboperation, request)
+    return {
+        str(item.get("requiredcomponentobjectid") or "").lower()
+        for item in result.data.get("value") or []
+        if GUID_RE.fullmatch(str(item.get("requiredcomponentobjectid") or ""))
+    }
+
+
+def appmodule_component_rows(
+    row: dict[str, Any],
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+) -> list[dict[str, Any]]:
+    app_request = OperationRequest(
+        "GET",
+        f"appmodules({app_id})?$select=appmoduleid,appmoduleidunique,name,uniquename",
+        None,
+        (),
+        (),
+        "none",
+        "resolve exact published model-driven app component container",
+    )
+    app = invoke_capability_suboperation(
+        client, capability, "resolve_app_by_id", app_request
+    ).data
+    if (
+        str(app.get("appmoduleid") or "").lower() != app_id.lower()
+        or str(app.get("name") or "") != str((row.get("payload") or {}).get("name") or "")
+        or str(app.get("uniquename") or "") != appmodule_unique_name_suffix(row)
+    ):
+        raise ExecutorError(
+            "published AppModule does not match the compiler-owned identity",
+            category="verification_mismatch",
+        )
+    app_unique_id = str(app.get("appmoduleidunique") or "")
+    if not GUID_RE.fullmatch(app_unique_id):
+        raise ExecutorError("published AppModule has no immutable component container ID")
+    query = urlencode(
+        {
+            "$select": "appmodulecomponentid,componenttype,objectid",
+            "$filter": f"_appmoduleidunique_value eq {app_unique_id}",
+        }
+    )
+    result = invoke_capability_suboperation(
+        client,
+        capability,
+        "list_app_components",
+        OperationRequest(
+            "GET",
+            f"appmodulecomponents?{query}",
+            None,
+            (),
+            (),
+            "none",
+            "list exact model-driven app component memberships",
+        ),
+    )
+    rows = [item for item in result.data.get("value") or [] if isinstance(item, dict)]
+    for item in rows:
+        if (
+            not GUID_RE.fullmatch(str(item.get("appmodulecomponentid") or ""))
+            or not GUID_RE.fullmatch(str(item.get("objectid") or ""))
+            or not isinstance(item.get("componenttype"), int)
+        ):
+            raise ExecutorError("model-driven app component membership is incomplete")
+    return rows
+
+
+def cleanup_malformed_app_components(
+    row: dict[str, Any],
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+    approval: str,
+) -> tuple[OperationRequest, str]:
+    expected_table_ids = {
+        str(component["entityid"]).lower()
+        for component in resolve_app_table_components(row, client, capability)
+    }
+    before = appmodule_component_rows(row, client, capability, app_id)
+    table_rows = [item for item in before if item["componenttype"] == 1]
+    expected_rows = [
+        item
+        for item in table_rows
+        if str(item["objectid"]).lower() in expected_table_ids
+    ]
+    if (
+        len(expected_rows) != len(expected_table_ids)
+        or {str(item["objectid"]).lower() for item in expected_rows}
+        != expected_table_ids
+    ):
+        raise ExecutorError(
+            "declared app table memberships are not present exactly once",
+            category="verification_mismatch",
+        )
+    malformed = [item for item in table_rows if item not in expected_rows]
+    malformed_row_ids = sorted(
+        str(item["appmodulecomponentid"]).lower() for item in malformed
+    )
+    malformed_object_ids = sorted(
+        {str(item["objectid"]).lower() for item in malformed}
+    )
+    if len(malformed_row_ids) != 5 or len(malformed_object_ids) != 1:
+        raise ExecutorError(
+            "malformed app component cleanup requires exactly five rows for one unexpected object",
+            category="verification_mismatch",
+        )
+    expected_approval = (
+        f"REMOVE-APP-COMPONENTS {row['id']} app={app_id.lower()} "
+        f"rows={','.join(malformed_row_ids)} objects={','.join(malformed_object_ids)}"
+    )
+    if approval != expected_approval:
+        raise ExecutorError(
+            "destructive approval is missing or does not exactly match: "
+            + expected_approval,
+            category="validation_error",
+        )
+    preserved = {
+        (
+            str(item["appmodulecomponentid"]).lower(),
+            item["componenttype"],
+            str(item["objectid"]).lower(),
+        )
+        for item in before
+        if item["componenttype"] != 1
+    }
+    removal_components = [
+        ("entity", malformed_object_ids[0]) for _ in malformed_row_ids
+    ]
+    request = OperationRequest(
+        "POST",
+        "RemoveAppComponents",
+        {
+            "AppId": app_id,
+            "Components": [
+                {"logicalName": "entity", "id": malformed_object_ids[0]}
+                for _ in malformed_row_ids
+            ],
+        },
+        ("AppId", "Components"),
+        ("table_memberships",),
+        "none",
+        "remove exact approved malformed model-driven app memberships",
+    )
+    invoke_sdk_app_components(
+        row,
+        app_id,
+        removal_components,
+        operation="remove",
+    )
+    published = invoke_capability_suboperation(
+        client,
+        capability,
+        "publish_app",
+        OperationRequest(
+            "POST",
+            "PublishXml",
+            {
+                "ParameterXml": (
+                    "<importexportxml><appmodules><appmodule>"
+                    f"{app_id}</appmodule></appmodules></importexportxml>"
+                )
+            },
+            ("ParameterXml",),
+            ("published",),
+            "none",
+            "publish cleaned model-driven app",
+        ),
+    )
+    after = appmodule_component_rows(row, client, capability, app_id)
+    after_table_ids = [
+        str(item["objectid"]).lower()
+        for item in after
+        if item["componenttype"] == 1
+    ]
+    after_preserved = {
+        (
+            str(item["appmodulecomponentid"]).lower(),
+            item["componenttype"],
+            str(item["objectid"]).lower(),
+        )
+        for item in after
+        if item["componenttype"] != 1
+    }
+    if sorted(after_table_ids) != sorted(expected_table_ids) or after_preserved != preserved:
+        raise ExecutorError(
+            "approved app component cleanup verification failed",
+            category="verification_mismatch",
+            write_occurred=True,
+            action_invoked=True,
+        )
+    return request, published.correlation_id
+
+
+def configure_app_shell(
+    row: dict[str, Any],
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+) -> tuple[OperationRequest, str, bool]:
+    components = resolve_app_table_components(row, client, capability)
+    tables = [canonical_table(table) for table in row["payload"]["tables"]]
+    expected = {str(component["entityid"]).lower() for component in components}
+    actual = app_dependency_component_ids(
+        client, capability, app_id, 1, "verify_table_dependencies"
+    )
+    request = OperationRequest(
+        "POST",
+        "AddAppComponents",
+        {"AppId": app_id, "Components": components},
+        ("AppId", "Components"),
+        ("tables",),
+        "none",
+        "add compiler-declared tables to model-driven app",
+    )
+    missing = [
+        (table, str(component["entityid"]).lower())
+        for table, component in zip(tables, components, strict=True)
+        if str(component["entityid"]).lower() not in actual
+    ]
+    wrote_components = bool(missing)
+    if missing:
+        invoke_sdk_app_components(row, app_id, missing)
+        actual = app_dependency_component_ids(
+            client, capability, app_id, 1, "verify_table_dependencies"
+        )
+    if not expected.issubset(actual):
+        raise ExecutorError(
+            "model-driven app table membership verification failed",
+            category="verification_mismatch",
+        )
+    return request, "", wrote_components
+
+
+def complete_app_navigation(
+    row: dict[str, Any],
+    client: DataverseClient,
+    capability: dict[str, Any],
+    sitemap_id: str,
+) -> tuple[OperationRequest, str]:
+    app_schema_name = str((row.get("payload") or {}).get("app") or "").strip()
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", app_schema_name):
+        raise ExecutorError("sitemap payload app identity is not canonical")
+    app_row = app_dependency_row(row)
+    app_id = resolve_app_id(
+        client, capability, appmodule_unique_name_suffix(app_row)
+    )
+    request = OperationRequest(
+        "POST",
+        "AddAppComponents",
+        {
+            "AppId": app_id,
+            "Components": [
+                {
+                    "sitemapid": sitemap_id,
+                    "@odata.type": "Microsoft.Dynamics.CRM.sitemap",
+                }
+            ],
+        },
+        ("AppId", "Components"),
+        ("sitemap",),
+        "none",
+        "add exact sitemap to model-driven app",
+    )
+    expected_sitemap = sitemap_id.lower()
+    components = app_dependency_component_ids(
+        client, capability, app_id, 62, "verify_sitemap_dependency"
+    )
+    if expected_sitemap not in components:
+        invoke_sdk_app_components(row, app_id, [("sitemap", sitemap_id)])
+        components = app_dependency_component_ids(
+            client, capability, app_id, 62, "verify_sitemap_dependency"
+        )
+    if expected_sitemap not in components:
+        raise ExecutorError(
+            "model-driven app sitemap membership verification failed",
+            category="verification_mismatch",
+        )
+    validation = invoke_capability_suboperation(
+        client,
+        capability,
+        "validate_app",
+        OperationRequest(
+            "GET",
+            f"ValidateApp(AppModuleId={app_id})",
+            None,
+            (),
+            (),
+            "none",
+            "validate completed model-driven app",
+        )
+    ).data.get("AppValidationResponse") or {}
+    if validation.get("ValidationSuccess") is not True:
+        raise ExecutorError(
+            "model-driven app validation reported unresolved issues",
+            category="verification_mismatch",
+        )
+    publish = OperationRequest(
+        "POST",
+        "PublishXml",
+        {
+            "ParameterXml": (
+                "<importexportxml><appmodules><appmodule>"
+                f"{app_id}</appmodule></appmodules></importexportxml>"
+            )
+        },
+        ("ParameterXml",),
+        ("published",),
+        "none",
+        "publish validated model-driven app",
+    )
+    published = invoke_capability_suboperation(
+        client, capability, "publish_app", publish
+    )
+    associate_app_roles(app_row, client, capability, app_id)
+    return publish, published.correlation_id
 
 
 def plugin_assembly_lookup(row: dict[str, Any]) -> OperationRequest:
@@ -882,9 +1779,18 @@ def validate_capability_request(
         raise ExecutorError(
             f"compiler-owned capability has no {http_contract} contract"
         )
+    validate_http_contract(declared, request, "constructed primary request")
+    validate_solution_context(
+        capability.get("solution_context") or {}, request, "primary request"
+    )
+
+
+def validate_http_contract(
+    declared: dict[str, Any], request: OperationRequest, description: str
+) -> None:
     if request.method != declared["method"]:
         raise ExecutorError(
-            "constructed HTTP method does not match the compiler-owned capability"
+            f"{description} method does not match the compiler-owned capability"
         )
     template = declared["path_template"]
     escaped = re.escape(template)
@@ -897,8 +1803,43 @@ def validate_capability_request(
         escaped = escaped.replace(re.escape(placeholder), pattern)
     if not re.fullmatch(escaped + r"(?:\?.*)?", request.path):
         raise ExecutorError(
-            "constructed request path does not match the compiler-owned capability"
+            f"{description} path does not match the compiler-owned capability"
         )
+
+
+def validate_solution_context(
+    declared: dict[str, Any], request: OperationRequest, description: str
+) -> None:
+    expected = {
+        "MSCRM.SolutionUniqueName": "header",
+        "action_parameter": "action_parameter",
+        "not_applicable": "none",
+    }.get(declared.get("mechanism"))
+    if expected is None or request.solution_context != expected:
+        raise ExecutorError(
+            f"{description} solution context does not match the compiler-owned capability"
+        )
+
+
+def validate_capability_suboperation(
+    capability: dict[str, Any], name: str, request: OperationRequest
+) -> None:
+    matches = [
+        item
+        for item in capability.get("suboperations") or []
+        if item.get("name") == name
+    ]
+    if len(matches) != 1:
+        raise ExecutorError(
+            f"compiler-owned capability does not declare exactly one '{name}' suboperation"
+        )
+    declared = matches[0]
+    validate_http_contract(
+        declared["http"], request, f"constructed '{name}' suboperation"
+    )
+    validate_solution_context(
+        declared["solution_context"], request, f"'{name}' suboperation"
+    )
 
 
 def odata_string(value: str) -> str:
@@ -1860,38 +2801,68 @@ def sitemapxml(payload: dict[str, Any]) -> str:
     violations = P.sitemap_contract_violations(payload)
     if violations:
         raise ExecutorError("; ".join(violations))
-    areas = payload.get("areas") or []
-    area_xml_list = []
-    for area in areas:
-        area_name = str(area.get("name") or "").strip()
-        groups = area.get("groups") or []
-        group_xml_list = []
-        for group in groups:
-            group_name = str(group.get("name") or "").strip()
-            group_xml_list.append(f'<group ID="{xml_attr(group_name)}" Title="{xml_attr(group_name)}" />')
-        area_xml = f'<Area ID="{xml_attr(area_name)}" Title="{xml_attr(area_name)}">{"".join(group_xml_list)}</Area>'
-        area_xml_list.append(area_xml)
-    return f'<SiteMap>{"".join(area_xml_list)}</SiteMap>'
+    elements: list[str] = ["<SiteMap>"]
+    for area_index, area in enumerate(payload["areas"]):
+        area_name = str(area["name"]).strip()
+        area_id = "Area_" + uuid.uuid5(
+            uuid.NAMESPACE_URL, f"{payload['schema_name']}|area|{area_index}|{area_name}"
+        ).hex
+        elements.extend(
+            [
+                f'<Area Id="{area_id}" ShowGroups="true">',
+                f'<Titles><Title LCID="1033" Title="{xml_attr(area_name)}" /></Titles>',
+            ]
+        )
+        for group_index, group in enumerate(area["groups"]):
+            group_name = str(group["name"]).strip()
+            group_id = "Group_" + uuid.uuid5(
+                uuid.NAMESPACE_URL,
+                f"{payload['schema_name']}|group|{area_index}|{group_index}|{group_name}",
+            ).hex
+            elements.extend(
+                [
+                    f'<Group Id="{group_id}">',
+                    f'<Titles><Title LCID="1033" Title="{xml_attr(group_name)}" /></Titles>',
+                ]
+            )
+            for subarea_index, subarea in enumerate(group["subareas"]):
+                subarea_name = str(subarea["name"]).strip()
+                table = canonical_table(subarea.get("table"))
+                subarea_id = "SubArea_" + uuid.uuid5(
+                    uuid.NAMESPACE_URL,
+                    (
+                        f"{payload['schema_name']}|subarea|{area_index}|{group_index}|"
+                        f"{subarea_index}|{subarea_name}|{table}"
+                    ),
+                ).hex
+                elements.append(
+                    f'<SubArea Id="{subarea_id}" Entity="{xml_attr(table)}">'
+                    f'<Titles><Title LCID="1033" Title="{xml_attr(subarea_name)}" /></Titles>'
+                    "</SubArea>"
+                )
+            elements.append("</Group>")
+        elements.append("</Area>")
+    elements.append("</SiteMap>")
+    return "".join(elements)
 
 
-def appmodulexml(payload: dict[str, Any]) -> str:
-    """Generate deterministic AppModule definition JSON."""
-    violations = P.app_contract_violations(payload)
-    if violations:
-        raise ExecutorError("; ".join(violations))
-    tables = payload.get("tables") or []
-    table_refs = []
-    for table_ref in tables:
-        if isinstance(table_ref, dict):
-            table_name = str(table_ref.get("name") or "").strip().lower()
-        else:
-            table_name = str(table_ref or "").strip().lower()
-        table_refs.append({"name": table_name, "id": str(uuid.uuid5(uuid.NAMESPACE_URL, table_name))})
-    return json.dumps({
-        "name": str(payload.get("name") or "").strip(),
-        "tables": table_refs,
-        "formFactor": "Web",
-    })
+def appmodule_unique_name_suffix(row: dict[str, Any]) -> str:
+    payload = row.get("payload") or {}
+    schema_name = str(payload.get("schema_name") or "").strip()
+    publisher_prefix = str(
+        (row.get("authoring_target") or {}).get("publisher_prefix") or ""
+    ).strip()
+    expected_prefix = publisher_prefix + "_"
+    if not publisher_prefix or not schema_name.startswith(expected_prefix):
+        raise ExecutorError(
+            "model-driven app schema_name must use the routed publisher prefix"
+        )
+    suffix = schema_name[len(expected_prefix) :]
+    if not re.fullmatch(r"[A-Za-z0-9]+", suffix):
+        raise ExecutorError(
+            "model-driven app unique-name suffix must contain only English letters and numbers"
+        )
+    return suffix
 
 
 def build_row_requests(
@@ -2310,7 +3281,8 @@ def build_row_requests(
         app = str(payload.get("app") or "").strip()
         if operation in {"create", "update"}:
             body: dict[str, Any] = {
-                "name": name,
+                "sitemapname": name,
+                "sitemapnameunique": str(payload["schema_name"]),
                 "sitemapxml": sitemapxml(payload),
             }
             if operation == "create":
@@ -2320,7 +3292,7 @@ def build_row_requests(
                         entity_set,
                         body,
                         tuple(body),
-                        ("name", "sitemapxml"),
+                        tuple(body),
                         context,
                         "create exact sitemap",
                     )
@@ -2331,7 +3303,7 @@ def build_row_requests(
                     f"{entity_set}({resolved_id})",
                     body,
                     tuple(body),
-                    ("name", "sitemapxml"),
+                    tuple(body),
                     context,
                     "update exact sitemap",
                 )
@@ -2351,8 +3323,11 @@ def build_row_requests(
         if operation == "verify":
             query = urlencode(
                 {
-                    "$select": "sitemapid,name",
-                    "$filter": f"name eq '{odata_string(name)}'",
+                    "$select": "sitemapid,sitemapname,sitemapnameunique,sitemapxml",
+                    "$filter": (
+                        "sitemapnameunique eq "
+                        f"'{odata_string(str(payload['schema_name']))}'"
+                    ),
                 }
             )
             return [
@@ -2368,18 +3343,21 @@ def build_row_requests(
             ]
     if component_type == "uiux_app":
         if operation in {"create", "update"}:
-            body: dict[str, Any] = {
-                "name": name,
-                "appmodulexml": appmodulexml(payload),
-            }
+            body: dict[str, Any] = {"name": name}
             if operation == "create":
+                body.update(
+                    {
+                        "uniquename": appmodule_unique_name_suffix(row),
+                        "webresourceid": DEFAULT_APPMODULE_ICON_ID,
+                    }
+                )
                 return [
                     OperationRequest(
                         "POST",
                         entity_set,
                         body,
                         tuple(body),
-                        ("name", "appmodulexml"),
+                        tuple(body),
                         context,
                         "create exact model-driven app",
                     )
@@ -2390,7 +3368,7 @@ def build_row_requests(
                     f"{entity_set}({resolved_id})",
                     body,
                     tuple(body),
-                    ("name", "appmodulexml"),
+                    tuple(body),
                     context,
                     "update exact model-driven app",
                 )
@@ -2410,8 +3388,11 @@ def build_row_requests(
         if operation == "verify":
             query = urlencode(
                 {
-                    "$select": "appmoduleid,name",
-                    "$filter": f"name eq '{odata_string(name)}'",
+                    "$select": "appmoduleid,name,uniquename",
+                    "$filter": (
+                        "uniquename eq "
+                        f"'{odata_string(str(payload['schema_name']))}'"
+                    ),
                 }
             )
             return [
@@ -3720,10 +4701,13 @@ def _preflight_single(
         if operation != "verify":
             plugin_project_assembly_path(row)
     elif operation not in {"add_solution_component", "remove_solution_component"}:
+        preflight_guid = "00000000-0000-0000-0000-000000000000"
         requests = build_static_requests(
             row,
             operation,
             capability,
+            resolved_id=preflight_guid,
+            metadata_id=preflight_guid,
             form_subgrid_context=resolve_form_subgrid_context(row),
         )
         if not requests:
@@ -3827,6 +4811,14 @@ def row_lookup_request(row: dict[str, Any]) -> OperationRequest:
     elif component_type == "sec_field_profile":
         filter_expr = f"name eq '{odata_string(name)}'"
         select = f"{id_field},name"
+    elif component_type == "uiux_sitemap":
+        identity = str(row["payload"].get("schema_name") or "")
+        filter_expr = f"sitemapnameunique eq '{odata_string(identity)}'"
+        select = f"{id_field},sitemapname,sitemapnameunique"
+    elif component_type == "uiux_app":
+        identity = str(row["payload"].get("schema_name") or "")
+        filter_expr = f"uniquename eq '{odata_string(identity)}'"
+        select = f"{id_field},name,uniquename"
     else:
         raise ExecutorError(
             f"executor has no whitelisted row lookup for {component_type}"
@@ -4616,9 +5608,14 @@ def solution_action_request(
 def verification_request(
     row: dict[str, Any], request: OperationRequest | None = None
 ) -> OperationRequest:
+    if (
+        request
+        and request.method == "GET"
+        and row["component_type"] in ROW_COMPONENT_TYPES
+        and GUID_RE.search(request.path)
+    ):
+        return request
     if request and row["component_type"] == "uiux_form":
-        if request.method == "GET":
-            return request
         payload = row["payload"]
         name = row_component_name(row)
         table = canonical_table(payload.get("table"))
@@ -4687,6 +5684,19 @@ def expected_payload_matches(
         ):
             return False
         return True
+    if component_type == "uiux_sitemap":
+        if str(item.get("sitemapnameunique") or "").lower() != str(
+            row["payload"].get("schema_name") or ""
+        ).lower():
+            return False
+        expected_xml = str(body.get("sitemapxml") or "")
+        actual_xml = str(item.get("sitemapxml") or "")
+        try:
+            return xml_signature(ET.fromstring(expected_xml)) == xml_signature(
+                ET.fromstring(actual_xml)
+            )
+        except ET.ParseError:
+            return False
     if component_type in ROW_COMPONENT_TYPES:
         name = row_component_name(row).lower()
         return str(item.get("name") or "").lower() == name
@@ -4740,6 +5750,15 @@ def expected_payload_matches(
             if actual_values != expected_values:
                 return False
     return True
+
+
+def xml_signature(element: ET.Element) -> tuple[Any, ...]:
+    return (
+        element.tag.rsplit("}", 1)[-1],
+        tuple(sorted(element.attrib.items())),
+        str(element.text or "").strip(),
+        tuple(xml_signature(child) for child in element),
+    )
 
 
 def formxml_semantically_matches(expected_xml: str, actual_xml: str) -> bool:
@@ -4867,7 +5886,15 @@ def row_verification_request_by_id(
         )
     entity_set = ROW_ENTITY_SETS[component_type]
     id_field = ROW_ID_FIELDS[component_type]
-    path = f"{entity_set}({immutable_id})?$select={id_field}"
+    select_fields = id_field
+    expected_body = None
+    if component_type == "uiux_sitemap":
+        select_fields = "sitemapid,sitemapname,sitemapnameunique,sitemapxml"
+        expected_body = {
+            "sitemapnameunique": str(row["payload"].get("schema_name") or ""),
+            "sitemapxml": sitemapxml(row["payload"]),
+        }
+    path = f"{entity_set}({immutable_id})?$select={select_fields}"
     guard_get_only_guid_path("GET", path)
     return OperationRequest(
         "GET",
@@ -4877,6 +5904,7 @@ def row_verification_request_by_id(
         (),
         "none",
         f"verify {component_type} by immutable row ID",
+        expected_body=expected_body,
     )
 
 
@@ -5292,8 +6320,12 @@ def _execute_plugin_registration(
             raise
 
 
-def validate_bundled_recovery_evidence(
-    row: dict[str, Any], issue_number: int, immutable_id: str
+def validate_interrupted_write_evidence(
+    row: dict[str, Any],
+    issue_number: int,
+    immutable_id: str,
+    *,
+    require_current_plan: bool = True,
 ) -> None:
     import execution_evidence
 
@@ -5304,10 +6336,8 @@ def validate_bundled_recovery_evidence(
     required = (
         "d365-execution-evidence:v1",
         f"dev={row['id']}",
-        f"task={row['task_context_hash']}",
-        f"plan={row['source_plan_hash']}",
         "| Result | blocked |",
-        f"| DEV / component / type | {row['id']} / {row['component']} / schema_table |",
+        f"| DEV / component / type | {row['id']} / {row['component']} / {row['component_type']} |",
         f"| Environment URL | {row['authoring_target']['environment_url']} |",
         f"| Solution or record target | {row['authoring_target']['solution_unique_name']} |",
         "| Write occurred | yes |",
@@ -5317,12 +6347,56 @@ def validate_bundled_recovery_evidence(
         comment
         for comment in execution_evidence.issue_comments(repository, issue_number)
         if all(fragment in str(comment.get("body") or "") for fragment in required)
+        and re.search(
+            rf"dev={re.escape(row['id'])} task=[0-9a-f]{{64}} plan=[0-9a-f]{{64}}",
+            str(comment.get("body") or ""),
+        )
+        and (
+            not require_current_plan
+            or f"plan={row['source_plan_hash']}" in str(comment.get("body") or "")
+        )
     ]
     if len(matches) != 1:
         raise ExecutorError(
             "verification-id must match exactly one current interrupted-write evidence comment",
             category="validation_error",
         )
+
+
+def app_recovery_request(row: dict[str, Any], immutable_id: str) -> OperationRequest:
+    if row["component_type"] != "uiux_app" or not GUID_RE.fullmatch(immutable_id):
+        raise ExecutorError(
+            "AppModule recovery requires an exact immutable app ID",
+            category="validation_error",
+        )
+    query = urlencode(
+        {
+            "$select": "appmoduleid,name,uniquename",
+            "$filter": f"appmoduleid eq {immutable_id}",
+        }
+    )
+    return OperationRequest(
+        "GET",
+        "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()?" + query,
+        None,
+        (),
+        (),
+        "none",
+        "recover exact created model-driven app by immutable ID",
+    )
+
+
+def app_cleanup_requests(
+    row: dict[str, Any], capability: dict[str, Any], immutable_id: str
+) -> tuple[OperationRequest, OperationRequest]:
+    recovery = app_recovery_request(row, immutable_id)
+    deletion = build_static_requests(
+        row,
+        "delete",
+        capability,
+        resolved_id=immutable_id,
+    )[0]
+    return recovery, deletion
 
 
 def execute(
@@ -5411,14 +6485,59 @@ def _execute_single(
         and row["component_type"] == "schema_table"
         and str(payload.get("operation") or "").lower() == "extend"
     )
-    effective_operation = "update" if is_bundled_recovery else operation
-    if is_bundled_recovery:
+    is_app_recovery = bool(
+        verification_id
+        and operation == "verify"
+        and row["component_type"] == "uiux_app"
+    )
+    is_app_cleanup = bool(
+        verification_id
+        and operation == "delete"
+        and row["component_type"] == "uiux_app"
+    )
+    is_sitemap_recovery = bool(
+        verification_id
+        and operation == "verify"
+        and row["component_type"] == "uiux_sitemap"
+    )
+    is_app_component_cleanup = bool(
+        verification_id
+        and operation == "cleanup_app_components"
+        and row["component_type"] == "uiux_app"
+    )
+    if operation == "cleanup_app_components" and not is_app_component_cleanup:
+        raise ExecutorError(
+            "app component cleanup requires uiux_app and an immutable app verification-id",
+            category="validation_error",
+        )
+    effective_operation = (
+        "update"
+        if is_bundled_recovery or is_app_component_cleanup
+        else "create"
+        if is_app_recovery or is_sitemap_recovery
+        else operation
+    )
+    if (
+        is_bundled_recovery
+        or is_app_recovery
+        or is_app_cleanup
+        or is_sitemap_recovery
+        or is_app_component_cleanup
+    ):
         if not GUID_RE.fullmatch(verification_id):
             raise ExecutorError(
-                "verification-id must be an immutable MetadataId GUID",
+                "verification-id must be an immutable GUID",
                 category="validation_error",
             )
-        validate_bundled_recovery_evidence(row, issue_number, verification_id)
+        if not is_app_component_cleanup:
+            validate_interrupted_write_evidence(
+                row,
+                issue_number,
+                verification_id,
+                require_current_plan=not (
+                    is_app_recovery or is_app_cleanup or is_sitemap_recovery
+                ),
+            )
     capability, service_root, solution_name = validate_executor_preflight(
         row,
         effective_operation,
@@ -5426,7 +6545,7 @@ def _execute_single(
         check_oauth=not dry_run,
     )
     if verification_id:
-        if operation != "verify":
+        if operation != "verify" and not is_app_cleanup and not is_app_component_cleanup:
             raise ExecutorError(
                 "verification-id recovery requires the verify operation",
                 category="unsupported_operation",
@@ -5438,6 +6557,10 @@ def _execute_single(
         if (
             row["component_type"] not in {"schema_relationship", "schema_table"}
             and not membership_row_recovery
+            and not is_app_recovery
+            and not is_app_cleanup
+            and not is_sitemap_recovery
+            and not is_app_component_cleanup
         ):
             raise ExecutorError(
                 "verification-id recovery is limited to schema metadata and membership-only row components",
@@ -5448,6 +6571,82 @@ def _execute_single(
                 "verification-id must be an immutable MetadataId GUID",
                 category="validation_error",
             )
+        if dry_run and is_app_cleanup:
+            recovery_request, deletion_request = app_cleanup_requests(
+                row, capability, verification_id
+            )
+            return [
+                {
+                    "method": recovery_request.method,
+                    "endpoint_family": "entity_set",
+                    "path_template": recovery_request.path,
+                    "solution_context": "none",
+                    "description": recovery_request.description,
+                    "parameter_names": [],
+                    "body_withheld": False,
+                },
+                {
+                    "method": deletion_request.method,
+                    "endpoint_family": capability["http"]["endpoint_family"],
+                    "path_template": deletion_request.path,
+                    "solution_context": capability["solution_context"]["mechanism"],
+                    "description": deletion_request.description,
+                    "parameter_names": [],
+                    "body_withheld": False,
+                },
+            ]
+        if dry_run and is_app_component_cleanup:
+            return [
+                {
+                    "method": "GET",
+                    "endpoint_family": "entity_set",
+                    "path_template": "appmodulecomponents",
+                    "solution_context": "none",
+                    "description": "resolve exact approved malformed app memberships",
+                    "parameter_names": [],
+                    "body_withheld": False,
+                },
+                {
+                    "method": "POST",
+                    "endpoint_family": "unbound_action",
+                    "path_template": "RemoveAppComponents",
+                    "solution_context": "none",
+                    "description": "remove exact approved malformed app memberships",
+                    "parameter_names": ["AppId", "Components"],
+                    "body_withheld": True,
+                },
+                {
+                    "method": "POST",
+                    "endpoint_family": "unbound_action",
+                    "path_template": "PublishXml",
+                    "solution_context": "none",
+                    "description": "publish cleaned model-driven app",
+                    "parameter_names": ["ParameterXml"],
+                    "body_withheld": True,
+                },
+            ]
+        if dry_run and is_app_recovery:
+            recovery_request = app_recovery_request(row, verification_id)
+            return [
+                {
+                    "method": recovery_request.method,
+                    "endpoint_family": "entity_set",
+                    "path_template": recovery_request.path,
+                    "solution_context": "none",
+                    "description": recovery_request.description,
+                    "parameter_names": [],
+                    "body_withheld": False,
+                },
+                {
+                    "method": "POST",
+                    "endpoint_family": "action",
+                    "path_template": "AddAppComponents",
+                    "solution_context": "none",
+                    "description": "resume compiler-declared app table and role composition",
+                    "parameter_names": ["AppId", "Components"],
+                    "body_withheld": True,
+                },
+            ]
         if dry_run and not is_bundled_recovery:
             return [
                 {
@@ -5585,6 +6784,47 @@ def _execute_single(
         client = DataverseClient(service_root, token, solution_name)
         recovery_requests: list[OperationRequest] | None = None
         recovered_schema_name = ""
+        if is_app_component_cleanup:
+            request, write_correlation_id = cleanup_malformed_app_components(
+                row,
+                client,
+                capability,
+                verification_id,
+                approval,
+            )
+            write_completed = True
+            write_immutable_id = verification_id
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                "update",
+                request,
+                result="succeeded",
+                status="204",
+                error_code="no_error",
+                message=(
+                    "Removed the five exact approved malformed generic app memberships, "
+                    "preserved the declared tables and sitemap, and republished the app."
+                ),
+                immutable_id=verification_id,
+                correlation_id=write_correlation_id,
+                verification={
+                    "identity": "matched",
+                    "payload": "matched",
+                    "membership": "matched",
+                },
+                write_occurred=True,
+            )
+            posted = post_evidence(evidence, issue_number)
+            return [
+                {
+                    "result": "succeeded",
+                    "status": 204,
+                    "operation": request.description,
+                    "immutable_id": verification_id,
+                    "evidence": posted.get("result"),
+                }
+            ]
         if is_bundled_recovery:
             request = metadata_verification_request(row, verification_id)
             recovered_result = client.request_with_404_retries(request)
@@ -5606,6 +6846,161 @@ def _execute_single(
             recovery_requests = bundled_table_recovery_requests(
                 row, client, capability
             )
+        elif is_app_cleanup:
+            recovery_request, deletion_request = app_cleanup_requests(
+                row, capability, verification_id
+            )
+            request = recovery_request
+            recovered = exact_collection_row(
+                invoke_capability_suboperation(
+                    client, capability, "recover_unpublished_app", recovery_request
+                ).data,
+                category="unpublished model-driven app",
+            )
+            if (
+                str(recovered.get("appmoduleid") or "").lower()
+                != verification_id.lower()
+                or str(recovered.get("name") or "")
+                != str(payload.get("name") or "")
+            ):
+                raise ExecutorError(
+                    "cleanup AppModule does not match the compiler-owned identity",
+                    category="verification_mismatch",
+                )
+            validate_capability_request(capability, deletion_request)
+            request = deletion_request
+            http_result = client.request(deletion_request)
+            write_completed = True
+            write_immutable_id = verification_id
+            write_correlation_id = http_result.correlation_id
+            absence = invoke_capability_suboperation(
+                client, capability, "recover_unpublished_app", recovery_request
+            ).data
+            if any(isinstance(item, dict) for item in absence.get("value") or []):
+                raise ExecutorError(
+                    "targeted verification still found the deleted unpublished AppModule",
+                    category="verification_mismatch",
+                )
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                operation,
+                deletion_request,
+                result="succeeded",
+                status=str(http_result.status),
+                error_code="no_error",
+                message="Deleted the exact approved incomplete AppModule and verified unpublished absence.",
+                immutable_id=verification_id,
+                correlation_id=http_result.correlation_id,
+                verification={
+                    "identity": "matched",
+                    "payload": "matched",
+                    "membership": "matched",
+                },
+                write_occurred=True,
+            )
+            posted = post_evidence(evidence, issue_number)
+            return [
+                {
+                    "result": "succeeded",
+                    "status": http_result.status,
+                    "operation": deletion_request.description,
+                    "immutable_id": verification_id,
+                    "evidence": posted.get("result"),
+                }
+            ]
+        elif is_app_recovery:
+            request = app_recovery_request(row, verification_id)
+            recovered = exact_collection_row(
+                invoke_capability_suboperation(
+                    client, capability, "recover_unpublished_app", request
+                ).data,
+                category="unpublished model-driven app",
+            )
+            if (
+                str(recovered.get("appmoduleid") or "").lower()
+                != verification_id.lower()
+                or str(recovered.get("name") or "")
+                != str(payload.get("name") or "")
+            ):
+                raise ExecutorError(
+                    "recovered AppModule does not match the compiler-owned identity",
+                    category="verification_mismatch",
+                )
+            aggregate_request, correlation_id, wrote_components = configure_app_shell(
+                row, client, capability, verification_id
+            )
+            verification = {
+                "identity": "matched",
+                "payload": "matched",
+                "membership": "matched",
+            }
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                "create",
+                aggregate_request,
+                result="succeeded",
+                status="204" if wrote_components else "200",
+                error_code="no_error",
+                message=(
+                    "Recovered the created AppModule by immutable ID and verified "
+                    "all declared table component dependencies."
+                ),
+                immutable_id=verification_id,
+                correlation_id=correlation_id,
+                verification=verification,
+                write_occurred=wrote_components,
+            )
+            posted = post_evidence(evidence, issue_number)
+            return [
+                {
+                    "result": "succeeded",
+                    "status": 204,
+                    "operation": aggregate_request.description,
+                    "immutable_id": verification_id,
+                    "evidence": posted.get("result"),
+                }
+            ]
+        elif is_sitemap_recovery:
+            request = row_verification_request_by_id(row, verification_id)
+            verification, sitemap_id = verify_result(
+                row,
+                client,
+                verification_id,
+                deleted=False,
+                request=request,
+            )
+            publish_request, correlation_id = complete_app_navigation(
+                row, client, capability, sitemap_id
+            )
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                "create",
+                publish_request,
+                result="succeeded",
+                status="204",
+                error_code="no_error",
+                message=(
+                    "Recovered the created sitemap by immutable ID, attached it to "
+                    "the exact app, validated and published the app, and verified roles."
+                ),
+                immutable_id=sitemap_id,
+                correlation_id=correlation_id,
+                verification=verification,
+                write_occurred=True,
+            )
+            posted = post_evidence(evidence, issue_number)
+            return [
+                {
+                    "result": "succeeded",
+                    "status": 204,
+                    "operation": publish_request.description,
+                    "immutable_id": sitemap_id,
+                    "evidence": posted.get("result"),
+                }
+            ]
         elif verification_id:
             request = (
                 row_verification_request_by_id(row, verification_id)
@@ -5750,6 +7145,36 @@ def _execute_single(
                 verification, immutable_id = verify_publish_result(
                     row, client, verification_source
                 )
+            elif row["component_type"] == "uiux_app" and operation == "create":
+                if not GUID_RE.fullmatch(immutable_id):
+                    raise ExecutorError(
+                        "created AppModule response returned no immutable ID",
+                        category="verification_mismatch",
+                    )
+                recovered = exact_collection_row(
+                    invoke_capability_suboperation(
+                        client,
+                        capability,
+                        "recover_unpublished_app",
+                        app_recovery_request(row, immutable_id),
+                    ).data,
+                    category="unpublished model-driven app",
+                )
+                if (
+                    str(recovered.get("appmoduleid") or "").lower()
+                    != immutable_id.lower()
+                    or str(recovered.get("name") or "")
+                    != str(payload.get("name") or "")
+                ):
+                    raise ExecutorError(
+                        "created AppModule does not match the compiler-owned identity",
+                        category="verification_mismatch",
+                    )
+                verification = {
+                    "identity": "matched",
+                    "payload": "matched",
+                    "membership": "not-run",
+                }
             else:
                 verification, immutable_id = verify_result(
                     row,
@@ -5760,7 +7185,11 @@ def _execute_single(
                     request=verification_source,
                 )
             posted = {"result": "deferred"}
-            if not is_bundled_recovery:
+            aggregate_ui_create = (
+                operation == "create"
+                and row["component_type"] in {"uiux_app", "uiux_sitemap"}
+            )
+            if not is_bundled_recovery and not aggregate_ui_create:
                 evidence = evidence_payload(
                     row, issue_number, effective_operation, request,
                     result="succeeded", status=str(http_result.status), error_code="no_error",
@@ -5778,6 +7207,72 @@ def _execute_single(
                     "evidence": posted.get("result"),
                 }
             )
+        if row["component_type"] == "uiux_app" and operation == "create":
+            app_id = write_immutable_id
+            if not GUID_RE.fullmatch(app_id):
+                app_id = resolve_app_id(
+                    client, capability, str(payload.get("schema_name") or "")
+                )
+            aggregate_request, aggregate_correlation, _ = configure_app_shell(
+                row, client, capability, app_id
+            )
+            verification = {
+                "identity": "matched",
+                "payload": "matched",
+                "membership": "matched",
+            }
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                operation,
+                aggregate_request,
+                result="succeeded",
+                status="204",
+                error_code="no_error",
+                message=(
+                    "Created the exact model-driven app shell and verified all "
+                    "declared table components."
+                ),
+                immutable_id=app_id,
+                correlation_id=aggregate_correlation or write_correlation_id,
+                verification=verification,
+                write_occurred=True,
+            )
+            posted = post_evidence(evidence, issue_number)
+            for output in outputs:
+                output["evidence"] = posted.get("result")
+        if row["component_type"] == "uiux_sitemap" and operation == "create":
+            sitemap_id = write_immutable_id
+            if not GUID_RE.fullmatch(sitemap_id):
+                sitemap_id = resolve_record_id(row, client)
+            aggregate_request, aggregate_correlation = complete_app_navigation(
+                row, client, capability, sitemap_id
+            )
+            verification = {
+                "identity": "matched",
+                "payload": "matched",
+                "membership": "matched",
+            }
+            evidence = evidence_payload(
+                row,
+                issue_number,
+                operation,
+                aggregate_request,
+                result="succeeded",
+                status="204",
+                error_code="no_error",
+                message=(
+                    "Created and attached the exact sitemap, validated the completed "
+                    "model-driven app, and published it."
+                ),
+                immutable_id=sitemap_id,
+                correlation_id=aggregate_correlation or write_correlation_id,
+                verification=verification,
+                write_occurred=True,
+            )
+            posted = post_evidence(evidence, issue_number)
+            for output in outputs:
+                output["evidence"] = posted.get("result")
         if is_bundled_recovery:
             final_verification = {
                 "identity": "matched",
@@ -5905,7 +7400,7 @@ def _execute_single(
         # Distinguish auth failures from action failures (issue #22).
         # - Auth failures: action_invoked=False, no evidence, DEV remains ready
         # - Action failures: action_invoked=True, evidence required, DEV stays in_progress
-        exc.action_invoked = bool(client and client.request_count)
+        exc.action_invoked = exc.action_invoked or bool(client and client.request_count)
 
         # If auth succeeded but lifecycle transition or preflight failed before any request,
         # restore DEV to ready (issue #22: executor-owned lifecycle transition).
@@ -5948,7 +7443,11 @@ def _execute_single(
                 "payload": "not-run",
                 "membership": "not-run",
             },
-            write_occurred=write_completed,
+            write_occurred=(
+                exc.write_occurred
+                or write_completed
+                or bool(client and client.write_count)
+            ),
         )
         posted = post_evidence(evidence, issue_number)
         exc.evidence_posted = True
@@ -5969,6 +7468,7 @@ def main() -> int:
             "publish",
             "add_solution_component",
             "remove_solution_component",
+            "cleanup_app_components",
         ],
     )
     parser.add_argument("--issue-number", type=int, required=True)
@@ -5986,9 +7486,14 @@ def main() -> int:
             # "waiting-for-human" observable state before browser interaction.
             output = authenticate_only(row)
         elif args.preflight_only:
+            preflight_operation = (
+                "update"
+                if args.operation == "cleanup_app_components"
+                else args.operation
+            )
             output = preflight(
                 row,
-                args.operation,
+                preflight_operation,
                 approval=args.approve_destructive,
             )
         else:

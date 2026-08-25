@@ -4,6 +4,7 @@ import io
 import json
 import sys
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.error import HTTPError
 from unittest import mock
@@ -18,6 +19,754 @@ executor = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 sys.modules[SPEC.name] = executor
 SPEC.loader.exec_module(executor)
+
+
+class AppModuleRequestTests(unittest.TestCase):
+    APP_ID = "11111111-1111-1111-1111-111111111111"
+    TABLE_ID = "22222222-2222-2222-2222-222222222222"
+    TABLE_COMPONENT_ID = "88888888-8888-8888-8888-888888888888"
+    ROLE_ID = "33333333-3333-3333-3333-333333333333"
+    SITEMAP_ID = "44444444-4444-4444-4444-444444444444"
+    BUSINESS_UNIT_ID = "55555555-5555-5555-5555-555555555555"
+
+    def setUp(self):
+        profiles = executor.P.load_dataverse_capabilities()["profiles"]
+        self.app_capability = profiles["app-create"]
+        self.app_update_capability = profiles["app-update"]
+        self.app_delete_capability = profiles["app-delete"]
+        self.sitemap_capability = profiles["sitemap-create"]
+
+    def test_sdk_bridge_passes_only_exact_compiler_bound_components(self):
+        row = {
+            "authoring_target": {
+                "environment_url": "https://example.crm.dynamics.com"
+            }
+        }
+        completed = mock.Mock(
+            returncode=0,
+            stdout=json.dumps({"result": "succeeded", "componentCount": 1}),
+            stderr="",
+        )
+
+        with (
+            mock.patch.object(
+                executor,
+                "validate_oauth_public_client",
+                return_value={
+                    "client_id": "66666666-6666-6666-6666-666666666666",
+                    "tenant_id": "77777777-7777-7777-7777-777777777777",
+                    "redirect_uri": "http://localhost",
+                },
+            ),
+            mock.patch.object(executor.subprocess, "run", return_value=completed) as run,
+        ):
+            executor.invoke_sdk_app_components(
+                row, self.APP_ID, [("entity", self.TABLE_ID)]
+            )
+
+        payload = json.loads(run.call_args.kwargs["input"])
+        self.assertEqual(payload["appId"], self.APP_ID)
+        self.assertEqual(
+            payload["components"],
+            [{"logicalName": "entity", "id": self.TABLE_ID}],
+        )
+        self.assertEqual(run.call_args.kwargs["cwd"], str(ROOT))
+        self.assertNotIn("token", json.dumps(payload).lower())
+        self.assertEqual(payload["operation"], "add")
+
+    def test_sdk_resolver_returns_distinct_internal_table_component_ids(self):
+        row = {
+            "authoring_target": {
+                "environment_url": "https://example.crm.dynamics.com"
+            }
+        }
+        completed = mock.Mock(
+            returncode=0,
+            stdout=json.dumps(
+                {
+                    "result": "succeeded",
+                    "components": [
+                        {
+                            "logicalName": "account",
+                            "id": self.TABLE_COMPONENT_ID,
+                            "objectTypeCode": 1,
+                        }
+                    ],
+                }
+            ),
+            stderr="",
+        )
+
+        with (
+            mock.patch.object(
+                executor,
+                "validate_oauth_public_client",
+                return_value={
+                    "client_id": "66666666-6666-6666-6666-666666666666",
+                    "tenant_id": "77777777-7777-7777-7777-777777777777",
+                    "redirect_uri": "http://localhost",
+                },
+            ),
+            mock.patch.object(executor.subprocess, "run", return_value=completed) as run,
+        ):
+            resolved = executor.resolve_sdk_table_component_ids(row, ["account"])
+
+        self.assertEqual(resolved, {"account": self.TABLE_COMPONENT_ID})
+        payload = json.loads(run.call_args.kwargs["input"])
+        self.assertEqual(payload["operation"], "resolve")
+        self.assertEqual(payload["components"][0]["logicalName"], "account")
+
+    def test_cleanup_removes_only_exact_approved_malformed_memberships(self):
+        expected_ids = [
+            "10000000-0000-0000-0000-000000000001",
+            "10000000-0000-0000-0000-000000000002",
+            "10000000-0000-0000-0000-000000000003",
+            "10000000-0000-0000-0000-000000000004",
+            "10000000-0000-0000-0000-000000000005",
+        ]
+        malformed_object_id = "90000000-0000-0000-0000-000000000009"
+        malformed_row_ids = [
+            f"80000000-0000-0000-0000-{index:012d}" for index in range(1, 6)
+        ]
+        sitemap_row = {
+            "appmodulecomponentid": "70000000-0000-0000-0000-000000000007",
+            "componenttype": 62,
+            "objectid": self.SITEMAP_ID,
+        }
+        expected_rows = [
+            {
+                "appmodulecomponentid": f"60000000-0000-0000-0000-{index:012d}",
+                "componenttype": 1,
+                "objectid": object_id,
+            }
+            for index, object_id in enumerate(expected_ids, start=1)
+        ]
+        malformed_rows = [
+            {
+                "appmodulecomponentid": row_id,
+                "componenttype": 1,
+                "objectid": malformed_object_id,
+            }
+            for row_id in malformed_row_ids
+        ]
+        row = {
+            "id": "DEV-0062",
+            "authoring_target": {"publisher_prefix": "aks"},
+            "payload": {
+                "name": "Contoso Service",
+                "schema_name": "aks_ContosoService",
+                "tables": ["one", "two", "three", "four", "five"],
+            },
+        }
+        approval = (
+            f"REMOVE-APP-COMPONENTS DEV-0062 app={self.APP_ID} "
+            f"rows={','.join(malformed_row_ids)} objects={malformed_object_id}"
+        )
+        client = mock.Mock()
+        publish_result = executor.HttpResult(204, "", "publish-correlation", {})
+        events = []
+
+        component_snapshots = iter(
+            [expected_rows + malformed_rows + [sitemap_row], expected_rows + [sitemap_row]]
+        )
+
+        def read_components(*_args):
+            events.append("read")
+            return next(component_snapshots)
+
+        def remove_components(*_args, **_kwargs):
+            events.append("remove")
+
+        def publish_components(*_args):
+            events.append("publish")
+            return publish_result
+
+        with (
+            mock.patch.object(
+                executor,
+                "resolve_app_table_components",
+                return_value=[{"entityid": object_id} for object_id in expected_ids],
+            ),
+            mock.patch.object(
+                executor,
+                "appmodule_component_rows",
+                side_effect=read_components,
+            ),
+            mock.patch.object(
+                executor,
+                "invoke_sdk_app_components",
+                side_effect=remove_components,
+            ) as sdk_remove,
+            mock.patch.object(
+                executor,
+                "invoke_capability_suboperation",
+                side_effect=publish_components,
+            ) as publish,
+        ):
+            request, correlation_id = executor.cleanup_malformed_app_components(
+                row,
+                client,
+                self.app_update_capability,
+                self.APP_ID,
+                approval,
+            )
+
+        self.assertEqual(request.path, "RemoveAppComponents")
+        sdk_remove.assert_called_once_with(
+            row,
+            self.APP_ID,
+            [("entity", malformed_object_id)] * 5,
+            operation="remove",
+        )
+        self.assertEqual(len(request.body["Components"]), 5)
+        self.assertEqual(publish.call_args.args[2], "publish_app")
+        self.assertEqual(correlation_id, "publish-correlation")
+        self.assertEqual(events, ["read", "remove", "publish", "read"])
+
+    def test_cleanup_rejects_non_exact_approval_before_sdk_write(self):
+        expected_ids = [
+            f"10000000-0000-0000-0000-{index:012d}" for index in range(1, 6)
+        ]
+        malformed = [
+            {
+                "appmodulecomponentid": f"80000000-0000-0000-0000-{index:012d}",
+                "componenttype": 1,
+                "objectid": "90000000-0000-0000-0000-000000000009",
+            }
+            for index in range(1, 6)
+        ]
+        row = {
+            "id": "DEV-0062",
+            "payload": {"tables": ["one", "two", "three", "four", "five"]},
+        }
+        expected = [
+            {
+                "appmodulecomponentid": f"60000000-0000-0000-0000-{index:012d}",
+                "componenttype": 1,
+                "objectid": object_id,
+            }
+            for index, object_id in enumerate(expected_ids, start=1)
+        ]
+
+        with (
+            mock.patch.object(
+                executor,
+                "resolve_app_table_components",
+                return_value=[{"entityid": object_id} for object_id in expected_ids],
+            ),
+            mock.patch.object(
+                executor,
+                "appmodule_component_rows",
+                return_value=expected + malformed,
+            ),
+            mock.patch.object(executor, "invoke_sdk_app_components") as sdk_remove,
+            self.assertRaises(executor.ExecutorError) as raised,
+        ):
+            executor.cleanup_malformed_app_components(
+                row,
+                mock.Mock(),
+                self.app_update_capability,
+                self.APP_ID,
+                "not-approved",
+            )
+
+        self.assertEqual(raised.exception.category, "validation_error")
+        sdk_remove.assert_not_called()
+
+    def test_sdk_bridge_reports_sanitized_failure(self):
+        row = {
+            "authoring_target": {
+                "environment_url": "https://example.crm.dynamics.com"
+            }
+        }
+        completed = mock.Mock(
+            returncode=1,
+            stdout="",
+            stderr='{"message":"sensitive platform detail","exceptionType":"FaultException"}',
+        )
+
+        with (
+            mock.patch.object(
+                executor,
+                "validate_oauth_public_client",
+                return_value={
+                    "client_id": "66666666-6666-6666-6666-666666666666",
+                    "tenant_id": "77777777-7777-7777-7777-777777777777",
+                    "redirect_uri": "http://localhost",
+                },
+            ),
+            mock.patch.object(executor.subprocess, "run", return_value=completed),
+            self.assertRaises(executor.ExecutorError) as raised,
+        ):
+            executor.invoke_sdk_app_components(
+                row, self.APP_ID, [("entity", self.TABLE_ID)]
+            )
+
+        self.assertEqual(raised.exception.category, "sdk_operation_error")
+        self.assertIn("FaultException", str(raised.exception))
+        self.assertNotIn("sensitive", str(raised.exception))
+
+    def test_builds_documented_appmodule_create_request(self):
+        row = {
+            "component_type": "uiux_app",
+            "authoring_target": {"publisher_prefix": "aks"},
+            "payload": {
+                "name": "Contoso Service",
+                "schema_name": "aks_ContosoService",
+                "tables": ["account", "contact"],
+                "roles": ["aks_ContosoServiceReader"],
+            },
+        }
+
+        request = executor.build_static_requests(
+            row,
+            "create",
+            {"solution_context": {"mechanism": "MSCRM.SolutionUniqueName"}},
+        )[0]
+
+        self.assertEqual(request.method, "POST")
+        self.assertEqual(request.path, "appmodules")
+        self.assertEqual(
+            request.body,
+            {
+                "name": "Contoso Service",
+                "uniquename": "ContosoService",
+                "webresourceid": "953b9fac-1e5e-e611-80d6-00155ded156f",
+            },
+        )
+        self.assertNotIn("appmodulexml", request.body)
+
+        lookup = executor.app_lookup_request("aks_ContosoService")
+        self.assertIn("aks_ContosoService", lookup.path)
+
+    def test_configures_and_verifies_declared_tables_without_roles(self):
+        row = {
+            "depends_on": ["DEV-0056"],
+            "payload": {
+                "tables": ["account"],
+                "roles": ["aks_ContosoServiceReader"],
+            }
+        }
+        client = mock.Mock()
+        client.service_root = "https://example.crm.dynamics.com/api/data/v9.2"
+
+        def request(operation):
+            if operation.path.startswith("EntityDefinitions"):
+                return executor.HttpResult(
+                    200,
+                    "",
+                    "",
+                    {
+                        "MetadataId": self.TABLE_ID,
+                        "LogicalName": "account",
+                        "EntitySetName": "accounts",
+                    },
+                )
+            if operation.path == "RetrieveAppComponents(AppModuleId=" + self.APP_ID + ")":
+                return executor.HttpResult(
+                    200, "", "", {"value": [{"entityid": self.TABLE_ID}]}
+                )
+            return executor.HttpResult(204, "", "correlation-id", {})
+
+        client.request.side_effect = request
+
+        with (
+            mock.patch.object(
+                executor,
+                "resolve_sdk_table_component_ids",
+                return_value={"account": self.TABLE_COMPONENT_ID},
+            ),
+            mock.patch.object(executor, "invoke_sdk_app_components") as sdk_add,
+            mock.patch.object(
+                executor,
+                "app_dependency_component_ids",
+                side_effect=[set(), {self.TABLE_COMPONENT_ID}],
+            ) as dependencies,
+        ):
+            operation, correlation_id, wrote_components = executor.configure_app_shell(
+                row, client, self.app_capability, self.APP_ID
+            )
+
+        self.assertEqual(operation.path, "AddAppComponents")
+        self.assertEqual(
+            operation.body,
+            {
+                "AppId": self.APP_ID,
+                "Components": [
+                    {
+                        "@odata.type": "Microsoft.Dynamics.CRM.entity",
+                        "entityid": self.TABLE_COMPONENT_ID,
+                    }
+                ],
+            },
+        )
+        self.assertNotIn("@odata.id", json.dumps(operation.body))
+        sdk_add.assert_called_once_with(
+            row, self.APP_ID, [("account", self.TABLE_COMPONENT_ID)]
+        )
+        self.assertEqual(dependencies.call_count, 2)
+        self.assertFalse(
+            any(
+                "appmoduleroles_association" in call.args[0].path
+                for call in client.request.call_args_list
+            )
+        )
+        self.assertEqual(correlation_id, "")
+        self.assertTrue(wrote_components)
+
+    def test_attaches_sitemap_validates_and_publishes_app(self):
+        row = {"payload": {"app": "aks_ContosoService"}}
+        client = mock.Mock()
+        client.service_root = "https://example.crm.dynamics.com/api/data/v9.2"
+
+        def request(operation):
+            if operation.path.startswith("appmodules?"):
+                return executor.HttpResult(
+                    200,
+                    "",
+                    "",
+                    {
+                        "value": [
+                            {
+                                "appmoduleid": self.APP_ID,
+                                "uniquename": "ContosoService",
+                            }
+                        ]
+                    },
+                )
+            if operation.path == "RetrieveAppComponents(AppModuleId=" + self.APP_ID + ")":
+                return executor.HttpResult(
+                    200, "", "", {"value": [{"sitemapid": self.SITEMAP_ID}]}
+                )
+            if operation.path == "ValidateApp(AppModuleId=" + self.APP_ID + ")":
+                return executor.HttpResult(
+                    200,
+                    "",
+                    "",
+                    {"AppValidationResponse": {"ValidationSuccess": True}},
+                )
+            if operation.path.startswith("roles?"):
+                return executor.HttpResult(
+                    200,
+                    "",
+                    "",
+                    {"value": [{"roleid": self.ROLE_ID, "name": "Contoso Service Reader"}]},
+                )
+            if operation.path.startswith("businessunits?"):
+                return executor.HttpResult(
+                    200, "", "", {"value": [{"businessunitid": self.BUSINESS_UNIT_ID}]}
+                )
+            if operation.path.startswith("appmodules(") and operation.method == "GET":
+                return executor.HttpResult(
+                    200, "", "", {"appmoduleroles_association": [{"roleid": self.ROLE_ID}]}
+                )
+            return executor.HttpResult(204, "", "correlation-id", {})
+
+        client.request.side_effect = request
+
+        app_row = {
+            "depends_on": ["DEV-0056"],
+            "authoring_target": {"publisher_prefix": "aks"},
+            "payload": {
+                "schema_name": "aks_ContosoService",
+                "roles": ["aks_ContosoServiceReader"],
+            },
+        }
+        with (
+            mock.patch.object(executor, "app_dependency_row", return_value=app_row),
+            mock.patch.object(executor, "invoke_sdk_app_components") as sdk_add,
+            mock.patch.object(
+                executor,
+                "app_dependency_component_ids",
+                side_effect=[set(), {self.SITEMAP_ID}],
+            ) as dependencies,
+            mock.patch.object(
+                executor,
+                "declared_app_role_names",
+                return_value={"aks_ContosoServiceReader": "Contoso Service Reader"},
+            ),
+        ):
+            operation, correlation_id = executor.complete_app_navigation(
+                row, client, self.sitemap_capability, self.SITEMAP_ID
+            )
+
+        self.assertEqual(operation.path, "PublishXml")
+        self.assertIn(self.APP_ID, operation.body["ParameterXml"])
+        sdk_add.assert_called_once_with(row, self.APP_ID, [("sitemap", self.SITEMAP_ID)])
+        self.assertEqual(dependencies.call_count, 2)
+        paths = [call.args[0].path for call in client.request.call_args_list]
+        self.assertLess(paths.index("PublishXml"), next(i for i, path in enumerate(paths) if "appmoduleroles_association" in path))
+        self.assertEqual(correlation_id, "correlation-id")
+
+    def test_app_operation_paths_are_runtime_whitelisted(self):
+        paths = (
+            ("POST", "AddAppComponents"),
+            ("GET", f"RetrieveAppComponents(AppModuleId={self.APP_ID})"),
+            ("GET", f"ValidateApp(AppModuleId={self.APP_ID})"),
+            (
+                "POST",
+                f"appmodules({self.APP_ID})/appmoduleroles_association/$ref",
+            ),
+            ("POST", "PublishXml"),
+            (
+                "GET",
+                f"dependencies?$filter=dependentcomponentobjectid%20eq%20{self.APP_ID}",
+            ),
+        )
+
+        for method, path in paths:
+            with self.subTest(method=method, path=path):
+                executor.validate_runtime_request(method, path)
+
+    def test_app_recovery_targets_immutable_row_without_create(self):
+        row = {"component_type": "uiux_app"}
+
+        request = executor.app_recovery_request(row, self.APP_ID)
+
+        self.assertEqual(request.method, "GET")
+        self.assertTrue(
+            request.path.startswith(
+                "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()?"
+            )
+        )
+        self.assertIn(self.APP_ID, request.path)
+        self.assertNotEqual(request.path, "appmodules")
+        executor.validate_runtime_request(request.method, request.path)
+
+    def test_resolves_exact_unpublished_app_when_not_yet_published(self):
+        client = mock.Mock()
+        client.request.side_effect = [
+            executor.HttpResult(200, "", "", {"value": []}),
+            executor.HttpResult(
+                200,
+                "",
+                "",
+                {
+                    "value": [
+                        {
+                            "appmoduleid": self.APP_ID,
+                            "uniquename": "ContosoService",
+                        }
+                    ]
+                },
+            ),
+        ]
+
+        app_id = executor.resolve_app_id(
+            client, self.sitemap_capability, "ContosoService"
+        )
+
+        self.assertEqual(app_id, self.APP_ID)
+        self.assertIn(
+            "RetrieveUnpublishedMultiple",
+            client.request.call_args_list[1].args[0].path,
+        )
+
+    def test_app_cleanup_targets_only_immutable_unpublished_row(self):
+        row = {
+            "component_type": "uiux_app",
+            "payload": {
+                "name": "Contoso Service",
+                "schema_name": "aks_ContosoService",
+            },
+        }
+
+        recovery, deletion = executor.app_cleanup_requests(
+            row, self.app_delete_capability, self.APP_ID
+        )
+
+        self.assertIn("RetrieveUnpublishedMultiple", recovery.path)
+        self.assertIn(self.APP_ID, recovery.path)
+        self.assertEqual(deletion.method, "DELETE")
+        self.assertEqual(deletion.path, f"appmodules({self.APP_ID})")
+        executor.validate_capability_request(self.app_delete_capability, deletion)
+
+    def test_sitemap_recovery_request_targets_exact_created_row(self):
+        row = {
+            "component_type": "uiux_sitemap",
+            "payload": {
+                "app": "aks_ContosoService",
+                "name": "Contoso Service navigation",
+                "schema_name": "aks_ContosoServiceSiteMap",
+                "areas": [
+                    {
+                        "name": "Fleet Operations",
+                        "groups": [
+                            {
+                                "name": "Fleet",
+                                "subareas": [
+                                    {"name": "Vehicles", "table": "aks_vehicle"}
+                                ],
+                            }
+                        ],
+                    }
+                ],
+            },
+        }
+
+        request = executor.row_verification_request_by_id(row, self.SITEMAP_ID)
+
+        self.assertEqual(request.method, "GET")
+        self.assertTrue(request.path.startswith(f"sitemaps({self.SITEMAP_ID})?"))
+        self.assertIn("sitemapnameunique", request.path)
+        self.assertIn("sitemapxml", request.path)
+        self.assertEqual(
+            request.expected_body["sitemapnameunique"],
+            "aks_ContosoServiceSiteMap",
+        )
+        self.assertIs(executor.verification_request(row, request), request)
+        executor.validate_runtime_request(request.method, request.path)
+
+    def test_rejects_undeclared_aggregate_suboperation(self):
+        request = executor.OperationRequest(
+            "POST",
+            "AddAppComponents",
+            {},
+            (),
+            (),
+            "none",
+            "test",
+        )
+
+        with self.assertRaises(executor.ExecutorError):
+            executor.validate_capability_suboperation({}, "add_table_components", request)
+
+    def test_failed_app_validation_stops_before_publish(self):
+        row = {"payload": {"app": "aks_ContosoService"}}
+        client = mock.Mock()
+
+        def request(operation):
+            if operation.path.startswith("appmodules?"):
+                return executor.HttpResult(
+                    200,
+                    "",
+                    "",
+                    {
+                        "value": [
+                            {
+                                "appmoduleid": self.APP_ID,
+                                "uniquename": "ContosoService",
+                            }
+                        ]
+                    },
+                )
+            if operation.path == "RetrieveAppComponents(AppModuleId=" + self.APP_ID + ")":
+                return executor.HttpResult(
+                    200, "", "", {"value": [{"sitemapid": self.SITEMAP_ID}]}
+                )
+            if operation.path == "ValidateApp(AppModuleId=" + self.APP_ID + ")":
+                return executor.HttpResult(
+                    200,
+                    "",
+                    "",
+                    {"AppValidationResponse": {"ValidationSuccess": False}},
+                )
+            return executor.HttpResult(204, "", "correlation-id", {})
+
+        client.request.side_effect = request
+        app_row = {
+            "authoring_target": {"publisher_prefix": "aks"},
+            "payload": {
+                "schema_name": "aks_ContosoService",
+                "roles": [],
+            },
+        }
+
+        with (
+            mock.patch.object(executor, "app_dependency_row", return_value=app_row),
+            mock.patch.object(executor, "invoke_sdk_app_components") as sdk_add,
+            mock.patch.object(
+                executor,
+                "app_dependency_component_ids",
+                side_effect=[set(), {self.SITEMAP_ID}],
+            ),
+            self.assertRaises(executor.ExecutorError) as raised,
+        ):
+            executor.complete_app_navigation(
+                row, client, self.sitemap_capability, self.SITEMAP_ID
+            )
+
+        self.assertEqual(raised.exception.category, "verification_mismatch")
+        sdk_add.assert_called_once_with(row, self.APP_ID, [("sitemap", self.SITEMAP_ID)])
+        self.assertNotIn(
+            "PublishXml", [call.args[0].path for call in client.request.call_args_list]
+        )
+
+
+class SiteMapRequestTests(unittest.TestCase):
+    def setUp(self):
+        self.row = {
+            "component_type": "uiux_sitemap",
+            "payload": {
+                "app": "aks_ContosoService",
+                "name": "Contoso Service navigation",
+                "schema_name": "aks_ContosoServiceSiteMap",
+                "areas": [
+                    {
+                        "name": "Fleet Operations",
+                        "groups": [
+                            {
+                                "name": "Fleet",
+                                "subareas": [
+                                    {"name": "Vehicles", "table": "aks_vehicle"},
+                                    {
+                                        "name": "Maintenance Jobs",
+                                        "table": "aks_maintenancejob",
+                                    },
+                                    {"name": "Job Parts", "table": "aks_jobpart"},
+                                ],
+                            }
+                        ],
+                    },
+                    {
+                        "name": "Customers",
+                        "groups": [
+                            {
+                                "name": "Service Network",
+                                "subareas": [
+                                    {"name": "Depots", "table": "account"},
+                                    {"name": "Technicians", "table": "contact"},
+                                ],
+                            }
+                        ],
+                    },
+                ],
+            },
+        }
+
+    def test_builds_complete_deterministic_sitemap_xml(self):
+        xml = executor.sitemapxml(self.row["payload"])
+        root = ET.fromstring(xml)
+
+        areas = root.findall("Area")
+        groups = root.findall("./Area/Group")
+        subareas = root.findall("./Area/Group/SubArea")
+        self.assertEqual(len(areas), 2)
+        self.assertEqual(len(groups), 2)
+        self.assertEqual(len(subareas), 5)
+        self.assertEqual(
+            {subarea.attrib["Entity"] for subarea in subareas},
+            {"aks_vehicle", "aks_maintenancejob", "aks_jobpart", "account", "contact"},
+        )
+        ids = [element.attrib["Id"] for element in [*areas, *groups, *subareas]]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertTrue(all(" " not in value for value in ids))
+        self.assertEqual(executor.sitemapxml(self.row["payload"]), xml)
+
+    def test_builds_documented_sitemap_row_fields(self):
+        request = executor.build_static_requests(
+            self.row,
+            "create",
+            {"solution_context": {"mechanism": "MSCRM.SolutionUniqueName"}},
+        )[0]
+
+        self.assertEqual(request.path, "sitemaps")
+        self.assertEqual(request.body["sitemapname"], "Contoso Service navigation")
+        self.assertEqual(
+            request.body["sitemapnameunique"], "aks_ContosoServiceSiteMap"
+        )
+        self.assertNotIn("name", request.body)
+        self.assertEqual(len(ET.fromstring(request.body["sitemapxml"]).findall(".//SubArea")), 5)
 
 
 class WebResourceRequestTests(unittest.TestCase):
@@ -1198,7 +1947,7 @@ class BundledRecoveryTests(unittest.TestCase):
             return ({"identity": "matched", "payload": "matched", "membership": "matched"}, immutable_id)
 
         with (
-            mock.patch.object(executor, "validate_bundled_recovery_evidence"),
+            mock.patch.object(executor, "validate_interrupted_write_evidence"),
             mock.patch.object(executor, "validate_executor_preflight", return_value=(capability, "https://org89912357.crm.dynamics.com/api/data/v9.2", "ContosoServiceCore")) as preflight,
             mock.patch.object(executor, "acquire_token", return_value="token"),
             mock.patch.object(executor, "_transition_dev_to_in_progress"),

@@ -125,6 +125,7 @@ ALLOWED_CAPABILITY_PATH_TEMPLATES = frozenset(
         "RelationshipDefinitions",
         "RelationshipDefinitions(SchemaName='{identity}')",
         "RelationshipDefinitions(MetadataId='{metadata_id}')",
+        "EntityDefinitions(LogicalName='{table}')",
         "GlobalOptionSetDefinitions",
         "GlobalOptionSetDefinitions(Name='{identity}')",
         "UpdateOptionValue",
@@ -140,6 +141,8 @@ ALLOWED_CAPABILITY_PATH_TEMPLATES = frozenset(
         "fieldsecurityprofiles({record_id})",
         "roles",
         "roles({record_id})",
+        "businessunits",
+        "dependencies",
         "systemdashboards",
         "systemdashboards({record_id})",
         "savedqueryvisualizations",
@@ -148,12 +151,19 @@ ALLOWED_CAPABILITY_PATH_TEMPLATES = frozenset(
         "sitemaps({record_id})",
         "appmodules",
         "appmodules({record_id})",
+        "appmodulecomponents",
+        "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()",
+        "appmodules({record_id})/appmoduleroles_association/$ref",
         "pluginassemblies",
         "pluginassemblies({record_id})",
         "plugintypes",
         "webresourceset",
         "webresourceset({record_id})",
         "PublishXml",
+        "AddAppComponents",
+        "RemoveAppComponents",
+        "RetrieveAppComponents(AppModuleId={record_id})",
+        "ValidateApp(AppModuleId={record_id})",
         "AddSolutionComponent",
         "RemoveSolutionComponent",
     }
@@ -1204,6 +1214,28 @@ def sitemap_contract_violations(sitemap: dict[str, Any]) -> list[str]:
                         continue
                     if not str(group.get("name") or "").strip():
                         violations.append(f"areas[{area_idx}].groups[{group_idx}] name is required")
+                    subareas = group.get("subareas")
+                    if not isinstance(subareas, list) or not subareas:
+                        violations.append(
+                            f"areas[{area_idx}].groups[{group_idx}] subareas must "
+                            "contain at least one subarea"
+                        )
+                        continue
+                    for subarea_idx, subarea in enumerate(subareas):
+                        path = (
+                            f"areas[{area_idx}].groups[{group_idx}]."
+                            f"subareas[{subarea_idx}]"
+                        )
+                        if not isinstance(subarea, dict):
+                            violations.append(f"{path} must be a mapping")
+                            continue
+                        if not str(subarea.get("name") or "").strip():
+                            violations.append(f"{path} name is required")
+                        table = str(subarea.get("table") or "").strip().lower()
+                        if not re.fullmatch(r"[a-z][a-z0-9_]*", table):
+                            violations.append(
+                                f"{path} table must be a canonical logical name"
+                            )
     return violations
 
 
@@ -1484,12 +1516,24 @@ def load_dataverse_capabilities(value: dict[str, Any] | None = None) -> dict[str
                     f"capability profile '{profile_id}' references unknown official "
                     f"reference '{reference_id}'"
                 )
-        http = profile.get("http")
-        if http and http.get("path_template") not in ALLOWED_CAPABILITY_PATH_TEMPLATES:
+        contracts = [profile.get("http"), profile.get("recovery_http")]
+        suboperations = profile.get("suboperations") or []
+        suboperation_names = [item.get("name") for item in suboperations]
+        if len(suboperation_names) != len(set(suboperation_names)):
             raise PipelineError(
-                f"capability profile '{profile_id}' uses non-whitelisted path template "
-                f"'{http.get('path_template')}'"
+                f"capability profile '{profile_id}' has duplicate suboperation names"
             )
+        contracts.extend(item.get("http") for item in suboperations)
+        for http in contracts:
+            if (
+                http
+                and http.get("path_template")
+                not in ALLOWED_CAPABILITY_PATH_TEMPLATES
+            ):
+                raise PipelineError(
+                    f"capability profile '{profile_id}' uses non-whitelisted path "
+                    f"template '{http.get('path_template')}'"
+                )
         if profile.get("support") == "supported":
             if profile.get("primary_resource") != "dataverse-web-api":
                 raise PipelineError(
@@ -1896,28 +1940,11 @@ def resolve_development_resources(
             component_type, load_dataverse_capabilities()
         ),
     }
-    operations = resolved["capabilities"]["operations"].values()
-    web_api_owned = bool(operations) and all(
-        operation.get("primary_resource") == "dataverse-web-api"
-        for operation in operations
-    )
-    verification_resources = {
-        str((operation.get("verification") or {}).get("resource") or "")
-        for operation in resolved["capabilities"]["operations"].values()
-    }
     catalog = registry["resources"]
     for role, assignments in (winner.get("resources") or {}).items():
         resolved[role] = []
         for assignment in assignments or []:
             item = dict(catalog[assignment["resource"]])
-            if (
-                role == "required"
-                and web_api_owned
-                and item.get("kind") == "mcp"
-                and assignment.get("tools")
-                and assignment["resource"] not in verification_resources
-            ):
-                continue
             item.pop("preflight", None)
             if authoring_target:
                 for key in ("endpoint",):
@@ -1969,6 +1996,13 @@ def resolve_developer_preflight(
         for resolved_resource in development_resources.get(role) or []:
             resource_id = resolved_resource["id"]
             resource = registry["resources"][resource_id]
+            executor_managed_authentication = (
+                resource_id == "dataverse-web-api"
+                and (resolved_resource.get("oauth_public_client") or {}).get(
+                    "token_cache"
+                )
+                == "memory_only"
+            )
             substitutions = _resource_substitutions(
                 resolved_resource, authoring_target, component_payload
             )
@@ -1989,7 +2023,10 @@ def resolve_developer_preflight(
                         role == "required"
                         and not (
                             step["phase"] == "authentication"
-                            and resource["kind"] == "cli"
+                            and (
+                                resource["kind"] == "cli"
+                                or executor_managed_authentication
+                            )
                         )
                     ),
                     **step,
@@ -2019,7 +2056,8 @@ def resolve_developer_preflight(
                     item["ecosystem"] = resolved_resource.get("ecosystem")
                     item["expected_version"] = resolved_resource.get("version")
                     item["project_paths"] = sorted(
-                        {
+                        set(resolved_resource.get("project_paths") or [])
+                        or {
                             str(project["path"])
                             for project in (authoring_target or {}).get(
                                 "component_projects", []

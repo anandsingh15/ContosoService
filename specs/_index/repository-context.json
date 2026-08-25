@@ -1062,7 +1062,7 @@
     "integ_connector",
     "integ_connection_ref"
   ],
-  "context_hash": "55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10",
+  "context_hash": "ce1596580d3b332f571bd9adaac8a24f20e7a871a02dc9e28dc26223ee927417",
   "conventions_hash": "de9cfd93e3251d7c8841a96e1e1878e01e00571b35aa68259c0e622565bc1952",
   "dataverse_web_api_capabilities": {
     "components": {
@@ -1508,6 +1508,10 @@
       }
     },
     "official_references": {
+      "add_app_components": {
+        "title": "AddAppComponents action",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/addappcomponents"
+      },
       "add_privileges_role": {
         "title": "AddPrivilegesRole action reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/addprivilegesrole"
@@ -1600,6 +1604,10 @@
         "title": "Model-Driven App (AppModule) table reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/appmodule"
       },
+      "model_app_lifecycle": {
+        "title": "Create, manage, and publish model-driven apps using code",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/create-manage-model-driven-apps-using-code"
+      },
       "oauth": {
         "title": "Use OAuth authentication with Microsoft Dataverse",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth"
@@ -1644,9 +1652,17 @@
         "title": "Create and update table relationships using the Web API",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/create-update-entity-relationships-using-web-api"
       },
+      "remove_app_components": {
+        "title": "RemoveAppComponentsRequest message",
+        "url": "https://learn.microsoft.com/en-us/dotnet/api/microsoft.crm.sdk.messages.removeappcomponentsrequest"
+      },
       "remove_solution_component": {
         "title": "RemoveSolutionComponent action",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/removesolutioncomponent"
+      },
+      "retrieve_app_components": {
+        "title": "RetrieveAppComponents function",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/retrieveappcomponents"
       },
       "saved_query": {
         "title": "Saved Query (view) table reference",
@@ -1668,6 +1684,10 @@
         "title": "Site Map table reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/sitemap"
       },
+      "sitemap_schema": {
+        "title": "SiteMap XML schema",
+        "url": "https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/customize-dev/sitemap-schema"
+      },
       "solution_component_types": {
         "title": "Solution Component table reference",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/solutioncomponent#componenttype"
@@ -1683,6 +1703,10 @@
       "table_definitions": {
         "title": "Create and update table definitions using the Web API",
         "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/create-update-entity-definitions-using-web-api"
+      },
+      "validate_app": {
+        "title": "ValidateApp function",
+        "url": "https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/validateapp"
       },
       "web_resource": {
         "title": "Web Resource table reference",
@@ -1775,9 +1799,9 @@
           "supported": true
         },
         "fallback": {
-          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-          "issue_evidence_required": true,
-          "resource": "maker-portal"
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "dataverse-app-dotnet-sdk"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -1786,16 +1810,66 @@
         },
         "official_references": [
           "optional_parameters",
-          "model_app"
+          "model_app",
+          "model_app_lifecycle",
+          "add_app_components",
+          "retrieve_app_components"
         ],
         "operation": "create",
         "primary_resource": "dataverse-web-api",
-        "rationale": "The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.",
+        "rationale": "The executor creates the documented unpublished AppModule row in the routed solution, adds exact table metadata references, and target-verifies the app shell; role association is deferred until the sitemap operation validates and publishes the completed app.",
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
           "value_source": "authoring_target.solution_unique_name"
         },
+        "suboperations": [
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"
+            },
+            "name": "recover_unpublished_app",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "metadata",
+              "method": "GET",
+              "path_template": "EntityDefinitions(LogicalName='{table}')"
+            },
+            "name": "resolve_table_metadata",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "unbound_action",
+              "method": "POST",
+              "path_template": "AddAppComponents"
+            },
+            "name": "add_table_components",
+            "primary_resource": "dataverse-app-dotnet-sdk",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "dependencies"
+            },
+            "name": "verify_table_dependencies",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          }
+        ],
         "support": "supported",
         "verification": {
           "http": {
@@ -1803,7 +1877,7 @@
             "method": "GET",
             "path_template": "appmodules"
           },
-          "rationale": "Query the exact app by name and verify compiler-generated app module definition.",
+          "rationale": "Query the exact canonical unpublished app and verify its declared table memberships.",
           "resource": "dataverse-mcp",
           "tools": [
             "describe",
@@ -1818,9 +1892,9 @@
           "supported": true
         },
         "fallback": {
-          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-          "issue_evidence_required": true,
-          "resource": "maker-portal"
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "dataverse-web-api"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -1832,12 +1906,25 @@
         ],
         "operation": "delete",
         "primary_resource": "dataverse-web-api",
-        "rationale": "HTTP DELETE destroys the AppModule row and is never substituted for solution-membership removal.",
+        "rationale": "HTTP DELETE destroys only the exact evidence-bound AppModule row after unpublished identity verification and is never substituted for solution-membership removal.",
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
           "value_source": "authoring_target.solution_unique_name"
         },
+        "suboperations": [
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"
+            },
+            "name": "recover_unpublished_app",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          }
+        ],
         "support": "supported",
         "verification": {
           "http": {
@@ -1859,9 +1946,9 @@
           "supported": true
         },
         "fallback": {
-          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-          "issue_evidence_required": true,
-          "resource": "maker-portal"
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "dataverse-web-api"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -1870,16 +1957,77 @@
         },
         "official_references": [
           "optional_parameters",
-          "model_app"
+          "model_app",
+          "model_app_lifecycle",
+          "remove_app_components",
+          "publish_xml"
         ],
         "operation": "update",
         "primary_resource": "dataverse-web-api",
-        "rationale": "The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.",
+        "rationale": "The executor creates the documented unpublished AppModule row in the routed solution, adds exact table metadata references, and target-verifies the app shell; role association is deferred until the sitemap operation validates and publishes the completed app.",
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
           "value_source": "authoring_target.solution_unique_name"
         },
+        "suboperations": [
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "appmodules({record_id})"
+            },
+            "name": "resolve_app_by_id",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "metadata",
+              "method": "GET",
+              "path_template": "EntityDefinitions(LogicalName='{table}')"
+            },
+            "name": "resolve_table_metadata",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "appmodulecomponents"
+            },
+            "name": "list_app_components",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "unbound_action",
+              "method": "POST",
+              "path_template": "RemoveAppComponents"
+            },
+            "name": "remove_app_components",
+            "primary_resource": "dataverse-app-dotnet-sdk",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "unbound_action",
+              "method": "POST",
+              "path_template": "PublishXml"
+            },
+            "name": "publish_app",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          }
+        ],
         "support": "supported",
         "verification": {
           "http": {
@@ -1903,7 +2051,7 @@
         "fallback": {
           "allowed_when": "not_applicable",
           "issue_evidence_required": false,
-          "resource": "maker-portal"
+          "resource": "dataverse-web-api"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -4618,9 +4766,9 @@
           "supported": true
         },
         "fallback": {
-          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-          "issue_evidence_required": true,
-          "resource": "maker-portal"
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "dataverse-app-dotnet-sdk"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -4629,16 +4777,135 @@
         },
         "official_references": [
           "optional_parameters",
-          "site_map"
+          "site_map",
+          "sitemap_schema",
+          "model_app_lifecycle",
+          "add_app_components",
+          "retrieve_app_components",
+          "validate_app",
+          "publish_xml"
         ],
         "operation": "create",
         "primary_resource": "dataverse-web-api",
-        "rationale": "The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.",
+        "rationale": "The executor writes complete schema-valid sitemap XML in the routed solution; create then attaches it to the exact app, validates and publishes only that app, and associates the compiler-declared roles after publication.",
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
           "value_source": "authoring_target.solution_unique_name"
         },
+        "suboperations": [
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "appmodules"
+            },
+            "name": "resolve_app",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"
+            },
+            "name": "resolve_unpublished_app",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "unbound_action",
+              "method": "POST",
+              "path_template": "AddAppComponents"
+            },
+            "name": "add_sitemap_component",
+            "primary_resource": "dataverse-app-dotnet-sdk",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "dependencies"
+            },
+            "name": "verify_sitemap_dependency",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "unbound_function",
+              "method": "GET",
+              "path_template": "ValidateApp(AppModuleId={record_id})"
+            },
+            "name": "validate_app",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "unbound_action",
+              "method": "POST",
+              "path_template": "PublishXml"
+            },
+            "name": "publish_app",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "roles"
+            },
+            "name": "resolve_security_roles",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "businessunits"
+            },
+            "name": "resolve_root_business_unit",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "POST",
+              "path_template": "appmodules({record_id})/appmoduleroles_association/$ref"
+            },
+            "name": "associate_security_roles",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          },
+          {
+            "http": {
+              "endpoint_family": "entity_set",
+              "method": "GET",
+              "path_template": "appmodules({record_id})"
+            },
+            "name": "verify_role_associations",
+            "solution_context": {
+              "mechanism": "not_applicable"
+            }
+          }
+        ],
         "support": "supported",
         "verification": {
           "http": {
@@ -4661,9 +4928,9 @@
           "supported": true
         },
         "fallback": {
-          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-          "issue_evidence_required": true,
-          "resource": "maker-portal"
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "dataverse-web-api"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -4702,9 +4969,9 @@
           "supported": true
         },
         "fallback": {
-          "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-          "issue_evidence_required": true,
-          "resource": "maker-portal"
+          "allowed_when": "not_applicable",
+          "issue_evidence_required": false,
+          "resource": "dataverse-web-api"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -4717,7 +4984,7 @@
         ],
         "operation": "update",
         "primary_resource": "dataverse-web-api",
-        "rationale": "The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.",
+        "rationale": "The executor writes complete schema-valid sitemap XML in the routed solution; create then attaches it to the exact app, validates and publishes only that app, and associates the compiler-declared roles after publication.",
         "solution_context": {
           "mechanism": "MSCRM.SolutionUniqueName",
           "name": "MSCRM.SolutionUniqueName",
@@ -4746,7 +5013,7 @@
         "fallback": {
           "allowed_when": "not_applicable",
           "issue_evidence_required": false,
-          "resource": "maker-portal"
+          "resource": "dataverse-web-api"
         },
         "http": {
           "endpoint_family": "entity_set",
@@ -5132,8 +5399,8 @@
     },
     "schema_version": 1
   },
-  "dataverse_web_api_capabilities_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
-  "dataverse_web_api_capabilities_schema_hash": "22997993e2971a3369c6b26bf73d039a135b291d37358d6af635aacb91d46cde",
+  "dataverse_web_api_capabilities_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
+  "dataverse_web_api_capabilities_schema_hash": "f99047c539269beb0d84cca0c8357ff44c017508c732932b9983a090cabad911",
   "design_sources": {
     "schema_version": 1,
     "sources": [
@@ -5395,6 +5662,37 @@
           "local_interactive"
         ],
         "version": "CONFIGURE_BEFORE_IMPLEMENTATION",
+        "version_policy": "project_pinned"
+      },
+      "dataverse-app-dotnet-sdk": {
+        "authentication": "none",
+        "description": "Dataverse SDK pinned for the narrow typed app component executor.",
+        "ecosystem": "nuget",
+        "kind": "sdk",
+        "package": "Microsoft.PowerPlatform.Dataverse.Client",
+        "preflight": {
+          "installation": {
+            "guidance": "Restore the exact locked SDK dependency in the registered app executor project.",
+            "policy": "manual"
+          },
+          "steps": [
+            {
+              "action": "package",
+              "behavior": "automatic",
+              "description": "Verify the exact SDK version in the registered app executor project and lock file.",
+              "expected": "{resource.version}",
+              "id": "package-version",
+              "phase": "availability_version"
+            }
+          ]
+        },
+        "project_paths": [
+          "scripts/dataverse_app_sdk_executor/DataverseAppSdkExecutor.csproj"
+        ],
+        "supported_execution_hosts": [
+          "local_interactive"
+        ],
+        "version": "1.1.32",
         "version_policy": "project_pinned"
       },
       "dataverse-dotnet-sdk": {
@@ -6108,7 +6406,7 @@
         "match": {
           "component_type": "schema_table"
         },
-        "rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor.",
+        "rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context.",
         "resources": {
           "fallback": [
             {
@@ -6136,9 +6434,19 @@
               "resource": "msal-python"
             },
             {
-              "purpose": "primary_authoring_and_verification",
-              "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+              "purpose": "primary_solution_aware_authoring",
+              "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "discovery_and_targeted_verification",
+              "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -6444,7 +6752,7 @@
         "match": {
           "component_type": "uiux_form"
         },
-        "rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor.",
+        "rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header.",
         "resources": {
           "fallback": [
             {
@@ -6472,9 +6780,19 @@
               "resource": "msal-python"
             },
             {
-              "purpose": "primary_form_authoring_and_verification",
-              "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+              "purpose": "primary_form_authoring",
+              "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "targeted_form_verification",
+              "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -6483,7 +6801,7 @@
         "match": {
           "component_type": "uiux_view"
         },
-        "rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor.",
+        "rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts.",
         "resources": {
           "fallback": [
             {
@@ -6504,9 +6822,123 @@
               "resource": "msal-python"
             },
             {
-              "purpose": "primary_view_authoring_and_verification",
-              "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+              "purpose": "primary_view_authoring",
+              "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "targeted_view_verification",
+              "rationale": "MCP verifies the exact view identity and result surface.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "match": {
+          "component_type": "uiux_app"
+        },
+        "rationale": "Model-driven apps use compiler-gated AppModule Web API operations with explicit solution context and the pinned Dataverse SDK for typed app component references.",
+        "resources": {
+          "preferred": [
+            {
+              "purpose": "supported_solution_source_operations",
+              "rationale": "PAC is used only for supported targeted solution/source operations.",
+              "resource": "power-platform-cli"
+            }
+          ],
+          "required": [
+            {
+              "purpose": "model_app_contract",
+              "rationale": "Official AppModule documentation grounds the supported metadata surface and relationships to tables, forms, and site maps.",
+              "resource": "microsoft-learn"
+            },
+            {
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "primary_app_authoring",
+              "rationale": "Compiler-gated AppModule CRUD under the routed solution header is the primary solution-aware authoring path.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "sdk_executor_build",
+              "rationale": "The project-pinned toolchain builds and runs the narrow app component executor.",
+              "resource": "dotnet-toolchain"
+            },
+            {
+              "purpose": "typed_app_component_authoring",
+              "rationale": "AddAppComponentsRequest supplies typed EntityReference values that the OData service cannot represent for table metadata.",
+              "resource": "dataverse-app-dotnet-sdk"
+            },
+            {
+              "purpose": "targeted_app_verification",
+              "rationale": "MCP verifies exact app identity and configuration; generic writes lack compiler-validated explicit custom-solution context.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "match": {
+          "component_type": "uiux_sitemap"
+        },
+        "rationale": "Site maps use compiler-gated SiteMap Web API operations with explicit solution context and the pinned Dataverse SDK for typed app attachment.",
+        "resources": {
+          "preferred": [
+            {
+              "purpose": "supported_solution_source_operations",
+              "rationale": "PAC is used only for supported targeted solution/source operations.",
+              "resource": "power-platform-cli"
+            }
+          ],
+          "required": [
+            {
+              "purpose": "sitemap_contract",
+              "rationale": "Official SiteMap documentation grounds the supported structure and relationships to app, areas, groups, and subareas.",
+              "resource": "microsoft-learn"
+            },
+            {
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "primary_sitemap_authoring",
+              "rationale": "Compiler-gated SiteMap CRUD under the routed solution header is the primary solution-aware authoring path.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "sdk_executor_build",
+              "rationale": "The project-pinned toolchain builds and runs the narrow app component executor.",
+              "resource": "dotnet-toolchain"
+            },
+            {
+              "purpose": "typed_app_component_authoring",
+              "rationale": "AddAppComponentsRequest attaches the exact sitemap with an SDK EntityReference.",
+              "resource": "dataverse-app-dotnet-sdk"
+            },
+            {
+              "purpose": "targeted_sitemap_verification",
+              "rationale": "MCP verifies exact sitemap identity and navigation structure; generic writes lack compiler-validated explicit custom-solution context.",
+              "resource": "dataverse-mcp",
+              "tools": [
+                "search",
+                "describe",
+                "read_query"
+              ]
             }
           ]
         }
@@ -6515,7 +6947,7 @@
         "match": {
           "component_type": "uiux_*"
         },
-        "rationale": "Visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload.",
+        "rationale": "Remaining visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload.",
         "resources": {
           "preferred": [
             {
@@ -6662,7 +7094,7 @@
         "match": {
           "component_type": "code_plugin"
         },
-        "rationale": "Plug-in implementation uses the supported build toolchain and compiler-bound solution-aware Web API registration executor.",
+        "rationale": "Plug-in implementation uses the supported build, SDK, registration, and solution toolchain. Registration records are created via Web API under solution context.",
         "resources": {
           "required": [
             {
@@ -6682,13 +7114,18 @@
             },
             {
               "purpose": "delegated_authentication",
-              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for registration.",
               "resource": "msal-python"
             },
             {
-              "purpose": "solution_aware_plugin_registration",
-              "rationale": "The compiler-bound executor registers the assembly, steps, and image with explicit solution context.",
+              "purpose": "registration_record_creation",
+              "rationale": "Plugin registration records (PluginAssembly, PluginType, PluginStep) are created via Web API under solution context.",
               "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "solution_and_source_operations",
+              "rationale": "PAC is used for supported solution source and package operations.",
+              "resource": "power-platform-cli"
             },
             {
               "purpose": "schema_and_runtime_verification",
@@ -6711,8 +7148,8 @@
         "resources": {
           "required": [
             {
-              "purpose": "custom_api_grounding",
-              "rationale": "Official custom API documentation grounds implementation and registration.",
+              "purpose": "execution_pipeline_grounding",
+              "rationale": "Official plug-in documentation grounds registration and runtime behavior.",
               "resource": "microsoft-learn"
             },
             {
@@ -6722,12 +7159,22 @@
             },
             {
               "purpose": "dataverse_code",
-              "rationale": "The registered Dataverse SDK supports custom API code integration.",
+              "rationale": "The registered Dataverse SDK supports code integration and registration contracts.",
               "resource": "dataverse-dotnet-sdk"
             },
             {
-              "purpose": "registration_and_solution_operations",
-              "rationale": "PAC remains the registered route for supported custom API solution operations.",
+              "purpose": "delegated_authentication",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for registration.",
+              "resource": "msal-python"
+            },
+            {
+              "purpose": "registration_record_creation",
+              "rationale": "Plugin registration records (PluginAssembly, PluginType, PluginStep) are created via Web API under solution context.",
+              "resource": "dataverse-web-api"
+            },
+            {
+              "purpose": "solution_and_source_operations",
+              "rationale": "PAC is used for supported solution source and package operations.",
               "resource": "power-platform-cli"
             },
             {
@@ -6782,28 +7229,25 @@
         "match": {
           "component_type": "code_webres_*"
         },
-        "rationale": "Web resources use compiler-bound Web API CRUD from routed repository source, targeted publication, and PAC only for post-write solution source synchronization.",
+        "rationale": "Phase 8 web resource authoring uses first-class Dataverse Web API with solution context, explicit canonical naming, and post-action verification. Content construction and repository binding are now fully supported.",
         "resources": {
-          "required": [
+          "allowed": [
             {
-              "purpose": "web_resource_contract_grounding",
-              "rationale": "Official Web Resource and PublishXml documentation grounds the payload, solution context, and publication contract.",
-              "resource": "microsoft-learn"
-            },
+              "purpose": "solution_export_for_source_sync",
+              "rationale": "PAC is allowed only for documented solution export/unpack during post-deployment source synchronization.",
+              "resource": "power-platform-cli"
+            }
+          ],
+          "required": [
             {
               "purpose": "build_and_test",
               "rationale": "The registered Node toolchain builds and validates web resource content.",
               "resource": "node-toolchain"
             },
             {
-              "purpose": "solution_aware_web_resource_authoring",
-              "rationale": "The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.",
+              "purpose": "primary_crud_and_solution_operations",
+              "rationale": "Dataverse Web API is now primary for first-class CRUD operations with native solution context and canonical publisher-prefixed naming.",
               "resource": "dataverse-web-api"
-            },
-            {
-              "purpose": "post_write_solution_source_sync",
-              "rationale": "PAC exports and unpacks the exact routed solution only after successful Web API verification.",
-              "resource": "power-platform-cli"
             },
             {
               "purpose": "targeted_runtime_verification",
@@ -6860,12 +7304,12 @@
         "match": {
           "component_type": "sec_role"
         },
-        "rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification.",
+        "rationale": "Role CRUD is supported via Web API with compiler-managed privilege assignment; Web API executor handles base-role and privilege resolution for declared depth.",
         "resources": {
           "fallback": [
             {
               "purpose": "documented_api_failure_fallback",
-              "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+              "rationale": "Portal fallback is allowed only with issue evidence for an unavailable or unsupported MCP verification operation.",
               "resource": "maker-portal"
             }
           ],
@@ -6877,22 +7321,17 @@
             },
             {
               "purpose": "delegated_authentication",
-              "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
+              "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for role creation.",
               "resource": "msal-python"
             },
             {
-              "purpose": "primary_solution_aware_authoring",
-              "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+              "purpose": "primary_role_creation_and_privilege_assignment",
+              "rationale": "Web API executor creates the role at root BU under solution context and assigns declared privileges via AddPrivilegesRole bound action.",
               "resource": "dataverse-web-api"
             },
             {
-              "purpose": "post_write_solution_source_sync",
-              "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
-              "resource": "power-platform-cli"
-            },
-            {
-              "purpose": "targeted_role_verification",
-              "rationale": "MCP verifies exact effective privileges only and is not used for generic solution-aware writes.",
+              "purpose": "role_privilege_verification",
+              "rationale": "MCP verifies exact assigned privileges and effective role configuration.",
               "resource": "dataverse-mcp",
               "tools": [
                 "search",
@@ -7163,8 +7602,8 @@
       ]
     }
   },
-  "development_resources_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
-  "development_resources_schema_hash": "dfede873f930e0eec7bdb354ef0bf01b2814f58230e3d81914a3a7b555f931b1",
+  "development_resources_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
+  "development_resources_schema_hash": "a2b877b7ca0b8a22461cebc4d425fd92ab0ef09d19304a077aa43e5fd4cea671",
   "schema_version": 1,
   "schemas": {
     "dev.schema.json": "b9f3644a10037534650755133d50d3091798762535ec0dff41114768f3ffaff9",

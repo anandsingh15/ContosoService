@@ -155,6 +155,24 @@ official_references:
   model_app:
     title: Model-Driven App (AppModule) table reference
     url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/reference/entities/appmodule
+  model_app_lifecycle:
+    title: Create, manage, and publish model-driven apps using code
+    url: https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/create-manage-model-driven-apps-using-code
+  add_app_components:
+    title: AddAppComponents action
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/addappcomponents
+  remove_app_components:
+    title: RemoveAppComponentsRequest message
+    url: https://learn.microsoft.com/en-us/dotnet/api/microsoft.crm.sdk.messages.removeappcomponentsrequest
+  retrieve_app_components:
+    title: RetrieveAppComponents function
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/retrieveappcomponents
+  validate_app:
+    title: ValidateApp function
+    url: https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/reference/validateapp
+  sitemap_schema:
+    title: SiteMap XML schema
+    url: https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/customize-dev/sitemap-schema
 
 profiles:
   metadata-table-create:
@@ -792,12 +810,44 @@ profiles:
     operation: create
     primary_resource: dataverse-web-api
     http: {method: POST, endpoint_family: entity_set, path_template: sitemaps}
+    suboperations:
+    - name: resolve_app
+      http: {method: GET, endpoint_family: entity_set, path_template: appmodules}
+      solution_context: {mechanism: not_applicable}
+    - name: resolve_unpublished_app
+      http: {method: GET, endpoint_family: entity_set, path_template: "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"}
+      solution_context: {mechanism: not_applicable}
+    - name: add_sitemap_component
+      primary_resource: dataverse-app-dotnet-sdk
+      http: {method: POST, endpoint_family: unbound_action, path_template: AddAppComponents}
+      solution_context: {mechanism: not_applicable}
+    - name: verify_sitemap_dependency
+      http: {method: GET, endpoint_family: entity_set, path_template: dependencies}
+      solution_context: {mechanism: not_applicable}
+    - name: validate_app
+      http: {method: GET, endpoint_family: unbound_function, path_template: "ValidateApp(AppModuleId={record_id})"}
+      solution_context: {mechanism: not_applicable}
+    - name: publish_app
+      http: {method: POST, endpoint_family: unbound_action, path_template: PublishXml}
+      solution_context: {mechanism: not_applicable}
+    - name: resolve_security_roles
+      http: {method: GET, endpoint_family: entity_set, path_template: roles}
+      solution_context: {mechanism: not_applicable}
+    - name: resolve_root_business_unit
+      http: {method: GET, endpoint_family: entity_set, path_template: businessunits}
+      solution_context: {mechanism: not_applicable}
+    - name: associate_security_roles
+      http: {method: POST, endpoint_family: entity_set, path_template: "appmodules({record_id})/appmoduleroles_association/$ref"}
+      solution_context: {mechanism: not_applicable}
+    - name: verify_role_associations
+      http: {method: GET, endpoint_family: entity_set, path_template: "appmodules({record_id})"}
+      solution_context: {mechanism: not_applicable}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: "Query the exact sitemap by name and verify compiler-generated sitemap XML."}
-    fallback: *portal_fallback
+    fallback: {resource: dataverse-app-dotnet-sdk, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_sitemap}
-    rationale: &sitemap_rationale The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.
-    official_references: [optional_parameters, site_map]
+    rationale: &sitemap_rationale The executor writes complete schema-valid sitemap XML in the routed solution; create then attaches it to the exact app, validates and publishes only that app, and associates the compiler-declared roles after publication.
+    official_references: [optional_parameters, site_map, sitemap_schema, model_app_lifecycle, add_app_components, retrieve_app_components, validate_app, publish_xml]
   sitemap-update:
     support: supported
     operation: update
@@ -805,7 +855,7 @@ profiles:
     http: {method: PATCH, endpoint_family: entity_set, path_template: "sitemaps({record_id})"}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: Verify the exact sitemap by name after the patch.}
-    fallback: *portal_fallback
+    fallback: {resource: dataverse-web-api, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_sitemap}
     rationale: *sitemap_rationale
     official_references: [optional_parameters, site_map]
@@ -816,7 +866,7 @@ profiles:
     http: {method: DELETE, endpoint_family: entity_set, path_template: "sitemaps({record_id})"}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: Confirm only the exact sitemap was removed.}
-    fallback: *portal_fallback
+    fallback: {resource: dataverse-web-api, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_sitemap}
     destructive_effect: environment_delete
     rationale: HTTP DELETE destroys the SiteMap row and is never substituted for solution-membership removal.
@@ -828,7 +878,7 @@ profiles:
     http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}
     solution_context: {mechanism: not_applicable}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: sitemaps}, rationale: Target-read the exact sitemap by name.}
-    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    fallback: {resource: dataverse-web-api, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_sitemap}
     rationale: Targeted verification reads only the exact sitemap, not the full sitemap inventory.
     official_references: [site_map]
@@ -837,34 +887,69 @@ profiles:
     operation: create
     primary_resource: dataverse-web-api
     http: {method: POST, endpoint_family: entity_set, path_template: appmodules}
+    suboperations:
+    - name: recover_unpublished_app
+      http: {method: GET, endpoint_family: entity_set, path_template: "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"}
+      solution_context: {mechanism: not_applicable}
+    - name: resolve_table_metadata
+      http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')"}
+      solution_context: {mechanism: not_applicable}
+    - name: add_table_components
+      primary_resource: dataverse-app-dotnet-sdk
+      http: {method: POST, endpoint_family: unbound_action, path_template: AddAppComponents}
+      solution_context: {mechanism: not_applicable}
+    - name: verify_table_dependencies
+      http: {method: GET, endpoint_family: entity_set, path_template: dependencies}
+      solution_context: {mechanism: not_applicable}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
-    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: "Query the exact app by name and verify compiler-generated app module definition."}
-    fallback: *portal_fallback
+    verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: "Query the exact canonical unpublished app and verify its declared table memberships."}
+    fallback: {resource: dataverse-app-dotnet-sdk, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_app}
-    rationale: &app_rationale The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.
-    official_references: [optional_parameters, model_app]
+    rationale: &app_rationale The executor creates the documented unpublished AppModule row in the routed solution, adds exact table metadata references, and target-verifies the app shell; role association is deferred until the sitemap operation validates and publishes the completed app.
+    official_references: [optional_parameters, model_app, model_app_lifecycle, add_app_components, retrieve_app_components]
   app-update:
     support: supported
     operation: update
     primary_resource: dataverse-web-api
     http: {method: PATCH, endpoint_family: entity_set, path_template: "appmodules({record_id})"}
+    suboperations:
+    - name: resolve_app_by_id
+      http: {method: GET, endpoint_family: entity_set, path_template: "appmodules({record_id})"}
+      solution_context: {mechanism: not_applicable}
+    - name: resolve_table_metadata
+      http: {method: GET, endpoint_family: metadata, path_template: "EntityDefinitions(LogicalName='{table}')"}
+      solution_context: {mechanism: not_applicable}
+    - name: list_app_components
+      http: {method: GET, endpoint_family: entity_set, path_template: appmodulecomponents}
+      solution_context: {mechanism: not_applicable}
+    - name: remove_app_components
+      primary_resource: dataverse-app-dotnet-sdk
+      http: {method: POST, endpoint_family: unbound_action, path_template: RemoveAppComponents}
+      solution_context: {mechanism: not_applicable}
+    - name: publish_app
+      http: {method: POST, endpoint_family: unbound_action, path_template: PublishXml}
+      solution_context: {mechanism: not_applicable}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: Verify the exact app by name after the patch.}
-    fallback: *portal_fallback
+    fallback: {resource: dataverse-web-api, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_app}
     rationale: *app_rationale
-    official_references: [optional_parameters, model_app]
+    official_references: [optional_parameters, model_app, model_app_lifecycle, remove_app_components, publish_xml]
   app-delete:
     support: supported
     operation: delete
     primary_resource: dataverse-web-api
     http: {method: DELETE, endpoint_family: entity_set, path_template: "appmodules({record_id})"}
+    suboperations:
+    - name: recover_unpublished_app
+      http: {method: GET, endpoint_family: entity_set, path_template: "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"}
+      solution_context: {mechanism: not_applicable}
     solution_context: {mechanism: MSCRM.SolutionUniqueName, name: MSCRM.SolutionUniqueName, value_source: authoring_target.solution_unique_name}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: Confirm only the exact app was removed.}
-    fallback: *portal_fallback
+    fallback: {resource: dataverse-web-api, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_app}
     destructive_effect: environment_delete
-    rationale: HTTP DELETE destroys the AppModule row and is never substituted for solution-membership removal.
+    rationale: HTTP DELETE destroys only the exact evidence-bound AppModule row after unpublished identity verification and is never substituted for solution-membership removal.
     official_references: [model_app]
   app-verify:
     support: supported
@@ -873,7 +958,7 @@ profiles:
     http: {method: GET, endpoint_family: entity_set, path_template: appmodules}
     solution_context: {mechanism: not_applicable}
     verification: {resource: dataverse-mcp, tools: [describe, read_query], http: {method: GET, endpoint_family: entity_set, path_template: appmodules}, rationale: Target-read the exact app by name.}
-    fallback: {resource: maker-portal, allowed_when: not_applicable, issue_evidence_required: false}
+    fallback: {resource: dataverse-web-api, allowed_when: not_applicable, issue_evidence_required: false}
     executor: {supported: true, builder: uiux_app}
     rationale: Targeted verification reads only the exact app, not the full app inventory.
     official_references: [model_app]
