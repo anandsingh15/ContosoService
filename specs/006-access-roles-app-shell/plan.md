@@ -2,9 +2,9 @@
 id: DES-06
 status: reviewed
 implements_feature: FEAT-06
-source_spec_hash: 640cabe6eb06458a9a040a708d88264a389b6ee1db060a33aaf776fe9fc72170
-repository_context_hash: 55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10
-plan_hash: 058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c
+source_spec_hash: 56e174eb9810c1e026f0b0bc49545854a3ce1b53c8122a2229208516af112f14
+repository_context_hash: ce1596580d3b332f571bd9adaac8a24f20e7a871a02dc9e28dc26223ee927417
+plan_hash: 1f739adf7f94840b02a9c90873196117b133628ad6d102f1e7699ce50ec426d6
 ---
 
 # Design - FEAT-06 access-roles-app-shell (DES-06)
@@ -64,6 +64,9 @@ the existing Maintenance Job-to-Job Part cascade carries ownership to parts.
   the app does not use client-side hiding as security. Microsoft documents
   sharing model-driven apps with security roles and teams:
   [Share a model-driven app](https://learn.microsoft.com/power-apps/maker/model-driven-apps/share-model-driven-app).
+  App construction is deliberately ordered: create the unpublished app with its
+  five table references, attach the site map, validate and publish the completed
+  app, and only then associate and verify the three declared security roles.
 
 ### Decision axes
 
@@ -419,5 +422,5 @@ adds no Azure telemetry sink.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-06 | FEAT-06 | `640cabe6eb06458a9a040a708d88264a389b6ee1db060a33aaf776fe9fc72170` | `55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10` |
+| DES-06 | FEAT-06 | `56e174eb9810c1e026f0b0bc49545854a3ce1b53c8122a2229208516af112f14` | `ce1596580d3b332f571bd9adaac8a24f20e7a871a02dc9e28dc26223ee927417` |
 <!-- COMPILER:END provenance -->

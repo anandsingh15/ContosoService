@@ -1,5 +1,5 @@
 {
-  "context_hash": "0b62469ceafe4ef5e06fef990b67a17233468e91163fc12d1984c54a69a1ad84",
+  "context_hash": "b45e690cd10cc26c88003e3007edf7e5ea95d913ee8ebc41a4337def9ebe0c95",
   "plans": [
     {
       "components": [
@@ -23,7 +23,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -334,7 +334,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -483,7 +483,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -794,7 +794,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -944,7 +944,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1255,7 +1255,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -1424,7 +1424,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -1760,7 +1760,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -1806,16 +1806,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-01-CMP-004",
@@ -1882,7 +1920,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2218,7 +2256,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -2264,16 +2302,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-01-CMP-005",
@@ -2340,7 +2416,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -2676,7 +2752,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -2722,16 +2798,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-01-CMP-006",
@@ -2795,7 +2909,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3108,7 +3222,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -3270,7 +3384,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -3583,7 +3697,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -3746,7 +3860,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4059,7 +4173,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -4221,7 +4335,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4534,7 +4648,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -4687,7 +4801,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -4953,7 +5067,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -5066,7 +5180,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5332,7 +5446,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -5445,7 +5559,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -5711,7 +5825,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -5824,7 +5938,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6090,7 +6204,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -6200,7 +6314,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -6333,7 +6447,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -6441,8 +6555,8 @@
       ],
       "feature": "FEAT-01",
       "plan": "DES-01",
-      "plan_hash": "ff3f71544bd4f184591d5a3d92e61a6b7b42ad2f457f8035e054b186e5dd9d98",
-      "source_spec_hash": "fa80db64e8fd5989310db3d3ebc1b1b4f326f9232aaa6a98fd68a40a35a817ff",
+      "plan_hash": "48bd06a09c4f8399e829185fe811329b840cb7dab363209014aeb349a9d8c775",
+      "source_spec_hash": "016219eaa18946b10744ac54b852b6eadbc3b163a6f3153f99b9e6f1af0f632c",
       "status": "draft",
       "workspace": "specs/001-fleet-data-foundation"
     },
@@ -6481,7 +6595,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -6817,7 +6931,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -6863,16 +6977,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-02-CMP-001",
@@ -6934,7 +7086,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7226,7 +7378,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -7272,16 +7424,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_form_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+                "purpose": "primary_form_authoring",
+                "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_form_verification",
+                "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header."
           },
           "execution_host": "local_interactive",
           "form_type": "Quick Create",
@@ -7350,7 +7540,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -7626,7 +7816,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -7672,16 +7862,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "Related Maintenance Jobs through aks_vehicle_maintenancejob for the current Vehicle",
@@ -7743,7 +7971,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8019,7 +8247,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -8065,16 +8293,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "aks_status equals 74873 (Active)",
@@ -8136,7 +8402,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8412,7 +8678,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -8458,16 +8724,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "aks_status equals 74874 (In maintenance)",
@@ -8529,7 +8833,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -8805,7 +9109,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -8851,16 +9155,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "All vehicle records; no additional row filter",
@@ -8910,7 +9252,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -9043,7 +9385,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -9176,7 +9518,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -9468,7 +9810,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -9514,16 +9856,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_form_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+                "purpose": "primary_form_authoring",
+                "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_form_verification",
+                "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header."
           },
           "execution_host": "local_interactive",
           "form_type": "Main",
@@ -9605,7 +9985,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -9897,7 +10277,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -9943,16 +10323,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_form_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+                "purpose": "primary_form_authoring",
+                "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_form_verification",
+                "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header."
           },
           "execution_host": "local_interactive",
           "form_type": "quick_create",
@@ -10027,7 +10445,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10303,7 +10721,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -10349,16 +10767,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "id": "DES-02-CMP-011",
@@ -10416,7 +10872,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -10708,7 +11164,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -10754,16 +11210,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_form_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+                "purpose": "primary_form_authoring",
+                "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_form_verification",
+                "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header."
           },
           "execution_host": "local_interactive",
           "form_type": "main",
@@ -10855,7 +11349,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11131,7 +11625,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -11177,16 +11671,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "id": "DES-02-CMP-013",
@@ -11224,8 +11756,8 @@
       ],
       "feature": "FEAT-02",
       "plan": "DES-02",
-      "plan_hash": "763db4cc3bb738d2ccb6229cc5722e2735803b8a1d9b3a52305ec00b3495ac42",
-      "source_spec_hash": "24e7af3c0c86b269d377ad7f01ea64bc05490d472443c81697df9366b18a0cb7",
+      "plan_hash": "a3183d8e6a93c3a8ebd6228358a9062ca31a1025c47b323d5d5a80bd6c468796",
+      "source_spec_hash": "f07154d33820c4ab330aa956d8e3da75744de20d62a98a691a75316684ea2e2f",
       "status": "reviewed",
       "workspace": "specs/002-vehicle-fleet-register"
     },
@@ -11290,7 +11822,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -11626,7 +12158,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -11672,16 +12204,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-03-CMP-001",
@@ -11750,7 +12320,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12086,7 +12656,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -12132,16 +12702,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-03-CMP-002",
@@ -12195,7 +12803,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12487,7 +13095,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -12533,16 +13141,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_form_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+                "purpose": "primary_form_authoring",
+                "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_form_verification",
+                "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header."
           },
           "execution_host": "local_interactive",
           "form_type": "Quick View",
@@ -12616,7 +13262,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -12892,7 +13538,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -12938,16 +13584,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "Associated Job Parts through aks_maintenancejob_jobpart",
@@ -13011,7 +13695,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13303,7 +13987,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -13349,16 +14033,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_form_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+                "purpose": "primary_form_authoring",
+                "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_form_verification",
+                "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header."
           },
           "execution_host": "local_interactive",
           "form_type": "Main",
@@ -13468,7 +14190,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -13744,7 +14466,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -13790,16 +14512,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "aks_stage not-in [74880 (Completed), 74881 (Cancelled)]",
@@ -13861,7 +14621,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14137,7 +14897,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -14183,16 +14943,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "ownerid equals current user",
@@ -14255,7 +15053,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -14531,7 +15329,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -14577,16 +15375,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filter": "aks_priority in [74884 (High), 74885 (Critical)]",
@@ -14641,7 +15477,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -14774,7 +15610,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -14923,7 +15759,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15210,7 +16046,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -15263,6 +16099,44 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -15323,7 +16197,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -15610,7 +16484,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -15663,6 +16537,44 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -15723,7 +16635,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -16010,7 +16922,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -16063,6 +16975,44 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -16128,7 +17078,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -16415,7 +17365,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -16468,6 +17418,44 @@
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide compiler-validated explicit solution context and are verification-only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
             "route_rationale": "Remaining schema types use only operation profiles explicitly approved in the capability matrix."
@@ -16505,8 +17493,8 @@
       ],
       "feature": "FEAT-03",
       "plan": "DES-03",
-      "plan_hash": "e6f89e86ed4c3b8e282bb0d4b8a1cb419e61db7568a2466f3ebec010a51332f6",
-      "source_spec_hash": "5685339b5cf5c270ecd4e0caad82a5f0178a85e7531775ee9d4df111f7b3669b",
+      "plan_hash": "5e5e9df79de60177fbb036d87bc9b33290946c87b217bb857924a6b7e8aca213",
+      "source_spec_hash": "b147925f0ffe1bc84310a44e33336b0f2959138b757560275ea80d0c42a11b3b",
       "status": "reviewed",
       "workspace": "specs/003-maintenance-jobs-parts"
     },
@@ -16541,7 +17529,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -16713,7 +17701,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -16768,7 +17756,7 @@
                 "kind": "sdk",
                 "package": "msal",
                 "purpose": "delegated_authentication",
-                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for registration.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -16789,13 +17777,27 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "solution_aware_plugin_registration",
-                "rationale": "The compiler-bound executor registers the assembly, steps, and image with explicit solution context.",
+                "purpose": "registration_record_creation",
+                "rationale": "Plugin registration records (PluginAssembly, PluginType, PluginStep) are created via Web API under solution context.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "solution_and_source_operations",
+                "rationale": "PAC is used for supported solution source and package operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
               },
               {
                 "authentication": "interactive_user",
@@ -16836,7 +17838,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Plug-in implementation uses the supported build toolchain and compiler-bound solution-aware Web API registration executor."
+            "route_rationale": "Plug-in implementation uses the supported build, SDK, registration, and solution toolchain. Registration records are created via Web API under solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-04-CMP-001",
@@ -16945,9 +17947,25 @@
           "build_skill": "dataverse-procode",
           "component_type": "code_webres_js",
           "development_resources": {
+            "allowed": [
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "solution_export_for_source_sync",
+                "rationale": "PAC is allowed only for documented solution export/unpack during post-deployment source synchronization.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
+              }
+            ],
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -17151,23 +18169,8 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
-              {
-                "authentication": "none",
-                "description": "Official Microsoft implementation grounding.",
-                "id": "microsoft-learn",
-                "kind": "mcp",
-                "purpose": "web_resource_contract_grounding",
-                "rationale": "Official Web Resource and PublishXml documentation grounds the payload, solution context, and publication contract.",
-                "server": "microsoft-learn",
-                "supported_execution_hosts": [
-                  "local_interactive",
-                  "github_copilot_cloud"
-                ],
-                "version": "service-managed",
-                "version_policy": "service_managed"
-              },
               {
                 "authentication": "none",
                 "description": "Project-pinned Node.js and npm toolchain.",
@@ -17198,8 +18201,8 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "solution_aware_web_resource_authoring",
-                "rationale": "The compiler-bound executor creates, updates, verifies, and publishes the exact web resource with explicit solution context.",
+                "purpose": "primary_crud_and_solution_operations",
+                "rationale": "Dataverse Web API is now primary for first-class CRUD operations with native solution context and canonical publisher-prefixed naming.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -17208,20 +18211,44 @@
               },
               {
                 "authentication": "interactive_user",
-                "command": "pac",
-                "description": "Power Platform CLI for solution source and supported authoring.",
-                "id": "power-platform-cli",
-                "kind": "cli",
-                "purpose": "post_write_solution_source_sync",
-                "rationale": "PAC exports and unpacks the exact routed solution only after successful Web API verification.",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_runtime_verification",
+                "rationale": "MCP verifies exact metadata and runtime behavior only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
-                "version": "2.9.3",
-                "version_policy": "project_pinned"
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Web resources use compiler-bound Web API CRUD from routed repository source, targeted publication, and PAC only for post-write solution source synchronization."
+            "route_rationale": "Phase 8 web resource authoring uses first-class Dataverse Web API with solution context, explicit canonical naming, and post-action verification. Content construction and repository binding are now fully supported."
           },
           "execution_host": "local_interactive",
           "handlers": [
@@ -17306,7 +18333,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -17598,7 +18625,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -17644,16 +18671,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_form_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SystemForm under the routed solution without an MCP dependency.",
+                "purpose": "primary_form_authoring",
+                "rationale": "Structured FormXML is written through compiler-gated SystemForm CRUD under the exact routed solution.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_form_verification",
+                "rationale": "MCP reads verify the exact form; generic writes do not guarantee custom-solution context.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Validated FormXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The validated form payload generates deterministic FormXML and uses documented SystemForm CRUD under the routed solution header."
           },
           "execution_host": "local_interactive",
           "form_type": "main",
@@ -17731,8 +18796,8 @@
       ],
       "feature": "FEAT-04",
       "plan": "DES-04",
-      "plan_hash": "1e8da2d1488fef7df6629fb0cdf2f81733298b0b7a368a52afc1fd1e367fae6d",
-      "source_spec_hash": "2a5764f93f1e2ca509c9e9ef4f17c5443ff50e16bbc08d3a014d0597b482d8c1",
+      "plan_hash": "7d18db37f47fe34da005c94115a20a188ad305c62fa58616b2ca96ba268fda03",
+      "source_spec_hash": "6a1711e26fca05da4ea4eae70a11bf089dfaf06a3e6f821d71d9d31c1a3c8d4b",
       "status": "reviewed",
       "workspace": "specs/004-job-completion-enforcement"
     },
@@ -17767,7 +18832,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -18103,7 +19168,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -18149,16 +19214,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-05-CMP-001",
@@ -18227,7 +19330,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -18563,7 +19666,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -18609,16 +19712,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-05-CMP-002",
@@ -18693,7 +19834,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -19029,7 +20170,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -19075,16 +20216,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_authoring_and_verification",
-                "rationale": "The executor performs solution-aware writes and exact targeted verification without an MCP dependency.",
+                "purpose": "primary_solution_aware_authoring",
+                "rationale": "MSCRM.SolutionUniqueName provides compiler-validated explicit custom-solution context for supported operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "discovery_and_targeted_verification",
+                "rationale": "Generic MCP writes do not provide an equivalent compiler-validated custom-solution mechanism, so MCP is read and verification only.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Solution-aware table and child-column authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "The capability matrix documents solution-aware table and child-column metadata operations with explicit Web API solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-05-CMP-003",
@@ -19149,7 +20328,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -19462,7 +20641,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -19616,7 +20795,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -19882,7 +21061,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -20003,7 +21182,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -20279,7 +21458,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -20325,16 +21504,54 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_view_authoring_and_verification",
-                "rationale": "The executor writes and target-reads the exact SavedQuery under the routed solution without an MCP dependency.",
+                "purpose": "primary_view_authoring",
+                "rationale": "The executor writes validated SavedQuery XML under the routed solution header.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
+                "id": "dataverse-mcp",
+                "kind": "mcp",
+                "purpose": "targeted_view_verification",
+                "rationale": "MCP verifies the exact view identity and result surface.",
+                "release_channel": "ga",
+                "required_tools": [
+                  "search",
+                  "describe",
+                  "read_query"
+                ],
+                "server": "dataverse-authoring",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "tools": [
+                  "search_data",
+                  "search",
+                  "create_record",
+                  "update_record",
+                  "delete_record",
+                  "create_table",
+                  "update_table",
+                  "delete_table",
+                  "read_query",
+                  "describe",
+                  "upsert_skill",
+                  "delete_skill",
+                  "init_file_upload",
+                  "commit_file_upload",
+                  "file_download"
+                ],
+                "version": "ga",
+                "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Structured FetchXML and LayoutXML authoring and targeted verification are fully owned by the compiler-bound Web API executor."
+            "route_rationale": "Structured FetchXML and LayoutXML make shared and special views compiler-owned Web API artifacts."
           },
           "execution_host": "local_interactive",
           "filters": [
@@ -20411,7 +21628,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -20703,7 +21920,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -20869,7 +22086,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -21042,7 +22259,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -21243,7 +22460,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -21416,7 +22633,7 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -21579,8 +22796,8 @@
       ],
       "feature": "FEAT-05",
       "plan": "DES-05",
-      "plan_hash": "cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636",
-      "source_spec_hash": "3980d16e7e25de7aeb6af0702a99ed3c1141d54466362bba91872812c27d25bf",
+      "plan_hash": "0378f0cb5157ed16a6ad65aed6aae25c4da68e1a7d28116e71ab2a9bf6198d21",
+      "source_spec_hash": "3f867f4dd41cee746ba811c9aa5a41c9b299d287fe585993620adab4751f4a86",
       "status": "reviewed",
       "workspace": "specs/005-automated-followup-orchestration"
     },
@@ -21611,7 +22828,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -21803,7 +23020,7 @@
                 "id": "maker-portal",
                 "kind": "portal",
                 "purpose": "documented_api_failure_fallback",
-                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "rationale": "Portal fallback is allowed only with issue evidence for an unavailable or unsupported MCP verification operation.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -21811,7 +23028,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -21836,7 +23053,7 @@
                 "kind": "sdk",
                 "package": "msal",
                 "purpose": "delegated_authentication",
-                "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for role creation.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -21857,8 +23074,8 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_solution_aware_authoring",
-                "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+                "purpose": "primary_role_creation_and_privilege_assignment",
+                "rationale": "Web API executor creates the role at root BU under solution context and assigns declared privileges via AddPrivilegesRole bound action.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -21867,26 +23084,12 @@
               },
               {
                 "authentication": "interactive_user",
-                "command": "pac",
-                "description": "Power Platform CLI for solution source and supported authoring.",
-                "id": "power-platform-cli",
-                "kind": "cli",
-                "purpose": "post_write_solution_source_sync",
-                "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
-                "supported_execution_hosts": [
-                  "local_interactive"
-                ],
-                "version": "2.9.3",
-                "version_policy": "project_pinned"
-              },
-              {
-                "authentication": "interactive_user",
                 "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
                 "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
                 "id": "dataverse-mcp",
                 "kind": "mcp",
-                "purpose": "targeted_role_verification",
-                "rationale": "MCP verifies exact effective privileges only and is not used for generic solution-aware writes.",
+                "purpose": "role_privilege_verification",
+                "rationale": "MCP verifies exact assigned privileges and effective role configuration.",
                 "release_channel": "ga",
                 "required_tools": [
                   "search",
@@ -21918,7 +23121,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification."
+            "route_rationale": "Role CRUD is supported via Web API with compiler-managed privilege assignment; Web API executor handles base-role and privilege resolution for declared depth."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-001",
@@ -22088,7 +23291,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -22280,7 +23483,7 @@
                 "id": "maker-portal",
                 "kind": "portal",
                 "purpose": "documented_api_failure_fallback",
-                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "rationale": "Portal fallback is allowed only with issue evidence for an unavailable or unsupported MCP verification operation.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -22288,7 +23491,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -22313,7 +23516,7 @@
                 "kind": "sdk",
                 "package": "msal",
                 "purpose": "delegated_authentication",
-                "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for role creation.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -22334,8 +23537,8 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_solution_aware_authoring",
-                "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+                "purpose": "primary_role_creation_and_privilege_assignment",
+                "rationale": "Web API executor creates the role at root BU under solution context and assigns declared privileges via AddPrivilegesRole bound action.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -22344,26 +23547,12 @@
               },
               {
                 "authentication": "interactive_user",
-                "command": "pac",
-                "description": "Power Platform CLI for solution source and supported authoring.",
-                "id": "power-platform-cli",
-                "kind": "cli",
-                "purpose": "post_write_solution_source_sync",
-                "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
-                "supported_execution_hosts": [
-                  "local_interactive"
-                ],
-                "version": "2.9.3",
-                "version_policy": "project_pinned"
-              },
-              {
-                "authentication": "interactive_user",
                 "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
                 "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
                 "id": "dataverse-mcp",
                 "kind": "mcp",
-                "purpose": "targeted_role_verification",
-                "rationale": "MCP verifies exact effective privileges only and is not used for generic solution-aware writes.",
+                "purpose": "role_privilege_verification",
+                "rationale": "MCP verifies exact assigned privileges and effective role configuration.",
                 "release_channel": "ga",
                 "required_tools": [
                   "search",
@@ -22395,7 +23584,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification."
+            "route_rationale": "Role CRUD is supported via Web API with compiler-managed privilege assignment; Web API executor handles base-role and privilege resolution for declared depth."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-002",
@@ -22509,7 +23698,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -22701,7 +23890,7 @@
                 "id": "maker-portal",
                 "kind": "portal",
                 "purpose": "documented_api_failure_fallback",
-                "rationale": "Portal use requires sanitized issue evidence naming the unsupported or unavailable API capability.",
+                "rationale": "Portal fallback is allowed only with issue evidence for an unavailable or unsupported MCP verification operation.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -22709,7 +23898,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -22734,7 +23923,7 @@
                 "kind": "sdk",
                 "package": "msal",
                 "purpose": "delegated_authentication",
-                "rationale": "The executor uses pinned public-client MSAL with an in-memory token cache.",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for role creation.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -22755,8 +23944,8 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "primary_solution_aware_authoring",
-                "rationale": "The compiler-bound executor creates the exact role and assigns declared privileges with explicit solution context.",
+                "purpose": "primary_role_creation_and_privilege_assignment",
+                "rationale": "Web API executor creates the role at root BU under solution context and assigns declared privileges via AddPrivilegesRole bound action.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -22765,26 +23954,12 @@
               },
               {
                 "authentication": "interactive_user",
-                "command": "pac",
-                "description": "Power Platform CLI for solution source and supported authoring.",
-                "id": "power-platform-cli",
-                "kind": "cli",
-                "purpose": "post_write_solution_source_sync",
-                "rationale": "PAC exports and unpacks the routed solution only after successful Web API verification.",
-                "supported_execution_hosts": [
-                  "local_interactive"
-                ],
-                "version": "2.9.3",
-                "version_policy": "project_pinned"
-              },
-              {
-                "authentication": "interactive_user",
                 "description": "GA Dataverse MCP endpoint; tool surface is probed at runtime.",
                 "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
                 "id": "dataverse-mcp",
                 "kind": "mcp",
-                "purpose": "targeted_role_verification",
-                "rationale": "MCP verifies exact effective privileges only and is not used for generic solution-aware writes.",
+                "purpose": "role_privilege_verification",
+                "rationale": "MCP verifies exact assigned privileges and effective role configuration.",
                 "release_channel": "ga",
                 "required_tools": [
                   "search",
@@ -22816,7 +23991,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Security-role CRUD uses the compiler-bound Web API executor with explicit solution context, exact privilege resolution, and targeted verification."
+            "route_rationale": "Role CRUD is supported via Web API with compiler-managed privilege assignment; Web API executor handles base-role and privilege resolution for declared depth."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-003",
@@ -22889,7 +24064,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -23042,7 +24217,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -23156,7 +24331,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -23309,7 +24484,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -23423,7 +24598,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_environment",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -23576,7 +24751,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -23699,7 +24874,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "add_solution_component": {
                   "executor": {
@@ -24012,7 +25187,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -24173,7 +25348,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -24345,7 +25520,7 @@
                 "portal_fallback_evidence_required": true
               }
             },
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
@@ -24400,7 +25575,7 @@
                 "kind": "sdk",
                 "package": "msal",
                 "purpose": "delegated_authentication",
-                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow for registration.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -24421,13 +25596,27 @@
                   "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
                   "token_cache": "memory_only"
                 },
-                "purpose": "solution_aware_plugin_registration",
-                "rationale": "The compiler-bound executor registers the assembly, steps, and image with explicit solution context.",
+                "purpose": "registration_record_creation",
+                "rationale": "Plugin registration records (PluginAssembly, PluginType, PluginStep) are created via Web API under solution context.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
                 "version": "v9.2",
                 "version_policy": "api_contract"
+              },
+              {
+                "authentication": "interactive_user",
+                "command": "pac",
+                "description": "Power Platform CLI for solution source and supported authoring.",
+                "id": "power-platform-cli",
+                "kind": "cli",
+                "purpose": "solution_and_source_operations",
+                "rationale": "PAC is used for supported solution source and package operations.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "2.9.3",
+                "version_policy": "project_pinned"
               },
               {
                 "authentication": "interactive_user",
@@ -24468,7 +25657,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Plug-in implementation uses the supported build toolchain and compiler-bound solution-aware Web API registration executor."
+            "route_rationale": "Plug-in implementation uses the supported build, SDK, registration, and solution toolchain. Registration records are created via Web API under solution context."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-008",
@@ -24576,7 +25765,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -24584,9 +25773,9 @@
                     "supported": true
                   },
                   "fallback": {
-                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-                    "issue_evidence_required": true,
-                    "resource": "maker-portal"
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "dataverse-app-dotnet-sdk"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -24595,17 +25784,67 @@
                   },
                   "official_references": [
                     "optional_parameters",
-                    "model_app"
+                    "model_app",
+                    "model_app_lifecycle",
+                    "add_app_components",
+                    "retrieve_app_components"
                   ],
                   "operation": "create",
                   "primary_resource": "dataverse-web-api",
                   "profile": "app-create",
-                  "rationale": "The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.",
+                  "rationale": "The executor creates the documented unpublished AppModule row in the routed solution, adds exact table metadata references, and target-verifies the app shell; role association is deferred until the sitemap operation validates and publishes the completed app.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
                     "value_source": "authoring_target.solution_unique_name"
                   },
+                  "suboperations": [
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"
+                      },
+                      "name": "recover_unpublished_app",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "metadata",
+                        "method": "GET",
+                        "path_template": "EntityDefinitions(LogicalName='{table}')"
+                      },
+                      "name": "resolve_table_metadata",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "unbound_action",
+                        "method": "POST",
+                        "path_template": "AddAppComponents"
+                      },
+                      "name": "add_table_components",
+                      "primary_resource": "dataverse-app-dotnet-sdk",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "dependencies"
+                      },
+                      "name": "verify_table_dependencies",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    }
+                  ],
                   "support": "supported",
                   "verification": {
                     "http": {
@@ -24613,7 +25852,7 @@
                       "method": "GET",
                       "path_template": "appmodules"
                     },
-                    "rationale": "Query the exact app by name and verify compiler-generated app module definition.",
+                    "rationale": "Query the exact canonical unpublished app and verify its declared table memberships.",
                     "resource": "dataverse-mcp",
                     "tools": [
                       "describe",
@@ -24628,9 +25867,9 @@
                     "supported": true
                   },
                   "fallback": {
-                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-                    "issue_evidence_required": true,
-                    "resource": "maker-portal"
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "dataverse-web-api"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -24643,12 +25882,25 @@
                   "operation": "delete",
                   "primary_resource": "dataverse-web-api",
                   "profile": "app-delete",
-                  "rationale": "HTTP DELETE destroys the AppModule row and is never substituted for solution-membership removal.",
+                  "rationale": "HTTP DELETE destroys only the exact evidence-bound AppModule row after unpublished identity verification and is never substituted for solution-membership removal.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
                     "value_source": "authoring_target.solution_unique_name"
                   },
+                  "suboperations": [
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"
+                      },
+                      "name": "recover_unpublished_app",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    }
+                  ],
                   "support": "supported",
                   "verification": {
                     "http": {
@@ -24670,9 +25922,9 @@
                     "supported": true
                   },
                   "fallback": {
-                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-                    "issue_evidence_required": true,
-                    "resource": "maker-portal"
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "dataverse-web-api"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -24681,17 +25933,78 @@
                   },
                   "official_references": [
                     "optional_parameters",
-                    "model_app"
+                    "model_app",
+                    "model_app_lifecycle",
+                    "remove_app_components",
+                    "publish_xml"
                   ],
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "app-update",
-                  "rationale": "The executor generates app module JSON from the validated tables payload and writes the AppModule row under the documented solution header.",
+                  "rationale": "The executor creates the documented unpublished AppModule row in the routed solution, adds exact table metadata references, and target-verifies the app shell; role association is deferred until the sitemap operation validates and publishes the completed app.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
                     "value_source": "authoring_target.solution_unique_name"
                   },
+                  "suboperations": [
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "appmodules({record_id})"
+                      },
+                      "name": "resolve_app_by_id",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "metadata",
+                        "method": "GET",
+                        "path_template": "EntityDefinitions(LogicalName='{table}')"
+                      },
+                      "name": "resolve_table_metadata",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "appmodulecomponents"
+                      },
+                      "name": "list_app_components",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "unbound_action",
+                        "method": "POST",
+                        "path_template": "RemoveAppComponents"
+                      },
+                      "name": "remove_app_components",
+                      "primary_resource": "dataverse-app-dotnet-sdk",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "unbound_action",
+                        "method": "POST",
+                        "path_template": "PublishXml"
+                      },
+                      "name": "publish_app",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    }
+                  ],
                   "support": "supported",
                   "verification": {
                     "http": {
@@ -24715,7 +26028,7 @@
                   "fallback": {
                     "allowed_when": "not_applicable",
                     "issue_evidence_required": false,
-                    "resource": "maker-portal"
+                    "resource": "dataverse-web-api"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -24766,7 +26079,7 @@
                 "id": "power-platform-cli",
                 "kind": "cli",
                 "purpose": "supported_solution_source_operations",
-                "rationale": "PAC remains limited to supported source and solution operations.",
+                "rationale": "PAC is used only for supported targeted solution/source operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -24774,15 +26087,15 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
                 "description": "Official Microsoft implementation grounding.",
                 "id": "microsoft-learn",
                 "kind": "mcp",
-                "purpose": "ui_contract",
-                "rationale": "Official product documentation grounds the selected UI authoring route.",
+                "purpose": "model_app_contract",
+                "rationale": "Official AppModule documentation grounds the supported metadata surface and relationships to tables, forms, and site maps.",
                 "server": "microsoft-learn",
                 "supported_execution_hosts": [
                   "local_interactive",
@@ -24792,18 +26105,74 @@
                 "version_policy": "service_managed"
               },
               {
-                "authentication": "interactive_user",
-                "description": "Human maker authoring surface.",
-                "endpoint": "https://make.powerapps.com",
-                "id": "maker-portal",
-                "kind": "portal",
-                "purpose": "primary_ui_authoring",
-                "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
-                "version": "service-managed",
-                "version_policy": "service_managed"
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_app_authoring",
+                "rationale": "Compiler-gated AppModule CRUD under the routed solution header is the primary solution-aware authoring path.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              },
+              {
+                "authentication": "none",
+                "description": "Project-supported .NET build and test toolchain.",
+                "ecosystem": "dotnet",
+                "id": "dotnet-toolchain",
+                "kind": "sdk",
+                "purpose": "sdk_executor_build",
+                "rationale": "The project-pinned toolchain builds and runs the narrow app component executor.",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "10.0.302",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "none",
+                "description": "Dataverse SDK pinned for the narrow typed app component executor.",
+                "ecosystem": "nuget",
+                "id": "dataverse-app-dotnet-sdk",
+                "kind": "sdk",
+                "package": "Microsoft.PowerPlatform.Dataverse.Client",
+                "project_paths": [
+                  "scripts/dataverse_app_sdk_executor/DataverseAppSdkExecutor.csproj"
+                ],
+                "purpose": "typed_app_component_authoring",
+                "rationale": "AddAppComponentsRequest supplies typed EntityReference values that the OData service cannot represent for table metadata.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.1.32",
+                "version_policy": "project_pinned"
               },
               {
                 "authentication": "interactive_user",
@@ -24811,8 +26180,8 @@
                 "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
                 "id": "dataverse-mcp",
                 "kind": "mcp",
-                "purpose": "targeted_ui_verification",
-                "rationale": "MCP is restricted to discovery and targeted post-action verification.",
+                "purpose": "targeted_app_verification",
+                "rationale": "MCP verifies exact app identity and configuration; generic writes lack compiler-validated explicit custom-solution context.",
                 "release_channel": "ga",
                 "required_tools": [
                   "search",
@@ -24844,7 +26213,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload."
+            "route_rationale": "Model-driven apps use compiler-gated AppModule Web API operations with explicit solution context and the pinned Dataverse SDK for typed app component references."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-009",
@@ -24957,7 +26326,7 @@
           "development_resources": {
             "capabilities": {
               "implementation_scope": "repository_and_dataverse_solution",
-              "matrix_hash": "f1937248877075119a1645c6be15300e9b704782d7fd8ce540b63077cde580ff",
+              "matrix_hash": "ddc580dd87dc6bd0136b0757f75ca723f7e8256fb15350017a5bbf75137b6bd3",
               "operations": {
                 "create": {
                   "executor": {
@@ -24965,9 +26334,9 @@
                     "supported": true
                   },
                   "fallback": {
-                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-                    "issue_evidence_required": true,
-                    "resource": "maker-portal"
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "dataverse-app-dotnet-sdk"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -24976,17 +26345,136 @@
                   },
                   "official_references": [
                     "optional_parameters",
-                    "site_map"
+                    "site_map",
+                    "sitemap_schema",
+                    "model_app_lifecycle",
+                    "add_app_components",
+                    "retrieve_app_components",
+                    "validate_app",
+                    "publish_xml"
                   ],
                   "operation": "create",
                   "primary_resource": "dataverse-web-api",
                   "profile": "sitemap-create",
-                  "rationale": "The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.",
+                  "rationale": "The executor writes complete schema-valid sitemap XML in the routed solution; create then attaches it to the exact app, validates and publishes only that app, and associates the compiler-declared roles after publication.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
                     "value_source": "authoring_target.solution_unique_name"
                   },
+                  "suboperations": [
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "appmodules"
+                      },
+                      "name": "resolve_app",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "appmodules/Microsoft.Dynamics.CRM.RetrieveUnpublishedMultiple()"
+                      },
+                      "name": "resolve_unpublished_app",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "unbound_action",
+                        "method": "POST",
+                        "path_template": "AddAppComponents"
+                      },
+                      "name": "add_sitemap_component",
+                      "primary_resource": "dataverse-app-dotnet-sdk",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "dependencies"
+                      },
+                      "name": "verify_sitemap_dependency",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "unbound_function",
+                        "method": "GET",
+                        "path_template": "ValidateApp(AppModuleId={record_id})"
+                      },
+                      "name": "validate_app",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "unbound_action",
+                        "method": "POST",
+                        "path_template": "PublishXml"
+                      },
+                      "name": "publish_app",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "roles"
+                      },
+                      "name": "resolve_security_roles",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "businessunits"
+                      },
+                      "name": "resolve_root_business_unit",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "POST",
+                        "path_template": "appmodules({record_id})/appmoduleroles_association/$ref"
+                      },
+                      "name": "associate_security_roles",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    },
+                    {
+                      "http": {
+                        "endpoint_family": "entity_set",
+                        "method": "GET",
+                        "path_template": "appmodules({record_id})"
+                      },
+                      "name": "verify_role_associations",
+                      "solution_context": {
+                        "mechanism": "not_applicable"
+                      }
+                    }
+                  ],
                   "support": "supported",
                   "verification": {
                     "http": {
@@ -25009,9 +26497,9 @@
                     "supported": true
                   },
                   "fallback": {
-                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-                    "issue_evidence_required": true,
-                    "resource": "maker-portal"
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "dataverse-web-api"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -25051,9 +26539,9 @@
                     "supported": true
                   },
                   "fallback": {
-                    "allowed_when": "documented_operation_unsupported_or_primary_unavailable",
-                    "issue_evidence_required": true,
-                    "resource": "maker-portal"
+                    "allowed_when": "not_applicable",
+                    "issue_evidence_required": false,
+                    "resource": "dataverse-web-api"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -25067,7 +26555,7 @@
                   "operation": "update",
                   "primary_resource": "dataverse-web-api",
                   "profile": "sitemap-update",
-                  "rationale": "The executor generates sitemap XML from the validated areas/groups payload and writes the SiteMap row under the documented solution header.",
+                  "rationale": "The executor writes complete schema-valid sitemap XML in the routed solution; create then attaches it to the exact app, validates and publishes only that app, and associates the compiler-declared roles after publication.",
                   "solution_context": {
                     "mechanism": "MSCRM.SolutionUniqueName",
                     "name": "MSCRM.SolutionUniqueName",
@@ -25096,7 +26584,7 @@
                   "fallback": {
                     "allowed_when": "not_applicable",
                     "issue_evidence_required": false,
-                    "resource": "maker-portal"
+                    "resource": "dataverse-web-api"
                   },
                   "http": {
                     "endpoint_family": "entity_set",
@@ -25147,7 +26635,7 @@
                 "id": "power-platform-cli",
                 "kind": "cli",
                 "purpose": "supported_solution_source_operations",
-                "rationale": "PAC remains limited to supported source and solution operations.",
+                "rationale": "PAC is used only for supported targeted solution/source operations.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
@@ -25155,15 +26643,15 @@
                 "version_policy": "project_pinned"
               }
             ],
-            "registry_hash": "15e4f75195d412beaa83fc4accf9b5650c480cd3ef6748b10f95272ae664023f",
+            "registry_hash": "1bf76cdd7f052634bf775f7f923d80fabbc36ce40e9c96e0d1bea7c5c78bfebc",
             "required": [
               {
                 "authentication": "none",
                 "description": "Official Microsoft implementation grounding.",
                 "id": "microsoft-learn",
                 "kind": "mcp",
-                "purpose": "ui_contract",
-                "rationale": "Official product documentation grounds the selected UI authoring route.",
+                "purpose": "sitemap_contract",
+                "rationale": "Official SiteMap documentation grounds the supported structure and relationships to app, areas, groups, and subareas.",
                 "server": "microsoft-learn",
                 "supported_execution_hosts": [
                   "local_interactive",
@@ -25173,18 +26661,74 @@
                 "version_policy": "service_managed"
               },
               {
-                "authentication": "interactive_user",
-                "description": "Human maker authoring surface.",
-                "endpoint": "https://make.powerapps.com",
-                "id": "maker-portal",
-                "kind": "portal",
-                "purpose": "primary_ui_authoring",
-                "rationale": "Portal is primary because no reliable compiler-owned API construction is claimed.",
+                "authentication": "none",
+                "description": "Pinned Microsoft Authentication Library for delegated public-client Dataverse authentication.",
+                "ecosystem": "pip",
+                "id": "msal-python",
+                "kind": "sdk",
+                "package": "msal",
+                "purpose": "delegated_authentication",
+                "rationale": "The Web API executor uses the pinned in-memory MSAL public-client flow.",
                 "supported_execution_hosts": [
                   "local_interactive"
                 ],
-                "version": "service-managed",
-                "version_policy": "service_managed"
+                "version": "1.37.0",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "interactive_user",
+                "description": "Capability-gated Dataverse Web API authoring endpoint.",
+                "endpoint": "https://org89912357.crm.dynamics.com/api/data/v9.2",
+                "id": "dataverse-web-api",
+                "kind": "endpoint",
+                "oauth_public_client": {
+                  "client_id": "201be4ec-09c9-482a-a3c2-67f3e467d57b",
+                  "provider": "msal_public_client",
+                  "redirect_uri": "http://localhost",
+                  "scope_suffix": "/user_impersonation",
+                  "tenant_id": "979fd422-22c4-4a36-bea6-1cf87b6502dd",
+                  "token_cache": "memory_only"
+                },
+                "purpose": "primary_sitemap_authoring",
+                "rationale": "Compiler-gated SiteMap CRUD under the routed solution header is the primary solution-aware authoring path.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "v9.2",
+                "version_policy": "api_contract"
+              },
+              {
+                "authentication": "none",
+                "description": "Project-supported .NET build and test toolchain.",
+                "ecosystem": "dotnet",
+                "id": "dotnet-toolchain",
+                "kind": "sdk",
+                "purpose": "sdk_executor_build",
+                "rationale": "The project-pinned toolchain builds and runs the narrow app component executor.",
+                "supported_execution_hosts": [
+                  "local_interactive",
+                  "github_copilot_cloud"
+                ],
+                "version": "10.0.302",
+                "version_policy": "project_pinned"
+              },
+              {
+                "authentication": "none",
+                "description": "Dataverse SDK pinned for the narrow typed app component executor.",
+                "ecosystem": "nuget",
+                "id": "dataverse-app-dotnet-sdk",
+                "kind": "sdk",
+                "package": "Microsoft.PowerPlatform.Dataverse.Client",
+                "project_paths": [
+                  "scripts/dataverse_app_sdk_executor/DataverseAppSdkExecutor.csproj"
+                ],
+                "purpose": "typed_app_component_authoring",
+                "rationale": "AddAppComponentsRequest attaches the exact sitemap with an SDK EntityReference.",
+                "supported_execution_hosts": [
+                  "local_interactive"
+                ],
+                "version": "1.1.32",
+                "version_policy": "project_pinned"
               },
               {
                 "authentication": "interactive_user",
@@ -25192,8 +26736,8 @@
                 "endpoint": "https://org89912357.crm.dynamics.com/api/mcp",
                 "id": "dataverse-mcp",
                 "kind": "mcp",
-                "purpose": "targeted_ui_verification",
-                "rationale": "MCP is restricted to discovery and targeted post-action verification.",
+                "purpose": "targeted_sitemap_verification",
+                "rationale": "MCP verifies exact sitemap identity and navigation structure; generic writes lack compiler-validated explicit custom-solution context.",
                 "release_channel": "ga",
                 "required_tools": [
                   "search",
@@ -25225,7 +26769,7 @@
                 "version_policy": "service_managed"
               }
             ],
-            "route_rationale": "Visual UI artifacts retain Maker Portal primary unless a future capability profile proves a complete supported Web API payload."
+            "route_rationale": "Site maps use compiler-gated SiteMap Web API operations with explicit solution context and the pinned Dataverse SDK for typed app attachment."
           },
           "execution_host": "local_interactive",
           "id": "DES-06-CMP-010",
@@ -25258,13 +26802,13 @@
       ],
       "feature": "FEAT-06",
       "plan": "DES-06",
-      "plan_hash": "058093c7600c9ee9a7cfb4fd457519832f2f49d88e8bfa2d18b53d72d60cae5c",
-      "source_spec_hash": "640cabe6eb06458a9a040a708d88264a389b6ee1db060a33aaf776fe9fc72170",
+      "plan_hash": "1f739adf7f94840b02a9c90873196117b133628ad6d102f1e7699ce50ec426d6",
+      "source_spec_hash": "56e174eb9810c1e026f0b0bc49545854a3ce1b53c8122a2229208516af112f14",
       "status": "reviewed",
       "workspace": "specs/006-access-roles-app-shell"
     }
   ],
-  "repository_context_hash": "55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10",
+  "repository_context_hash": "ce1596580d3b332f571bd9adaac8a24f20e7a871a02dc9e28dc26223ee927417",
   "schema_version": 1,
-  "spec_context_hash": "ef807ca545b93cc571c2f5215f570a061414fa7ab87e4388f583b8935b36937b"
+  "spec_context_hash": "7d073072bae9d4ed19267aab30f2b008870566559c256e5670351b5dfc720260"
 }

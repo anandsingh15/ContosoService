@@ -9,8 +9,8 @@ member_reqs:
 - INTK-0001-REQ-004
 - INTK-0001-REQ-005
 - INTK-0001-REQ-006
-repository_context_hash: 55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10
-spec_hash: 24e7af3c0c86b269d377ad7f01ea64bc05490d472443c81697df9366b18a0cb7
+repository_context_hash: ce1596580d3b332f571bd9adaac8a24f20e7a871a02dc9e28dc26223ee927417
+spec_hash: f07154d33820c4ab330aa956d8e3da75744de20d62a98a691a75316684ea2e2f
 status: reviewed
 ---
 

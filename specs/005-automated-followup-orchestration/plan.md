@@ -2,9 +2,9 @@
 id: DES-05
 status: reviewed
 implements_feature: FEAT-05
-source_spec_hash: 3980d16e7e25de7aeb6af0702a99ed3c1141d54466362bba91872812c27d25bf
-repository_context_hash: 55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10
-plan_hash: cf3dc26301589ed3a421462dad3d8af493aa3c6ed7bb770ce5a1530c73bf8636
+source_spec_hash: 3f867f4dd41cee746ba811c9aa5a41c9b299d287fe585993620adab4751f4a86
+repository_context_hash: ce1596580d3b332f571bd9adaac8a24f20e7a871a02dc9e28dc26223ee927417
+plan_hash: 0378f0cb5157ed16a6ad65aed6aae25c4da68e1a7d28116e71ab2a9bf6198d21
 ---
 
 # Design - FEAT-05 automated-followup-orchestration (DES-05)
@@ -353,5 +353,5 @@ the parental cascade set because Task already has a parental relationship.
 <!-- COMPILER:BEGIN provenance -->
 | Plan | Feature | Source spec SHA-256 | Repository context |
 | --- | --- | --- | --- |
-| DES-05 | FEAT-05 | `3980d16e7e25de7aeb6af0702a99ed3c1141d54466362bba91872812c27d25bf` | `55c31bfb5d694a25505e4088cec6aebb8b8fbd881bda092156778a6d28190c10` |
+| DES-05 | FEAT-05 | `3f867f4dd41cee746ba811c9aa5a41c9b299d287fe585993620adab4751f4a86` | `ce1596580d3b332f571bd9adaac8a24f20e7a871a02dc9e28dc26223ee927417` |
 <!-- COMPILER:END provenance -->
