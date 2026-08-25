@@ -141,6 +141,7 @@ FORM_CONTROL_CLASS_IDS = {
 }
 FORM_SUBGRID_CLASS_ID = "{E7A81278-8635-4D9E-8D4D-59480B391C5B}"
 DEFAULT_APPMODULE_ICON_ID = "953b9fac-1e5e-e611-80d6-00155ded156f"
+UNIFIED_INTERFACE_CLIENT_TYPE = 4
 WEB_RESOURCE_TYPE_VALUES = {
     "html": 1,
     "css": 2,
@@ -3343,7 +3344,10 @@ def build_row_requests(
             ]
     if component_type == "uiux_app":
         if operation in {"create", "update"}:
-            body: dict[str, Any] = {"name": name}
+            body: dict[str, Any] = {
+                "name": name,
+                "clienttype": UNIFIED_INTERFACE_CLIENT_TYPE,
+            }
             if operation == "create":
                 body.update(
                     {
@@ -5695,6 +5699,11 @@ def expected_payload_matches(
             )
         except ET.ParseError:
             return False
+    if component_type == "uiux_app":
+        return (
+            str(item.get("name") or "").lower() == row_component_name(row).lower()
+            and item.get("clienttype") == UNIFIED_INTERFACE_CLIENT_TYPE
+        )
     if component_type in ROW_COMPONENT_TYPES:
         name = row_component_name(row).lower()
         return str(item.get("name") or "").lower() == name
@@ -5891,6 +5900,12 @@ def row_verification_request_by_id(
         expected_body = {
             "sitemapnameunique": str(row["payload"].get("schema_name") or ""),
             "sitemapxml": sitemapxml(row["payload"]),
+        }
+    elif component_type == "uiux_app":
+        select_fields = "appmoduleid,name,uniquename,clienttype"
+        expected_body = {
+            "name": row_component_name(row),
+            "clienttype": UNIFIED_INTERFACE_CLIENT_TYPE,
         }
     path = f"{entity_set}({immutable_id})?$select={select_fields}"
     guard_get_only_guid_path("GET", path)
