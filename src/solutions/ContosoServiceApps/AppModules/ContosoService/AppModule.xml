@@ -7,7 +7,7 @@
   <statecode>0</statecode>
   <statuscode>1</statuscode>
   <FormFactor>1</FormFactor>
-  <ClientType>2</ClientType>
+  <ClientType>4</ClientType>
   <NavigationType>0</NavigationType>
   <AppModuleComponents>
     <AppModuleComponent type="1" schemaName="account" />
