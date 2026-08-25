@@ -3386,13 +3386,11 @@ def build_row_requests(
                 )
             ]
         if operation == "verify":
+            unique_name = appmodule_unique_name_suffix(row)
             query = urlencode(
                 {
                     "$select": "appmoduleid,name,uniquename",
-                    "$filter": (
-                        "uniquename eq "
-                        f"'{odata_string(str(payload['schema_name']))}'"
-                    ),
+                    "$filter": f"uniquename eq '{odata_string(unique_name)}'",
                 }
             )
             return [
@@ -4816,7 +4814,7 @@ def row_lookup_request(row: dict[str, Any]) -> OperationRequest:
         filter_expr = f"sitemapnameunique eq '{odata_string(identity)}'"
         select = f"{id_field},sitemapname,sitemapnameunique"
     elif component_type == "uiux_app":
-        identity = str(row["payload"].get("schema_name") or "")
+        identity = appmodule_unique_name_suffix(row)
         filter_expr = f"uniquename eq '{odata_string(identity)}'"
         select = f"{id_field},name,uniquename"
     else:
