@@ -636,6 +636,84 @@ class AppModuleRequestTests(unittest.TestCase):
         self.assertIs(executor.verification_request(row, request), request)
         executor.validate_runtime_request(request.method, request.path)
 
+    def test_sitemap_update_verification_uses_immutable_id(self):
+        row = {
+            "component_type": "uiux_sitemap",
+            "implementation_scope": "repository_and_dataverse_solution",
+            "authoring_target": {"solution_unique_name": "ContosoServiceApps"},
+            "payload": {
+                "app": "aks_ContosoService",
+                "name": "Contoso Service navigation",
+                "schema_name": "aks_ContosoServiceSiteMap",
+                "areas": [
+                    {
+                        "name": "Fleet Operations",
+                        "groups": [
+                            {
+                                "name": "Fleet",
+                                "subareas": [
+                                    {"name": "Vehicles", "table": "aks_vehicle"}
+                                ],
+                            }
+                        ],
+                    }
+                ],
+            },
+        }
+        client = mock.Mock()
+        client.request.return_value = executor.HttpResult(
+            200,
+            "",
+            "correlation-id",
+            {
+                "sitemapid": self.SITEMAP_ID,
+                "sitemapname": "Contoso Service navigation",
+                "sitemapnameunique": "aks_ContosoServiceSiteMap",
+                "sitemapxml": executor.sitemapxml(row["payload"]),
+            },
+        )
+
+        with (
+            mock.patch.object(executor, "resolve_solution_id", return_value="solution-id"),
+            mock.patch.object(executor, "membership_object_id", return_value=self.SITEMAP_ID),
+            mock.patch.object(
+                executor,
+                "effective_solution_component_rows",
+                return_value=[{"_solutionid_value": "solution-id"}],
+            ),
+            mock.patch.object(
+                executor,
+                "declared_solution_ids",
+                return_value={"ContosoServiceApps": "solution-id"},
+            ),
+        ):
+            verification, resolved_id = executor.verify_result(
+                row,
+                client,
+                self.SITEMAP_ID,
+                deleted=False,
+                request=executor.OperationRequest(
+                    "PATCH",
+                    f"sitemaps({self.SITEMAP_ID})",
+                    {
+                        "sitemapnameunique": "aks_ContosoServiceSiteMap",
+                        "sitemapxml": executor.sitemapxml(row["payload"]),
+                    },
+                    ("sitemapnameunique", "sitemapxml"),
+                    ("sitemapnameunique", "sitemapxml"),
+                    "header",
+                    "update exact sitemap",
+                ),
+            )
+
+        self.assertEqual(resolved_id, self.SITEMAP_ID)
+        self.assertEqual(verification["identity"], "matched")
+        self.assertTrue(
+            client.request.call_args.args[0].path.startswith(
+                f"sitemaps({self.SITEMAP_ID})?"
+            )
+        )
+
     def test_rejects_undeclared_aggregate_suboperation(self):
         request = executor.OperationRequest(
             "POST",
