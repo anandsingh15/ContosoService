@@ -1358,6 +1358,58 @@ def configure_app_shell(
     return request, "", wrote_components
 
 
+def validate_and_publish_app(
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+) -> tuple[OperationRequest, str]:
+    validation = invoke_capability_suboperation(
+        client,
+        capability,
+        "validate_app",
+        OperationRequest(
+            "GET",
+            f"ValidateApp(AppModuleId={app_id})",
+            None,
+            (),
+            (),
+            "none",
+            "validate completed model-driven app",
+        ),
+    ).data.get("AppValidationResponse") or {}
+    if validation.get("ValidationSuccess") is not True:
+        raise ExecutorError(
+            "model-driven app validation reported unresolved issues",
+            category="verification_mismatch",
+        )
+    return publish_app(client, capability, app_id)
+
+
+def publish_app(
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+) -> tuple[OperationRequest, str]:
+    publish = OperationRequest(
+        "POST",
+        "PublishXml",
+        {
+            "ParameterXml": (
+                "<importexportxml><appmodules><appmodule>"
+                f"{app_id}</appmodule></appmodules></importexportxml>"
+            )
+        },
+        ("ParameterXml",),
+        ("published",),
+        "none",
+        "publish validated model-driven app",
+    )
+    published = invoke_capability_suboperation(
+        client, capability, "publish_app", publish
+    )
+    return publish, published.correlation_id
+
+
 def complete_app_navigation(
     row: dict[str, Any],
     client: DataverseClient,
@@ -1402,44 +1454,9 @@ def complete_app_navigation(
             "model-driven app sitemap membership verification failed",
             category="verification_mismatch",
         )
-    validation = invoke_capability_suboperation(
-        client,
-        capability,
-        "validate_app",
-        OperationRequest(
-            "GET",
-            f"ValidateApp(AppModuleId={app_id})",
-            None,
-            (),
-            (),
-            "none",
-            "validate completed model-driven app",
-        )
-    ).data.get("AppValidationResponse") or {}
-    if validation.get("ValidationSuccess") is not True:
-        raise ExecutorError(
-            "model-driven app validation reported unresolved issues",
-            category="verification_mismatch",
-        )
-    publish = OperationRequest(
-        "POST",
-        "PublishXml",
-        {
-            "ParameterXml": (
-                "<importexportxml><appmodules><appmodule>"
-                f"{app_id}</appmodule></appmodules></importexportxml>"
-            )
-        },
-        ("ParameterXml",),
-        ("published",),
-        "none",
-        "publish validated model-driven app",
-    )
-    published = invoke_capability_suboperation(
-        client, capability, "publish_app", publish
-    )
+    publish, correlation_id = validate_and_publish_app(client, capability, app_id)
     associate_app_roles(app_row, client, capability, app_id)
-    return publish, published.correlation_id
+    return publish, correlation_id
 
 
 def plugin_assembly_lookup(row: dict[str, Any]) -> OperationRequest:
@@ -6398,6 +6415,28 @@ def app_recovery_request(row: dict[str, Any], immutable_id: str) -> OperationReq
     )
 
 
+def complete_app_update(
+    row: dict[str, Any],
+    client: DataverseClient,
+    capability: dict[str, Any],
+    app_id: str,
+) -> tuple[dict[str, str], OperationRequest, str]:
+    publish_request, correlation_id = publish_app(client, capability, app_id)
+    verification, published_id = verify_result(
+        row,
+        client,
+        app_id,
+        deleted=False,
+        request=row_verification_request_by_id(row, app_id),
+    )
+    if published_id.lower() != app_id.lower():
+        raise ExecutorError(
+            "published AppModule immutable ID changed during update",
+            category="verification_mismatch",
+        )
+    return verification, publish_request, correlation_id
+
+
 def app_cleanup_requests(
     row: dict[str, Any], capability: dict[str, Any], immutable_id: str
 ) -> tuple[OperationRequest, OperationRequest]:
@@ -7187,6 +7226,10 @@ def _execute_single(
                     "payload": "matched",
                     "membership": "not-run",
                 }
+            elif row["component_type"] == "uiux_app" and operation == "update":
+                verification, _, _ = complete_app_update(
+                    row, client, capability, immutable_id
+                )
             else:
                 verification, immutable_id = verify_result(
                     row,

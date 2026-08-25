@@ -182,6 +182,49 @@ class AppModuleRequestTests(unittest.TestCase):
             )
         )
 
+    def test_app_update_publishes_before_verifying_published_payload(self):
+        row = {
+            "component_type": "uiux_app",
+            "authoring_target": {"publisher_prefix": "aks"},
+            "payload": {
+                "name": "Contoso Service",
+                "schema_name": "aks_ContosoService",
+            },
+        }
+        client = mock.Mock()
+        events = []
+
+        def request(operation):
+            if operation.path == "PublishXml":
+                events.append("publish")
+                return executor.HttpResult(204, "", "publish-correlation", {})
+            self.fail(f"unexpected request: {operation.method} {operation.path}")
+
+        client.request.side_effect = request
+        verification = {
+            "identity": "matched",
+            "payload": "matched",
+            "membership": "matched",
+        }
+
+        def verify_result(*args, **kwargs):
+            events.append("verify")
+            return verification, self.APP_ID
+
+        with mock.patch.object(executor, "verify_result", side_effect=verify_result) as verify:
+            result, publish_request, correlation_id = executor.complete_app_update(
+                row,
+                client,
+                self.app_update_capability,
+                self.APP_ID,
+            )
+
+        self.assertEqual(result, verification)
+        self.assertEqual(publish_request.path, "PublishXml")
+        self.assertEqual(correlation_id, "publish-correlation")
+        self.assertEqual(events, ["publish", "verify"])
+        verify.assert_called_once()
+
     def test_cleanup_removes_only_exact_approved_malformed_memberships(self):
         expected_ids = [
             "10000000-0000-0000-0000-000000000001",
