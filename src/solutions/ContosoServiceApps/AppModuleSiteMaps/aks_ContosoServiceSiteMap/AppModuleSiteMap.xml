@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModuleSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SiteMapUniqueName>aks_ContosoServiceSiteMap</SiteMapUniqueName>
+  <EnableCollapsibleGroups>False</EnableCollapsibleGroups>
+  <ShowHome>True</ShowHome>
+  <ShowPinned>True</ShowPinned>
+  <ShowRecents>True</ShowRecents>
+  <SiteMap>
+    <Area Id="Area_25fd1094fcff56e29d751a8ee9ab0a18" ShowGroups="true">
+      <Titles>
+        <Title LCID="1033" Title="Fleet Operations" />
+      </Titles>
+      <Group Id="Group_77ae2dbcc05f57a3bf30191abc7d558b">
+        <Titles>
+          <Title LCID="1033" Title="Fleet" />
+        </Titles>
+        <SubArea Id="SubArea_0baa3feddaed5c37a16ddd386f719a50" Entity="aks_vehicle">
+          <Titles>
+            <Title LCID="1033" Title="Vehicles" />
+          </Titles>
+        </SubArea>
+        <SubArea Id="SubArea_cbb1c32d896956ac806e43169c87afff" Entity="aks_maintenancejob">
+          <Titles>
+            <Title LCID="1033" Title="Maintenance Jobs" />
+          </Titles>
+        </SubArea>
+        <SubArea Id="SubArea_9e595785cbe75866a60be4975bbde00a" Entity="aks_jobpart">
+          <Titles>
+            <Title LCID="1033" Title="Job Parts" />
+          </Titles>
+        </SubArea>
+      </Group>
+    </Area>
+    <Area Id="Area_67863dfac9c753e0b96a74659eb4dca9" ShowGroups="true">
+      <Titles>
+        <Title LCID="1033" Title="Customers" />
+      </Titles>
+      <Group Id="Group_b23499b38fa453719a4a8a0d9814b0e1">
+        <Titles>
+          <Title LCID="1033" Title="Service Network" />
+        </Titles>
+        <SubArea Id="SubArea_f99a1042278d58538880f98073db6be0" Entity="account">
+          <Titles>
+            <Title LCID="1033" Title="Depots" />
+          </Titles>
+        </SubArea>
+        <SubArea Id="SubArea_50078a1c242a59f3a781ff23bc4f5799" Entity="contact">
+          <Titles>
+            <Title LCID="1033" Title="Technicians" />
+          </Titles>
+        </SubArea>
+      </Group>
+    </Area>
+  </SiteMap>
+  <LocalizedNames>
+    <LocalizedName description="Contoso Service navigation" languagecode="1033" />
+  </LocalizedNames>
+</AppModuleSiteMap>
